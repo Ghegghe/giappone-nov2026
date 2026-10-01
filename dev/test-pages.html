@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test pagine contenuto</title>
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" id="theme-css" href="../assets/css/themes/washi.css">
+<link rel="stylesheet" href="../assets/css/pages.css">
+<script>
+  // Niente auto-boot di pages.js: qui i moduli vengono renderizzati a mano nei contenitori.
+  window.__PAGES_NO_BOOT__ = true;
+  // ?stub=1 → usa dev/app.stub.pages.js al posto del vero app.js (import map iniettato prima di ogni module).
+  if (new URLSearchParams(location.search).has('stub')) {
+    const s = document.createElement('script');
+    s.type = 'importmap';
+    s.textContent = JSON.stringify({ imports: { [new URL('../assets/js/app.js', location.href).href]: new URL('./app.stub.pages.js', location.href).href } });
+    document.currentScript.after(s);
+  }
+</script>
+<style>
+  .t-ok { color: var(--ok); } .t-ko { color: var(--danger); font-weight: 700; }
+  .t-box { border: 1px dashed var(--border); padding: var(--space-3); margin-block: var(--space-4); }
+</style>
+</head>
+<body>
+<main class="container stack">
+  <h1 class="h1">Test pagine contenuto</h1>
+  <p class="small muted">Apri con <code>?data=dev/fixtures/</code> (default) · <code>&amp;stub=1</code> per lo stub di app.js · <code>&amp;show=1</code> per vedere i render.</p>
+  <ol id="results" class="stack small"></ol>
+  <div id="boxes"></div>
+</main>
+<script type="module">
+  // il vero app.js risolve ?data= rispetto alla radice del sito: default alle fixture
+  if (!new URLSearchParams(location.search).has('data')) {
+    const u = new URL(location.href); u.searchParams.set('data', 'dev/fixtures/'); location.replace(u.href);
+  }
+  history.replaceState(null, '', location.pathname + location.search); // i tab scrivono l'hash
+  const app = await import('../assets/js/app.js');
+  const { html, mount, safeUrl } = await import('../assets/js/pages.js');
+  const home = await import('../assets/js/pages-home.js');
+  const tr = await import('../assets/js/pages-trasporti.js');
+  const al = await import('../assets/js/pages-alloggi.js');
+  const lu = await import('../assets/js/pages-luoghi.js');
+  const bu = await import('../assets/js/pages-budget.js');
+
+  const out = document.getElementById('results');
+  let fails = 0;
+  const ok = (cond, msg) => {
+    const li = document.createElement('li');
+    li.className = cond ? 't-ok' : 't-ko';
+    li.textContent = (cond ? 'OK  ' : 'KO  ') + msg;
+    out.append(li); if (!cond) { fails++; console.error('KO', msg); }
+  };
+  const box = (name) => {
+    const d = document.createElement('section'); d.className = 't-box stack'; d.dataset.name = name;
+    if (!new URLSearchParams(location.search).has('show')) d.hidden = true;
+    document.getElementById('boxes').append(d); return d;
+  };
+  const trip = await app.loadData('trip');
+  const ctx = { trip, loadData: app.loadData };
+
+  // --- helper sicurezza ---
+  const x = document.createElement('div');
+  mount(x, html`<p title="${'"><img src=x onerror=alert(1)>'}">${'<script>alert(1)<\/script>'}</p>`);
+  ok(!x.querySelector('img,script') && x.textContent.includes('<script>'), 'html`` escapa testo e attributi');
+  ok(safeUrl('javascript:alert(1)') === '' && safeUrl('smart-ex.jp/en') === 'https://smart-ex.jp/en', 'safeUrl blocca javascript: e completa i domini');
+
+  // --- home ---
+  ok(home.tripStatus(trip, '2026-10-01').days === 37, 'countdown 1 ott → 37 giorni');
+  const s2 = home.tripStatus(trip, '2026-11-12');
+  ok(s2.phase === 'during' && s2.dayN === 6 && s2.total === 18, 'in viaggio 12 nov → giorno 6 di 18');
+  ok(home.tripStatus(trip, '2026-11-25').phase === 'after', 'dopo il 24 nov → concluso');
+  const bh = box('home'); await home.render(bh, ctx);
+  ok(/giorni alla partenza|Giorno \d+ di|concluso/.test(bh.textContent), 'home: countdown presente');
+  ok(bh.querySelectorAll('.home-day__item').length === 3, 'home: 3 item nella card giorno');
+  ok(bh.querySelectorAll('.home-dl').length === 5, 'home: 5 scadenze');
+  ok(bh.querySelectorAll('.home-grid__item').length === 5, 'home: 5 link sezione');
+  ok(!!bh.querySelector('a[href^="https://www.google.com/maps/d/"]'), 'home: link My Maps');
+
+  // --- trasporti ---
+  const bt = box('trasporti'); await tr.render(bt, ctx);
+  const t = await app.loadData('transport');
+  ok(bt.querySelectorAll('.tr-leg').length === t.legs.length, `trasporti: ${t.legs.length} tratte`);
+  ok(bt.querySelectorAll('.tr-opt--chosen').length === t.legs.length, 'trasporti: 1 opzione scelta per tratta');
+  const nDates = new Set(t.legs.map((l) => l.date)).size;
+  ok(bt.querySelectorAll('.tr-day').length === nDates, `trasporti: tratte raggruppate in ${nDates} date`);
+  ok(bt.querySelector('.tr-total')?.textContent.includes('€237'), 'trasporti: totale scelte €237');
+  const tabs = [...bt.querySelectorAll('[role=tab]')];
+  ok(tabs.length === 4, 'trasporti: 4 tab');
+  tabs[1].click(); ok(bt.querySelectorAll('.tr-leg').length === t.transfers.length, `tab Aeroporti: ${t.transfers.length} transfer`);
+  ok(!bt.textContent.includes('[object Object]') && !!bt.querySelector('.tr-opt__details dl'), 'aeroporti: details {cost,how,booking,proCon} resi come dl');
+  tabs[2].click(); ok(bt.querySelectorAll('.tr-guide').length === t.bookingGuide.length, 'tab Prenotazioni: card guida');
+  ok(!!bt.querySelector('.tr-guide a[target=_blank] use[href$="#i-external"]'), 'prenotazioni: link esterni con i-external');
+  tabs[3].click();
+  ok(bt.querySelectorAll('.tr-chk').length === t.checklist.length, 'tab Scadenze: tutte le voci');
+  ok(bt.querySelectorAll('.tr-chk--done').length === t.checklist.filter((c) => c.status === 'done').length, 'scadenze: badge fatto');
+  ok(bt.querySelectorAll('.section-title').length >= 4, 'scadenze: raggruppate per mese');
+  // telefoni: ammessi solo quelli pubblici dei ristoranti nella checklist (scelta exporter); niente IBAN/carte
+  ok(!/\bIT\d{2}[A-Z]\d{10}|\b\d{4}[ -]\d{4}[ -]\d{4}[ -]\d{4}\b/.test(JSON.stringify(t)), 'transport.json senza IBAN/numeri di carta');
+
+  // --- alloggi ---
+  const ba = box('alloggi'); await al.render(ba, ctx);
+  const stays = [...ba.querySelectorAll('.al-stay')];
+  ok(stays.length === 6, 'alloggi: 6 basi');
+  ok(stays[0].id === 'osaka' && stays[5].id === 'tokyo', 'alloggi: ordine cronologico');
+  ok(stays.every((s) => s.querySelector('a.btn--primary[href*="google.com/maps"]')), 'alloggi: bottone Maps su ogni base');
+  const at = [...ba.querySelectorAll('[role=tab]')];
+  ok(at.length === 3, 'logistica: 3 sotto-schede');
+  const lg = (await app.loadData('lodging')).logistics;
+  ok(ba.querySelectorAll('.al-steps > .al-step').length === lg.luggage.steps.length, `bagagli: ${lg.luggage.steps.length} passi A2`);
+  at[1].click(); ok(ba.querySelectorAll('.al-step').length === lg.day1.length, `giorno 1: ${lg.day1.length} passi`);
+  at[2].click(); ok(ba.textContent.includes('ICOCA'), 'contanti e carte IC');
+
+  // --- luoghi ---
+  const st0 = (P) => ({ q: '', cities: [], flags: ['Sì', 'Forse'], sort: 'city', cityOrder: [...new Set(P.map((p) => p.city))] });
+  try { localStorage.removeItem('giappone.pages.luoghi'); } catch (e) {}
+  const bl = box('luoghi'); await lu.render(bl, ctx);
+  const P = (await app.loadData('places')).places;
+  const def = P.filter((p) => p.flag === 'Sì' || p.flag === 'Forse' || (!p.flag && (p.dayDates || []).length)).length;
+  ok(bl.querySelectorAll('.lu-card').length === def, `luoghi: default Sì+Forse (+ senza flag in agenda) = ${def}`);
+  ok(lu.filterPlaces(P, { ...st0(P), flags: [''] }).length === P.filter((p) => !p.flag).length, 'chip Senza flag: tutti i luoghi senza flag');
+  const st = { q: '', cities: [], flags: ['Sì', 'Forse'], sort: 'city', cityOrder: [...new Set(P.map((p) => p.city))] };
+  ok(lu.filterPlaces(P, st).length === def, 'filterPlaces: default');
+  ok(lu.filterPlaces(P, { ...st, q: 'fushimi inari', flags: ['Sì', 'Forse', 'No', 'Futuro', ''] }).some((p) => p.id === 'fushimi-inari-taisha'), 'ricerca multi-termine');
+  ok(lu.filterPlaces(P, { ...st, q: 'dotonbori' }).length > 0, 'ricerca senza diacritici (Dōtonbori)');
+  ok(lu.filterPlaces(P, { ...st, cities: ['Kobe'] }).every((p) => p.city === 'Kobe'), 'filtro città');
+  const byName = lu.filterPlaces(P, { ...st, sort: 'name' });
+  ok(byName[0].name.localeCompare(byName[1].name, 'it') <= 0, 'ordinamento per nome');
+  ok(bl.querySelectorAll('.lu-days a.chip[href*="giorno.html?d=2026-11-"]').length > 0, 'chip giorni → giorno.html');
+  const geo = P.some((p) => p.lat != null);
+  ok(!!bl.querySelector('a[href*="maps/dir/?api=1&destination="]') === geo, geo ? 'Indicazioni se ci sono lat/lon' : 'nessuna Indicazioni senza lat/lon (dati reali)');
+  const kobe = bl.querySelector('[data-city="Kobe"]'); kobe.click();
+  ok([...bl.querySelectorAll('.lu-card .small.muted')].every((e) => e.textContent.includes('Kobe')), 'chip Kobe filtra la lista');
+  ok(kobe.getAttribute('aria-pressed') === 'true', 'chip attivo con aria-pressed');
+  bl.querySelector('[data-city=""]').click();
+  try { localStorage.removeItem('giappone.pages.luoghi'); } catch (e) {}
+  const evil = box('xss');
+  await lu.render(evil, { trip, loadData: async () => ({ places: [{ id: 'x', name: '<img src=x onerror=alert(1)>', city: '"><b>', flag: 'Sì', mapsQuery: 'x' }] }) });
+  ok(!evil.querySelector('img, b'), 'luoghi: dati malevoli escapati');
+
+  // --- budget ---
+  const bb = box('budget'); await bu.render(bb, ctx);
+  const b = await app.loadData('budget');
+  ok(bb.querySelectorAll('.bu-table')[0].querySelectorAll('tbody tr').length === b.perPerson.categories.length, 'budget: righe categorie');
+  ok(bb.querySelectorAll('.badge--draft').length === b.perPerson.categories.filter((c) => c.estimate).length + b.perPerson.common.filter((c) => c.estimate).length, 'budget: badge stima');
+  ok(bb.textContent.includes('€2.765,61') && bb.textContent.includes('€11.062,44'), 'budget: totali persona e gruppo');
+  ok(bb.querySelectorAll('.bu-bar__fill').length > 0, 'budget: barre proporzionali');
+
+  const sum = document.createElement('p');
+  sum.className = fails ? 't-ko' : 't-ok';
+  sum.textContent = fails ? `${fails} test falliti` : 'Tutti i test OK';
+  out.before(sum);
+  document.title = (fails ? 'KO ' : 'OK ') + document.title;
+  window.__TEST_RESULT__ = { fails, total: out.children.length };
+</script>
+</body>
+</html>

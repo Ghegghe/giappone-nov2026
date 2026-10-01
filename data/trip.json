@@ -1,0 +1,175 @@
+{
+  "title": "Giappone · 7-24 novembre 2026",
+  "subtitle": "4 persone · Osaka → Takayama → Nagoya → Numazu/Uchiura → Shuzenji → Tokyo",
+  "start": "2026-11-07",
+  "end": "2026-11-24",
+  "people": 4,
+  "fx": {
+    "jpyPerEur": 185,
+    "asOf": "2026-07-10",
+    "source": "BCE"
+  },
+  "timezone": "Asia/Tokyo",
+  "mapsLink": "https://www.google.com/maps/d/edit?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&usp=sharing",
+  "generatedAt": "2026-10-01T21:20:38+02:00",
+  "sourceVersion": "build_xlsx_v33.py",
+  "flights": {
+    "out": {
+      "from": "MXP",
+      "to": "KIX",
+      "date": "2026-11-07",
+      "arr": "12:10",
+      "note": "scalo a Shanghai",
+      "airline": "China Eastern"
+    },
+    "back": {
+      "from": "NRT",
+      "to": "MXP",
+      "date": "2026-11-24",
+      "dep": "16:55",
+      "airline": "China Eastern",
+      "note": "aeroporto di arrivo da inserire"
+    }
+  },
+  "facts": [
+    {
+      "label": "Viaggiatori",
+      "value": "4 persone · 4 valigie da stiva (1/pax) all'andata + bagaglio a mano · al ritorno 8 (se ne compra 1 a testa a Tokyo)"
+    },
+    {
+      "label": "Arrivo",
+      "value": "KIX (Osaka) — sab 7 nov, 12:10"
+    },
+    {
+      "label": "Partenza",
+      "value": "NRT (Tokyo) — mar 24 nov, 16:55"
+    },
+    {
+      "label": "Vincolo fisso",
+      "value": "Concerto sab 14 nov h16:00 — Vantelin Dome Nagoya (ci va 1 pax)"
+    },
+    {
+      "label": "Rotta",
+      "value": "Osaka → Takayama → Nagoya → Numazu/Uchiura → Shuzenji → Tokyo"
+    },
+    {
+      "label": "Basi / cambi",
+      "value": "6 basi · 5 cambi hotel · nessun backtracking"
+    }
+  ],
+  "links": [
+    {
+      "category": "Trasporti",
+      "label": "Jorudan (orari/tariffe)",
+      "url": "https://world.jorudan.co.jp/mln/en/"
+    },
+    {
+      "category": "Alloggi",
+      "label": "Google Hotels / Booking / Rakuten / Jalan",
+      "url": "https://google.com/travel/hotels"
+    },
+    {
+      "category": "Love Live map",
+      "label": "Location Map (LuciaHunter)",
+      "url": "https://google.com/maps/d/u/0/viewer?mid=zSH6d28fs8rA.kFlIb_pkLYC8"
+    },
+    {
+      "category": "Love Live map",
+      "label": "Spot Uchiura/Mito",
+      "url": "https://google.com/maps/d/u/0/viewer?mid=1v8Gyz4S3eTIzW4Iuq8ghNSAynN8"
+    },
+    {
+      "category": "Transfer KIX",
+      "label": "KATE Limousine Bus (orari Osaka Sta.)",
+      "url": "https://kate.co.jp/en/timetable/detail/um"
+    },
+    {
+      "category": "Transfer KIX",
+      "label": "HARUKA one-way ticket turisti",
+      "url": "https://westjr.co.jp/travel-information/en/tickets-passes/oneway/haruka/"
+    },
+    {
+      "category": "Transfer NRT",
+      "label": "Airport Limousine Bus (prenota)",
+      "url": "https://limousinebus.co.jp/en/"
+    },
+    {
+      "category": "Transfer NRT",
+      "label": "N'EX biglietti",
+      "url": "https://jreast.co.jp/en/multi/nex/tickets/"
+    },
+    {
+      "category": "Bus 12 nov",
+      "label": "Nohi Bus Takayama→Shirakawa (prenota)",
+      "url": "https://japanbusonline.com/en"
+    },
+    {
+      "category": "Bus 12 nov",
+      "label": "Gifu Bus Shirakawa→Nagoya (prenota)",
+      "url": "https://highwaybus.com"
+    },
+    {
+      "category": "Bus Hida",
+      "label": "Nohi Bus (orari PDF)",
+      "url": "https://nouhibus.co.jp/english/"
+    },
+    {
+      "category": "Shinkansen",
+      "label": "smartEX (posti + oversize)",
+      "url": "https://smart-ex.jp/en/"
+    },
+    {
+      "category": "Bagagli",
+      "label": "Yamato TA-Q-BIN (tariffe, uffici)",
+      "url": "https://kuronekoyamato.co.jp/ytc/en/"
+    },
+    {
+      "category": "Bagagli",
+      "label": "Yamato ritiro in ufficio (Sales Office Pickup)",
+      "url": "https://kuronekoyamato.co.jp/ytc/en/send/services/tc-receive/"
+    },
+    {
+      "category": "Concerto",
+      "label": "Vantelin Dome (accesso)",
+      "url": "https://aichinow.pref.aichi.jp/en/spots/detail/169/"
+    }
+  ],
+  "sections": [
+    {
+      "id": "home",
+      "label": "Home",
+      "icon": "home",
+      "href": "index.html"
+    },
+    {
+      "id": "agenda",
+      "label": "Agenda",
+      "icon": "calendar",
+      "href": "agenda.html"
+    },
+    {
+      "id": "trasporti",
+      "label": "Trasporti",
+      "icon": "train",
+      "href": "trasporti.html"
+    },
+    {
+      "id": "alloggi",
+      "label": "Alloggi",
+      "icon": "bed",
+      "href": "alloggi.html"
+    },
+    {
+      "id": "luoghi",
+      "label": "Luoghi",
+      "icon": "map-pin",
+      "href": "luoghi.html"
+    },
+    {
+      "id": "budget",
+      "label": "Budget",
+      "icon": "wallet",
+      "href": "budget.html"
+    }
+  ]
+}

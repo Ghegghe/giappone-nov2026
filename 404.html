@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Pagina non trovata · Giappone Nov 2026</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; padding: 48px 16px; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; text-align: center; background: Canvas; color: CanvasText; }
+  a { display: inline-block; padding: 12px 20px; min-height: 44px; box-sizing: border-box; }
+</style>
+<script>
+  // GitHub Pages serve questo file per qualunque path mancante, anche annidato: ricava la radice del sito.
+  // Progetto su <user>.github.io/<repo>/ → "/<repo>/"; altrimenti "/".
+  (function () {
+    var seg = location.pathname.split('/')[1];
+    var root = /\.github\.io$/.test(location.hostname) && seg && !/\.html?$/.test(seg) ? '/' + seg + '/' : '/';
+    window.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('home').setAttribute('href', root + 'index.html');
+    });
+    setTimeout(function () { location.replace(root + 'index.html'); }, 2500);
+  })();
+</script>
+</head>
+<body>
+  <h1>Pagina non trovata</h1>
+  <p>Tra pochi secondi torni alla home.</p>
+  <p><a id="home" href="index.html">Vai alla home</a></p>
+</body>
+</html>

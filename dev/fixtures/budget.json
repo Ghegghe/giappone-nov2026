@@ -1,0 +1,176 @@
+{
+  "perPerson": {
+    "categories": [
+      {
+        "name": "Trasporti",
+        "detail": "Catena intercity + transfer (scelte in 📎 Dettagli)",
+        "eur": 237.2,
+        "estimate": false
+      },
+      {
+        "name": "Alloggi (tutte le basi)",
+        "detail": "dal riepilogo prenotazioni qui sotto",
+        "eur": 725.35,
+        "estimate": false
+      },
+      {
+        "name": "Cibo",
+        "detail": "17 gg × ~€25 + splurge Kobe",
+        "eur": 500.0,
+        "estimate": true
+      },
+      {
+        "name": "Attrazioni",
+        "detail": "Templi, musei, viewpoints",
+        "eur": 120.0,
+        "estimate": true
+      },
+      {
+        "name": "Shopping anime",
+        "detail": "Akihabara/Nakano/Osu/Love Live (variabile)",
+        "eur": 200.0,
+        "estimate": true
+      },
+      {
+        "name": "Extra/onsen/misc",
+        "detail": "IC card, locker, imprevisti",
+        "eur": 100.0,
+        "estimate": true
+      }
+    ],
+    "common": [
+      {
+        "name": "Voli A/R (KIX in / NRT out)",
+        "eur": 806,
+        "estimate": false,
+        "note": "Già pagati · presi 29 giu"
+      },
+      {
+        "name": "Assicurazione viaggio",
+        "eur": 47.86,
+        "estimate": false,
+        "note": "Heymondo Tranquillità 6→25 nov · €191,44 gruppo · pagata 13 lug (-10%)"
+      },
+      {
+        "name": "eSIM / dati",
+        "eur": 15,
+        "estimate": true,
+        "note": "Stima — da confermare"
+      },
+      {
+        "name": "Spedizione bagagli (Yamato)",
+        "eur": 14.2,
+        "estimate": false,
+        "note": "€57 gruppo ÷ 4 · 4 valigie taglia 160 Osaka→Tokyo (¥2.630 cad.) · destinazione: ufficio Yamato Yoyogi (opzione A2)"
+      }
+    ],
+    "commonTotalEur": 883.06,
+    "totalEur": 2765.61
+  },
+  "group": {
+    "totalEur": 11062.44
+  },
+  "paidSoFar": {
+    "lodgingEurGroup": 2901.4,
+    "lodgingEurGroupPaid": 1534.42,
+    "lodgingEurGroupToPay": 1366.98,
+    "flightsEurGroup": 3224
+  },
+  "daily": [
+    {
+      "date": "2026-11-07",
+      "eurPlanned": 60,
+      "eurAgenda": 34.7
+    },
+    {
+      "date": "2026-11-08",
+      "eurPlanned": 70,
+      "eurAgenda": 54
+    },
+    {
+      "date": "2026-11-09",
+      "eurPlanned": 70,
+      "eurAgenda": 53
+    },
+    {
+      "date": "2026-11-10",
+      "eurPlanned": 110,
+      "eurAgenda": 101
+    },
+    {
+      "date": "2026-11-11",
+      "eurPlanned": 120,
+      "eurAgenda": 103
+    },
+    {
+      "date": "2026-11-12",
+      "eurPlanned": 110,
+      "eurAgenda": 74
+    },
+    {
+      "date": "2026-11-13",
+      "eurPlanned": 65,
+      "eurAgenda": 65
+    },
+    {
+      "date": "2026-11-14",
+      "eurPlanned": 60,
+      "eurAgenda": 15
+    },
+    {
+      "date": "2026-11-15",
+      "eurPlanned": 150,
+      "eurAgenda": 78
+    },
+    {
+      "date": "2026-11-16",
+      "eurPlanned": 150,
+      "eurAgenda": 18
+    },
+    {
+      "date": "2026-11-17",
+      "eurPlanned": 70,
+      "eurAgenda": 65
+    },
+    {
+      "date": "2026-11-18",
+      "eurPlanned": 90,
+      "eurAgenda": 68
+    },
+    {
+      "date": "2026-11-19",
+      "eurPlanned": 75,
+      "eurAgenda": 57
+    },
+    {
+      "date": "2026-11-20",
+      "eurPlanned": 70,
+      "eurAgenda": 52
+    },
+    {
+      "date": "2026-11-21",
+      "eurPlanned": 80,
+      "eurAgenda": 20
+    },
+    {
+      "date": "2026-11-22",
+      "eurPlanned": 60,
+      "eurAgenda": 45
+    },
+    {
+      "date": "2026-11-23",
+      "eurPlanned": 50,
+      "eurAgenda": 25
+    },
+    {
+      "date": "2026-11-24",
+      "eurPlanned": 40,
+      "eurAgenda": 20.5
+    }
+  ],
+  "notes": [
+    "Trasporti = somma delle opzioni scelte (pagina Trasporti); Alloggi = prenotazioni reali divise per persona.",
+    "Le voci marcate «stima» sono indicative. Il concerto è escluso (biglietto a parte, 1 persona).",
+    "Alloggi prenotati: Yasudaya è in yen, convertito a 185 ¥/€ (si paga in contanti in struttura)."
+  ]
+}

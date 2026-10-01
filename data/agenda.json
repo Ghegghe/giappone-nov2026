@@ -1,0 +1,2791 @@
+{
+  "notice": "⚠️ AGENDA IN REVISIONE DA ZERO (dal 1 ott 2026, insieme al cliente): la versione sotto è la 2.0 del 14 lug, costruita dai flag senza supervisione — vale come traccia, non come programma. · Ogni giorno un blocco · righe = tappe con orario e costo/pax · piè col totale del giorno. Sfondo giallo = stima. (Alloggi a parte.)",
+  "days": [
+    {
+      "date": "2026-11-07",
+      "weekday": "sab",
+      "title": "OSAKA · Arrivo & prima sera a Dōtonbori",
+      "base": "Osaka",
+      "baseId": "osaka",
+      "status": "draft",
+      "notes": "4 valigie + bagaglio a mano · senza prenotazione",
+      "items": [
+        {
+          "id": "d07-01",
+          "time": "12:10",
+          "title": "Arrivo KIX (immigrazione, ritiro 4 valigie)",
+          "type": "transfer",
+          "fixed": true,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Kansai Airport T1",
+          "mapsQuery": "Kansai International Airport Terminal 1",
+          "note": "Buffer dogana",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d07-02",
+          "time": "13:30",
+          "end": "14:30",
+          "title": "Limousine Bus KATE → Yodobashi Umeda Tower (UM9) — T1 piano 1 fermata 5, ogni 10', senza prenotazione, valigie in stiva con etichetta",
+          "type": "bus",
+          "fixed": false,
+          "optional": false,
+          "costEur": 9.7,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Yodobashi Umeda Tower",
+          "mapsQuery": "Yodobashi Umeda Tower",
+          "note": "¥1.800 al banco/macchinetta · ~60' · NON ferma a Hankyu Sanban-gai di pomeriggio · poi 13' a piedi al BON",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d07-03",
+          "time": "15:00",
+          "title": "BON Condominium Umeda: valigie nella stanza deposito self-service (lucchetti forniti) · giro a Nakazakichō",
+          "type": "logistics",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "BON Condominium Umeda",
+          "mapsQuery": "BON Condominium Umeda Osaka",
+          "note": "Check-in dalle 16:00 (self check-in con codice via mail, nessuna reception)",
+          "stayId": "osaka",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d07-04",
+          "time": "16:00",
+          "title": "Check-in BON Condominium Umeda",
+          "type": "lodging",
+          "fixed": true,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "BON Condominium Umeda",
+          "mapsQuery": "BON Condominium Umeda Osaka",
+          "note": "PRENOTATO ✓ · codice porta + tablet all'ingresso",
+          "stayId": "osaka",
+          "booking": {
+            "status": "done",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d07-05",
+          "time": "17:00",
+          "title": "Metro → Namba: Dōtonbori + insegna Glico + ponte Ebisubashi",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 2,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Dōtonbori + insegna Glico",
+          "mapsQuery": "Dotonbori Osaka",
+          "note": "Foto d'obbligo",
+          "placeId": "dotonbori-insegna-glico",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d07-06",
+          "time": "18:30",
+          "title": "Hozenji Yokocho: vicolo di lanterne + tempio muschiato",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Hozenji Yokocho",
+          "mapsQuery": "Hozenji Yokocho Osaka",
+          "note": "",
+          "placeId": "hozenji-yokocho",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d07-07",
+          "time": "19:30",
+          "title": "Cena street food: takoyaki Wanaka + okonomiyaki",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 15,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Takoyaki Wanaka Sennichimae",
+          "mapsQuery": "Takoyaki Wanaka Sennichimae Osaka",
+          "note": "Leggero (jetlag)",
+          "placeId": "takoyaki-wanaka-sennichimae",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d07-08",
+          "time": "21:30",
+          "title": "Nightcap a Kita-Shinchi tornando a casa",
+          "type": "nightlife",
+          "fixed": false,
+          "optional": true,
+          "costEur": 8,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Kita-Shinchi",
+          "mapsQuery": "Kitashinchi Osaka",
+          "note": "Bar district elegante, vicino a casa",
+          "placeId": "kita-shinchi",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "Arrivo + Namba (leggero)",
+      "moves": "KIX→Umeda bus KATE ¥1.800",
+      "budgetEur": 60
+    },
+    {
+      "date": "2026-11-08",
+      "weekday": "dom",
+      "title": "KYOTO g.1 · Fushimi presto + Higashiyama + Gion",
+      "base": "Osaka",
+      "baseId": "osaka",
+      "status": "draft",
+      "notes": "Fushimi PRESTO (folla)",
+      "items": [
+        {
+          "id": "d08-01",
+          "time": "07:00",
+          "end": "07:35",
+          "title": "Treno Osaka → Inari (JR Nara line)",
+          "type": "train",
+          "fixed": false,
+          "optional": false,
+          "costEur": 4,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Inari",
+          "mapsQuery": "Inari Station",
+          "note": "~35'",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d08-02",
+          "time": "07:45",
+          "title": "Fushimi Inari: tunnel di torii (salita fino al belvedere)",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Fushimi Inari-taisha",
+          "mapsQuery": "Fushimi Inari Taisha Kyoto",
+          "note": "PRESTO = senza folla",
+          "placeId": "fushimi-inari-taisha",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d08-03",
+          "time": "10:00",
+          "title": "Distretto del sake di Fushimi (Gekkeikan)",
+          "type": "sight",
+          "fixed": false,
+          "optional": true,
+          "costEur": 5,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Distretto del sake di Fushimi",
+          "mapsQuery": "Gekkeikan Okura Sake Museum Fushimi",
+          "note": "Degustazioni",
+          "placeId": "distretto-del-sake-di-fushimi",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d08-04",
+          "time": "11:45",
+          "title": "Bus/treno verso nord + pranzo zona Ginkaku-ji",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 12,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Ginkaku-ji",
+          "mapsQuery": "Ginkaku-ji Temple Kyoto",
+          "note": "",
+          "placeId": "ginkaku-ji",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d08-05",
+          "time": "13:30",
+          "title": "Ginkaku-ji (padiglione d'argento)",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 3,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Ginkaku-ji",
+          "mapsQuery": "Ginkaku-ji Temple Kyoto",
+          "note": "",
+          "placeId": "ginkaku-ji",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d08-06",
+          "time": "14:30",
+          "title": "Philosopher's Path a piedi verso sud",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Philosopher's Path",
+          "mapsQuery": "Philosopher's Path Kyoto",
+          "note": "Foliage lungo il canale",
+          "placeId": "path-of-philosophy",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d08-07",
+          "time": "15:00",
+          "title": "Eikan-dō: il tempio dei momiji (ingresso entro ~16:00)",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 4,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Eikan-dō",
+          "mapsQuery": "Eikando Zenrin-ji Temple Kyoto",
+          "note": "Light-up serale parte ~15/11 → non l'8",
+          "placeId": "eikan-do",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d08-08",
+          "time": "17:00",
+          "title": "Kiyomizu-dera AL TRAMONTO (aperto fino alle 18)",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 4,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Kiyomizu-dera",
+          "mapsQuery": "Kiyomizu-dera Temple Kyoto",
+          "note": "Terrazza al crepuscolo",
+          "placeId": "kiyomizu-dera",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d08-09",
+          "time": "18:15",
+          "title": "Sannenzaka & Ninenzaka + Yasaka Pagoda illuminata",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Sannenzaka & Ninenzaka",
+          "mapsQuery": "Ninenzaka Sannenzaka Kyoto",
+          "note": "Vicoli Edo by night",
+          "placeId": "sannenzaka-ninenzaka",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d08-10",
+          "time": "19:15",
+          "title": "Gion + Hanami-kōji + cena",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 18,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Hanami-kōji",
+          "mapsQuery": "Hanamikoji Street Gion Kyoto",
+          "note": "Geisha district by night",
+          "placeId": "hanami-koji",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d08-11",
+          "time": "21:30",
+          "title": "Rientro Osaka",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 4,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Osaka",
+          "mapsQuery": "Osaka Station",
+          "note": "",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "Kyoto g.1 — Fushimi + Higashiyama + Gion",
+      "moves": "Osaka⇄Kyoto JR ~29'",
+      "budgetEur": 70
+    },
+    {
+      "date": "2026-11-09",
+      "weekday": "lun",
+      "title": "KYOTO g.2 · Arashiyama + Nord-Ovest + centro",
+      "base": "Osaka",
+      "baseId": "osaka",
+      "status": "draft",
+      "notes": "Feriale, meglio",
+      "items": [
+        {
+          "id": "d09-01",
+          "time": "07:15",
+          "title": "Treno Osaka → Kyoto + JR Sagano → Arashiyama",
+          "type": "train",
+          "fixed": false,
+          "optional": false,
+          "costEur": 5,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Arashiyama",
+          "mapsQuery": "Arashiyama Station",
+          "note": "",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d09-02",
+          "time": "08:30",
+          "title": "Foresta di bambù + ponte Togetsukyō",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Ponte Togetsukyō",
+          "mapsQuery": "Togetsukyo Bridge Arashiyama",
+          "note": "PRESTO, poi si riempie",
+          "placeId": "ponte-togetsukyo",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d09-03",
+          "time": "09:45",
+          "title": "Ōkōchi Sansō: villa panoramica + tè incluso",
+          "type": "sight",
+          "fixed": false,
+          "optional": true,
+          "costEur": 7,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Ōkōchi Sansō Villa",
+          "mapsQuery": "Okochi Sanso Villa Kyoto",
+          "note": "Sopra il bambù, pochissima gente",
+          "placeId": "okochi-sanso-villa",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d09-04",
+          "time": "11:30",
+          "title": "Bus → Kinkaku-ji (padiglione d'oro)",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 3,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Kinkaku-ji",
+          "mapsQuery": "Kinkaku-ji Temple Kyoto",
+          "note": "",
+          "placeId": "kinkaku-ji",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d09-05",
+          "time": "13:00",
+          "title": "Kitano Tenmangū: giardino dei momiji + pranzo in zona",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 8,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Kitano Tenmangū",
+          "mapsQuery": "Kitano Tenmangu Shrine Kyoto",
+          "note": "Momiji-en: nel 2025 aperto dall'1/11 · ¥1.200 col dolcetto",
+          "placeId": "kitano-tenmangu",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d09-06",
+          "time": "15:30",
+          "title": "Centro: Nishiki Market (spuntini tra i banchi)",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 8,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Nishiki Market",
+          "mapsQuery": "Nishiki Market Kyoto",
+          "note": "I banchi chiudono ~17-18",
+          "placeId": "nishiki-market",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d09-07",
+          "time": "18:00",
+          "title": "Pontochō: cena nel vicolo di lanterne sul fiume",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 18,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Pontochō Alley",
+          "mapsQuery": "Pontocho Alley Kyoto",
+          "note": "",
+          "placeId": "pontocho-alley",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d09-08",
+          "time": "21:00",
+          "title": "Rientro Osaka",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 4,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Osaka",
+          "mapsQuery": "Osaka Station",
+          "note": "",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "Kyoto g.2 — Arashiyama + Nord + Nishiki",
+      "moves": "Osaka⇄Kyoto",
+      "budgetEur": 70
+    },
+    {
+      "date": "2026-11-10",
+      "weekday": "mar",
+      "title": "Kuromon → KOBE wagyu ★ → Den Den + Shinsekai",
+      "base": "Osaka",
+      "baseId": "osaka",
+      "status": "draft",
+      "notes": "Prenotare Mouriya",
+      "items": [
+        {
+          "id": "d10-01",
+          "time": "08:45",
+          "title": "Kuromon Ichiba: colazione al mercato",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 10,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Kuromon Ichiba",
+          "mapsQuery": "Kuromon Ichiba Market Osaka",
+          "note": "",
+          "placeId": "kuromon-ichiba",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d10-02",
+          "time": "10:00",
+          "title": "Doguyasuji: via degli utensili da cucina",
+          "type": "shopping",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Doguyasuji / Sennichimae",
+          "mapsQuery": "Sennichimae Doguyasuji Osaka",
+          "note": "",
+          "placeId": "doguyasuji-sennichimae",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d10-03",
+          "time": "10:45",
+          "end": "11:10",
+          "title": "Treno → Kobe-Sannomiya (~25')",
+          "type": "train",
+          "fixed": false,
+          "optional": false,
+          "costEur": 5,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Kobe-Sannomiya",
+          "mapsQuery": "Kobe-Sannomiya Station",
+          "note": "",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d10-04",
+          "time": "11:30",
+          "title": "Kitano Ijinkan: case occidentali d'epoca",
+          "type": "sight",
+          "fixed": false,
+          "optional": true,
+          "costEur": 3,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Kitano Ijinkan",
+          "mapsQuery": "Kitano Ijinkan Kobe",
+          "note": "",
+          "placeId": "kitano-ijinkan",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d10-05",
+          "time": "13:00",
+          "title": "PRANZO Mouriya ★ — manzo di Kobe",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 60,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Mouriya Sannomiya",
+          "mapsQuery": "Mouriya Sannomiya Kobe",
+          "note": "SPLURGE · PRENOTARE 2-4 sett prima (TableCheck)",
+          "placeId": "mouriya-sannomiya",
+          "booking": {
+            "status": "todo",
+            "where": "TableCheck (2-4 sett prima) · tel 078-321-1990",
+            "when": "~metà ott"
+          }
+        },
+        {
+          "id": "d10-06",
+          "time": "14:45",
+          "title": "Nankinmachi (Chinatown) + Meriken Park",
+          "type": "sight",
+          "fixed": false,
+          "optional": true,
+          "costEur": 0,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Nankinmachi (Chinatown)",
+          "mapsQuery": "Nankinmachi Chinatown Kobe",
+          "note": "Digestivo sul porto",
+          "placeId": "nankinmachi",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d10-07",
+          "time": "16:00",
+          "title": "Treno di ritorno → Nipponbashi",
+          "type": "train",
+          "fixed": false,
+          "optional": false,
+          "costEur": 5,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Nipponbashi",
+          "mapsQuery": "Nipponbashi Station",
+          "note": "",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d10-08",
+          "time": "16:45",
+          "title": "Den Den Town + Super Potato: otaku & retro gaming",
+          "type": "anime",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Nipponbashi Den Den Town",
+          "mapsQuery": "Den Den Town Nipponbashi Osaka",
+          "note": "L'Akihabara di Osaka",
+          "placeId": "nipponbashi-den-den-town",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d10-09",
+          "time": "19:30",
+          "title": "Shinsekai: cena kushikatsu + (opz.) Tsūtenkaku",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 18,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Shinsekai",
+          "mapsQuery": "Shinsekai Osaka",
+          "note": "(opz.) Daruma per i kushikatsu",
+          "placeId": "shinsekai",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "Kuromon + Kobe wagyu + Den Den/Shinsekai",
+      "moves": "Osaka⇄Kobe JR ~25'",
+      "budgetEur": 110
+    },
+    {
+      "date": "2026-11-11",
+      "weekday": "mer",
+      "title": "Castello di Osaka → TAKAYAMA (solo cabina da qui)",
+      "base": "Takayama",
+      "baseId": "takayama",
+      "status": "draft",
+      "notes": "Da qui solo bagaglio a mano",
+      "items": [
+        {
+          "id": "d11-01",
+          "time": "08:00",
+          "title": "UFFICIO YAMATO Osaka-Nakazaki (Banzai-cho 5-9, 5' dal BON): spedire 4 valigie → ufficio Yamato Yoyogi 2-chome, data 16/11",
+          "type": "logistics",
+          "fixed": true,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "UFFICIO YAMATO Osaka-Nakazaki",
+          "mapsQuery": "UFFICIO YAMATO Osaka-Nakazaki",
+          "note": "Bolla in inglese · spunta 'ricevi in ufficio' · ¥2.630×4 · procedura in 📎 Punti aperti",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d11-02",
+          "time": "09:00",
+          "title": "Castello di Osaka: parco + esterni + Hōkoku Jinja + giardino Nishinomaru",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 2,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Castello di Osaka",
+          "mapsQuery": "Osaka Castle",
+          "note": "Nishinomaru ¥200, apre alle 9 (mer ok) · da Nakazaki: Tanimachi line → Tanimachi 4-chome ~15'",
+          "placeId": "castello-di-osaka",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d11-03",
+          "time": "10:15",
+          "title": "Shin-Osaka: RITIRO biglietti Hida alla macchinetta e5489 (Revolut fisica + n. prenotazione + n. identificazione) · Shinkansen con QR-Ticket sul telefono",
+          "type": "logistics",
+          "fixed": true,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Shin-Osaka",
+          "mapsQuery": "Shin-Osaka",
+          "note": "15' di margine · i QR-Ticket vanno inoltrati a tutti e 4",
+          "booking": {
+            "status": "todo",
+            "where": "westjr.co.jp/travel-information/en/tickets-passes/route-search/ → treno HIDA",
+            "when": "11 ott 3:00-16:30 IT"
+          }
+        },
+        {
+          "id": "d11-04",
+          "time": "10:45",
+          "end": "11:35",
+          "title": "Shin-Osaka → Nagoya (Shinkansen)",
+          "type": "train",
+          "fixed": true,
+          "optional": false,
+          "costEur": 42,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Nagoya",
+          "mapsQuery": "Nagoya Station",
+          "note": "~50' · smartEX (11 ott) · QR-Ticket al tornello → tenere il foglietto Seat Information",
+          "booking": {
+            "status": "todo",
+            "where": "smartEX",
+            "when": "11 ott 3:00-16:30 IT"
+          }
+        },
+        {
+          "id": "d11-05",
+          "time": "12:48",
+          "end": "15:15",
+          "title": "Nagoya → Takayama (JR Hida, finestrini panoramici)",
+          "type": "train",
+          "fixed": true,
+          "optional": false,
+          "costEur": 34,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Takayama",
+          "mapsQuery": "Takayama Station",
+          "note": "2h30 · arrivo ~15:15 · posti riservati su e5489 (11 ott)",
+          "booking": {
+            "status": "todo",
+            "where": "westjr.co.jp/travel-information/en/tickets-passes/route-search/ → treno HIDA",
+            "when": "11 ott 3:00-16:30 IT"
+          }
+        },
+        {
+          "id": "d11-06",
+          "time": "15:30",
+          "title": "Check-in Country Hotel Takayama",
+          "type": "lodging",
+          "fixed": true,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Country Hotel Takayama",
+          "mapsQuery": "Country Hotel Takayama",
+          "note": "PRENOTATO ✓",
+          "stayId": "takayama",
+          "booking": {
+            "status": "done",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d11-07",
+          "time": "16:00",
+          "title": "Sanmachi Suji + sake breweries (negozi chiudono ~17)",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 5,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Sanmachi Suji",
+          "mapsQuery": "Sanmachi Suji Takayama",
+          "note": "Centro Edo",
+          "placeId": "sanmachi-suji",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d11-08",
+          "time": "18:30",
+          "title": "Cena Hida beef",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 20,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Hida beef street food",
+          "mapsQuery": "Hida beef Sanmachi Takayama",
+          "note": "Specialità locale",
+          "placeId": "hida-beef-street-food",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "Spedizione valigie + Castello → Takayama",
+      "moves": "Shinkansen + Hida EXP",
+      "budgetEur": 120
+    },
+    {
+      "date": "2026-11-12",
+      "weekday": "gio",
+      "title": "TAKAYAMA → SHIRAKAWA-GO → NAGOYA",
+      "base": "Nagoya",
+      "baseId": "nagoya",
+      "status": "draft",
+      "notes": "2 biglietti, 2 siti · aprono 12 ott",
+      "items": [
+        {
+          "id": "d12-01",
+          "time": "07:30",
+          "title": "Miyagawa morning market: colazione lungo il fiume",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 5,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Miyagawa Morning Market",
+          "mapsQuery": "Miyagawa Morning Market Takayama",
+          "note": "",
+          "placeId": "miyagawa-morning-market",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-02",
+          "time": "09:35",
+          "end": "10:25",
+          "title": "Bus Nohi → Shirakawa-go (arr 10:25) · fallback 8:50 senza prenot.",
+          "type": "bus",
+          "fixed": true,
+          "optional": false,
+          "costEur": 15,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Shirakawa-go",
+          "mapsQuery": "Shirakawa-go",
+          "note": "PRENOTARE 12 ott su japanbusonline.com · ¥2.800",
+          "booking": {
+            "status": "todo",
+            "where": "japanbusonline.com",
+            "when": "12 ott"
+          }
+        },
+        {
+          "id": "d12-03",
+          "time": "10:45",
+          "title": "Ogimachi: il villaggio gassho-zukuri",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Ogimachi (Shirakawa-gō)",
+          "mapsQuery": "Ogimachi Village Shirakawa-go",
+          "note": "",
+          "placeId": "villaggio-di-ogimachi",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-04",
+          "time": "11:15",
+          "title": "Shiroyama Viewpoint (navetta o 15' a piedi)",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 2,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Shiroyama Viewpoint",
+          "mapsQuery": "Shiroyama Viewpoint Shirakawa-go",
+          "note": "LA cartolina di Shirakawa",
+          "placeId": "shiroyama-viewpoint",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-05",
+          "time": "12:30",
+          "title": "Pranzo soba / hōba miso",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 14,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "",
+          "mapsQuery": "",
+          "note": "",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-06",
+          "time": "13:30",
+          "title": "Wada House + (opz.) Kanda House / Myōzen-ji",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 4,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Wada House",
+          "mapsQuery": "Wada House Shirakawa-go",
+          "note": "Dentro una casa gassho",
+          "placeId": "wada-house",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-07",
+          "time": "15:30",
+          "end": "18:16",
+          "title": "Bus Gifu → Nagoya Meitetsu Bus Center (arr 18:16)",
+          "type": "bus",
+          "fixed": true,
+          "optional": false,
+          "costEur": 20,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Nagoya Meitetsu Bus Center",
+          "mapsQuery": "Nagoya Meitetsu Bus Center",
+          "note": "PRENOTARE 12 ott su highwaybus.com · ¥3.600-4.700",
+          "booking": {
+            "status": "todo",
+            "where": "highwaybus.com",
+            "when": "12 ott"
+          }
+        },
+        {
+          "id": "d12-08",
+          "time": "18:30",
+          "title": "Check-in Glocal Nagoya (Meieki)",
+          "type": "lodging",
+          "fixed": true,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Glocal Nagoya Backpackers",
+          "mapsQuery": "Glocal Nagoya Backpackers Hostel",
+          "note": "PRENOTATO ✓",
+          "stayId": "nagoya",
+          "booking": {
+            "status": "done",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-09",
+          "time": "19:30",
+          "title": "Yabaton: miso-katsu di benvenuto",
+          "type": "food",
+          "fixed": false,
+          "optional": true,
+          "costEur": 14,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Yabaton",
+          "mapsQuery": "Yabaton Yabacho Nagoya",
+          "note": "",
+          "placeId": "yabaton",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "Shirakawa-go → Nagoya",
+      "moves": "Nohi 9:35 + Gifu bus 15:30",
+      "budgetEur": 110
+    },
+    {
+      "date": "2026-11-13",
+      "weekday": "ven",
+      "title": "NAGOYA · Osu + hitsumabushi ★ + Nishiki 3-chōme",
+      "base": "Nagoya",
+      "baseId": "nagoya",
+      "status": "draft",
+      "notes": "Hōraiken presto (coda)",
+      "items": [
+        {
+          "id": "d13-01",
+          "time": "10:00",
+          "title": "Osu: shopping arcade + Osu Kannon (otaku/vintage)",
+          "type": "anime",
+          "fixed": false,
+          "optional": true,
+          "costEur": 0,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Osu Shopping Arcade",
+          "mapsQuery": "Osu Shopping Arcade Nagoya",
+          "note": "",
+          "placeId": "osu-shopping-arcade",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d13-02",
+          "time": "12:00",
+          "title": "PRANZO Atsuta Hōraiken: hitsumabushi ★ (anguilla)",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 30,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Atsuta Hōraiken",
+          "mapsQuery": "Atsuta Horaiken Nagoya",
+          "note": "Sede storica · possibile coda, andare presto",
+          "placeId": "atsuta-horaiken",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d13-03",
+          "time": "13:45",
+          "title": "Atsuta Jingū (santuario, adiacente)",
+          "type": "sight",
+          "fixed": false,
+          "optional": true,
+          "costEur": 0,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Atsuta Jingū",
+          "mapsQuery": "Atsuta Jingu Nagoya",
+          "note": "",
+          "placeId": "atsuta-jingu",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d13-04",
+          "time": "15:00",
+          "title": "Nagoya Castle + Kinshachi Yokochō",
+          "type": "sight",
+          "fixed": false,
+          "optional": true,
+          "costEur": 5,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Nagoya Castle",
+          "mapsQuery": "Nagoya Castle",
+          "note": "",
+          "placeId": "nagoya-castle",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d13-05",
+          "time": "18:00",
+          "title": "Nishiki 3-chōme: izakaya + bar hopping",
+          "type": "nightlife",
+          "fixed": false,
+          "optional": false,
+          "costEur": 20,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Nishiki 3-chōme",
+          "mapsQuery": "Nishiki 3-chome Nagoya",
+          "note": "La movida di Nagoya",
+          "placeId": "nishiki-3-chome",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d13-06",
+          "time": "21:30",
+          "title": "Sekai no Yamachan: tebasaki notturne",
+          "type": "food",
+          "fixed": false,
+          "optional": true,
+          "costEur": 10,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Sekai no Yamachan",
+          "mapsQuery": "Sekai no Yamachan Nagoya",
+          "note": "",
+          "placeId": "sekai-no-yamachan",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "Osu + hitsumabushi + Nishiki 3-chōme",
+      "moves": "metro",
+      "budgetEur": 65
+    },
+    {
+      "date": "2026-11-14",
+      "weekday": "sab",
+      "title": "NAGOYA · ⚑ CONCERTO (1 pax) · altri 3 LIBERI",
+      "base": "Nagoya",
+      "baseId": "nagoya",
+      "status": "draft",
+      "notes": "VINCOLO FISSO",
+      "items": [
+        {
+          "id": "d14-01",
+          "time": "10:00",
+          "title": "Mattina insieme: Sakae + (opz.) Oasis 21 / Mirai Tower",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Oasis 21",
+          "mapsQuery": "Oasis 21 Nagoya",
+          "note": "Tutti e 4",
+          "placeId": "oasis-21",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d14-02",
+          "time": "14:30",
+          "title": "1 pax → Vantelin Dome (metro Meijō)",
+          "type": "fixed",
+          "fixed": true,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Vantelin Dome (Nagoya Dome)",
+          "mapsQuery": "Vantelin Dome Nagoya",
+          "note": "VINCOLO FISSO",
+          "placeId": "vantelin-dome",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d14-03",
+          "time": "16:00",
+          "title": "CONCERTO — Vantelin Dome",
+          "type": "fixed",
+          "fixed": true,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Vantelin Dome (Nagoya Dome)",
+          "mapsQuery": "Vantelin Dome Nagoya",
+          "note": "Solo 1 pax · biglietto a parte",
+          "placeId": "vantelin-dome",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d14-04",
+          "time": "14:30",
+          "title": "ALTRI 3 — LIBERI: acquario del porto · castello · Osu · Sakae",
+          "type": "free",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Si decide lì per voglia/meteo",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          },
+          "parallel": true
+        },
+        {
+          "id": "d14-05",
+          "time": "21:00",
+          "title": "Reunion + cena tarda a Sakae",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 15,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "",
+          "mapsQuery": "",
+          "note": "",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "CONCERTO 16:00 · altri 3 LIBERI",
+      "moves": "Metro Meijo→Dome",
+      "budgetEur": 60
+    },
+    {
+      "date": "2026-11-15",
+      "weekday": "dom",
+      "title": "NAGOYA → NUMAZU → UCHIURA · Love Live",
+      "base": "Uchiura",
+      "baseId": "uchiura",
+      "status": "draft",
+      "notes": "Splurge ryokan",
+      "items": [
+        {
+          "id": "d15-01",
+          "time": "08:30",
+          "end": "10:30",
+          "title": "Nagoya → Mishima (Kodama) + locale → Numazu",
+          "type": "train",
+          "fixed": true,
+          "optional": false,
+          "costEur": 54,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Numazu",
+          "mapsQuery": "Numazu Station",
+          "note": "2h01 · arrivo ~10:30",
+          "booking": {
+            "status": "todo",
+            "where": "smartEX",
+            "when": "15 ott 3:00-16:30 IT"
+          }
+        },
+        {
+          "id": "d15-02",
+          "time": "10:35",
+          "title": "Stazione Numazu: tombini Aqours + (opz.) Gamers/merch",
+          "type": "anime",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Tombini Aqours (manhole)",
+          "mapsQuery": "Aqours manhole cover Numazu",
+          "note": "LOVE LIVE",
+          "placeId": "tombini-aqours",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d15-03",
+          "time": "11:15",
+          "title": "Kanukiyama Park: vista sul Fuji",
+          "type": "sight",
+          "fixed": false,
+          "optional": true,
+          "costEur": 0,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Kanukiyama Park",
+          "mapsQuery": "Kanukiyama Park Numazu",
+          "note": "~20' di salita",
+          "placeId": "kanukiyama-park",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d15-04",
+          "time": "12:00",
+          "title": "Porto: pranzo Minato Shinsenkan + View-O (Water Gate)",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 14,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Minato Shinsenkan",
+          "mapsQuery": "Numazu Minato Shinsenkan",
+          "note": "Vista dall'alto sul porto",
+          "placeId": "numazu-minato-shinsenkan",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d15-05",
+          "time": "13:30",
+          "end": "14:10",
+          "title": "Bus Tokai → Izu-Mito / Uchiura (livrea Aqours)",
+          "type": "bus",
+          "fixed": false,
+          "optional": false,
+          "costEur": 6,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Izu-Mito",
+          "mapsQuery": "Izu-Mito",
+          "note": "~40'",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d15-06",
+          "time": "14:15",
+          "title": "Yasudaya: borse in reception",
+          "type": "logistics",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Yasudaya Ryokan",
+          "mapsQuery": "Yasudaya Ryokan Uchiura Numazu",
+          "note": "",
+          "stayId": "uchiura",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d15-07",
+          "time": "14:30",
+          "title": "Scuola Nagaisaki (esterno) + Fujimi Hiroba",
+          "type": "anime",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Fujimi Hiroba (Uchiura)",
+          "mapsQuery": "富士見広場 内浦 沼津",
+          "note": "La Uranohoshi di Aqours",
+          "placeId": "fujimi-hiroba",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d15-08",
+          "time": "15:15",
+          "title": "Mito-kō (imbarco battelli) + Sannoura Info Office",
+          "type": "anime",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Mito-kō, imbarco battelli",
+          "mapsQuery": "三津港遊覧船のりば 沼津",
+          "note": "Pannelli e merch",
+          "placeId": "mito-ko-imbarco-battelli",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d15-09",
+          "time": "15:50",
+          "title": "Molo di Awashima + (opz.) Sea Paradise (chiude ~17)",
+          "type": "anime",
+          "fixed": false,
+          "optional": false,
+          "costEur": 4,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Awashima (Marine Park)",
+          "mapsQuery": "Awashima Marine Park Numazu",
+          "note": "",
+          "placeId": "awashima",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d15-10",
+          "time": "16:40",
+          "title": "TRAMONTO sul Fuji dalla baia",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Golden hour",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d15-11",
+          "time": "17:00",
+          "title": "Check-in Yasudaya + onsen · PAGAMENTO IN CONTANTI ¥110.000 (¥27.500/pax)",
+          "type": "lodging",
+          "fixed": true,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Yasudaya Ryokan",
+          "mapsQuery": "Yasudaya Ryokan Uchiura Numazu",
+          "note": "PRENOTATO ✓ EXTRA LUSSO · solo contanti: prelevare a Nagoya il 13-14",
+          "stayId": "uchiura",
+          "booking": {
+            "status": "done",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d15-12",
+          "time": "18:00",
+          "title": "Cena kaiseki EXTRA LUSSO",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "¥27.500/pax · piano prenotato",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "Numazu + Uchiura (Love Live)",
+      "moves": "Kodama+locale; Tokai bus",
+      "budgetEur": 150
+    },
+    {
+      "date": "2026-11-16",
+      "weekday": "lun",
+      "title": "UCHIURA → SHUZENJI · Love Live + onsen",
+      "base": "Shuzenji",
+      "baseId": "shuzenji",
+      "status": "draft",
+      "notes": "Splurge onsen",
+      "items": [
+        {
+          "id": "d16-01",
+          "time": "08:30",
+          "title": "Uchiura: Nagahama/Ohama, spot mattutini",
+          "type": "anime",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Uchiura / Uchiuramito",
+          "mapsQuery": "Uchiura Mito Numazu",
+          "note": "LOVE LIVE",
+          "placeId": "uchiura-uchiuramito",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d16-02",
+          "time": "10:30",
+          "title": "Izuhakone bus → Izu-Nagaoka + Sunzu → Shuzenji",
+          "type": "bus",
+          "fixed": false,
+          "optional": false,
+          "costEur": 5,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Shuzenji",
+          "mapsQuery": "Shuzenji",
+          "note": "No backtracking",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d16-03",
+          "time": "12:30",
+          "title": "Pranzo Shuzenji (wasabi dell'Izu)",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 12,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Shuzenji Onsen (borgo)",
+          "mapsQuery": "Shuzenji Onsen",
+          "note": "",
+          "placeId": "shuzenji-onsen",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d16-04",
+          "time": "14:00",
+          "title": "Chikurin-no-michi (bambù) + Tokko-no-yu",
+          "type": "onsen",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Tokko-no-yu",
+          "mapsQuery": "Tokko no yu Shuzenji",
+          "note": "'Piccola Kyoto'",
+          "placeId": "tokko-no-yu",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d16-05",
+          "time": "15:00",
+          "title": "Check-in ARAI RYOKAN: scegliere orario cena + prenotare kashikiri Suiren",
+          "type": "lodging",
+          "fixed": true,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Arai Ryokan",
+          "mapsQuery": "Arai Ryokan Shuzenji",
+          "note": "PRENOTATO ✓ · arrivo entro le 19!",
+          "stayId": "shuzenji",
+          "booking": {
+            "status": "done",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d16-06",
+          "time": "15:45",
+          "title": "Shuzenji temple + ponti rossi",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Shuzenji temple",
+          "mapsQuery": "Shuzenji temple",
+          "note": "",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d16-07",
+          "time": "17:00",
+          "title": "Onsen: Tenpyō 1934 / rotenburo · kashikiri Hisui gratis",
+          "type": "onsen",
+          "fixed": false,
+          "optional": false,
+          "costEur": 1,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Arai Ryokan",
+          "mapsQuery": "Arai Ryokan Shuzenji",
+          "note": "Tassa onsen ¥150/pax · tatuaggi → kashikiri/camera",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d16-08",
+          "time": "18:00",
+          "title": "Cena kaiseki in sala (18:00 o 18:30)",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Inclusa · menu mensile del capocuoco",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "Uchiura LL → Shuzenji onsen",
+      "moves": "Izuhakone bus + Sunzu",
+      "budgetEur": 150
+    },
+    {
+      "date": "2026-11-17",
+      "weekday": "mar",
+      "title": "SHUZENJI → TOKYO · Shibuya + Shinjuku by night",
+      "base": "Tokyo",
+      "baseId": "tokyo",
+      "status": "draft",
+      "notes": "Valigie ricongiunte",
+      "items": [
+        {
+          "id": "d17-01",
+          "time": "08:00",
+          "title": "Colazione jūbako + ultimo bagno onsen",
+          "type": "onsen",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Check-out ore 11",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d17-02",
+          "time": "10:30",
+          "end": "12:35",
+          "title": "Sunzu → Mishima + Kodama → Tokyo",
+          "type": "train",
+          "fixed": true,
+          "optional": false,
+          "costEur": 32,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Tokyo",
+          "mapsQuery": "Tokyo Station",
+          "note": "2h05",
+          "booking": {
+            "status": "todo",
+            "where": "smartEX",
+            "when": "17 ott 3:00-16:30 IT"
+          }
+        },
+        {
+          "id": "d17-03",
+          "time": "13:00",
+          "title": "Check-in Yume-no-ya (Yoyogi) → poi RITIRO 4 valigie all'ufficio Yamato Yoyogi 2-chome (12-20) con passaporto",
+          "type": "lodging",
+          "fixed": true,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Yume-no-ya Yoyogi #203",
+          "mapsQuery": "夢の舎 代々木 Yoyogi Tokyo",
+          "note": "PRENOTATO ✓ · ufficio ~10' a piedi · conservazione fino al 22",
+          "stayId": "tokyo",
+          "booking": {
+            "status": "done",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d17-04",
+          "time": "15:00",
+          "title": "Shibuya: Scramble Crossing + (opz.) statua di Hachikō",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Shibuya Scramble Crossing",
+          "mapsQuery": "Shibuya Scramble Crossing Tokyo",
+          "note": "",
+          "placeId": "shibuya-scramble-crossing",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d17-05",
+          "time": "16:00",
+          "title": "Center Gai + giro di Shibuya",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Center Gai",
+          "mapsQuery": "Center Gai Shibuya Tokyo",
+          "note": "",
+          "placeId": "center-gai",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d17-06",
+          "time": "17:30",
+          "title": "Nonbei Yokochō: primo drink nei micro-bar",
+          "type": "nightlife",
+          "fixed": false,
+          "optional": false,
+          "costEur": 8,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Nonbei Yokochō",
+          "mapsQuery": "Nonbei Yokocho Shibuya Tokyo",
+          "note": "Il 'vicolo degli ubriaconi'",
+          "placeId": "nonbei-yokocho",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d17-07",
+          "time": "19:00",
+          "title": "Shinjuku: cena a Omoide Yokochō ★ (yakitori nel fumo)",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 15,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Omoide Yokochō",
+          "mapsQuery": "Omoide Yokocho Shinjuku Tokyo",
+          "note": "",
+          "placeId": "omoide-yokocho",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d17-08",
+          "time": "21:00",
+          "title": "Kabukichō: neon, Godzilla head, giro serale",
+          "type": "nightlife",
+          "fixed": false,
+          "optional": false,
+          "costEur": 10,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Kabukichō",
+          "mapsQuery": "Kabukicho Shinjuku Tokyo",
+          "note": "Movida clou",
+          "placeId": "kabukicho",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "→ Tokyo; bagagli; Shibuya",
+      "moves": "Sunzu→Mishima→Tokyo",
+      "budgetEur": 70
+    },
+    {
+      "date": "2026-11-18",
+      "weekday": "mer",
+      "title": "TOKYO · Akihabara full-day + cena fugu ★",
+      "base": "Tokyo",
+      "baseId": "tokyo",
+      "status": "draft",
+      "notes": "Prenotare Torafugutei",
+      "items": [
+        {
+          "id": "d18-01",
+          "time": "10:00",
+          "title": "Akihabara Electric Town: Radio Kaikan + Mandarake Complex",
+          "type": "anime",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Electric Town",
+          "mapsQuery": "Akihabara Electric Town Tokyo",
+          "note": "Shopping otaku",
+          "placeId": "electric-town",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d18-02",
+          "time": "13:00",
+          "title": "Pranzo + Maid Café",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 18,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Maid Café",
+          "mapsQuery": "Maid Cafe Akihabara",
+          "note": "L'esperienza kitsch va fatta",
+          "placeId": "maid-cafe",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d18-03",
+          "time": "15:00",
+          "title": "Super Potato + GiGO arcade (retro gaming)",
+          "type": "anime",
+          "fixed": false,
+          "optional": true,
+          "costEur": 5,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Super Potato Akihabara",
+          "mapsQuery": "Super Potato Akihabara",
+          "note": "",
+          "placeId": "super-potato-akihabara",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d18-04",
+          "time": "16:30",
+          "title": "Kanda Myōjin + scalinata Otoko-zaka ★",
+          "type": "anime",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Kanda Myōjin (Otoko-zaka)",
+          "mapsQuery": "Kanda Myojin Shrine Tokyo",
+          "note": "Pellegrinaggio Love Live μ's",
+          "placeId": "kanda-myojin",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d18-05",
+          "time": "19:30",
+          "title": "CENA FUGU — Torafugutei Shinjuku ★",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 35,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Torafugutei Shinjuku Annex",
+          "mapsQuery": "Torafugutei Shinjuku Annex Tokyo",
+          "note": "PRENOTARE qualche giorno prima",
+          "placeId": "torafugutei-shinjuku-annex",
+          "booking": {
+            "status": "todo",
+            "where": "Hot Pepper Gourmet · tel 03-3209-2919",
+            "when": "~inizio nov"
+          }
+        },
+        {
+          "id": "d18-06",
+          "time": "22:00",
+          "title": "Bar a Kabukichō",
+          "type": "nightlife",
+          "fixed": false,
+          "optional": true,
+          "costEur": 10,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Kabukichō",
+          "mapsQuery": "Kabukicho Shinjuku Tokyo",
+          "note": "",
+          "placeId": "kabukicho",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "Akihabara + Kanda Myōjin + cena fugu",
+      "moves": "metro/Yamanote",
+      "budgetEur": 90
+    },
+    {
+      "date": "2026-11-19",
+      "weekday": "gio",
+      "title": "TOKYO · Toyosu all'alba + Asakusa/Ueno + Golden Gai",
+      "base": "Tokyo",
+      "baseId": "tokyo",
+      "status": "draft",
+      "notes": "Toyosu chiuso dom/festivi",
+      "items": [
+        {
+          "id": "d19-01",
+          "time": "07:30",
+          "title": "Toyosu Market: colazione sushi + terrazze",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 25,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Toyosu Market",
+          "mapsQuery": "Toyosu Market Tokyo",
+          "note": "Chiuso dom/festivi → unico slot buono",
+          "placeId": "toyosu-market",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d19-02",
+          "time": "09:30",
+          "title": "Asakusa: Kaminarimon + Nakamise-dōri + Sensō-ji",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Kaminarimon",
+          "mapsQuery": "Kaminarimon Gate Asakusa",
+          "note": "",
+          "placeId": "kaminarimon",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d19-03",
+          "time": "11:30",
+          "title": "Hoppy Street: spiedini + birra di giorno",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 12,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Hoppy Street (Asakusa)",
+          "mapsQuery": "Hoppy Street Asakusa Tokyo",
+          "note": "",
+          "placeId": "hoppy-street",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d19-04",
+          "time": "13:30",
+          "title": "Ueno Park: foliage + (opz.) un museo",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Ueno Park",
+          "mapsQuery": "Ueno Park Tokyo",
+          "note": "",
+          "placeId": "ueno-park",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d19-05",
+          "time": "15:00",
+          "title": "Ameyoko: mercato sotto la ferrovia",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Ameyoko",
+          "mapsQuery": "Ameyoko Market Ueno Tokyo",
+          "note": "",
+          "placeId": "ameyoko",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d19-06",
+          "time": "16:30",
+          "title": "Ikebukuro: Sunshine City + Otome Road + Animate",
+          "type": "anime",
+          "fixed": false,
+          "optional": true,
+          "costEur": 0,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Sunshine City",
+          "mapsQuery": "Sunshine City Ikebukuro",
+          "note": "Tappa otaku extra",
+          "placeId": "sunshine-city",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d19-07",
+          "time": "20:00",
+          "title": "Golden Gai ★: bar hopping nei sei vicoli",
+          "type": "nightlife",
+          "fixed": false,
+          "optional": false,
+          "costEur": 20,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Golden Gai",
+          "mapsQuery": "Golden Gai Shinjuku Tokyo",
+          "note": "Alcuni bar con cover charge",
+          "placeId": "golden-gai",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "Toyosu alba + Asakusa/Ueno + Golden Gai",
+      "moves": "Yamanote",
+      "budgetEur": 75
+    },
+    {
+      "date": "2026-11-20",
+      "weekday": "ven",
+      "title": "TOKYO · Tsukiji + Nakano + Harajuku + Kōenji",
+      "base": "Tokyo",
+      "baseId": "tokyo",
+      "status": "draft",
+      "notes": "",
+      "items": [
+        {
+          "id": "d20-01",
+          "time": "08:30",
+          "title": "Tsukiji Outer Market: colazione tra i banchi",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 15,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Tsukiji Outer Market",
+          "mapsQuery": "Tsukiji Outer Market Tokyo",
+          "note": "Spostato qui: dom 22 è semi-chiuso",
+          "placeId": "tsukiji-outer-market",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d20-02",
+          "time": "11:00",
+          "title": "Nakano Broadway ★ + Sun Mall (Mandarake apre ~12)",
+          "type": "anime",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Nakano Broadway",
+          "mapsQuery": "Nakano Broadway Tokyo",
+          "note": "Vintage/anime, il tempio del retro",
+          "placeId": "nakano-broadway",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d20-03",
+          "time": "13:30",
+          "title": "Pranzo a Nakano",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 12,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Nakano Broadway",
+          "mapsQuery": "Nakano Broadway Tokyo",
+          "note": "",
+          "placeId": "nakano-broadway",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d20-04",
+          "time": "14:45",
+          "title": "Harajuku: Takeshita Street ★ + (opz.) Cat Street",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Takeshita Street",
+          "mapsQuery": "Takeshita Street Harajuku Tokyo",
+          "note": "Kawaii",
+          "placeId": "takeshita-street",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d20-05",
+          "time": "16:00",
+          "title": "Meiji Jingū ★ (chiude al tramonto ~16:30)",
+          "type": "sight",
+          "fixed": false,
+          "optional": true,
+          "costEur": 0,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Meiji Jingū",
+          "mapsQuery": "Meiji Jingu Shrine Harajuku",
+          "note": "",
+          "placeId": "meiji-jingu",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d20-06",
+          "time": "16:45",
+          "title": "Yoyogi Park al tramonto (è dietro casa)",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Yoyogi Park",
+          "mapsQuery": "Yoyogi Park Tokyo",
+          "note": "",
+          "placeId": "yoyogi-park",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d20-07",
+          "time": "19:30",
+          "title": "Kōenji: live house + izakaya di quartiere",
+          "type": "nightlife",
+          "fixed": false,
+          "optional": false,
+          "costEur": 25,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Kōenji (live house)",
+          "mapsQuery": "Koenji Station Tokyo",
+          "note": "Venerdì sera indie",
+          "placeId": "scena-live-house-di-koenji",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "Tsukiji + Nakano + Harajuku + Kōenji",
+      "moves": "Yamanote",
+      "budgetEur": 70
+    },
+    {
+      "date": "2026-11-21",
+      "weekday": "sab",
+      "title": "TOKYO · GIORNO LIBERO (si decide in viaggio)",
+      "base": "Tokyo",
+      "baseId": "tokyo",
+      "status": "draft",
+      "notes": "Kamakura/Hakone/Yokohama o città",
+      "items": [
+        {
+          "id": "d21-01",
+          "time": "",
+          "allDay": true,
+          "title": "Deliberatamente vuoto. Opzioni pronte: day-trip Kamakura (Daibutsu, Enoshima, Enoden) · Hakone (torii sul lago ★, vista Fuji) · Yokohama · o recuperi/shopping a Tokyo",
+          "type": "free",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Si decide lì per meteo/energie",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d21-02",
+          "time": "20:00",
+          "title": "Sera: nightlife weekend (Shibuya o Roppongi)",
+          "type": "nightlife",
+          "fixed": false,
+          "optional": false,
+          "costEur": 20,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "",
+          "mapsQuery": "",
+          "note": "",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "GIORNO LIBERO (si decide in viaggio)",
+      "moves": "—",
+      "budgetEur": 80
+    },
+    {
+      "date": "2026-11-22",
+      "weekday": "dom",
+      "title": "TOKYO · giornata lenta + Roppongi",
+      "base": "Tokyo",
+      "baseId": "tokyo",
+      "status": "draft",
+      "notes": "Weekend",
+      "items": [
+        {
+          "id": "d22-01",
+          "time": "10:00",
+          "title": "Mattina lenta: brunch + (opz.) Tsukiji (aperto ~30-40%, è giorno di riposo)",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 12,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "",
+          "mapsQuery": "",
+          "note": "",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d22-02",
+          "time": "11:30",
+          "title": "Hamarikyū Gardens",
+          "type": "sight",
+          "fixed": false,
+          "optional": true,
+          "costEur": 3,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Hamarikyū Gardens",
+          "mapsQuery": "Hamarikyu Gardens Tokyo",
+          "note": "",
+          "placeId": "hamarikyu-gardens",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d22-03",
+          "time": "13:00",
+          "title": "Pomeriggio: shopping / recuperi + (opz.) giro a Ni-chōme",
+          "type": "free",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Ni-chōme",
+          "mapsQuery": "Shinjuku Nichome Tokyo",
+          "note": "",
+          "placeId": "ni-chome",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d22-04",
+          "time": "19:00",
+          "title": "Roppongi: cena + club + (opz.) vista notturna dal Mori Tower",
+          "type": "nightlife",
+          "fixed": false,
+          "optional": false,
+          "costEur": 30,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Roppongi Hills (Mori Tower)",
+          "mapsQuery": "Roppongi Hills Mori Tower",
+          "note": "",
+          "placeId": "roppongi-hills",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "Giornata lenta + Roppongi",
+      "moves": "metro",
+      "budgetEur": 60
+    },
+    {
+      "date": "2026-11-23",
+      "weekday": "lun",
+      "title": "TOKYO · FESTIVO (勤労感謝の日) · ultimo giorno pieno",
+      "base": "Tokyo",
+      "baseId": "tokyo",
+      "status": "draft",
+      "notes": "勤労感謝の日 = folla",
+      "items": [
+        {
+          "id": "d23-01",
+          "time": "10:00",
+          "title": "Shopping finale souvenir/anime (festivo = folla nei negozi)",
+          "type": "anime",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d23-02",
+          "time": "14:00",
+          "title": "Shimokitazawa: vintage + Shelter live house ★",
+          "type": "sight",
+          "fixed": false,
+          "optional": true,
+          "costEur": 0,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Shelter (Shimokitazawa)",
+          "mapsQuery": "Shimokitazawa Shelter live house",
+          "note": "",
+          "placeId": "shelter",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d23-03",
+          "time": "17:00",
+          "title": "Valigie + check spese/omiyage",
+          "type": "logistics",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d23-04",
+          "time": "19:30",
+          "title": "ULTIMA SERA: cena + encore a Omoide Yokochō / Golden Gai",
+          "type": "nightlife",
+          "fixed": false,
+          "optional": false,
+          "costEur": 25,
+          "costEstimate": true,
+          "costNote": "stima",
+          "place": "Omoide Yokochō",
+          "mapsQuery": "Omoide Yokocho Shinjuku Tokyo",
+          "note": "",
+          "placeId": "omoide-yokocho",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "FESTIVO · shopping finale + ultima sera",
+      "moves": "metro",
+      "budgetEur": 50
+    },
+    {
+      "date": "2026-11-24",
+      "weekday": "mar",
+      "title": "TOKYO → NRT · partenza",
+      "base": "—",
+      "baseId": "",
+      "status": "draft",
+      "notes": "8 valigie · PRENOTARE online",
+      "items": [
+        {
+          "id": "d24-01",
+          "time": "10:30",
+          "title": "Check-out (valigie al seguito)",
+          "type": "logistics",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Yume-no-ya Yoyogi #203",
+          "mapsQuery": "夢の舎 代々木 Yoyogi Tokyo",
+          "note": "anticipato per il bus delle 11:20",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d24-02",
+          "time": "10:45",
+          "title": "Yoyogi → Shinjuku (1 fermata Yamanote o 15' a piedi) → Busta Shinjuku 4° piano, fermata A1/A2/B4",
+          "type": "train",
+          "fixed": false,
+          "optional": false,
+          "costEur": 1,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Busta Shinjuku",
+          "mapsQuery": "Busta Shinjuku",
+          "note": "8 valigie: Yamanote 1 fermata è più semplice · check-out anticipato alle 10:30",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d24-03",
+          "time": "11:20",
+          "end": "13:35",
+          "title": "Limousine Bus da Busta Shinjuku 4° piano → Narita T1 13:35 (da prenotare online, ~fine ott)",
+          "type": "bus",
+          "fixed": true,
+          "optional": false,
+          "costEur": 19.5,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Busta Shinjuku",
+          "mapsQuery": "Busta Shinjuku",
+          "note": "¥3.600 · orario ufficiale · 2 valigie/pax ≤50×60×120 ≤30 kg in stiva → 8 ok · alt. N'EX ¥3.250",
+          "booking": {
+            "status": "todo",
+            "where": "limousinebus.co.jp (carta) · alt. N'EX",
+            "when": "~fine ott"
+          }
+        },
+        {
+          "id": "d24-04",
+          "time": "13:55",
+          "title": "Aeroporto NRT",
+          "type": "logistics",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Narita Airport T1",
+          "mapsQuery": "Narita International Airport Terminal 1",
+          "note": "Check-in volo",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d24-05",
+          "time": "16:55",
+          "title": "Volo di partenza",
+          "type": "transfer",
+          "fixed": true,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "→ NRT, volo 16:55",
+      "moves": "Limousine Bus da Busta Shinjuku ¥3.600",
+      "budgetEur": 40
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f4efe4">
+<title>Test shell</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" id="theme-css" href="../assets/css/themes/washi.css">
+<script src="../assets/js/theme-boot.js"></script>
+<style>
+  .t-ok { color: var(--ok, green); } .t-ko { color: var(--danger, red); font-weight: 700; }
+  table { border-collapse: collapse; width: 100%; } td, th { padding: 4px 6px; border-bottom: 1px solid var(--border, #ccc); text-align: left; font-size: 14px; }
+</style>
+</head>
+<body>
+<main class="container stack" data-page="home">
+  <h1 class="h1">Test shell (dev)</h1>
+  <p class="muted small">Prova con <code>?data=dev/fixtures/</code>, <code>?today=2026-11-09</code>, <code>?nosw</code>.</p>
+  <div id="summary" class="card"></div>
+  <table><thead><tr><th>espressione</th><th>atteso</th><th>ottenuto</th></tr></thead><tbody id="rows"></tbody></table>
+  <div id="missing" class="card"></div>
+  <p><button type="button" class="btn" id="btn-toast">Toast di prova</button></p>
+</main>
+<script type="module">
+  import * as app from '../assets/js/app.js';
+  const { initShell, loadData, fmtEur, fmtJpy, fmtDate, fmtTime, mapsUrl, esc, isTripDay, todayInTokyo, DATA_BASE, toast } = app;
+  const trip = await initShell('home');
+  const fx = trip ? trip.fx : 185;
+  const cases = [
+    ['fmtEur(1234)', fmtEur(1234), '€1.234'],
+    ['fmtEur(1234567.6)', fmtEur(1234567.6), '€1.234.568'],
+    ['fmtEur(9.54)', fmtEur(9.54), '€9,5'],
+    ['fmtEur(5)', fmtEur(5), '€5'],
+    ['fmtEur(-12)', fmtEur(-12), '-€12'],
+    ['fmtEur(null)', fmtEur(null), '—'],
+    ['fmtJpy(66.7, 185)', fmtJpy(66.7, 185), '¥12.340'],
+    ['fmtJpy(10, trip.fx)', fmtJpy(10, fx), '¥1.850'],
+    ['fmtJpy(10)', fmtJpy(10), ''],
+    ["fmtDate('2026-11-07')", fmtDate('2026-11-07'), 'sab 7 nov'],
+    ["fmtDate('2026-11-24',{weekday:false})", fmtDate('2026-11-24', { weekday: false }), '24 nov'],
+    ["fmtDate('2026-11-01',{year:true})", fmtDate('2026-11-01', { year: true }), 'dom 1 nov 2026'],
+    ["fmtTime('9:05')", fmtTime('9:05'), '09:05'],
+    ['fmtTime(1330)', fmtTime(1330), '22:10'],
+    ["fmtTime('2026-11-07T03:10:00Z',{timeZone:'Asia/Tokyo'})", fmtTime('2026-11-07T03:10:00Z', { timeZone: 'Asia/Tokyo' }), '12:10'],
+    ["mapsUrl('Fushimi Inari & co')", mapsUrl('Fushimi Inari & co'), 'https://www.google.com/maps/search/?api=1&query=Fushimi%20Inari%20%26%20co'],
+    ["esc('<a href=\"x\">&\\'')", esc('<a href="x">&\''), '&lt;a href=&quot;x&quot;&gt;&amp;&#39;'],
+    ["isTripDay('2026-11-07', trip)", String(isTripDay('2026-11-07', trip || { start: '2026-11-07', end: '2026-11-24' })), 'true'],
+    ["isTripDay('2026-11-25', trip)", String(isTripDay('2026-11-25', trip || { start: '2026-11-07', end: '2026-11-24' })), 'false'],
+  ];
+  let ko = 0;
+  document.getElementById('rows').innerHTML = cases.map(([expr, got, exp]) => {
+    const ok = got === exp; if (!ok) ko++;
+    return `<tr><td class="mono small">${esc(expr)}</td><td class="mono small">${esc(exp)}</td><td class="mono small ${ok ? 't-ok' : 't-ko'}">${esc(got)}</td></tr>`;
+  }).join('');
+  document.getElementById('summary').innerHTML =
+    `<p><strong>${cases.length - ko}/${cases.length}</strong> formattazioni ok · DATA_BASE = <code>${esc(DATA_BASE)}</code> · ` +
+    `oggi a Tokyo = <code>${esc(todayInTokyo())}</code> · trip ${trip ? 'caricato' : '<strong>assente</strong>'}</p>`;
+  document.documentElement.dataset.testResult = ko ? 'fail' : 'pass';
+  // degrado: JSON inesistente → toast + .empty
+  await loadData('non-esiste', { target: document.getElementById('missing') });
+  document.getElementById('btn-toast').addEventListener('click', () =>
+    toast('Aggiornamento disponibile · ricarica', { timeout: 0, action: { label: 'Ricarica', onClick: () => location.reload() } }));
+</script>
+</body>
+</html>

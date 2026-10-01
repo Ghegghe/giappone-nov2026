@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Icona app: torii bianco davanti al sole vermiglio su indaco (藍 / 朱 / washi). Area sicura maskable ~80%. -->
+  <rect width="512" height="512" rx="112" fill="#24427a"/>
+  <circle cx="256" cy="246" r="132" fill="#d9472b"/>
+  <g fill="#fffcf6">
+    <path d="M88 146 Q256 182 424 146 L414 186 Q256 214 98 186 Z"/>
+    <rect x="132" y="200" width="248" height="20" rx="4"/>
+    <rect x="148" y="262" width="216" height="24" rx="4"/>
+    <rect x="246" y="214" width="20" height="52"/>
+    <path d="M166 200 h34 l6 222 h-46 Z"/>
+    <path d="M312 200 h34 l6 222 h-46 Z"/>
+  </g>
+</svg>

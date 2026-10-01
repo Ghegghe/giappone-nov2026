@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test agenda</title>
+  <style>
+    body { font: 14px/1.4 system-ui, sans-serif; margin: 16px; }
+    .ok { color: green; } .ko { color: crimson; font-weight: 700; }
+    iframe { width: 375px; height: 700px; border: 1px solid; }
+  </style>
+</head>
+<body>
+  <h1 id="sum">Test agenda…</h1>
+  <ol id="out"></ol>
+  <p>Integrazione: <code>agenda.html</code> con fixture in iframe (375px), verificata via DOM.</p>
+  <iframe id="frame" title="agenda"></iframe>
+<script type="module">
+// Unit test dei calcoli (agenda-gaps.js) + test DOM della pagina agenda reale con fixture.
+import { toMin, fmtDur, normalizeItems, assignColumns, computeGaps, dayRange, dayTotals, gapLabel } from '../assets/js/agenda-gaps.js';
+
+const out = document.getElementById('out');
+let pass = 0, fail = 0;
+function t(name, got, exp) {
+  const ok = JSON.stringify(got) === JSON.stringify(exp);
+  ok ? pass++ : fail++;
+  const li = document.createElement('li');
+  li.className = ok ? 'ok' : 'ko';
+  li.textContent = `${ok ? 'OK' : 'KO'} · ${name}${ok ? '' : ` → got ${JSON.stringify(got)} expected ${JSON.stringify(exp)}`}`;
+  out.append(li);
+}
+const it = (time, end, extra = {}) => ({ id: time, time, ...(end ? { end } : {}), title: time, type: 'sight', ...extra });
+
+// orari e durate
+t('toMin', [toMin('07:45'), toMin('7:05'), toMin('—'), toMin('')], [465, 425, null, null]);
+t('fmtDur', [fmtDur(80), fmtDur(45), fmtDur(120)], ['1h20', "45'", '2h']);
+// fine stimata: fino al successivo, min 30, max 90, ultimo 60
+let n = normalizeItems([it('10:00'), it('10:10'), it('12:30'), it('13:00', '13:20'), it('20:00')]);
+t('stima: min 30 (successivo a 10\')', [n[0].startMin, n[0].endMin], [600, 630]);
+t('stima: max 90', n[1].endMin, 610 + 90);
+t('stima: fino al successivo', n[2].endMin, 780);
+t('end esplicito', [n[3].endMin, n[3].estimated], [800, false]);
+t('ultimo item: 60\'', n[4].endMin, 1260);
+t('ordinamento + item senza orario scartato', normalizeItems([it('12:00'), it('—'), it('08:00')]).map((x) => x.time), ['08:00', '12:00']);
+t('end dopo mezzanotte', normalizeItems([it('23:30', '01:00')])[0].endMin, 1500);
+t('range esteso oltre 24', dayRange(normalizeItems([it('23:30', '01:00')])), { startMin: 360, endMin: 1500 });
+t('range 6-24 standard', dayRange(normalizeItems([it('07:00')])), { startMin: 360, endMin: 1440 });
+t('range esteso prima delle 6', dayRange(normalizeItems([it('05:10')])).startMin, 300);
+
+// sovrapposizioni (caso reale 14 nov: 1 pax 14:30-15:30, altri 3 14:30-20:30, concerto 16:00-20:00)
+const c = assignColumns(normalizeItems([it('14:30', '15:30'), it('14:30', '20:30'), it('16:00', '20:00'), it('21:00')]));
+t('colonne: 3 item in 2 colonne', c.map((x) => [x.col, x.cols]), [[0, 2], [1, 2], [0, 2], [0, 1]]);
+t('nessuna sovrapposizione → 1 colonna', assignColumns(normalizeItems([it('09:00', '10:00'), it('10:00', '11:00')])).map((x) => x.cols), [1, 1]);
+
+// buchi
+const g = computeGaps(normalizeItems([it('07:00', '08:00'), it('08:30', '09:00'), it('15:40', '15:40'), it('17:00', '18:00')]));
+t('buchi ≥45\' + margini', g.map((x) => [x.startMin, x.endMin, x.edge]), [[360, 420, 'start'], [540, 940, null], [940, 1020, null], [1080, 1440, 'end']]);
+t('buco 30\' ignorato', g.some((x) => x.startMin === 480), false);
+t('etichetta buco', gapLabel(940, 1020), '15:40-17:00 · libero (1h20)');
+t('giorno vuoto = tutto libero', computeGaps([]).map((x) => [x.startMin, x.endMin]), [[360, 1440]]);
+t('item sovrapposti uniti nel calcolo buchi', computeGaps(normalizeItems([it('10:00', '12:00'), it('11:00', '11:30')]), { fromMin: 600, toMin: 720 }), []);
+const ad = normalizeItems([{ id: 'a', time: '', allDay: true, title: 'libero' }]);
+t('allDay senza orario: tutta la scala, nessun buco', [ad.length, ad[0].startMin, ad[0].endMin, computeGaps(ad).length], [1, 360, 1440, 0]);
+t('totali', dayTotals([{ costEur: 9.7 }, { costEur: 8, optional: true }, {}]), { total: 17.7, optional: 8 });
+
+// integrazione DOM: agenda.html con fixture
+const frame = document.getElementById('frame');
+frame.src = '../agenda.html?data=dev/fixtures/&now=2026-11-14T15:10#2026-11-14';
+frame.addEventListener('load', () => setTimeout(() => {
+  const d = frame.contentDocument;
+  const H = parseFloat(getComputedStyle(d.querySelector('.timeline')).getPropertyValue('--tl-hour-h')) || 48;
+  t('18 colonne giorno', d.querySelectorAll('.tl-day').length, 18);
+  t('127 item renderizzati', d.querySelectorAll('.tl-item').length, 127);
+  const kix = d.getElementById('tl-d07-01');      // 12:10-13:15 → top (12:10-6:00)=370' ; h=65'
+  t('top/h KIX in px', [kix.style.getPropertyValue('--top'), kix.style.getPropertyValue('--h')], [`${Math.round(370 / 60 * H)}px`, `${Math.round(80 / 60 * H)}px`]); // dati reali: fine stimata = item successivo 13:30
+  t('item = <button> con aria-label', [kix.tagName, kix.getAttribute('aria-label').startsWith('12:10-13:30, Arrivo KIX')], ['BUTTON', true]);
+  const conc = d.getElementById('tl-d14-03'), altri = d.getElementById('tl-d14-04');
+  t('concerto e "altri 3" affiancati', [conc.style.getPropertyValue('--i'), altri.style.getPropertyValue('--i'), altri.style.getPropertyValue('--n')], ['0', '1', '2']);
+  t('lucchetto sul concerto (fixed)', !!conc.querySelector('use[href$="#i-lock"]'), true);
+  t('opzionale ha classe', d.getElementById('tl-d07-08').classList.contains('tl-item--optional'), true);
+  t('.tl-now solo nel 14 nov', [...d.querySelectorAll('.tl-now')].map((x) => x.closest('.tl-day').dataset.date), ['2026-11-14']);
+  const gaps8 = [...d.querySelectorAll('#day-2026-11-08 .tl-gap')].map((x) => x.textContent);
+  t('buchi 8 nov (margine iniziale + 09:15-10:00)', gaps8.slice(0, 2), ['06:00-07:00 · libero (1h)', '09:15-10:00 · libero (45\')']);
+  t('nessuno scroll orizzontale di pagina', d.documentElement.scrollWidth <= frame.clientWidth, true);
+  t('hash = giorno selezionato', frame.contentWindow.location.hash, '#2026-11-14');
+  done();
+}, 800));
+
+function done() {
+  const s = document.getElementById('sum');
+  s.textContent = `Test agenda: ${pass} OK, ${fail} KO`;
+  s.className = fail ? 'ko' : 'ok';
+}
+done();
+</script>
+</body>
+</html>

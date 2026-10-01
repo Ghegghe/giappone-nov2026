@@ -1,0 +1,16 @@
+{
+  "name": "Giappone Nov 2026",
+  "short_name": "Giappone",
+  "description": "Agenda, trasporti, alloggi, luoghi e budget del viaggio in Giappone (7-24 novembre 2026).",
+  "lang": "it",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4efe4",
+  "theme_color": "#f4efe4",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

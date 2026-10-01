@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Giorno · Giappone</title>
+  <meta name="description" content="Dettaglio di un giorno del viaggio: orari, note, costi, link Maps e tempo libero.">
+  <meta name="theme-color" content="#f4efe4">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" id="theme-css" href="assets/css/themes/washi.css">
+  <script src="assets/js/theme-boot.js"></script>
+  <link rel="stylesheet" href="assets/css/agenda.css">
+  <script type="module" src="assets/js/agenda-day.js"></script>
+</head>
+<body>
+  <main id="main" data-page="agenda" class="container stack giorno">
+    <nav class="row giorno__pager" aria-label="Navigazione giorni">
+      <a class="btn btn--ghost" id="giorno-prev" aria-label="Giorno precedente">&lsaquo; <span></span></a>
+      <a class="btn btn--ghost" id="giorno-agenda" href="agenda.html">Agenda</a>
+      <a class="btn btn--ghost" id="giorno-next" aria-label="Giorno successivo"><span></span> &rsaquo;</a>
+    </nav>
+
+    <header class="stack giorno__head" id="giorno-head">
+      <h1 class="h1" id="giorno-title">Giorno</h1>
+    </header>
+
+    <p class="empty" id="giorno-error" hidden></p>
+
+    <ol class="list giorno__list" id="giorno-list"></ol>
+
+    <footer class="card card--accent giorno__foot" id="giorno-foot" hidden></footer>
+  </main>
+</body>
+</html>

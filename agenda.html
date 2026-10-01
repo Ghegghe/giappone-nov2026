@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Agenda · Giappone</title>
+  <meta name="description" content="Agenda giorno per giorno del viaggio: timeline 6-24 con buchi liberi, vincoli e opzionali.">
+  <meta name="theme-color" content="#f4efe4">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" id="theme-css" href="assets/css/themes/washi.css">
+  <script src="assets/js/theme-boot.js"></script>
+  <link rel="stylesheet" href="assets/css/agenda.css">
+  <script type="module" src="assets/js/agenda.js"></script>
+</head>
+<body>
+  <main id="main" data-page="agenda" class="container stack agenda">
+    <header class="agenda__head">
+      <h1 class="h1">Agenda</h1>
+      <p class="muted small" id="agenda-sub"></p>
+    </header>
+
+    <div class="filter-bar agenda__tools">
+      <div class="row" id="agenda-filters" role="group" aria-label="Filtri"></div>
+      <details class="agenda-legend">
+        <summary class="chip" aria-label="Legenda colori"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-info"></use></svg><span class="agenda-legend__label">Legenda</span></summary>
+        <ul class="row agenda-legend__list" id="agenda-legend-list"></ul>
+      </details>
+    </div>
+
+    <div class="agenda__datebar">
+      <button type="button" class="btn btn--ghost agenda__nav" id="agenda-prev" aria-label="Giorno precedente">&lsaquo;</button>
+      <div class="agenda-dates" id="agenda-dates" role="group" aria-label="Giorni del viaggio"></div>
+      <button type="button" class="btn btn--ghost agenda__nav" id="agenda-next" aria-label="Giorno successivo">&rsaquo;</button>
+    </div>
+    <p class="sr-only" aria-live="polite" id="agenda-current"></p>
+
+    <p class="empty" id="agenda-error" hidden></p>
+
+    <div class="timeline" id="agenda-timeline" tabindex="0" aria-label="Timeline dei giorni, scorri in orizzontale per cambiare giorno"></div>
+  </main>
+
+  <div class="agenda-overlay" id="agenda-overlay" hidden></div>
+  <aside class="panel agenda-panel" id="agenda-panel" role="dialog" aria-modal="true" aria-labelledby="panel-title" aria-hidden="true" inert>
+    <button type="button" class="panel__close" aria-label="Chiudi dettaglio"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-close"></use></svg></button>
+    <h2 class="h3" id="panel-title"></h2>
+    <div class="stack" id="panel-body"></div>
+  </aside>
+</body>
+</html>
