@@ -83,6 +83,10 @@ frame.addEventListener('load', () => setTimeout(() => {
   t('buchi 8 nov (margine iniziale + 09:15-10:00)', gaps8.slice(0, 2), ['06:00-07:00 · libero (1h)', '09:15-10:00 · libero (45\')']);
   t('nessuno scroll orizzontale di pagina', d.documentElement.scrollWidth <= frame.clientWidth, true);
   t('hash = giorno selezionato', frame.contentWindow.location.hash, '#2026-11-14');
+  t('base e gita nella testata, non nel titolo (8 nov)', [d.querySelector('#day-2026-11-08 .tl-day__header .muted').textContent, /KYOTO|OSAKA/.test(d.querySelector('#day-2026-11-08 .tl-day__title').textContent)], ['Osaka · gita a Kyoto', false]);
+  t('titoli giorno senza MAIUSCOLO del dossier', [...d.querySelectorAll('.tl-day__title')].filter((x) => /\b[A-Z]{4,}\b/.test(x.textContent)).length, 0);
+  t('titoli item ≤ 70 caratteri', [...d.querySelectorAll('.tl-item strong')].filter((x) => x.textContent.length > 70).length, 0);
+  t('avviso bozza unico e breve (niente badge per giorno)', [d.querySelectorAll('.agenda__notice').length, d.querySelectorAll('.tl-day__header .badge--draft').length, d.querySelector('.agenda__notice').textContent.length < 90], [1, 0, true]);
   done();
 }, 800));
 

@@ -9,9 +9,9 @@
 .agenda__head .h1 { margin: 0; }
 .agenda__head p { margin: var(--space-1) 0 0; }
 /* avviso globale agenda.notice */
-.agenda__notice { margin-top: var(--space-2); padding: var(--space-2) var(--space-3); }
-.agenda__notice > summary { min-height: 44px; display: flex; align-items: center; gap: var(--space-2); cursor: pointer; }
-.agenda__notice > div { padding-bottom: var(--space-2); color: var(--fg-muted); }
+.agenda__notice { margin-top: var(--space-2); flex-wrap: nowrap; align-items: flex-start; gap: var(--space-2); font-size: .875rem; line-height: 1.25rem; color: var(--fg-muted); }
+.agenda__notice > .icon { flex: none; width: 16px; height: 16px; margin-top: 2px; }
+.agenda__notice > span { min-width: 0; }
 .agenda__tools { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: flex-start; justify-content: space-between; }
 .agenda__tools > .row { gap: var(--space-2); }
 .agenda-legend > summary { list-style: none; cursor: pointer; }
@@ -28,6 +28,19 @@
 }
 .agenda-legend__list { list-style: none; margin: var(--space-2) 0 0; padding: 0; gap: var(--space-1); }
 .agenda-legend__chip { display: inline-flex; align-items: center; gap: 6px; cursor: default; }
+.agenda-legend__list .agenda-legend__chip { min-height: 28px; padding-inline: 10px; font-size: .8125rem; font-weight: 500; }
+.agenda-legend__chip::after { content: none; }
+:where(.agenda-legend__chip:hover) { border-color: var(--border); background: var(--bg-elev); }
+/* in giorno.html il type è un'etichetta, non un controllo: badge-like senza cornice da bottone */
+:is(.giorno__badges, .agenda-panel) .agenda-legend__chip {
+  min-height: 22px; padding: 0 10px 0 8px; gap: 5px; border-radius: 999px; box-shadow: none;
+  font-size: .75rem; font-weight: 600;
+}
+:is(.giorno__badges, .agenda-panel) .agenda-legend__chip {
+  background: color-mix(in srgb, var(--tc) 11%, var(--bg-elev)); color: var(--tc);
+  border-color: color-mix(in srgb, var(--tc) 28%, transparent);
+}
+:is(.giorno__badges, .agenda-panel) .agenda-legend__dot { inline-size: 7px; block-size: 7px; }
 .agenda-legend__dot { inline-size: 10px; block-size: 10px; border-radius: 50%; flex: none; }
 :where(.agenda-legend__dot) { background: var(--tc); }
 :where(.agenda-legend__chip--opt) { border-style: dashed; }
@@ -50,8 +63,8 @@
   flex: none; display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
   min-inline-size: 44px; min-block-size: 44px; padding: 2px 8px; line-height: 1.1; cursor: pointer;
 }
-.agenda-date__wd { font-size: .7rem; text-transform: uppercase; letter-spacing: .04em; }
-.agenda-date__n { font-size: 1rem; font-weight: 600; }
+.agenda-date__wd { font-size: .6875rem; letter-spacing: .02em; }
+.agenda-date__n { font-family: var(--font-mono); font-variant-numeric: tabular-nums; font-size: 1rem; font-weight: 650; }
 
 /* ---------- timeline: completa base.css §7 (stesso DOM), solo override ---------- */
 .agenda .timeline {
@@ -107,14 +120,18 @@
 .badge .icon { width: .9em; height: .9em; vertical-align: -1px; display: inline-block; }
 
 /* ---------- giorno.html ---------- */
-.giorno__pager { justify-content: space-between; }
-.giorno__pager .btn { min-block-size: 44px; }
-.giorno__head .h1 { margin: 0; }
+.giorno__pager { justify-content: space-between; flex-wrap: nowrap; margin-inline: calc(-1 * var(--space-3)); }
+.giorno__pager .btn { min-block-size: 44px; padding-inline: var(--space-3); font-size: .875rem; }
+.giorno__pager #giorno-agenda { color: var(--fg-muted); }
+.giorno__head { --stack-gap: var(--space-2); }
+.giorno__head .h1 { margin: 0; font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem); line-height: 1.15; }
 .giorno__list { list-style: none; margin: 0; padding: 0; }
 .giorno__item, .giorno__gap {
-  display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: var(--space-3);
-  padding: var(--space-3) var(--space-3) var(--space-3) var(--space-2);
+  display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: var(--space-3);
+  padding: var(--space-3) var(--space-1) var(--space-3) var(--space-3);
 }
+.giorno__time { font-size: .875rem; }
+.giorno__time .small { font-weight: 500; font-size: .75rem; }
 :where(.giorno__item) { border-inline-start: 4px solid var(--tc); }
 :where(.giorno__item--optional) { border-inline-start-style: dashed; }
 .giorno__item--target { scroll-margin-block: 96px; }
@@ -122,12 +139,14 @@
 .giorno__item, .giorno__gap { align-items: start; }
 .giorno__time { display: flex; flex-direction: column; font-weight: 600; align-self: start; }
 .giorno__main > .row { justify-content: flex-start; }
-.giorno__main .btn--ghost { margin-inline-start: calc(-1 * var(--space-3)); }
-.giorno__main { min-inline-size: 0; gap: var(--space-2); }
+.giorno__main .btn--ghost { padding-inline: 10px; margin-inline-start: -10px; min-height: 40px; font-size: .875rem; }
+.giorno__main { min-inline-size: 0; --stack-gap: 6px; }
+.giorno__main > .row:last-child:has(.btn) { margin-top: -4px; }
 .giorno__title { margin: 0; overflow-wrap: anywhere; }
 .giorno__badges { gap: var(--space-1); }
 .giorno__note { margin: 0; white-space: pre-line; }
 .giorno__facts { margin: 0; }
 :where(.giorno__gap) { border-inline-start: 4px dashed color-mix(in srgb, var(--c-free) 40%, transparent); }
-.giorno__gap { padding-block: var(--space-2); }
+.giorno__gap { padding-block: var(--space-2); font-size: .875rem; }
+.giorno__gap .giorno__time { color: var(--fg-muted); font-weight: 500; font-size: .8125rem; }
 .giorno__foot p { margin: 0; }

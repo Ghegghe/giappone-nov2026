@@ -3,14 +3,14 @@
 (function () {
   // Elenco temi disponibili: per aggiungerne uno, aggiungere qui + assets/css/themes/<id>.css + PRECACHE in sw.js
   var THEMES = [
-    { id: 'washi', label: 'Washi' },
     { id: 'neutral', label: 'Neutro' },
+    { id: 'washi', label: 'Washi' },
     { id: 'night', label: 'Notte' }
   ];
   var MODES = ['auto', 'light', 'dark'];
   window.GJ_THEMES = THEMES;
 
-  var theme = 'washi', mode = 'auto';
+  var theme = 'neutral', mode = 'auto';
   try {
     var t = localStorage.getItem('giappone.theme');
     var m = localStorage.getItem('giappone.mode');

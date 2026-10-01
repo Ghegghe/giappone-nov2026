@@ -1,6 +1,6 @@
 // pages-home.js — index.html: countdown, oggi/prossimo giorno, scadenze, sezioni, mappa, cambio.
 import { fmtDate, fmtEur, fmtJpy, fmtTime, todayInTokyo } from './app.js';
-import { html, mount, icon, pageUrl, safeUrl, daysBetween, fxRate } from './pages.js';
+import { html, mount, icon, pageUrl, safeUrl, daysBetween, fxRate, deadlineLabel, deadlineState } from './pages.js';
 
 const nowMinutesTokyo = (tz) => {
   try {
@@ -67,17 +67,18 @@ function dayCard(agenda, trip, st, today) {
       <h2 class="h3" id="home-day-h">${label} · ${fmtDate(day.date)}</h2>
       ${day.status === 'draft' ? html`<span class="badge badge--draft">bozza</span>` : ''}
     </div>
-    <p class="muted small">${day.base ? `${day.base} · ` : ''}${day.title || ''}</p>
+    <p class="small">${day.title || ''}</p>
+    ${day.base || day.dayTrip ? html`<p class="row">${day.base ? html`<span class="badge">${day.base}</span>` : ''}${day.dayTrip ? html`<span class="badge">gita a ${day.dayTrip}</span>` : ''}</p>` : ''}
     ${items.length ? html`<ul class="list">${items.map((it) => html`
       <li class="list-item home-day__item">
         <span class="mono home-day__time">${it.time ? fmtTime(it.time) : '—'}</span>
         <span class="home-day__title">${it.title}${it.fixed ? html` ${icon('lock', 'vincolo fisso')}` : ''}${it.optional ? html` <span class="badge badge--opt">opz.</span>` : ''}</span>
       </li>`)}</ul>` : html`<p class="empty">Nessuna attività in programma.</p>`}
-    <a class="btn" href="${href}"><span>Tutto il giorno</span> ${icon('chevron-right')}</a>
+    <a class="btn btn--ghost" href="${href}"><span>Apri il giorno</span> ${icon('chevron-right')}</a>
   </section>`;
 }
 
-function deadlines(transport, today) {
+function deadlines(transport, todayIt) {
   if (!transport) return html`<section class="card stack"><h2 class="h3">Prossime scadenze</h2><p class="empty">Scadenze non disponibili.</p></section>`;
   const todo = ((transport && transport.checklist) || [])
     .filter((c) => c.status !== 'done')
@@ -86,13 +87,13 @@ function deadlines(transport, today) {
   return html`<section class="card stack" aria-labelledby="home-dl-h">
     <h2 class="h3" id="home-dl-h">Prossime scadenze</h2>
     ${todo.length ? html`<ul class="list">${todo.map((c) => {
-      const late = c.sortDate && c.sortDate < today;
+      const st = deadlineState(c, todayIt);
       return html`<li class="list-item home-dl">
-        <span class="mono small home-dl__when">${c.when || fmtDate(c.sortDate, { weekday: false })}</span>
-        <span class="home-dl__what">${c.what}${late ? html` <span class="badge badge--todo">in ritardo</span>` : ''}</span>
+        <span class="small home-dl__when"><span class="mono">${deadlineLabel(c)}</span>${c.whenDetail ? html` <span class="muted">· ${c.whenDetail}</span>` : ''}</span>
+        <span class="home-dl__what">${c.what}${st === 'late' ? html` <span class="badge badge--todo">in ritardo</span>` : st === 'today' ? html` <span class="badge badge--draft">oggi</span>` : ''}</span>
       </li>`;
     })}</ul>` : html`<p class="empty">Niente da fare: tutto prenotato.</p>`}
-    <a class="btn btn--ghost" href="${pageUrl('trasporti.html') + '#scadenze'}"><span>Tutte le scadenze</span> ${icon('chevron-right')}</a>
+    <a class="btn btn--ghost" href="${pageUrl('trasporti.html#scadenze')}"><span>Tutte le scadenze</span> ${icon('chevron-right')}</a>
   </section>`;
 }
 
@@ -112,7 +113,7 @@ function infoCard(trip) {
   const map = safeUrl(trip.mapsLink);
   return html`<section class="card stack" aria-labelledby="home-info-h">
     <h2 class="h3" id="home-info-h">In tasca</h2>
-    ${map ? html`<a class="btn btn--primary" href="${map}" target="_blank" rel="noopener noreferrer">${icon('pin')}<span>Mappa del viaggio (My Maps)</span> ${icon('external', 'apre in una nuova scheda')}</a>` : ''}
+    ${map ? html`<a class="btn btn--primary" href="${map}" target="_blank" rel="noopener noreferrer">${icon('pin')}<span>Mappa del viaggio</span> ${icon('external', 'apre in una nuova scheda')}</a>` : ''}
     ${rate ? html`<dl class="kv">
       <dt>Cambio</dt><dd class="mono">€1 = ¥${rate}</dd>
       <dt>Esempi</dt><dd class="mono">${fmtEur(10)} ≈ ${fmtJpy(10, rate)} · ¥1.000 ≈ ${fmtEur(1000 / rate)}</dd>
@@ -134,7 +135,7 @@ export async function render(root, { trip, loadData }) {
     ${countdown(trip, st)}
     <div class="grid-2">
       ${dayCard(agenda, trip, st, today)}
-      ${deadlines(transport, today)}
+      ${deadlines(transport, todayInTokyo('Europe/Rome'))}
     </div>
     ${sectionsGrid(trip)}
     ${infoCard(trip)}`);

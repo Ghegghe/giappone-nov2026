@@ -1,7 +1,7 @@
 // Pagina giorno.html?d=YYYY-MM-DD: lista verticale leggibile, buchi "libero", totale €/pax e ¥, prev/next.
 import { loadData, fmtEur, fmtJpy, fmtDate, mapsUrl, initShell } from './app.js';
 import {
-  TYPES, TYPE_LABEL, BOOKING_LABEL, normalizeItems, computeGaps, dayTotals, nowInTz, fmtMin, timeRange, withDataParam, el, icon,
+  TYPES, TYPE_LABEL, BOOKING_LABEL, normalizeItems, computeGaps, dayTotals, nowInTz, fmtMin, fmtDur, timeRange, withDataParam, el, icon,
 } from './agenda-gaps.js';
 
 const $ = (s) => document.querySelector(s);
@@ -25,12 +25,17 @@ function itemRow(n, fx) {
     b.status === 'todo' ? el('span', { class: 'badge badge--todo' }, BOOKING_LABEL.todo) : null,
     b.status === 'done' ? el('span', { class: 'badge badge--done' }, BOOKING_LABEL.done) : null);
 
+  // riga fatti: solo ciò che c'è (niente "gratis" quando il costo semplicemente non è indicato)
   const cost = Number(n.costEur) || 0;
-  const facts = el('p', { class: 'small giorno__facts' },
-    cost ? el('span', { class: 'mono' }, `${fmtEur(cost)}/pax · ${fmtJpy(cost, fx)}${n.costEstimate ? ' (stima)' : ''}`) : el('span', null, 'gratis / incluso'),
-    n.costNote ? el('span', { class: 'muted' }, ` · ${n.costNote}`) : null,
-    n.place ? el('span', { class: 'muted' }, ` · ${n.place}`) : null,
-    b.status !== 'none' && (b.where || b.when) ? el('span', { class: 'muted' }, ` · ${[b.where, b.when].filter(Boolean).join(' · ')}`) : null);
+  const bits = [
+    cost ? el('span', { class: 'mono' }, `${fmtEur(cost)} a testa · ${fmtJpy(cost, fx)}${n.costEstimate ? ' (stima)' : ''}`) : null,
+    n.costNote ? el('span', { class: 'muted' }, n.costNote) : null,
+    n.place && n.place !== n.title ? el('span', { class: 'muted' }, n.place) : null,
+    b.status !== 'none' && (b.where || b.when) ? el('span', { class: 'muted' }, [b.where, b.when].filter(Boolean).join(' · ')) : null,
+  ].filter(Boolean);
+  const facts = bits.length ? el('p', { class: 'small giorno__facts' }, ...bits.flatMap((x, i) => (i ? [' · ', x] : [x]))) : null;
+  const links = (n.links || []).filter((l) => /^[\w-]+\.html(#[\w-]*)?$/.test(l.href || ''))
+    .map((l) => el('a', { class: 'btn btn--ghost', href: withDataParam(l.href) }, el('span', null, l.label), icon('chevron-right')));
 
   return el('li', {
     class: `list-item giorno__item giorno__item--${type}${n.optional ? ' giorno__item--optional' : ''}`, id: n.id,
@@ -43,14 +48,14 @@ function itemRow(n, fx) {
     meta,
     n.note ? el('p', { class: 'giorno__note' }, n.note) : null,
     facts,
-    n.mapsQuery ? el('div', { class: 'row' }, el('a', {
-      class: 'btn btn--ghost', href: mapsUrl(n.mapsQuery), target: '_blank', rel: 'noopener', 'aria-label': `Apri in Google Maps: ${n.title || ''}`,
-    }, icon('map-pin'), el('span', null, 'Apri in Google Maps'))) : null));
+    n.mapsQuery || links.length ? el('div', { class: 'row' }, n.mapsQuery ? el('a', {
+      class: 'btn btn--ghost', href: mapsUrl(n.mapsQuery), target: '_blank', rel: 'noopener', 'aria-label': `Apri in Google Maps: ${n.title || ''} (nuova scheda)`,
+    }, icon('map-pin'), el('span', null, 'Apri in Google Maps'), icon('external')) : null, ...links) : null));
 }
 
 const gapRow = (g) => el('li', { class: 'list-item giorno__gap' },
   el('div', { class: 'giorno__time mono small muted' }, fmtMin(g.startMin)),
-  el('div', { class: 'giorno__main tl-gap__label small muted' }, `${g.label}`));
+  el('div', { class: 'giorno__main tl-gap__label small muted' }, `libero fino alle ${fmtMin(g.endMin)} (${fmtDur(g.dur)})`));
 
 function setPager(a, day, prefix) {
   if (!day) { a.hidden = true; return; }
@@ -84,12 +89,15 @@ async function main() {
 
   // intestazione
   $('#giorno-title').textContent = `${fmtDate(day.date)} · ${day.title || ''}`;
+  $('#giorno-title').title = day.title || '';
   // append/replaceChildren nativi convertono null in testo "null": filtrare sempre
   $('#giorno-head').append(...[
     el('div', { class: 'row' },
-      el('span', { class: 'muted' }, day.base || ''),
+      day.base ? el('span', { class: 'badge' }, day.base) : null,
+      day.dayTrip ? el('span', { class: 'badge' }, `gita a ${day.dayTrip}`) : null,
       day.status === 'draft' ? el('span', { class: 'badge badge--draft' }, 'bozza') : null),
-    day.notes ? el('p', { class: 'small muted' }, day.notes) : null,
+    day.status === 'draft' && agenda.notice ? el('p', { class: 'small muted' }, agenda.notice) : null,
+    day.notes ? el('p', { class: 'small' }, day.notes) : null,
     day.moves && day.moves !== '—' ? el('p', { class: 'small' }, el('strong', null, 'Spostamenti: '), day.moves) : null].filter(Boolean));
   setPager($('#giorno-prev'), days[i - 1], 'Giorno precedente');
   setPager($('#giorno-next'), days[i + 1], 'Giorno successivo');
@@ -113,11 +121,10 @@ async function main() {
   const foot = $('#giorno-foot');
   foot.hidden = false;
   foot.replaceChildren(...[
-    el('p', { class: 'h3' }, 'Totale giorno: ', el('span', { class: 'mono' }, `${fmtEur(tot.total)}/pax`), ' · ',
+    el('p', { class: 'h3' }, 'Totale del giorno: ', el('span', { class: 'mono' }, `${fmtEur(tot.total)} a testa`), ' · ',
       el('span', { class: 'mono muted' }, fmtJpy(tot.total, trip.fx))),
-    tot.optional ? el('p', { class: 'small muted' }, `di cui opzionali ${fmtEur(tot.optional)}/pax · alloggi esclusi`) : el('p', { class: 'small muted' }, 'alloggi esclusi'),
-    day.budgetEur != null ? el('p', { class: 'small muted' }, `Budget previsto dal dossier: ${fmtEur(day.budgetEur)}/pax`) : null,
-    trip.fx && trip.fx.jpyPerEur ? el('p', { class: 'small muted' }, `Cambio ${trip.fx.jpyPerEur} ¥/€${trip.fx.asOf ? ` (${trip.fx.source || ''} ${fmtDate(trip.fx.asOf, { weekday: false })})` : ''}`) : null].filter(Boolean));
+    el('p', { class: 'small muted' }, [tot.optional ? `di cui opzionali ${fmtEur(tot.optional)}` : '', 'alloggi esclusi',
+      day.budgetEur != null ? `budget previsto ${fmtEur(day.budgetEur)} a testa` : ''].filter(Boolean).join(' · '))].filter(Boolean));
 
   // ancora #item-id: scorri ed evidenzia
   const id = decodeURIComponent(location.hash.slice(1));

@@ -5,15 +5,30 @@ main[data-page] { padding-block: var(--space-4) var(--space-6); }
 main[data-page] > .h1 { padding: 0; }
 main[data-page] .icon { display: inline-block; }
 .tr-opt__meta > span { display: inline-flex; align-items: center; gap: 4px; }
-.ext-link { display: inline-flex; align-items: center; gap: 4px; }
-.ext-link .icon { width: 14px; height: 14px; }
-.btn .icon { width: 18px; height: 18px; }
+.ext-link { display: inline; }   /* inline: se va a capo l'icona resta attaccata all'ultima parola */
+.ext-link .icon { width: 14px; height: 14px; margin-left: 3px; vertical-align: -2px; }
 
 /* ---------- Home ---------- */
-.home-count .h1 { padding: 0; }
-.home-count { display: flex; flex-direction: column; gap: var(--space-2); }
-.home-count__big { margin-top: var(--space-2); }
-.home-count__n { font-size: 1.6em; color: var(--accent); font-weight: 700; }
+/* hero: il conto alla rovescia è la cosa che conta prima del viaggio → in alto, grande; titolo e rotta sotto il filo */
+.home-count { display: flex; flex-direction: column; gap: var(--space-1); padding-block: 20px; }
+.home-count > .home-count__big, .home-count > .home-count__big + .small { order: -1; }
+.home-count__big { margin: 0; display: flex; align-items: baseline; flex-wrap: wrap; column-gap: 10px; font-size: 1.25rem; line-height: 1.2; }
+.home-count__n {
+  font-family: var(--font-display, var(--font-sans)); font-size: clamp(3.75rem, 3rem + 4vw, 5.5rem);
+  line-height: .9; font-weight: 600; letter-spacing: -.04em; color: var(--accent);
+}
+.home-count__big + .small { padding-bottom: var(--space-3); margin-bottom: var(--space-3); border-bottom: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border)); }
+.home-count .h1 { padding: 0; font-size: clamp(1.375rem, 1.2rem + .9vw, 1.75rem); line-height: 1.2; text-wrap: wrap; }
+.home-count .h1 + .muted { font-size: .9375rem; }
+@media (min-width: 900px) {   /* desktop: conto alla rovescia a sinistra, titolo e rotta a destra oltre un filo verticale */
+  .home-count { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 0; align-items: end; padding: var(--space-5) var(--space-5); }
+  .home-count > * { margin: 0; }
+  .home-count__big { grid-column: 1; grid-row: 1; padding-right: var(--space-6); }
+  .home-count > .home-count__big + .small { grid-column: 1; grid-row: 2; border: 0; padding: var(--space-1) var(--space-6) 0 0; margin: 0; }
+  .home-count > .h1, .home-count > .h1 + .muted { grid-column: 2; padding-left: var(--space-6); border-left: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border)); }
+  .home-count > .h1 { grid-row: 1; padding-bottom: var(--space-1); }
+  .home-count > .h1 + .muted { grid-row: 2; }
+}
 .home-day__head { justify-content: space-between; }
 .home-day__item, .home-dl { display: grid; grid-template-columns: 3.4em minmax(0, 1fr); align-items: baseline; gap: var(--space-3); }
 .home-dl { grid-template-columns: minmax(0, 1fr); gap: 2px; }
@@ -33,17 +48,36 @@ main[data-page] .icon { display: inline-block; }
 .tr-leg { --stack-gap: var(--space-2); }
 .tr-leg .list-item, .tr-chk { display: block; }
 .tr-opt { display: flex !important; flex-direction: column; align-items: stretch !important; gap: var(--space-1); }
-.tr-opt--chosen {
+.tr-opt--chosen {   /* l'opzione scelta: filo verde a sinistra, niente riquadro in più (la card è già il contenitore) */
   border-left: 3px solid var(--ok); padding-left: var(--space-3);
-  background: color-mix(in srgb, var(--ok) 6%, transparent); border-radius: 0 calc(var(--radius) - 4px) calc(var(--radius) - 4px) 0;
 }
 .tr-opt__head { justify-content: space-between; align-items: flex-start; flex-wrap: nowrap; }
 .tr-opt__name { font-weight: 600; min-width: 0; }
 .tr-opt__name .icon { color: var(--ok); }
 .tr-opt__meta { gap: var(--space-3); }
 .tr-opt__meta .icon { width: 14px; height: 14px; color: var(--fg-muted); }
-.tr-booking { --stack-gap: var(--space-1); padding: var(--space-2) var(--space-3); border-radius: calc(var(--radius) - 4px); background: var(--bg-sunken); }
-.tr-leg__alts > summary, .tr-opt__details > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; color: var(--accent-2); font-weight: 600; }
+.tr-leg__alts > summary, .tr-opt__details > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; gap: 8px; color: var(--accent-2); font-weight: 500; font-size: .875rem; list-style: none; }
+.tr-leg__alts > summary::-webkit-details-marker, .tr-opt__details > summary::-webkit-details-marker { display: none; }
+/* chevron come l'Accordion shadcn: ruota di 180° quando aperto */
+.tr-leg__alts > summary::after, .tr-opt__details > summary::after {
+  content: ""; width: 7px; height: 7px; margin-top: -3px; flex: none;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; rotate: 45deg;
+  transition: rotate .2s var(--ease), margin .2s var(--ease);
+}
+.tr-leg__alts[open] > summary::after, .tr-opt__details[open] > summary::after { rotate: 225deg; margin-top: 3px; }
+/* details.card (Già fatte, Regole valigie, Alternative scartate, Domande risolte): trigger Accordion 44px con chevron */
+details.card { padding-block: var(--space-2); }
+details.card > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; justify-content: space-between; gap: 8px; font-weight: 500; list-style: none; }
+details.card > summary::-webkit-details-marker { display: none; }
+details.card > summary::after {
+  content: ""; width: 7px; height: 7px; margin-top: -3px; flex: none; color: var(--fg-muted);
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; rotate: 45deg;
+  transition: rotate .2s var(--ease), margin .2s var(--ease);
+}
+details.card[open] { padding-bottom: var(--space-4); }
+details.card[open] > summary { margin-bottom: var(--space-1); }
+details.card[open] > summary::after { rotate: 225deg; margin-top: 3px; }
+details.card > summary:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 .tr-chk { padding-inline: var(--space-1); }
 .tr-chk__head { justify-content: space-between; }
 .tr-chk__what { margin-block: var(--space-1); }
@@ -56,9 +90,8 @@ ul.list.card { padding-block: var(--space-1); }
 .al-notes { padding-left: 1.1em; display: flex; flex-direction: column; gap: var(--space-1); }
 ul.al-notes { list-style: disc; }
 .al-steps { counter-reset: none; }
-.al-step { display: flex; flex-direction: column; gap: var(--space-2); }
 .al-step__head { flex-wrap: nowrap; align-items: flex-start; gap: var(--space-3); }
-.al-step__head .stack { --stack-gap: 0; }
+.al-step__head .stack { --stack-gap: 0; min-width: 0; overflow-wrap: anywhere; }
 .al-step__n {
   flex: none; width: 32px; height: 32px; border-radius: 50%;
   display: inline-flex; align-items: center; justify-content: center;
@@ -86,28 +119,40 @@ ul.al-notes { list-style: disc; }
   .lu-filters.filter-bar { padding-inline: 0; }
   .lu-chips { flex-wrap: wrap; overflow: visible; }
 }
-.lu-list { --stack-gap: var(--space-3); }
+.lu-list { --stack-gap: 0; }
 .lu-group { margin-top: var(--space-3); }
-.lu-card { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-3) var(--space-4); }
-.lu-card__body { --stack-gap: var(--space-1); }
-.lu-card__head { justify-content: space-between; align-items: flex-start; flex-wrap: nowrap; }
-.lu-card__name { min-width: 0; }
+/* gruppi città come Accordion shadcn: trigger a tutta riga, chevron a destra che ruota, filo sotto */
+details.lu-group { margin: 0; border-bottom: 1px solid var(--border); }
+.lu-group__head {
+  display: flex; align-items: center; gap: var(--space-2); min-height: 52px; cursor: pointer; list-style: none;
+}
+.lu-group__head::-webkit-details-marker { display: none; }
+.lu-group__head > .h3 { font-size: 1.125rem; }
+.lu-group__head::after {
+  content: ""; width: 8px; height: 8px; margin: -4px 4px 0 auto; flex: none; color: var(--fg-muted);
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; rotate: 45deg;
+  transition: rotate .2s var(--ease), margin .2s var(--ease);
+}
+details.lu-group[open] > .lu-group__head::after { rotate: 225deg; margin-top: 4px; }
+.lu-group__head:hover > .h3 { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+details.lu-group > .list.card { margin-bottom: var(--space-4); padding-block: var(--space-1); }
+.lu-row { align-items: flex-start; }
+.lu-row__body { --stack-gap: 2px; flex: 1; min-width: 0; }
+.lu-row__name { display: flex; align-items: center; gap: var(--space-2); }
+.lu-row__name > .badge { margin-left: auto; flex: none; }   /* stella accanto al nome, badge «Andiamo?» a destra */
+.lu-row__actions { flex: none; }
+.lu-row .lu-days { margin-top: 6px; }
 .lu-star { color: var(--accent); }
 .lu-days { --row-gap: var(--space-1); }
-.lu-card__actions { display: flex; gap: var(--space-2); }
-.lu-maps { flex: 1; min-height: 52px; font-size: 1.0625rem; }
-@media (min-width: 900px) {
-  .lu-card { flex-direction: row; align-items: center; }
-  .lu-card__body { flex: 1; }
-  .lu-card__actions { flex: none; flex-direction: column; width: 180px; }
-}
+.lu-days .chip { min-height: 32px; padding-inline: 10px; font-size: .8125rem; }
 
 /* ---------- Budget ---------- */
 .bu-kpi .card { --stack-gap: var(--space-1); }
-.bu-kpi__n { padding: 0; }
+.bu-kpi__n { padding: 0; margin-top: var(--space-1); line-height: 1.05; }
+.bu-kpi .card--accent .bu-kpi__n { color: var(--accent); }
 .bu-table-wrap { overflow-x: auto; }
 .bu-table th, .bu-table td { text-align: left; padding: var(--space-3) var(--space-2); border-top: 1px solid var(--border); vertical-align: top; }
-.bu-table thead th { border-top: 0; font-size: .8125rem; color: var(--fg-muted); font-weight: 600; }
+.bu-table thead th { border-top: 0; font-size: .8125rem; color: var(--fg-muted); font-weight: 600; padding-block: var(--space-2); }
 .bu-table tbody th, .bu-table tfoot th { text-transform: none; letter-spacing: normal; font-size: 1rem; color: var(--fg); }
 .bu-table tbody th { font-weight: 500; width: 100%; }
 .bu-yen { display: block; font-weight: 400; }
@@ -116,5 +161,4 @@ ul.al-notes { list-style: disc; }
 .bu-name { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
 .bu-note { display: block; }
 .bu-bar { display: block; height: 6px; margin-top: var(--space-2); border-radius: 3px; background: var(--bg-sunken); overflow: hidden; }
-.bu-bar__fill { display: block; height: 100%; width: var(--w, 0%); background: var(--accent); border-radius: 3px; }
-.bu-bar__fill--est { background: var(--warn); }
+.bu-bar__fill { display: block; height: 100%; width: var(--w, 0%); background: var(--accent-2); border-radius: 3px; }   /* indaco: il vermiglio resta per il totale */

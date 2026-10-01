@@ -1,7 +1,7 @@
 // pages.js — nucleo condiviso delle pagine contenuto (home, trasporti, alloggi, luoghi, budget).
 // Ogni pagina: <main data-page="..."> + <script type="module" src="assets/js/pages.js">.
 // Il rendering vero sta in pages-<pagina>.js; qui: helper HTML sicuro, icone, link, tab, dispatcher.
-import { esc, initShell, loadData, DATA_BASE } from './app.js';
+import { esc, initShell, loadData, DATA_BASE, fmtDate } from './app.js';
 
 // ---------- HTML sicuro ----------
 // Tagged template: ogni ${valore} è escapato, salvo raw(...) o array di raw (risultato di html``).
@@ -32,10 +32,17 @@ export function safeUrl(u) {
 }
 /** Link interno relativo che conserva ?data= (fixture) se attivo. */
 export function pageUrl(file, params = {}) {
+  const [path, hash = ''] = String(file).split('#');
   const q = new URLSearchParams(params);
   if (DATA_BASE !== 'data/') q.set('data', DATA_BASE);
   const s = q.toString();
-  return s ? `${file}?${s}` : file;
+  return (s ? `${path}?${s}` : path) + (hash ? `#${hash}` : '');
+}
+/** Link interni prodotti dall'exporter al posto dei riferimenti al dossier: [{href, label}]. Solo path relativi semplici. */
+export function internalLinks(links, cls = 'ext-link small') {
+  const ok = (links || []).filter((l) => l && /^[\w-]+\.html(#[\w-]*)?$/.test(l.href || ''));
+  if (!ok.length) return '';
+  return html`<span class="row">${ok.map((l) => html`<a class="${cls}" href="${pageUrl(l.href)}"><span>${l.label}</span> ${icon('chevron-right')}</a>`)}</span>`;
 }
 export const dirUrl = (lat, lon) =>
   `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(lat + ',' + lon)}&travelmode=walking`;
@@ -54,11 +61,19 @@ export function extLink(url, text, cls = 'ext-link') {
 }
 export function hostOf(u) { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return u; } }
 
+/** Bottone Maps solo icona (44×44, .btn--icon) per liste compatte. */
+export function mapsIconBtn(query, name) {
+  if (!query) return '';
+  const u = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(query);
+  const label = `Apri ${name || query} in Google Maps (nuova scheda)`;
+  return html`<a class="btn btn--icon" href="${u}" target="_blank" rel="noopener noreferrer" aria-label="${label}" title="${label}">${icon('pin')}</a>`;
+}
+
 /** Bottone Maps (ricerca). */
 export function mapsBtn(query, label = 'Apri in Maps', cls = 'btn btn--primary') {
   if (!query) return '';
   const u = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(query);
-  return html`<a class="${cls}" href="${u}" target="_blank" rel="noopener noreferrer">${icon('pin')}<span>${label}</span></a>`;
+  return html`<a class="${cls}" href="${u}" target="_blank" rel="noopener noreferrer">${icon('pin')}<span>${label}</span> ${icon('external', 'apre in una nuova scheda')}</a>`;
 }
 
 // ---------- Numeri / date ----------
@@ -70,6 +85,23 @@ export function daysBetween(a, b) {
   return Math.round((t(b) - t(a)) / 86400000);
 }
 export const fxRate = (trip) => (trip && trip.fx && Number(trip.fx.jpyPerEur)) || null;
+
+// ---------- Scadenze (home + trasporti) ----------
+/** Etichetta data di una scadenza: "dom 11 ott" (o "gio 1 – ven 2 ott"); se approssimata, il testo del dossier ("~fine ott"). */
+export function deadlineLabel(c) {
+  if (c.dateApprox || !c.sortDate) return c.when || '';
+  const a = fmtDate(c.sortDate);
+  return c.endDate && c.endDate !== c.sortDate ? `${a} – ${fmtDate(c.endDate)}` : a;
+}
+/** Stato di una scadenza rispetto a oggi (fuso italiano: sono azioni da fare dall'Italia). */
+export function deadlineState(c, todayIt) {
+  if (c.status === 'done') return 'done';
+  const last = c.endDate || c.sortDate;
+  if (!last) return 'todo';
+  if (last < todayIt) return 'late';
+  if (c.sortDate <= todayIt) return 'today';
+  return 'todo';
+}
 
 // ---------- Tab accessibili ----------
 /** tabs: [{id,label}] · render(id) → frammento. Sincronizza con location.hash (#id). */
@@ -86,7 +118,7 @@ export function setupTabs(root, tabs, render, { hash = true, key = 'tab' } = {})
     <div class="tab-panel stack" id="${uid}-p" role="tabpanel" tabindex="0"></div>`);
   const panel = root.querySelector('.tab-panel');
   const btns = [...root.querySelectorAll('[role=tab]')];
-  const show = (id, focus) => {
+  const show = (id, focus, initial = false) => {
     cur = id;
     btns.forEach((b) => {
       const on = b.dataset.tab === id;
@@ -98,7 +130,8 @@ export function setupTabs(root, tabs, render, { hash = true, key = 'tab' } = {})
     });
     panel.setAttribute('aria-labelledby', `${uid}-t-${id}`);
     mount(panel, render(id));
-    if (hash) { try { history.replaceState(null, '', '#' + id); } catch (e) { /* ignore */ } }
+    // all'apertura non si scrive l'hash (un reload non deve "saltare" alla scheda); solo dopo un click
+    if (hash && !initial) { try { history.replaceState(null, '', '#' + id); } catch (e) { /* ignore */ } }
   };
   btns.forEach((b, i) => {
     b.addEventListener('click', () => show(b.dataset.tab));
@@ -107,7 +140,7 @@ export function setupTabs(root, tabs, render, { hash = true, key = 'tab' } = {})
       if (d) { e.preventDefault(); show(btns[(i + d + btns.length) % btns.length].dataset.tab, true); }
     });
   });
-  show(cur);
+  show(cur, false, true);
   return { show, panel };
 }
 

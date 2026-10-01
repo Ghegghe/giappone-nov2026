@@ -1,29 +1,58 @@
-/* Tema NEUTRAL — app moderna: grigi caldi + un accento verde-acqua (ciano/verde).
-   Autosufficiente: definisce TUTTE le variabili di SPEC §6 + estese (vedi DESIGN.md). */
+/* Tema NEUTRAL (default del sito) — trasposizione fedele di shadcn/ui, base color "zinc" (v4, OKLCH → sRGB hex).
+   Fonte: ui.shadcn.com/r/colors/zinc.json (1 ott 2026). Unica deroga: --radius 0.5rem (richiesta cliente; shadcn 0.625rem).
+   Struttura comune ai 3 temi: (A) token shadcn grezzi, (B) mappa sulle variabili SPEC §6, (C) colori per type.
+   I blocchi scuri ridefiniscono solo (A) e (C): (B) si risolve da sé perché usa var(). */
 
 :root {
   color-scheme: light;
 
-  --bg: #f6f5f3;
-  --bg-elev: #ffffff;
-  --bg-sunken: #ecebe8;
-  --fg: #1b1a19;
-  --fg-muted: #625e59;
-  --fg-on-accent: #ffffff;
-  --border: #e0ddd8;
-  --accent: #08706a;        /* verde-acqua */
-  --accent-2: #0b6574;      /* stesso accento, più freddo (link, focus) */
-  --ok: #26703f;
-  --warn: #8a5800;
-  --danger: #b0281e;
-  --overlay: rgb(20 20 19 / .4);
-  --shadow: 0 1px 2px rgb(0 0 0 / .05), 0 8px 24px -10px rgb(0 0 0 / .16);
+  /* (A) token shadcn — light */
+  --background: #ffffff;              /* oklch(1 0 0) */
+  --foreground: #09090b;              /* oklch(0.141 0.005 285.823) zinc-950 */
+  --card: #ffffff;
+  --card-foreground: #09090b;
+  --popover: #ffffff;
+  --popover-foreground: #09090b;
+  --primary: #18181b;                 /* oklch(0.21 0.006 285.885) zinc-900 */
+  --primary-foreground: #fafafa;      /* oklch(0.985 0 0) */
+  --secondary: #f4f4f5;               /* oklch(0.967 0.001 286.375) zinc-100 */
+  --secondary-foreground: #18181b;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717b;        /* oklch(0.552 0.016 285.938) zinc-500 */
+  --accent-soft: #f4f4f5;             /* = shadcn --accent (rinominato: --accent è già la variabile §6) */
+  --accent-soft-foreground: #18181b;  /* = shadcn --accent-foreground */
+  --destructive: #e7000b;             /* oklch(0.577 0.245 27.325) */
+  --destructive-foreground: #fafafa;
+  --border: #e4e4e7;                  /* oklch(0.92 0.004 286.32) zinc-200 */
+  --input: #e4e4e7;
+  --ring: #9f9fa9;                    /* oklch(0.705 0.015 286.067) zinc-400 */
+  --focus: #71717b;                   /* contorno di focus: ring zinc-400 su bianco è 2.6:1, serve ≥3:1 (WCAG 1.4.11) */
+  --radius: 0.5rem;
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / .05);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / .1), 0 1px 2px -1px rgb(0 0 0 / .1);          /* shadow-sm */
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / .1), 0 4px 6px -4px rgb(0 0 0 / .1);
+  --overlay: rgb(0 0 0 / .5);                                                     /* bg-black/50 */
 
-  --radius: 14px;
-  --font-sans: system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Noto Sans JP", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-display: system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Noto Sans JP", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  /* (B) mappa shadcn → variabili SPEC §6 (+ estese) */
+  --bg: var(--background);
+  --bg-elev: var(--card);
+  --bg-sunken: var(--muted);
+  --fg: var(--foreground);
+  --fg-muted: var(--muted-foreground);
+  --fg-on-accent: var(--primary-foreground);
+  --accent: var(--primary);           /* azione primaria, "ora", conto alla rovescia */
+  --accent-2: var(--primary);         /* link: stesso inchiostro del testo, distinti dalla sottolineatura */
+  --danger: var(--destructive);
+  --ok: #166534;                      /* estensioni non-shadcn (stati): green-800 / amber-800 (AA sulle tinte badge) */
+  --warn: #92400e;
 
+  /* tipografia: sans di sistema "stile Inter", titoli tracking-tight */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --font-display: var(--font-sans);
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  --tracking-title: -.025em;
+
+  /* spaziatura (scala 4px) */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -33,6 +62,7 @@
 
   --tl-hour-h: 48px;
 
+  /* (C) colori per type (AA su --card e sulle tinte dei blocchi) */
   --c-train: #3046a8;
   --c-bus: #0e6f7c;
   --c-transfer: #1a6290;
@@ -55,20 +85,32 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme-mode="light"]) {
     color-scheme: dark;
-    --bg: #141413;
-    --bg-elev: #1e1d1c;
-    --bg-sunken: #0e0e0d;
-    --fg: #eeece8;
-    --fg-muted: #a39e97;
-    --fg-on-accent: #04201d;
-    --border: #34322f;
-    --accent: #3cc4b4;
-    --accent-2: #5fc8dc;
-    --ok: #6fcf8d;
-    --warn: #e6b85c;
-    --danger: #f2857a;
+    --background: #09090b;             /* oklch(0.141 0.005 285.823) */
+    --foreground: #fafafa;
+    --card: #18181b;                   /* oklch(0.21 0.006 285.885) */
+    --card-foreground: #fafafa;
+    --popover: #18181b;
+    --popover-foreground: #fafafa;
+    --primary: #e4e4e7;                /* oklch(0.92 0.004 286.32) */
+    --primary-foreground: #18181b;
+    --secondary: #27272a;              /* oklch(0.274 0.006 286.033) */
+    --secondary-foreground: #fafafa;
+    --muted: #27272a;
+    --muted-foreground: #9f9fa9;       /* oklch(0.705 0.015 286.067) */
+    --accent-soft: #27272a;
+    --accent-soft-foreground: #fafafa;
+    --destructive: #ff6467;            /* oklch(0.704 0.191 22.216) */
+    --destructive-foreground: #18181b;
+    --border: rgb(255 255 255 / .1);   /* oklch(1 0 0 / 10%) */
+    --input: rgb(255 255 255 / .15);
+    --ring: #71717b;                   /* oklch(0.552 0.016 285.938) */
+    --focus: #9f9fa9;
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / .3);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / .4), 0 1px 2px -1px rgb(0 0 0 / .4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / .5), 0 4px 6px -4px rgb(0 0 0 / .5);
     --overlay: rgb(0 0 0 / .6);
-    --shadow: 0 1px 2px rgb(0 0 0 / .4), 0 10px 30px -10px rgb(0 0 0 / .65);
+    --ok: #4ade80;
+    --warn: #fbbf24;
     --c-train: #98b1f8;
     --c-bus: #56c6d4;
     --c-transfer: #7cc2ea;
@@ -87,20 +129,32 @@
 
 :root[data-theme-mode="dark"] {
   color-scheme: dark;
-  --bg: #141413;
-  --bg-elev: #1e1d1c;
-  --bg-sunken: #0e0e0d;
-  --fg: #eeece8;
-  --fg-muted: #a39e97;
-  --fg-on-accent: #04201d;
-  --border: #34322f;
-  --accent: #3cc4b4;
-  --accent-2: #5fc8dc;
-  --ok: #6fcf8d;
-  --warn: #e6b85c;
-  --danger: #f2857a;
+  --background: #09090b;
+  --foreground: #fafafa;
+  --card: #18181b;
+  --card-foreground: #fafafa;
+  --popover: #18181b;
+  --popover-foreground: #fafafa;
+  --primary: #e4e4e7;
+  --primary-foreground: #18181b;
+  --secondary: #27272a;
+  --secondary-foreground: #fafafa;
+  --muted: #27272a;
+  --muted-foreground: #9f9fa9;
+  --accent-soft: #27272a;
+  --accent-soft-foreground: #fafafa;
+  --destructive: #ff6467;
+  --destructive-foreground: #18181b;
+  --border: rgb(255 255 255 / .1);
+  --input: rgb(255 255 255 / .15);
+  --ring: #71717b;
+  --focus: #9f9fa9;
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / .3);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / .4), 0 1px 2px -1px rgb(0 0 0 / .4);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / .5), 0 4px 6px -4px rgb(0 0 0 / .5);
   --overlay: rgb(0 0 0 / .6);
-  --shadow: 0 1px 2px rgb(0 0 0 / .4), 0 10px 30px -10px rgb(0 0 0 / .65);
+  --ok: #4ade80;
+  --warn: #fbbf24;
   --c-train: #98b1f8;
   --c-bus: #56c6d4;
   --c-transfer: #7cc2ea;

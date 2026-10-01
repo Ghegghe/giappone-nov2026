@@ -1,39 +1,41 @@
 // pages-luoghi.js — luoghi.html: filtri sticky (testo, città, flag, ordinamento) + lista card con Maps / Indicazioni.
 import { fmtDate } from './app.js';
-import { html, mount, icon, pageUrl, dirUrl, store } from './pages.js';
+import { html, mount, icon, pageUrl, dirUrl, store, mapsIconBtn } from './pages.js';
 
+// flag = colonna "Andiamo?" del dossier, mostrata con parole da sito
 const FLAGS = [
   { id: 'Sì', label: 'Sì' }, { id: 'Forse', label: 'Forse' }, { id: 'No', label: 'No' },
-  { id: 'Futuro', label: 'Futuro' }, { id: '', label: 'Senza flag' },
+  { id: 'Futuro', label: "Un'altra volta" }, { id: '', label: 'Da decidere' },
 ];
+const FLAG_LABEL = Object.fromEntries(FLAGS.map((f) => [f.id, f.label]));
 const DEFAULT_FLAGS = ['Sì', 'Forse'];
 const FLAG_BADGE = { 'Sì': 'badge--done', Forse: 'badge--opt', No: '', Futuro: 'badge--draft', '': '' };
 const norm = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const OPEN_ALL_MAX = 30; // con pochi risultati (ricerca, una città) i gruppi si aprono tutti
 
-function placeCard(p) {
+/** Riga compatta: nome + flag · tipo · zona · nota breve · giorni in agenda · Maps (icona 44px a destra). */
+function placeRow(p) {
   const q = p.mapsQuery || `${p.name} ${p.city || ''}`;
-  const maps = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
   const hasGeo = Number.isFinite(Number(p.lat)) && Number.isFinite(Number(p.lon)) && p.lat !== '' && p.lon !== '' && p.lat != null;
-  return html`<li class="card lu-card">
-    <div class="lu-card__body stack">
-      <div class="row lu-card__head">
-        <h2 class="h3 lu-card__name">${p.source === '★' ? html`<span class="lu-star" aria-label="salvato">★</span> ` : ''}${p.name}</h2>
-        <span class="badge ${FLAG_BADGE[p.flag || ''] || ''}"${p.flag ? '' : ' title="senza flag nel dossier" aria-label="senza flag"'}>${p.flag || '—'}</span>
-      </div>
-      <p class="small muted">${[p.type, p.city, p.area].filter(Boolean).join(' · ')}</p>
+  const flag = p.flag || '';
+  return html`<li class="list-item lu-row">
+    <div class="stack lu-row__body">
+      <p class="lu-row__name"><strong>${p.name}</strong>${p.source === '★' ? html` <span class="lu-star" title="segnalato da voi" aria-label="segnalato da voi">★</span>` : ''}
+        <span class="badge ${FLAG_BADGE[flag] || ''}" title="Andiamo? ${FLAG_LABEL[flag] || flag}">${FLAG_LABEL[flag] || flag}</span></p>
+      <p class="small muted">${[p.type, p.area].filter(Boolean).join(' · ')}</p>
       ${p.note ? html`<p class="small">${p.note}</p>` : ''}
-      ${(p.dayDates || []).length ? html`<div class="row lu-days" aria-label="Giorni in agenda">${p.dayDates.map((d) => html`
-        <a class="chip" href="${pageUrl('giorno.html', { d })}">${icon('calendar')} ${fmtDate(d)}</a>`)}</div>` : ''}
+      ${(p.dayDates || []).length ? html`<p class="row lu-days" aria-label="Giorni in agenda">${p.dayDates.map((d) => html`
+        <a class="chip" href="${pageUrl('giorno.html', { d })}">${icon('calendar')} ${fmtDate(d)}</a>`)}</p>` : ''}
     </div>
-    <div class="lu-card__actions">
-      <a class="btn btn--primary lu-maps" href="${maps}" target="_blank" rel="noopener noreferrer">${icon('pin')}<span>Maps</span></a>
-      ${hasGeo ? html`<a class="btn btn--ghost" href="${dirUrl(p.lat, p.lon)}" target="_blank" rel="noopener noreferrer">${icon('walk')}<span>Indicazioni</span></a>` : ''}
+    <div class="row lu-row__actions">
+      ${mapsIconBtn(q, p.name)}
+      ${hasGeo ? html`<a class="btn btn--icon btn--ghost" href="${dirUrl(p.lat, p.lon)}" target="_blank" rel="noopener noreferrer" aria-label="Indicazioni a piedi per ${p.name} (nuova scheda)" title="Indicazioni a piedi">${icon('walk')}</a>` : ''}
     </div>
   </li>`;
 }
 
 /** Flag "" (colonna Andiamo? vuota): se il luogo è in agenda (dayDates) segue il chip "Sì" — così resta visibile
- *  col filtro di default; se non è in agenda compare solo col chip "Senza flag". */
+ *  col filtro di default; se non è in agenda compare solo col chip "Da decidere". */
 export const flagPass = (p, flags) => flags.includes(p.flag || '') || (!p.flag && (p.dayDates || []).length > 0 && flags.includes('Sì'));
 
 /** Filtra e ordina (esportata per i test). */
@@ -56,12 +58,13 @@ export function filterPlaces(places, st) {
 export async function render(root, { loadData }) {
   const d = await loadData('places');
   const places = (d && d.places) || [];
-  if (!d) { mount(root, html`<h1 class="h1">Luoghi</h1><p class="empty">Dati luoghi non disponibili.</p>`); return; }
+  if (!d) { mount(root, html`<h1 class="h1">Luoghi</h1><p class="empty">Dati dei luoghi non disponibili.</p>`); return; }
   const cityOrder = [...new Set(places.map((p) => p.city).filter(Boolean))]; // ordine dei dati = ordine di viaggio
   const flagsPresent = FLAGS.filter((f) => places.some((p) => (p.flag || '') === f.id));
   const saved = store.get('luoghi', null) || {};
   const st = {
-    q: '',
+    q: typeof saved.q === 'string' ? saved.q : '',
+    open: Array.isArray(saved.open) ? saved.open : [],
     cities: (saved.cities || []).filter((c) => cityOrder.includes(c)),
     flags: Array.isArray(saved.flags) ? saved.flags : DEFAULT_FLAGS.slice(),
     sort: saved.sort === 'name' ? 'name' : 'city',
@@ -80,7 +83,7 @@ export async function render(root, { loadData }) {
         ${cityOrder.map((c) => html`<button type="button" class="chip" data-city="${c}" aria-pressed="false">${c}</button>`)}
       </div>
       <div class="row lu-row2">
-        <div class="row lu-chips" role="group" aria-label="Flag">
+        <div class="row lu-chips" role="group" aria-label="Andiamo?">
           ${flagsPresent.map((f) => html`<button type="button" class="chip" data-flag="${f.id}" aria-pressed="false">${f.label}</button>`)}
         </div>
         <label class="small lu-sort">Ordina
@@ -92,13 +95,14 @@ export async function render(root, { loadData }) {
       </div>
       <p class="small muted lu-count" role="status" aria-live="polite"></p>
     </div>
-    <ul class="lu-list stack" aria-label="Risultati"></ul>`);
+    <div class="lu-list stack" aria-label="Risultati"></div>`);
 
   const listEl = root.querySelector('.lu-list');
   const countEl = root.querySelector('.lu-count');
   const input = root.querySelector('.lu-search__input');
   const sortSel = root.querySelector('.lu-sort__select');
   sortSel.value = st.sort;
+  input.value = st.q;
 
   const sync = () => {
     root.querySelectorAll('[data-city]').forEach((b) => {
@@ -112,15 +116,27 @@ export async function render(root, { loadData }) {
     });
     const res = filterPlaces(places, st);
     countEl.textContent = res.length === 1 ? '1 luogo' : `${res.length} luoghi su ${places.length}`;
-    if (!res.length) { mount(listEl, html`<li class="empty">Nessun luogo con questi filtri.</li>`); return; }
-    // con ordinamento per città: intestazione di gruppo
-    if (st.sort === 'city') {
-      let last = null; const parts = [];
-      res.forEach((p) => { if (p.city !== last) { last = p.city; parts.push(html`<li class="section-title lu-group">${p.city || '—'}</li>`); } parts.push(placeCard(p)); });
-      mount(listEl, parts);
-    } else mount(listEl, res.map(placeCard));
-    store.set('luoghi', { cities: st.cities, flags: st.flags, sort: st.sort });
+    store.set('luoghi', { cities: st.cities, flags: st.flags, sort: st.sort, q: st.q, open: st.open });
+    if (!res.length) { mount(listEl, html`<p class="empty">Nessun luogo con questi filtri.</p>`); return; }
+    if (st.sort !== 'city') { mount(listEl, html`<ul class="list card">${res.map(placeRow)}</ul>`); return; }
+    // per città: un gruppo richiudibile per città, con il conteggio; aperto se scelto o se i risultati sono pochi
+    const groups = new Map();
+    res.forEach((p) => { const c = p.city || '—'; if (!groups.has(c)) groups.set(c, []); groups.get(c).push(p); });
+    const openAll = res.length <= OPEN_ALL_MAX || groups.size === 1;
+    mount(listEl, [...groups].map(([c, ps]) => html`<details class="lu-group" data-group="${c}"${openAll || st.open.includes(c) ? ' open' : ''}>
+      <summary class="lu-group__head"><span class="h3">${c}</span> <span class="badge" aria-label="${ps.length} luoghi">${ps.length}</span></summary>
+      <ul class="list card">${ps.map(placeRow)}</ul>
+    </details>`));
   };
+  // apertura/chiusura gruppi ricordata solo quando la cambia l'utente (click/Invio sul titolo del gruppo)
+  listEl.addEventListener('click', (e) => {
+    const sum = e.target.closest('summary');
+    const g = sum && sum.parentElement;
+    if (!g || !g.dataset.group) return;
+    const c = g.dataset.group, willOpen = !g.open;
+    st.open = willOpen ? [...new Set([...st.open, c])] : st.open.filter((x) => x !== c);
+    store.set('luoghi', { cities: st.cities, flags: st.flags, sort: st.sort, q: st.q, open: st.open });
+  });
 
   root.querySelector('.lu-filters').addEventListener('click', (e) => {
     const b = e.target.closest('button');

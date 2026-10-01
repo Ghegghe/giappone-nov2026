@@ -1,30 +1,61 @@
 /* Tema NIGHT — scuro profondo per leggere di notte (luminanza bassa, accento caldo ambra-lanterna).
-   Sempre scuro: ignora data-theme-mode, ma definisce TUTTE le variabili di SPEC §6 + estese. */
+   Sempre scuro: ignora data-theme-mode. Stesso scheletro shadcn degli altri temi: cambiano solo palette e famiglia titoli.
+   Struttura: (A) token shadcn grezzi, (B) mappa sulle variabili SPEC §6, (C) colori per type. */
 
 :root,
 :root[data-theme-mode="light"],
 :root[data-theme-mode="dark"] {
   color-scheme: dark;
 
-  --bg: #07080b;
-  --bg-elev: #101219;
-  --bg-sunken: #040507;
-  --fg: #cfd1d8;            /* non bianco pieno: meno abbagliante */
-  --fg-muted: #8a8e9b;
-  --fg-on-accent: #1a0f04;
+  /* (A) token shadcn */
+  --background: #07080b;
+  --foreground: #cfd1d8;              /* non bianco pieno: meno abbagliante */
+  --card: #101219;
+  --card-foreground: #cfd1d8;
+  --popover: #101219;
+  --popover-foreground: #cfd1d8;
+  --primary: #e39a5b;                 /* lanterna */
+  --primary-foreground: #1a0f04;
+  --secondary: #1b1e28;
+  --secondary-foreground: #cfd1d8;
+  --muted: #1b1e28;
+  --muted-foreground: #9195a2;
+  --accent-soft: #1b1e28;
+  --accent-soft-foreground: #cfd1d8;
+  --destructive: #e57d70;
+  --destructive-foreground: #1a0f04;
   --border: #23262f;
-  --accent: #e39a5b;        /* lanterna */
+  --input: #2d313c;
+  --ring: #93a6d6;
+  --radius: 0.5rem;
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / .4);
+  --shadow: 0 1px 3px 0 rgb(0 0 0 / .5), 0 1px 2px -1px rgb(0 0 0 / .5);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / .6), 0 4px 6px -4px rgb(0 0 0 / .6);
+  --overlay: rgb(0 0 0 / .66);
+
+  /* (B) mappa shadcn → variabili SPEC §6 (+ estese) */
+  --bg: var(--background);
+  --bg-elev: var(--card);
+  --bg-sunken: var(--muted);
+  --fg: var(--foreground);
+  --fg-muted: var(--muted-foreground);
+  --fg-on-accent: var(--primary-foreground);
+  --accent: var(--primary);
   --accent-2: #93a6d6;
+  --danger: var(--destructive);
   --ok: #6dbb86;
   --warn: #d9ad55;
-  --danger: #e57d70;
-  --overlay: rgb(0 0 0 / .66);
-  --shadow: 0 1px 2px rgb(0 0 0 / .5), 0 12px 32px -12px rgb(0 0 0 / .8);
+  --nav-active-fg: var(--primary);
+  --chip-on-bg: var(--foreground);               /* filtri attivi in sumi: il vermiglio resta per le azioni */
+  --chip-on-fg: var(--card);
+  --nav-active-bg: color-mix(in srgb, var(--primary) 14%, transparent);
+  --seal: "旅";
+  --seal-size: 22px;
 
-  --radius: 12px;
-  --font-sans: system-ui, -apple-system, "Segoe UI", "Hiragino Sans", "Noto Sans JP", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Sans", "Noto Sans JP", sans-serif;
   --font-display: "Iowan Old Style", "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif JP", "Palatino Linotype", Palatino, Georgia, serif;
-  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  --tracking-title: -.01em;
 
   --space-1: 4px;
   --space-2: 8px;
@@ -35,7 +66,7 @@
 
   --tl-hour-h: 48px;
 
-  /* colori per type: saturazione contenuta, luminanza media */
+  /* (C) colori per type: saturazione contenuta, luminanza media */
   --c-train: #8ba5e6;
   --c-bus: #4fb3bf;
   --c-transfer: #6eaed4;

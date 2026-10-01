@@ -7,7 +7,7 @@ import {
 
 const $ = (s, r = document) => r.querySelector(s);
 const FILTER_KEY = 'agenda.filters';
-const state = { trip: null, days: [], idx: 0, range: null, hourH: 48, filters: { onlyFixed: false, hideOpt: false }, pendingIdx: null };
+const state = { trip: null, days: [], allDraft: false, idx: 0, range: null, hourH: 48, filters: { onlyFixed: false, hideOpt: false }, pendingIdx: null };
 let timeline, dateBar, lastFocus = null;
 
 function readFilters() {
@@ -27,6 +27,9 @@ function readHourH() {
 // --top/--h in px relativi all'inizio scala (base.css aggiunge --tl-head-h)
 const px = (min) => `${Math.round(((min - state.range.startMin) / 60) * state.hourH)}px`;
 const pxLen = (min) => `${Math.round((min / 60) * state.hourH)}px`;
+
+// "Osaka · gita a Kyoto" (base e gita, mai nel titolo)
+const placeLabel = (d) => [d.base, d.dayTrip ? `gita a ${d.dayTrip}` : ''].filter(Boolean).join(' · ');
 
 // ---------- rendering timeline (DOM del contratto base.css §7) ----------
 function renderTimeline() {
@@ -55,8 +58,8 @@ function renderDay(day, i, norm, now) {
   col.append(el('header', { class: 'tl-day__header' },
     el('div', { class: 'tl-day__row' },
       el('a', { class: 'tl-day__date', href: withDataParam(`giorno.html?d=${day.date}`) }, fmtDate(day.date)),
-      day.status === 'draft' ? el('span', { class: 'badge badge--draft' }, 'bozza') : null),
-    el('span', { class: 'small muted' }, day.base || ''),
+      day.status === 'draft' && !state.allDraft ? el('span', { class: 'badge badge--draft' }, 'bozza') : null),
+    el('span', { class: 'small muted' }, placeLabel(day)),
     el('span', { class: 'small tl-day__title', title: day.title || '' }, day.title || '')));
 
   const fromMin = Math.max(state.range.startMin, 6 * 60), toMin = Math.min(state.range.endMin, 24 * 60);
@@ -94,7 +97,7 @@ function renderDateBar() {
   state.days.forEach((d, i) => {
     frag.append(el('button', {
       type: 'button', class: 'chip agenda-date', 'data-idx': i, 'aria-pressed': 'false',
-      'aria-label': `${fmtDate(d.date)}, ${d.base || ''}`,
+      'aria-label': `${fmtDate(d.date)}, ${placeLabel(d)}`,
     }, el('span', { class: 'agenda-date__wd' }, d.weekday || fmtDate(d.date).split(' ')[0]),
     el('span', { class: 'agenda-date__n mono' }, String(Number(d.date.slice(8, 10))))));
   });
@@ -115,7 +118,7 @@ function markSelected(idx, smooth = true) {
   $('#agenda-prev').disabled = idx <= 0;
   $('#agenda-next').disabled = idx >= state.days.length - 1;
   const cur = $('#agenda-current');
-  if (cur && day) cur.textContent = `${fmtDate(day.date)} · ${day.base || ''}`;
+  if (cur && day) cur.textContent = `${fmtDate(day.date)} · ${placeLabel(day)}`;
 }
 
 const dayEls = () => timeline.querySelectorAll('.tl-day');
@@ -191,7 +194,7 @@ function renderFilters() {
       scroller.scrollLeft = left; scroller.scrollTop = top;
     },
   }, label);
-  $('#agenda-filters').replaceChildren(mk('onlyFixed', 'Solo fissi'), mk('hideOpt', 'Nascondi opzionali'));
+  $('#agenda-filters').replaceChildren(mk('onlyFixed', 'Solo orari fissi'), mk('hideOpt', 'Senza opzionali'));
 
   const used = new Set(state.days.flatMap((d) => (d.items || []).map((it) => it.type)));
   const frag = document.createDocumentFragment();
@@ -218,25 +221,28 @@ function openPanel(date, id, opener) {
   const b = n.booking || { status: 'none' };
   const kv = el('dl', { class: 'kv' });
   const row = (k, ...v) => kv.append(el('dt', null, k), el('dd', null, ...v));
-  row('Giorno', `${fmtDate(day.date)} · ${day.base || ''}`);
+  row('Giorno', `${fmtDate(day.date)} · ${placeLabel(day)}`);
   row('Orario', el('span', { class: 'mono' }, timeRange(n)),
     n.allDay ? null : ` (${fmtDur(n.endMin - n.startMin)}${n.estimated ? ', fine stimata' : ''})`,
     n.parallel ? ' · in parallelo agli altri item' : null);
-  row('Tipo', TYPE_LABEL[n.type] || n.type || '—');
-  row('Costo', el('span', { class: 'mono' }, `${fmtEur(n.costEur || 0)}/pax · ${fmtJpy(n.costEur || 0, fx)}`), n.costEstimate ? ' (stima)' : '', n.costNote ? ` · ${n.costNote}` : '');
-  if (n.place) row('Luogo', n.place);
-  row('Prenotazione', el('span', { class: `badge badge--${b.status === 'done' ? 'done' : b.status === 'todo' ? 'todo' : 'opt'}` }, BOOKING_LABEL[b.status] || b.status),
-    b.where ? ` · ${b.where}` : '', b.when ? ` · ${b.when}` : '');
+  if (Number(n.costEur) > 0) row('Costo', el('span', { class: 'mono' }, `${fmtEur(n.costEur)} a testa · ${fmtJpy(n.costEur, fx)}`), n.costEstimate ? ' (stima)' : '', n.costNote ? ` · ${n.costNote}` : '');
+  if (n.place && n.place !== n.title) row('Luogo', n.place);
+  if (b.status === 'todo' || b.status === 'done') {
+    row('Prenotazione', el('span', { class: `badge badge--${b.status}` }, BOOKING_LABEL[b.status]),
+      b.where ? ` · ${b.where}` : '', b.when ? ` · ${b.when}` : '');
+  }
 
   const badges = el('div', { class: 'row' },
     el('span', { class: `chip agenda-legend__chip tl-type--${n.type}` }, el('span', { class: 'agenda-legend__dot', 'aria-hidden': 'true' }), TYPE_LABEL[n.type] || n.type),
     n.fixed ? el('span', { class: 'badge badge--fixed' }, icon('lock'), ' fisso') : null,
     n.optional ? el('span', { class: 'badge badge--opt' }, 'opzionale') : null,
-    day.status === 'draft' ? el('span', { class: 'badge badge--draft' }, 'bozza') : null);
+    day.status === 'draft' && !state.allDraft ? el('span', { class: 'badge badge--draft' }, 'bozza') : null);
 
+  const links = (n.links || []).filter((l) => /^[\w-]+\.html(#[\w-]*)?$/.test(l.href || ''))
+    .map((l) => el('a', { class: 'btn btn--ghost', href: withDataParam(l.href) }, el('span', null, l.label), icon('chevron-right')));
   const actions = el('div', { class: 'row' },
-    n.mapsQuery ? el('a', { class: 'btn btn--primary', href: mapsUrl(n.mapsQuery), target: '_blank', rel: 'noopener' }, icon('map-pin'), el('span', null, 'Apri in Google Maps')) : null,
-    el('a', { class: 'btn btn--ghost', href: withDataParam(`giorno.html?d=${day.date}#${n.id}`) }, 'Vedi nel giorno'));
+    n.mapsQuery ? el('a', { class: 'btn btn--primary', href: mapsUrl(n.mapsQuery), target: '_blank', rel: 'noopener' }, icon('map-pin'), el('span', null, 'Apri in Google Maps'), el('span', { class: 'sr-only' }, ' (nuova scheda)'), icon('external')) : null,
+    el('a', { class: 'btn btn--ghost', href: withDataParam(`giorno.html?d=${day.date}#${n.id}`) }, 'Vedi nel giorno'), ...links);
 
   const panel = $('#agenda-panel');
   $('#panel-title').textContent = n.title || '';
@@ -275,16 +281,17 @@ async function main() {
   const [trip, agenda] = await Promise.all([loadData('trip'), loadData('agenda')]);
   state.trip = trip || { fx: { jpyPerEur: 0 }, timezone: 'Asia/Tokyo' };
   state.days = ((agenda && agenda.days) || []).slice().sort((a, b) => a.date.localeCompare(b.date));
+  state.allDraft = state.days.length > 0 && state.days.every((d) => d.status === 'draft'); // avviso unico in testata
   if (!state.days.length) {
     $('#agenda-error').hidden = false;
     $('#agenda-error').textContent = agenda ? 'Agenda vuota.' : "Impossibile caricare l'agenda. Riprova più tardi o ricarica la pagina.";
     return;
   }
   if (state.trip.subtitle) $('#agenda-sub').textContent = state.trip.subtitle;
-  // avviso globale (agenda.notice): richiudibile, visibile anche su mobile (dove i <p> della testata sono nascosti)
+  // avviso globale (agenda.notice): una riga breve, visibile anche su mobile
   if (agenda.notice) {
-    $('.agenda__head').append(el('details', { class: 'card small agenda__notice' },
-      el('summary', null, el('span', { class: 'badge badge--draft' }, 'bozza'), ' Agenda in revisione: leggi'), el('div', null, agenda.notice)));
+    $('.agenda__head').append(el('div', { class: 'small row agenda__notice', role: 'note' }, // div: i <p> della testata sono nascosti su mobile
+      icon('info'), el('span', null, agenda.notice)));
   }
 
   readFilters();

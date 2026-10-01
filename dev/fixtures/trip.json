@@ -11,7 +11,7 @@
   },
   "timezone": "Asia/Tokyo",
   "mapsLink": "https://www.google.com/maps/d/edit?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&usp=sharing",
-  "generatedAt": "2026-10-01T21:20:38+02:00",
+  "generatedAt": "2026-10-01T22:37:16+02:00",
   "sourceVersion": "build_xlsx_v33.py",
   "flights": {
     "out": {
@@ -27,8 +27,7 @@
       "to": "MXP",
       "date": "2026-11-24",
       "dep": "16:55",
-      "airline": "China Eastern",
-      "note": "aeroporto di arrivo da inserire"
+      "airline": "China Eastern"
     }
   },
   "facts": [

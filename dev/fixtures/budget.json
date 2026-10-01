@@ -3,15 +3,27 @@
     "categories": [
       {
         "name": "Trasporti",
-        "detail": "Catena intercity + transfer (scelte in 📎 Dettagli)",
+        "detail": "Catena intercity + transfer",
         "eur": 237.2,
-        "estimate": false
+        "estimate": false,
+        "links": [
+          {
+            "href": "trasporti.html",
+            "label": "Trasporti"
+          }
+        ]
       },
       {
         "name": "Alloggi (tutte le basi)",
-        "detail": "dal riepilogo prenotazioni qui sotto",
+        "detail": "Prenotazioni reali divise per persona",
         "eur": 725.35,
-        "estimate": false
+        "estimate": false,
+        "links": [
+          {
+            "href": "alloggi.html",
+            "label": "Alloggi"
+          }
+        ]
       },
       {
         "name": "Cibo",
@@ -49,7 +61,7 @@
         "name": "Assicurazione viaggio",
         "eur": 47.86,
         "estimate": false,
-        "note": "Heymondo Tranquillità 6→25 nov · €191,44 gruppo · pagata 13 lug (-10%)"
+        "note": "Heymondo Tranquillità 6 → 25 nov · €191,44 gruppo · pagata 13 lug (-10%)"
       },
       {
         "name": "eSIM / dati",
@@ -61,7 +73,7 @@
         "name": "Spedizione bagagli (Yamato)",
         "eur": 14.2,
         "estimate": false,
-        "note": "€57 gruppo ÷ 4 · 4 valigie taglia 160 Osaka→Tokyo (¥2.630 cad.) · destinazione: ufficio Yamato Yoyogi (opzione A2)"
+        "note": "€57 gruppo ÷ 4 · 4 valigie taglia 160 Osaka → Tokyo (¥2.630 cad.) · destinazione: ufficio Yamato Yoyogi"
       }
     ],
     "commonTotalEur": 883.06,
@@ -169,8 +181,7 @@
     }
   ],
   "notes": [
-    "Trasporti = somma delle opzioni scelte (pagina Trasporti); Alloggi = prenotazioni reali divise per persona.",
-    "Le voci marcate «stima» sono indicative. Il concerto è escluso (biglietto a parte, 1 persona).",
-    "Alloggi prenotati: Yasudaya è in yen, convertito a 185 ¥/€ (si paga in contanti in struttura)."
+    "Le voci con «stima» sono indicative. Il concerto è escluso (biglietto a parte, 1 persona).",
+    "Lo Yasudaya si paga in contanti in yen: nel totale alloggi è convertito in euro al cambio del sito."
   ]
 }

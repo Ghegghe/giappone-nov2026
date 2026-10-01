@@ -28,8 +28,8 @@ export function loadData(name, { target = null } = {}) {
   }
   return dataCache.get(name).catch((err) => {
     console.warn(`[app] ${name}.json non caricato:`, err);
-    toast(`Dati non disponibili: ${name}.json`, { key: 'data-' + name });
-    if (target) showEmpty(target, `Dati "${name}" non disponibili. Riprova più tardi o ricarica la pagina.`);
+    toast(`Non riesco a caricare i dati (${name})`, { key: 'data-' + name });
+    if (target) showEmpty(target, 'Dati non disponibili. Riprova più tardi o ricarica la pagina.');
     return null;
   });
 }
@@ -180,14 +180,14 @@ function icon(name) {
 }
 
 // ---------- Tema ----------
-const FALLBACK_THEMES = [{ id: 'washi', label: 'Washi' }, { id: 'neutral', label: 'Neutro' }, { id: 'night', label: 'Notte' }];
+const FALLBACK_THEMES = [{ id: 'neutral', label: 'Neutro' }, { id: 'washi', label: 'Washi' }, { id: 'night', label: 'Notte' }];
 const themes = () => (Array.isArray(window.GJ_THEMES) && window.GJ_THEMES.length ? window.GJ_THEMES : FALLBACK_THEMES);
 const MODES = [{ id: 'auto', label: 'Auto' }, { id: 'light', label: 'Chiaro' }, { id: 'dark', label: 'Scuro' }];
 const LS_THEME = 'giappone.theme', LS_MODE = 'giappone.mode';
 
 function currentTheme() {
   const h = document.documentElement;
-  return { theme: h.getAttribute('data-theme') || 'washi', mode: h.getAttribute('data-theme-mode') || 'auto' };
+  return { theme: h.getAttribute('data-theme') || 'neutral', mode: h.getAttribute('data-theme-mode') || 'auto' };
 }
 
 function syncThemeColor() {
@@ -197,7 +197,7 @@ function syncThemeColor() {
   if (bg) meta.setAttribute('content', bg);
 }
 
-/** Applica tema (washi|neutral|night) e modo (auto|light|dark); persiste in localStorage. Argomenti omessi = valore corrente/salvato. */
+/** Applica tema (neutral|washi|night) e modo (auto|light|dark); persiste in localStorage. Argomenti omessi = valore corrente/salvato. */
 export function applyTheme(themeName, mode) {
   const cur = currentTheme();
   const theme = themes().some((t) => t.id === themeName) ? themeName : cur.theme;
@@ -310,11 +310,11 @@ export async function initShell(activeSectionId = 'home') {
   }).join('');
 
   // Footer
-  const gen = trip ? [trip.sourceVersion, trip.generatedAt ? fmtStamp(trip.generatedAt) : ''].filter(Boolean).join(' · ') : '';
+  const gen = trip && trip.generatedAt ? fmtStamp(trip.generatedAt) : '';
   const opt = (list, id) => list.map((x) => `<option value="${esc(x.id)}">${esc(x.label)}</option>`).join('');
   footer.innerHTML =
-    (gen ? `<p class="small muted">generato da ${esc(gen)}</p>` : `<p class="small muted">dati non disponibili</p>`) +
-    (DATA_BASE !== 'data/' ? `<p class="small muted">fixture: ${esc(DATA_BASE)}</p>` : '') +
+    (gen ? `<p class="small muted">Dati aggiornati al ${esc(gen)}</p>` : trip ? '' : `<p class="small muted">Dati non disponibili</p>`) +
+    (DATA_BASE !== 'data/' ? `<p class="small muted">Dati di prova: ${esc(DATA_BASE)}</p>` : '') +
     `<div class="footer__theme row">` +
     `<label class="small">Tema <select id="theme-select">${opt(themes())}</select></label>` +
     `<label class="small">Modo <select id="mode-select">${opt(MODES)}</select></label></div>`;
@@ -341,7 +341,7 @@ function registerSW() {
   swRegistered = true;
   // Toast solo se un SW nuovo prende il controllo di una pagina già controllata (non alla prima installazione).
   let controlled = !!navigator.serviceWorker.controller;
-  const notify = () => toast('Aggiornamento disponibile · ricarica', { timeout: 0, key: 'sw-update', action: { label: 'Ricarica', onClick: () => location.reload() } });
+  const notify = () => toast('È disponibile una versione aggiornata', { timeout: 0, key: 'sw-update', action: { label: 'Ricarica', onClick: () => location.reload() } });
   navigator.serviceWorker.addEventListener('controllerchange', () => {
     if (controlled) notify();
     controlled = true;

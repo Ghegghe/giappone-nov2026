@@ -1,111 +1,114 @@
-// pages-alloggi.js — alloggi.html: le basi in ordine cronologico + Logistica (Bagagli · Giorno 1 · Contanti e carte IC).
-import { fmtDate, fmtEur, fmtJpy } from './app.js';
-import { html, mount, icon, mapsBtn, extLink, setupTabs, fxRate } from './pages.js';
+// pages-alloggi.js — alloggi.html: le basi in ordine cronologico (info nell'ordine utile in viaggio)
+// + Logistica (Bagagli · Giorno 1 · Contanti e carte IC) + "Da chiarire" in fondo.
+import { fmtDate, fmtEur } from './app.js';
+import { html, mount, icon, mapsBtn, extLink, setupTabs } from './pages.js';
 
 const TYPE = { apartment: 'Appartamento', hotel: 'Hotel', hostel: 'Ostello', ryokan: 'Ryokan', guesthouse: 'Guesthouse', capsule: 'Capsule' };
-const STATUS = { booked: 'prenotato', todo: 'da prenotare', option: 'opzione' };
 const jpy = (n) => '¥' + String(Math.round(Number(n) || 0)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 const list = (x) => (Array.isArray(x) ? x : x ? [x] : []);
 
-function stayCard(s, rate, people) {
-  const nights = s.nights != null ? s.nights : '';
+function payBadge(s) {
+  if (s.paid === true) return html`<span class="badge badge--done">pagato</span>`;
+  if (s.payment === 'in struttura') return html`<span class="badge badge--todo">si paga in struttura</span>`;
+  if (s.paid === false) return html`<span class="badge badge--draft">pagamento da verificare</span>`;
+  return '';
+}
+
+function stayCard(s, people) {
+  const n = Number(s.nights) || 0;
+  const times = [s.checkInTime ? `check-in dalle ${s.checkInTime}` : '', s.checkOutTime ? `check-out entro le ${s.checkOutTime}` : ''].filter(Boolean);
+  const pax = s.costEurPerPerson != null ? s.costEurPerPerson : people && s.costEurTotal != null ? s.costEurTotal / people : null;
   return html`<article class="card stack al-stay" id="${s.id}">
     <header class="al-stay__head">
-      <p class="small muted al-stay__city">${s.city}${s.area ? ` · ${s.area}` : ''}</p>
       <h2 class="h2">${s.name}</h2>
-      <div class="row">
-        ${s.type ? html`<span class="badge">${TYPE[s.type] || s.type}</span>` : ''}
-        ${s.status ? html`<span class="badge ${s.status === 'booked' ? 'badge--done' : 'badge--todo'}">${STATUS[s.status] || s.status}</span>` : ''}
-        ${s.paid === true ? html`<span class="badge badge--done">pagato</span>` : s.paid === false ? html`<span class="badge badge--todo">da pagare / in loco</span>` : ''}
-      </div>
+      <p class="small muted">${[s.city, s.area && s.area !== s.city ? s.area : '', TYPE[s.type] || ''].filter(Boolean).join(' · ')}</p>
     </header>
     <dl class="kv">
-      <dt>Date</dt><dd>${fmtDate(s.checkIn)} → ${fmtDate(s.checkOut)}${nights !== '' ? html` · <strong>${nights} ${nights === 1 ? 'notte' : 'notti'}</strong>` : ''}</dd>
-      <dt>Check-in</dt><dd class="mono">${s.checkInTime || '—'}</dd>
-      <dt>Check-out</dt><dd class="mono">${s.checkOutTime || '—'}</dd>
+      <dt>Date</dt><dd>${fmtDate(s.checkIn)} → ${fmtDate(s.checkOut)}${n ? ` · ${n} ${n === 1 ? 'notte' : 'notti'}` : ''}</dd>
+      ${times.length ? html`<dt>Orari</dt><dd class="mono">${times.join(' · ')}</dd>` : ''}
       ${s.address ? html`<dt>Indirizzo</dt><dd>${s.address}</dd>` : ''}
-      ${s.costEurTotal != null ? html`<dt>Costo</dt><dd><span class="mono">${fmtEur(s.costEurTotal)}</span> gruppo${s.costEurPerPerson != null || people ? html` · <span class="mono">${fmtEur(s.costEurPerPerson != null ? s.costEurPerPerson : s.costEurTotal / people)}</span>/pax` : ''}${s.costJpyTotal != null ? html` <span class="mono muted small">(${jpy(s.costJpyTotal)} in struttura)</span>` : rate ? html` <span class="mono muted small">(${fmtJpy(s.costEurTotal, rate)})</span>` : ''}</dd>` : ''}
-      ${s.payment ? html`<dt>Pagamento</dt><dd>${s.payment}</dd>` : ''}
     </dl>
-    ${list(s.notes).length ? html`<ul class="al-notes small">${list(s.notes).map((n) => html`<li>${n}</li>`)}</ul>` : ''}
     <div class="row">${mapsBtn(s.mapsQuery || `${s.name} ${s.city}`)}${s.url ? extLink(s.url, 'Sito', 'btn btn--ghost') : ''}</div>
+    ${list(s.notes).length ? html`<ul class="al-notes small">${list(s.notes).map((x) => html`<li>${x}</li>`)}</ul>` : ''}
+    ${s.costEurTotal != null ? html`<p class="small muted row"><span><span class="mono">${fmtEur(s.costEurTotal)}</span> in tutto${pax != null ? html` · <span class="mono">${fmtEur(pax)}</span> a testa` : ''}${s.costJpyTotal != null ? html` · <span class="mono">${jpy(s.costJpyTotal)}</span> in contanti` : ''}</span>${payBadge(s)}</p>` : payBadge(s)}
   </article>`;
 }
 
+/** Lista numerata pulita in una card: [{n, title, when, where, details, cost, remember}] */
 function steps(arr) {
-  return html`<ol class="al-steps stack">${arr.map((p, i) => html`<li class="card al-step">
+  if (!arr.length) return '';
+  return html`<ol class="list card al-steps">${arr.map((p, i) => html`<li class="list-item">
     <div class="row al-step__head">
-      <span class="al-step__n mono" aria-hidden="true">${p.step != null ? p.step : i + 1}</span>
+      <span class="al-step__n mono" aria-hidden="true">${p.n != null ? p.n : i + 1}</span>
       <div class="stack">
-        ${p.when ? html`<p class="small muted mono">${p.when}</p>` : ''}
         <h3 class="h3">${p.title}</h3>
+        ${p.when ? html`<p class="small muted">${p.when}</p>` : ''}
+        ${p.where ? html`<p class="small">${icon('pin')} ${p.where}</p>` : ''}
+        ${p.details ? html`<p class="small">${p.details}</p>` : ''}
+        ${p.cost ? html`<p class="small">Costo: <span class="mono">${p.cost}</span></p>` : ''}
+        ${p.remember ? html`<p class="small"><strong>Ricorda:</strong> ${p.remember}</p>` : ''}
       </div>
     </div>
-    ${p.where ? html`<p class="small"><strong>Dove:</strong> ${p.where}</p>` : ''}
-    ${p.details ? html`<p class="small">${p.details}</p>` : ''}
-    ${p.cost && p.cost !== '—' ? html`<p class="small"><strong>Costo:</strong> <span class="mono">${p.cost}</span></p>` : ''}
-    ${p.open && p.open !== '—' ? html`<p class="small muted"><strong>Da chiudere:</strong> ${p.open}</p>` : ''}
-    ${p.mapsQuery || p.url ? html`<div class="row">${p.mapsQuery ? mapsBtn(p.mapsQuery, 'Maps', 'btn') : ''}${p.url ? extLink(p.url, null, 'btn btn--ghost') : ''}</div>` : ''}
   </li>`)}</ol>`;
 }
 
-// passi bagagli dell'exporter {phase, what, when, notes} → forma comune di steps()
-const lugStep = (x, i) => (x.title ? x : { step: i + 1, when: [x.phase, x.when].filter(Boolean).join(' · '), title: x.what, details: x.notes });
-
-function lugOptions(opts) {
-  if (!opts.length) return '';
-  return html`<details class="card al-lug-alts"><summary class="small">Opzioni valutate (${opts.length})</summary>
-    <ul class="list">${opts.map((o) => html`<li class="list-item stack">
-      <p><strong>${o.name}</strong>${o.chosen ? html` <span class="badge badge--done">scelta</span>` : ''}${o.eurGroup != null ? html` <span class="mono small muted">${fmtEur(o.eurGroup)} gruppo</span>` : ''}</p>
-      ${o.how ? html`<p class="small">${o.how}</p>` : ''}
-      ${o.pro && o.pro !== '—' ? html`<p class="small"><strong>Pro:</strong> ${o.pro}</p>` : ''}
-      ${o.con && o.con !== '—' ? html`<p class="small muted"><strong>Contro:</strong> ${o.con}</p>` : ''}
-    </li>`)}</ul></details>`;
-}
-
-function lugQuestions(qs) {
-  if (!qs.length) return '';
-  const open = qs.filter((q) => q.status !== 'resolved');
-  return html`<details class="card al-lug-q"${open.length ? ' open' : ''}><summary class="small">Domande verificate${open.length ? ` · ${open.length} aperta` + (open.length > 1 ? 'e' : '') : ''}</summary>
-    <ul class="list">${qs.map((q) => html`<li class="list-item stack">
-      <p><span class="badge ${q.status === 'resolved' ? 'badge--done' : 'badge--todo'}">${q.status === 'resolved' ? 'risolta' : 'aperta'}</span> <strong>${q.question}</strong></p>
-      ${q.answer ? html`<p class="small">${q.answer}</p>` : html`<p class="small muted">${q.why || ''}${q.who && q.who !== '—' ? ` · fonte: ${q.who}` : ''}</p>`}
-    </li>`)}</ul></details>`;
-}
+// passi bagagli {phase, what, when, notes} e Giorno 1 {step, title, where, details, cost} → forma comune
+const lugStep = (x) => ({ title: x.what, when: [x.phase, x.when].filter(Boolean).join(' · '), details: x.notes });
+const day1Step = (x, i) => ({ n: i + 1, title: x.title, where: x.where, details: x.details, cost: x.cost, remember: x.remember });
 
 function luggage(l) {
   if (!l) return html`<p class="empty">Nessun piano bagagli.</p>`;
+  const alts = list(l.options).filter((o) => !o.chosen);
+  const solved = list(l.openQuestions).filter((q) => q.status === 'resolved');
   return html`<div class="stack">
-    <div class="card card--accent stack">
-      ${l.choice ? html`<h2 class="h3">${l.choice}</h2>` : ''}
-      ${l.summary ? html`<p>${l.summary}</p>` : ''}
-      ${l.costNote ? html`<p class="small mono">${l.costNote}</p>` : ''}
-      ${l.url ? html`<p class="small">${extLink(l.url, 'Tracking Yamato')}</p>` : ''}
-    </div>
+    ${l.choice ? html`<div class="card card--accent stack"><p class="small muted">Valigie spedite con Yamato</p><h2 class="h3">${l.choice}</h2></div>` : ''}
     ${steps(list(l.steps).map(lugStep))}
-    ${list(l.notes).length ? html`<ul class="small muted al-notes">${list(l.notes).map((n) => html`<li>${n}</li>`)}</ul>` : ''}
-    ${l.rules ? html`<p class="small muted">${l.rules}</p>` : ''}
-    ${lugOptions(list(l.options))}
-    ${lugQuestions(list(l.openQuestions))}
+    ${l.rules ? html`<details class="card"><summary class="small">Regole su valigie e treni</summary><p class="small">${l.rules}</p></details>` : ''}
+    ${alts.length ? html`<details class="card al-lug-alts"><summary class="small">Alternative scartate (${alts.length})</summary>
+      <ul class="list">${alts.map((o) => html`<li class="list-item stack">
+        <p><strong>${o.name}</strong>${o.eurGroup != null ? html` <span class="mono small muted">${fmtEur(o.eurGroup)} in tutto</span>` : ''}</p>
+        ${o.how ? html`<p class="small">${o.how}</p>` : ''}
+        ${o.pro ? html`<p class="small">Pro: ${o.pro}</p>` : ''}
+        ${o.con ? html`<p class="small muted">Contro: ${o.con}</p>` : ''}
+      </li>`)}</ul></details>` : ''}
+    ${solved.length ? html`<details class="card al-lug-q"><summary class="small">Domande già risolte (${solved.length})</summary>
+      <ul class="list">${solved.map((q) => html`<li class="list-item stack"><p><strong>${q.question}</strong></p>${q.answer ? html`<p class="small">${q.answer}</p>` : ''}</li>`)}</ul></details>` : ''}
   </div>`;
 }
 
-function infoBlock(b, fallbackTitle) {
+function infoBlock(b, title) {
   if (!b) return '';
   const a = b.atArrival;
   return html`<section class="card stack">
-    <h2 class="h3">${b.title || fallbackTitle}</h2>
-    ${b.summary || b.rule ? html`<p>${b.summary || b.rule}</p>` : ''}
-    ${list(b.rules).length ? html`<ul class="al-notes small">${list(b.rules).map((r) => html`<li>${r}</li>`)}</ul>` : ''}
-    ${a ? html`<div class="stack"><p class="small muted">All'arrivo (giorno 1, passo ${a.step != null ? a.step : ''})</p>${steps([a])}</div>` : ''}
+    <h2 class="h3">${title}</h2>
+    ${b.rule ? html`<p>${b.rule}</p>` : ''}
+    ${a ? html`<dl class="kv small">
+      <dt>All'arrivo</dt><dd>${a.where || ''}${a.cost ? html` · <span class="mono">${a.cost}</span>` : ''}</dd>
+      ${a.details ? html`<dt>Come</dt><dd>${a.details}</dd>` : ''}
+    </dl>` : ''}
     ${list(b.reminders).length ? html`<ul class="al-notes small">${list(b.reminders).map((r) => html`<li>${r}</li>`)}</ul>` : ''}
+  </section>`;
+}
+
+/** Punti ancora aperti (domande bagagli aperte + "da chiudere" del Giorno 1), in fondo alla pagina. */
+function openPoints(lg) {
+  const qs = list(lg.luggage && lg.luggage.openQuestions).filter((q) => q.status !== 'resolved')
+    .map((q) => ({ text: q.question, why: q.why, src: q.who }));
+  const d1 = list(lg.day1).filter((p) => p.todo).map((p) => ({ text: p.todo }));
+  const all = [...qs, ...d1];
+  if (!all.length) return '';
+  return html`<section class="stack" aria-labelledby="al-open-h">
+    <h2 class="section-title" id="al-open-h">Da chiarire</h2>
+    <ul class="list card">${all.map((x) => html`<li class="list-item stack">
+      <p>${x.text}</p>
+      ${x.why || x.src ? html`<p class="small muted">${[x.why, x.src ? `fonte: ${x.src}` : ''].filter(Boolean).join(' · ')}</p>` : ''}
+    </li>`)}</ul>
   </section>`;
 }
 
 export async function render(root, { trip, loadData }) {
   const d = await loadData('lodging');
-  if (!d) { mount(root, html`<h1 class="h1">Alloggi</h1><p class="empty">Dati alloggi non disponibili.</p>`); return; }
-  const rate = fxRate(trip);
+  if (!d) { mount(root, html`<h1 class="h1">Alloggi</h1><p class="empty">Dati degli alloggi non disponibili.</p>`); return; }
   const people = (trip && trip.people) || null;
   const stays = [...(d.stays || [])].sort((a, b) => String(a.checkIn).localeCompare(String(b.checkIn)));
   const nights = stays.reduce((n, s) => n + (Number(s.nights) || 0), 0);
@@ -113,20 +116,23 @@ export async function render(root, { trip, loadData }) {
   mount(root, html`
     <h1 class="h1">Alloggi</h1>
     <p class="muted">${stays.length} basi · ${nights} notti</p>
-    <div class="grid-2 al-stays">${stays.map((s) => stayCard(s, rate, people))}</div>
+    <div class="grid-2 al-stays">${stays.map((s) => stayCard(s, people))}</div>
     <section class="stack al-logistics" aria-labelledby="al-log-h">
       <h2 class="section-title" id="al-log-h">Logistica</h2>
       <div data-tabs></div>
-    </section>`);
+    </section>
+    ${openPoints(lg)}`);
   const tabs = [];
   if (lg.luggage) tabs.push({ id: 'bagagli', label: 'Bagagli' });
   if (list(lg.day1).length) tabs.push({ id: 'giorno1', label: 'Giorno 1' });
   if (lg.cash || lg.icCard) tabs.push({ id: 'contanti', label: 'Contanti e carte IC' });
   const host = root.querySelector('[data-tabs]');
   if (!tabs.length) { mount(host, html`<p class="empty">Nessuna informazione logistica.</p>`); return; }
+  const fromLink = tabs.some((t) => t.id === location.hash.slice(1)); // es. link interno "alloggi.html#bagagli"
   setupTabs(host, tabs, (id) => {
     if (id === 'bagagli') return luggage(lg.luggage);
-    if (id === 'giorno1') return steps(list(lg.day1));
-    return html`${infoBlock(lg.cash, 'Contanti')}${infoBlock(lg.icCard, 'Carta IC')}`;
+    if (id === 'giorno1') return steps(list(lg.day1).map(day1Step));
+    return html`${infoBlock(lg.cash, 'Contanti')}${infoBlock(lg.icCard, 'Carta IC (ICOCA / Suica)')}`;
   }, { key: 'al' });
+  if (fromLink) root.querySelector('.al-logistics').scrollIntoView({ block: 'start' });
 }

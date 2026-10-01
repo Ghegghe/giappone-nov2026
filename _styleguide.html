@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="it" data-theme="washi" data-theme-mode="auto">
+<html lang="it" data-theme="neutral" data-theme-mode="auto">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -7,7 +7,7 @@
 <title>Styleguide · Giappone Nov 2026</title>
 <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/base.css">
-<link rel="stylesheet" id="theme-css" href="assets/css/themes/washi.css">
+<link rel="stylesheet" id="theme-css" href="assets/css/themes/neutral.css">
 <style>
   /* solo per la styleguide (usa comunque solo variabili) */
   .sg-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: var(--space-2); }
@@ -29,15 +29,14 @@
 
 <main id="main" class="container stack" data-page="styleguide">
   <div class="stack" style="--stack-gap: var(--space-2)">
-    <p class="section-title" style="margin:0">Design system</p>
     <h1 class="h1">Styleguide</h1>
-    <p class="muted">Componenti di <span class="mono">base.css</span> e temi intercambiabili. Pagina non linkata nella nav.</p>
+    <p class="muted">Componenti di <span class="mono">base.css</span>: ricette shadcn/ui in CSS puro, stesso scheletro per i tre temi (cambiano palette e famiglia dei titoli). Pagina non linkata nella nav.</p>
   </div>
 
   <div class="sg-ctl stack" style="--stack-gap: var(--space-2)">
     <div class="filter-bar" role="group" aria-label="Tema">
-      <button class="chip chip--active" type="button" data-theme-pick="washi">Washi</button>
-      <button class="chip" type="button" data-theme-pick="neutral">Neutro</button>
+      <button class="chip chip--active" type="button" data-theme-pick="neutral">Neutro (shadcn)</button>
+      <button class="chip" type="button" data-theme-pick="washi">Washi</button>
       <button class="chip" type="button" data-theme-pick="night">Notte</button>
       <span class="muted small" aria-hidden="true">·</span>
       <button class="chip chip--active" type="button" data-mode-pick="auto"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-auto"></use></svg>Auto</button>
@@ -52,6 +51,9 @@
     <p class="h1">Osaka, arrivo e prima sera</p>
     <p class="h2">Kyoto · Fushimi Inari all'alba</p>
     <p class="h3">Check-in BON Condominium Umeda</p>
+    <p class="small muted">Scala shadcn: xs 12 · small 14 · body 16 · h3 18 · h2 24 · h1 30→36 (px). Titoli in serif del tema (washi/night), testo sans.</p>
+    <p class="h1 mono">€2.765,61</p>
+    <p class="small muted"><span class="mono">.h1.mono</span> = cifra-titolo (KPI): resta nella display del tema con cifre tabulari.</p>
     <p>Testo corrente: ritiro valigie, bus KATE per Umeda, poi Dōtonbori. 大阪 · 京都 · 東京 — kana e kanji con lo stack di sistema.</p>
     <p class="muted">Testo secondario (.muted) per note e metadati.</p>
     <p class="small muted">Small: aggiornato al 1 ott 2026 · tasso 185 ¥/€</p>
@@ -62,6 +64,27 @@
   <!-- COLORI -->
   <h2 class="section-title">Token colore</h2>
   <div class="sg-swatches" id="sg-base-sw"></div>
+  <p class="h3">Token shadcn → variabile nostra</p>
+  <div class="card" style="padding:0;overflow-x:auto">
+    <table>
+      <thead><tr><th>Token shadcn</th><th>Variabile nostra (SPEC §6)</th><th>Uso</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">--background</td><td class="mono">--bg</td><td>fondo pagina</td></tr>
+        <tr><td class="mono">--foreground</td><td class="mono">--fg</td><td>testo</td></tr>
+        <tr><td class="mono">--card / --card-foreground</td><td class="mono">--bg-elev</td><td>card, timeline</td></tr>
+        <tr><td class="mono">--popover / -foreground</td><td class="mono">— (diretto)</td><td>sheet, toast</td></tr>
+        <tr><td class="mono">--primary / -foreground</td><td class="mono">--accent / --fg-on-accent</td><td>azione primaria, "ora", chip premuto</td></tr>
+        <tr><td class="mono">--secondary / -foreground</td><td class="mono">— (diretto)</td><td>badge, .btn--secondary</td></tr>
+        <tr><td class="mono">--muted / -foreground</td><td class="mono">--bg-sunken / --fg-muted</td><td>TabsList, incassi, testo secondario</td></tr>
+        <tr><td class="mono">--accent / -foreground</td><td class="mono">--accent-soft / --accent-soft-foreground</td><td>hover di ghost, outline, chip, nav (rinominato: --accent è già §6)</td></tr>
+        <tr><td class="mono">--destructive</td><td class="mono">--danger</td><td>.btn--destructive, .badge--destructive</td></tr>
+        <tr><td class="mono">--border</td><td class="mono">--border</td><td>bordi (stesso nome)</td></tr>
+        <tr><td class="mono">--input</td><td class="mono">— (diretto)</td><td>bordo input, chip, .btn outline</td></tr>
+        <tr><td class="mono">--ring</td><td class="mono">--ring (+ --focus)</td><td>focus 2px offset 2px; --focus = ring reso ≥3:1</td></tr>
+        <tr><td class="mono">--radius</td><td class="mono">--radius (0.5rem)</td><td>+ derivati --radius-sm/md/lg/xl</td></tr>
+      </tbody>
+    </table>
+  </div>
   <p class="h3">Colori per type</p>
   <div class="row" id="sg-legend"></div>
 
@@ -76,7 +99,18 @@
       <button class="btn" type="button" disabled>Disabilitato</button>
     </div>
     <div class="row">
+      <button class="btn btn--primary" type="button">Default</button>
+      <button class="btn btn--secondary" type="button">Secondary</button>
+      <button class="btn btn--outline" type="button">Outline</button>
+      <button class="btn btn--ghost" type="button">Ghost</button>
+      <button class="btn btn--destructive" type="button">Destructive</button>
+      <a class="btn btn--link" href="#">Link</a>
+      <button class="btn btn--primary btn--sm" type="button">Small</button>
+      <button class="btn btn--primary btn--lg" type="button">Large</button>
+    </div>
+    <div class="row">
       <button class="chip chip--active" type="button">Tutti</button>
+      <span class="chip agenda-legend__chip tl-type--food" style="min-height:28px;font-size:.8125rem;font-weight:500"><span class="agenda-legend__dot" style="width:10px;height:10px;border-radius:50%;background:var(--c-food)" aria-hidden="true"></span>chip-etichetta (span: niente hover)</span>
       <button class="chip" type="button">Osaka</button>
       <button class="chip" type="button">Kyoto</button>
       <button class="chip" type="button">Tokyo</button>
@@ -89,6 +123,12 @@
       <span class="badge badge--todo">da prenotare</span>
       <span class="badge badge--done"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-check"></use></svg>prenotato</span>
       <span class="badge">neutro</span>
+    </div>
+    <div class="row">
+      <span class="badge badge--default">default</span>
+      <span class="badge badge--secondary">secondary</span>
+      <span class="badge badge--outline">outline</span>
+      <span class="badge badge--destructive">destructive</span>
     </div>
   </div>
 
@@ -105,7 +145,7 @@
       </dl>
     </div>
     <div class="card card--accent stack" style="--stack-gap: var(--space-2)">
-      <p class="section-title" style="margin:0">Prossima scadenza</p>
+      <p class="small muted">Prossima scadenza</p>
       <p class="h2">smartEX · Shinkansen</p>
       <p class="muted">Apertura vendite <span class="mono">11 ott · 3:00 IT</span></p>
       <div class="row"><span class="badge badge--todo">da prenotare</span></div>
@@ -117,6 +157,12 @@
         <li class="list-item"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-bed"></use></svg><span>Yasudaya · Uchiura</span><span class="badge badge--done">ok</span></li>
       </ul>
     </div>
+  </div>
+
+  <div class="card" style="max-width:420px">
+    <div class="card__header"><p class="card__title">Arai Ryokan</p><p class="card__description">Shuzenji · 1 notte · onsen privato</p></div>
+    <div class="card__content"><dl class="kv"><dt>Check-in</dt><dd class="mono">15:00</dd><dt>Cena</dt><dd class="mono">18:30</dd></dl></div>
+    <div class="card__footer"><a class="btn btn--primary" href="#">Apri in Maps</a><button class="btn btn--ghost" type="button">Dettagli</button></div>
   </div>
 
   <!-- TABS / FILTER BAR / EMPTY -->
@@ -136,11 +182,11 @@
     <button class="chip" type="button">Akihabara</button>
     <button class="chip" type="button">Ikebukuro</button>
   </div>
-  <div class="empty"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-search"></use></svg><p>Nessun luogo corrisponde ai filtri.</p></div>
+  <div class="empty"><svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-search"></use></svg><p>Nessun luogo corrisponde ai filtri. Togli un filtro o svuota la ricerca.</p></div>
 
   <!-- TIMELINE -->
   <h2 class="section-title">Timeline</h2>
-  <div class="row"><span class="badge badge--draft">bozza</span><span class="small muted">3 giorni finti · tocca un blocco per il panel · su mobile scorri a destra</span></div>
+  <div class="row"><span class="badge badge--draft">bozza</span><span class="small muted">3 giorni finti · tocca un blocco per il panel · su mobile scorri a destra · blocchi da 30' su una riga · "libero" = tratteggio senza cornice · type free = senza riempimento</span></div>
   <div class="timeline" id="sg-tl" style="--tl-span: 18">
     <div class="tl-hours" aria-hidden="true"></div>
 
@@ -173,7 +219,8 @@
       <header class="tl-day__header"><span>sab 14 nov</span><span class="small muted">Nagoya</span></header>
       <button class="tl-item tl-item--train" style="--top: calc(2 * var(--tl-hour-h)); --h: calc(.8333 * var(--tl-hour-h))"><span class="mono"><svg class="icon" aria-label="fisso"><use href="assets/icons/sprite.svg#i-lock"></use></svg> 08:00–08:50</span><strong>Hida → Nagoya</strong></button>
       <button class="tl-item tl-item--anime" style="--top: calc(5 * var(--tl-hour-h)); --h: calc(2 * var(--tl-hour-h))"><span class="mono">11:00–13:00</span><strong>Ōsu: Animate, Mandarake</strong><span class="small">otaku walk</span></button>
-      <button class="tl-item tl-item--shopping" style="--top: calc(8 * var(--tl-hour-h)); --h: calc(1.5 * var(--tl-hour-h))"><span class="mono">14:00–15:30</span><strong>Sakae, Loft</strong></button>
+      <button class="tl-item tl-item--shopping" style="--top: calc(8 * var(--tl-hour-h)); --h: calc(1 * var(--tl-hour-h))"><span class="mono">14:00–15:00</span><strong>Sakae, Loft</strong></button>
+      <button class="tl-item tl-item--food" style="--top: calc(9 * var(--tl-hour-h)); --h: calc(.5 * var(--tl-hour-h))"><span class="mono">15:00</span><strong>Kissaten (30')</strong></button>
       <div class="tl-gap" style="--top: calc(9.5 * var(--tl-hour-h)); --h: calc(2 * var(--tl-hour-h))"><span>15:30–17:30 · libero</span></div>
       <button class="tl-item tl-item--fixed" style="--top: calc(12 * var(--tl-hour-h)); --h: calc(3 * var(--tl-hour-h))"><span class="mono"><svg class="icon" aria-label="fisso"><use href="assets/icons/sprite.svg#i-lock"></use></svg> 18:00–21:00</span><strong>Concerto (1 pax)</strong><span class="small">biglietto preso</span></button>
       <button class="tl-item tl-item--onsen tl-item--optional" style="--top: calc(15.5 * var(--tl-hour-h)); --h: calc(1 * var(--tl-hour-h))"><span class="mono">21:30–22:30</span><strong>Super sentō (opz.)</strong></button>
@@ -211,9 +258,9 @@
 </nav>
 
 <footer class="footer">
-  <p class="small muted">Styleguide · base.css + temi washi / neutral / night</p>
+  <p class="small muted">Styleguide · base.css + temi neutral / washi / night</p>
   <div class="footer__theme">
-    <label class="small">Tema<select id="theme-select"><option value="washi">Washi</option><option value="neutral">Neutro</option><option value="night">Notte</option></select></label>
+    <label class="small">Tema<select id="theme-select"><option value="neutral">Neutro</option><option value="washi">Washi</option><option value="night">Notte</option></select></label>
     <label class="small">Modo<select id="mode-select"><option value="auto">Auto</option><option value="light">Chiaro</option><option value="dark">Scuro</option></select></label>
   </div>
 </footer>
@@ -292,7 +339,7 @@
     b.textContent = TYPES[t]; leg.appendChild(b);
   });
   var sw = document.getElementById('sg-base-sw');
-  ['--bg', '--bg-elev', '--bg-sunken', '--fg', '--fg-muted', '--border', '--accent', '--accent-2', '--ok', '--warn', '--danger'].forEach(function (v) {
+  ['--bg', '--bg-elev', '--bg-sunken', '--fg', '--fg-muted', '--border', '--accent', '--accent-2', '--ok', '--warn', '--danger', '--primary', '--secondary', '--muted', '--accent-soft', '--input', '--ring'].forEach(function (v) {
     var el = document.createElement('div'); el.className = 'sg-sw';
     var i = document.createElement('i'); i.style.background = 'var(' + v + ')';
     var s = document.createElement('span'); s.className = 'mono'; s.textContent = v;

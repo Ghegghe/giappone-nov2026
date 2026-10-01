@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Test pagine contenuto</title>
 <link rel="stylesheet" href="../assets/css/base.css">
-<link rel="stylesheet" id="theme-css" href="../assets/css/themes/washi.css">
+<link rel="stylesheet" id="theme-css" href="../assets/css/themes/neutral.css">
 <link rel="stylesheet" href="../assets/css/pages.css">
 <script>
   // Niente auto-boot di pages.js: qui i moduli vengono renderizzati a mano nei contenitori.
@@ -75,6 +75,13 @@
   ok(/giorni alla partenza|Giorno \d+ di|concluso/.test(bh.textContent), 'home: countdown presente');
   ok(bh.querySelectorAll('.home-day__item').length === 3, 'home: 3 item nella card giorno');
   ok(bh.querySelectorAll('.home-dl').length === 5, 'home: 5 scadenze');
+  // scadenze: "in ritardo" solo se la data (fine intervallo inclusa) è passata, in fuso italiano
+  const { deadlineState, deadlineLabel } = await import('../assets/js/pages.js');
+  ok(deadlineState({ status: 'todo', sortDate: '2026-10-01' }, '2026-10-01') === 'today', 'scadenza con data di oggi → "oggi", non in ritardo');
+  ok(deadlineState({ status: 'todo', sortDate: '2026-10-01', endDate: '2026-10-02' }, '2026-10-02') === 'today', 'intervallo 1-2 ott il 2 ott → ancora "oggi"');
+  ok(deadlineState({ status: 'todo', sortDate: '2026-09-30' }, '2026-10-01') === 'late', 'data passata → in ritardo');
+  ok(deadlineLabel({ sortDate: '2026-10-11', when: '11 ott 3:00-16:30 IT' }) === 'dom 11 ott', 'etichetta scadenza leggibile (dom 11 ott)');
+  ok(deadlineLabel({ sortDate: '2026-10-28', when: '~fine ott', dateApprox: true }) === '~fine ott', 'scadenza approssimata: testo originale');
   ok(bh.querySelectorAll('.home-grid__item').length === 5, 'home: 5 link sezione');
   ok(!!bh.querySelector('a[href^="https://www.google.com/maps/d/"]'), 'home: link My Maps');
 
@@ -83,6 +90,8 @@
   const t = await app.loadData('transport');
   ok(bt.querySelectorAll('.tr-leg').length === t.legs.length, `trasporti: ${t.legs.length} tratte`);
   ok(bt.querySelectorAll('.tr-opt--chosen').length === t.legs.length, 'trasporti: 1 opzione scelta per tratta');
+  ok([...bt.querySelectorAll('.tr-opt--chosen')].every((c) => c.querySelectorAll(':scope > p').length <= 1), 'trasporti: al massimo una riga di nota sulla card');
+  ok([...bt.querySelectorAll('.tr-opt--chosen details > summary')].some((x) => x.textContent === 'Come si prenota e si ritira'), 'trasporti: prenota/pagamento/ritiro in un details');
   const nDates = new Set(t.legs.map((l) => l.date)).size;
   ok(bt.querySelectorAll('.tr-day').length === nDates, `trasporti: tratte raggruppate in ${nDates} date`);
   ok(bt.querySelector('.tr-total')?.textContent.includes('€237'), 'trasporti: totale scelte €237');
@@ -95,7 +104,8 @@
   tabs[3].click();
   ok(bt.querySelectorAll('.tr-chk').length === t.checklist.length, 'tab Scadenze: tutte le voci');
   ok(bt.querySelectorAll('.tr-chk--done').length === t.checklist.filter((c) => c.status === 'done').length, 'scadenze: badge fatto');
-  ok(bt.querySelectorAll('.section-title').length >= 4, 'scadenze: raggruppate per mese');
+  ok(bt.querySelectorAll('.section-title').length >= 2, 'scadenze da fare raggruppate per mese');
+  ok(!!bt.querySelector('details.tr-done') && bt.querySelectorAll('details.tr-done .tr-chk').length === t.checklist.filter((c) => c.status === 'done').length, 'scadenze fatte ripiegate in "Già fatte"');
   // telefoni: ammessi solo quelli pubblici dei ristoranti nella checklist (scelta exporter); niente IBAN/carte
   ok(!/\bIT\d{2}[A-Z]\d{10}|\b\d{4}[ -]\d{4}[ -]\d{4}[ -]\d{4}\b/.test(JSON.stringify(t)), 'transport.json senza IBAN/numeri di carta');
 
@@ -108,8 +118,11 @@
   const at = [...ba.querySelectorAll('[role=tab]')];
   ok(at.length === 3, 'logistica: 3 sotto-schede');
   const lg = (await app.loadData('lodging')).logistics;
-  ok(ba.querySelectorAll('.al-steps > .al-step').length === lg.luggage.steps.length, `bagagli: ${lg.luggage.steps.length} passi A2`);
-  at[1].click(); ok(ba.querySelectorAll('.al-step').length === lg.day1.length, `giorno 1: ${lg.day1.length} passi`);
+  ok(ba.querySelectorAll('.al-steps > li').length === lg.luggage.steps.length, `bagagli: ${lg.luggage.steps.length} passi numerati`);
+  ok(!/Da chiudere/.test(ba.textContent), 'logistica: niente colonna interna "Da chiudere"');
+  at[1].click(); ok(ba.querySelectorAll('.al-steps > li').length === lg.day1.length, `giorno 1: ${lg.day1.length} passi`);
+  ok(!!ba.querySelector('#al-open-h') === (lg.day1.some((p) => p.todo) || lg.luggage.openQuestions.some((q) => q.status !== 'resolved')), 'alloggi: sezione "Da chiarire" in fondo se ci sono punti aperti');
+  ok(stays.every((s) => !/check-(in|out)[^·]*—/.test(s.textContent)), 'alloggi: orari vuoti non mostrati come "—"');
   at[2].click(); ok(ba.textContent.includes('ICOCA'), 'contanti e carte IC');
 
   // --- luoghi ---
@@ -118,8 +131,11 @@
   const bl = box('luoghi'); await lu.render(bl, ctx);
   const P = (await app.loadData('places')).places;
   const def = P.filter((p) => p.flag === 'Sì' || p.flag === 'Forse' || (!p.flag && (p.dayDates || []).length)).length;
-  ok(bl.querySelectorAll('.lu-card').length === def, `luoghi: default Sì+Forse (+ senza flag in agenda) = ${def}`);
-  ok(lu.filterPlaces(P, { ...st0(P), flags: [''] }).length === P.filter((p) => !p.flag).length, 'chip Senza flag: tutti i luoghi senza flag');
+  ok(bl.querySelectorAll('.lu-row').length === def, `luoghi: default Sì+Forse (+ senza flag in agenda) = ${def}`);
+  ok(bl.querySelectorAll('details.lu-group').length === new Set(lu.filterPlaces(P, st0(P)).map((p) => p.city)).size, 'luoghi: un gruppo richiudibile per città');
+  ok([...bl.querySelectorAll('details.lu-group')].every((g) => Number(g.querySelector('summary .badge').textContent) === g.querySelectorAll('.lu-row').length), 'luoghi: conteggio nel titolo del gruppo');
+  ok([...bl.querySelectorAll('.lu-row')].every((r) => r.querySelector('a.btn--icon[aria-label][href*="google.com/maps"]')), 'luoghi: Maps come icona-bottone con aria-label');
+  ok(lu.filterPlaces(P, { ...st0(P), flags: [''] }).length === P.filter((p) => !p.flag).length, 'chip Da decidere: tutti i luoghi senza flag');
   const st = { q: '', cities: [], flags: ['Sì', 'Forse'], sort: 'city', cityOrder: [...new Set(P.map((p) => p.city))] };
   ok(lu.filterPlaces(P, st).length === def, 'filterPlaces: default');
   ok(lu.filterPlaces(P, { ...st, q: 'fushimi inari', flags: ['Sì', 'Forse', 'No', 'Futuro', ''] }).some((p) => p.id === 'fushimi-inari-taisha'), 'ricerca multi-termine');
@@ -131,7 +147,8 @@
   const geo = P.some((p) => p.lat != null);
   ok(!!bl.querySelector('a[href*="maps/dir/?api=1&destination="]') === geo, geo ? 'Indicazioni se ci sono lat/lon' : 'nessuna Indicazioni senza lat/lon (dati reali)');
   const kobe = bl.querySelector('[data-city="Kobe"]'); kobe.click();
-  ok([...bl.querySelectorAll('.lu-card .small.muted')].every((e) => e.textContent.includes('Kobe')), 'chip Kobe filtra la lista');
+  ok([...bl.querySelectorAll('details.lu-group')].map((g) => g.dataset.group).join() === 'Kobe' && bl.querySelector('details.lu-group').open, 'chip Kobe filtra la lista (gruppo aperto)');
+  ok((JSON.parse(localStorage.getItem('giappone.pages.luoghi') || '{}').cities || []).includes('Kobe'), 'luoghi: filtri ricordati in localStorage');
   ok(kobe.getAttribute('aria-pressed') === 'true', 'chip attivo con aria-pressed');
   bl.querySelector('[data-city=""]').click();
   try { localStorage.removeItem('giappone.pages.luoghi'); } catch (e) {}
@@ -146,6 +163,15 @@
   ok(bb.querySelectorAll('.badge--draft').length === b.perPerson.categories.filter((c) => c.estimate).length + b.perPerson.common.filter((c) => c.estimate).length, 'budget: badge stima');
   ok(bb.textContent.includes('€2.765,61') && bb.textContent.includes('€11.062,44'), 'budget: totali persona e gruppo');
   ok(bb.querySelectorAll('.bu-bar__fill').length > 0, 'budget: barre proporzionali');
+  const tf = [...bb.querySelectorAll('.bu-table tfoot td strong')].map((x) => x.textContent);
+  const eurs = (r) => '€' + r.reduce((a, c) => a + c.eur, 0).toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  ok(tf[0] === eurs(b.perPerson.categories), 'budget: totale della tabella = somma delle sue righe');
+  const w = [...bb.querySelectorAll('.bu-bar__fill')].map((x) => parseInt(x.style.getPropertyValue('--w')));
+  ok(Math.max(...w) === 100 && w.filter((x) => x === 100).length === 1, 'budget: una sola scala per tutte le barre');
+
+  // --- testi: niente gergo del dossier né valori rotti nel render ---
+  const all = [bh, bt, ba, bl, bb].map((x) => x.textContent).join(' ');
+  ok(!/📎|🗓|\bdossier\b|CHOICES|\bv2\d\b|undefined|\bnull\b|\[object/.test(all), 'render: niente riferimenti al dossier, "null", "undefined", "[object"');
 
   const sum = document.createElement('p');
   sum.className = fails ? 't-ko' : 't-ok';

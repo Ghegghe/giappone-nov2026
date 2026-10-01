@@ -50,7 +50,7 @@ Correzioni manuali solo in `../site_overrides.json`. Report dei valori non estra
 
 ## Service worker: `CACHE_VERSION`
 In `sw.js` le pagine e gli asset sono **cache-first**: senza bump gli utenti continuano a vedere la versione in cache.
-A ogni deploy che cambia HTML/CSS/JS/icone: incrementare `const CACHE_VERSION` (ora `'v2'` → `'v3'` al prossimo deploy).
+A ogni deploy che cambia HTML/CSS/JS/icone: incrementare `const CACHE_VERSION` (ora `'v3'` → `'v4'` al prossimo deploy).
 Il nuovo SW si installa, si attiva subito (`skipWaiting` + `clients.claim`), cancella le cache vecchie e la pagina
 mostra il toast "Aggiornamento disponibile · ricarica". I JSON in `data/` sono network-first (aggiornati appena c'è rete),
 quindi un cambio solo-dati non richiede il bump. Un nuovo file statico va aggiunto a `PRECACHE` (lista esplicita).
@@ -68,7 +68,7 @@ puntino a file esistenti e che ogni file statico (html/css/js/svg/png/manifest f
 Il repo dev'essere **pubblico** (Pages gratuito). Due opzioni:
 - **Repo dedicato** (consigliato): il contenuto di `site/` va alla radice del repo (`index.html` in root).
   ```sh
-  rsync -a --delete --exclude dev/ --exclude 'NOTES_*.md' --exclude SPEC.md --exclude INTEGRATION_REPORT.md site/ ../giappone-site/
+  rsync -a --delete --exclude dev/ --exclude 'NOTES_*.md' --exclude SPEC.md --exclude INTEGRATION_REPORT.md --exclude REVIEW_FINAL.md site/ ../giappone-site/
   cd ../giappone-site && git add -A && git commit -m "deploy" && git push
   ```
 - **Stesso repo**: copiare `site/` alla radice del branch `main` (Pages non serve sottocartelle arbitrarie: solo `/` o `/docs`).
