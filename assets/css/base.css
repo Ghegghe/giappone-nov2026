@@ -338,7 +338,6 @@ a.sr-only:focus, a.sr-only:focus-visible {   /* link "Vai al contenuto" */
   rotate: var(--seal-rotate, 0deg);
 }
 /* sottotitolo: nascosto nella barra (non c'è spazio accanto alla nav); da ≥1600px riappare troncato */
-.topbar__subtitle { display: none; min-width: 0; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .topbar a:hover { text-decoration: none; }
 
 .theme-switch {   /* = .btn--ghost .btn--icon */
@@ -408,7 +407,6 @@ a.sr-only:focus, a.sr-only:focus-visible {   /* link "Vai al contenuto" */
   .footer__theme label { flex: 0 0 170px; }
 }
 @media (min-width: 1200px) { .topbar__title { max-width: calc(100% - 760px); } }
-@media (min-width: 1600px) { .topbar__subtitle { display: block; max-width: calc(100vw - 1500px); } }
 
 /* ---------- 6. Panel = Sheet shadcn (bottom-sheet con maniglia, side sheet ≥900px) e toast ----------
    <aside class="panel" role="dialog" aria-modal="true"><button class="panel__close">…</button>…</aside>, aperto con .is-open. */

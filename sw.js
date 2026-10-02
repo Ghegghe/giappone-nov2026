@@ -1,5 +1,5 @@
 // sw.js — service worker del sito. Bumpare CACHE_VERSION a ogni deploy che cambia file statici.
-const CACHE_VERSION = 'v3';
+const CACHE_VERSION = 'v4';
 const STATIC_CACHE = `giappone-static-${CACHE_VERSION}`;
 const DATA_CACHE = `giappone-data-${CACHE_VERSION}`;
 

@@ -293,7 +293,6 @@ export async function initShell(activeSectionId = 'home') {
   const title = (trip && trip.title) || 'Viaggio';
   topbar.innerHTML =
     `<a class="topbar__title" href="${esc(keepData(rootUrl('index.html')))}">${esc(title)}</a>` +
-    (trip && trip.subtitle ? `<span class="topbar__subtitle small muted">${esc(trip.subtitle)}</span>` : '') +
     `<button type="button" class="theme-switch"></button>`;
   topbar.querySelector('.theme-switch').addEventListener('click', () => {
     const order = MODES.map((m) => m.id);
