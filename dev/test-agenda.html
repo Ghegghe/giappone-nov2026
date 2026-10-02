@@ -76,7 +76,9 @@ frame.addEventListener('load', () => setTimeout(() => {
   t('item = <button> con aria-label', [kix.tagName, kix.getAttribute('aria-label').startsWith('12:10-13:30, Arrivo KIX')], ['BUTTON', true]);
   const conc = d.getElementById('tl-d14-03'), altri = d.getElementById('tl-d14-04');
   t('concerto e "altri 3" affiancati', [conc.style.getPropertyValue('--i'), altri.style.getPropertyValue('--i'), altri.style.getPropertyValue('--n')], ['0', '1', '2']);
-  t('lucchetto sul concerto (fixed)', !!conc.querySelector('use[href$="#i-lock"]'), true);
+  t('concerto (fixed): blocco marcato, lucchetto solo nel dettaglio', [conc.classList.contains('tl-item--locked'), !!conc.querySelector('use[href$="#i-lock"]')], [true, false]);
+  t('legenda: 4 famiglie di colore', d.querySelectorAll('#agenda-legend-list [class*="tl-fam--"]').length, 4);
+  t('buchi senza tratteggio', getComputedStyle(d.querySelector('.tl-gap')).backgroundImage, 'none');
   t('opzionale ha classe', d.getElementById('tl-d07-08').classList.contains('tl-item--optional'), true);
   t('.tl-now solo nel 14 nov', [...d.querySelectorAll('.tl-now')].map((x) => x.closest('.tl-day').dataset.date), ['2026-11-14']);
   const gaps8 = [...d.querySelectorAll('#day-2026-11-08 .tl-gap')].map((x) => x.textContent);

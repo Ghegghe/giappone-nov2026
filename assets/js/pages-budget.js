@@ -12,7 +12,7 @@ const eur2 = (n) => {
   const body = i.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + (d === '00' ? '' : ',' + d); // it-IT raggruppa anche 4 cifre
   return (v < 0 ? '-' : '') + '€' + body;
 };
-const estBadge = (x) => (x.estimate ? html` <span class="badge badge--draft">stima</span>` : '');
+const estBadge = (x) => (x.estimate ? html` <span class="bu-est">stima</span>` : '');
 const sum = (rows) => Math.round(rows.reduce((s, r) => s + (Number(r.eur) || 0), 0) * 100) / 100;
 
 function table(rows, rate, max, { caption, totalLabel }) {
@@ -52,29 +52,28 @@ export async function render(root, { trip, loadData }) {
   const ps = b.paidSoFar || {};
   mount(root, html`
     <h1 class="h1">Budget</h1>
-    <section class="grid-2 bu-kpi">
-      <div class="card card--accent stack">
-        <p class="small muted">Totale a persona</p>
+    <section class="bu-kpi">
+      <div class="stack bu-kpi__main">
+        <p class="muted">A persona</p>
         <p class="h1 mono bu-kpi__n">${eur2(totPax)}</p>
-        ${rate ? html`<p class="mono muted">${fmtJpy(totPax, rate)}</p>` : ''}
-        ${estPax ? html`<p class="small muted">di cui stime: <span class="mono">${eur2(estPax)}</span></p>` : ''}
+        <p class="small muted">${rate ? html`<span class="mono">${fmtJpy(totPax, rate)}</span>. ` : ''}${estPax ? html`Di cui stime: <span class="mono">${eur2(estPax)}</span>.` : ''}</p>
       </div>
-      <div class="card stack">
-        <p class="small muted">Totale gruppo${people ? ` (${people} persone)` : ''}</p>
+      <div class="stack">
+        <p class="muted">Gruppo${people ? `, ${people} persone` : ''}</p>
         <p class="h1 mono bu-kpi__n">${eur2(totGroup)}</p>
-        ${ps.lodgingEurGroup != null ? html`<p class="small muted">Alloggi prenotati: <span class="mono">${eur2(ps.lodgingEurGroup)}</span>${ps.lodgingEurGroupToPay ? html`, ancora da pagare <span class="mono">${eur2(ps.lodgingEurGroupToPay)}</span>` : ''}</p>` : ''}
+        ${ps.lodgingEurGroup != null ? html`<p class="small muted">Alloggi prenotati: <span class="mono">${eur2(ps.lodgingEurGroup)}</span>${ps.lodgingEurGroupToPay ? html`, ancora da pagare <span class="mono">${eur2(ps.lodgingEurGroupToPay)}</span>` : ''}.</p>` : ''}
       </div>
     </section>
     <section class="stack">
-      <h2 class="section-title">In viaggio · a persona</h2>
+      <h2 class="section-title">In viaggio, a persona</h2>
       ${table(cats, rate, max, { caption: 'Spese in viaggio per categoria, a persona', totalLabel: 'Totale in viaggio' })}
     </section>
     ${common.length ? html`<section class="stack">
-      <h2 class="section-title">Spese una tantum · a persona</h2>
+      <h2 class="section-title">Spese una tantum, a persona</h2>
       ${table(common, rate, max, { caption: 'Spese una tantum a persona', totalLabel: 'Totale una tantum' })}
     </section>` : ''}
-    <section class="card stack small">
-      <p class="muted">Le barre usano la stessa scala in entrambe le tabelle.${rate ? html` Cambio usato: <span class="mono">€1 = ¥${rate}</span>${trip.fx.source ? ` (${trip.fx.source}${trip.fx.asOf ? ` ${fmtDate(trip.fx.asOf, { weekday: false, year: true })}` : ''})` : ''}; gli importi in ¥ sono indicativi.` : ''}</p>
+    <section class="stack small muted bu-foot">
+      <p>Le barre usano la stessa scala nelle due tabelle.${rate ? html` Cambio usato: <span class="mono">€1 = ¥${rate}</span>${trip.fx.source ? `, ${trip.fx.source}${trip.fx.asOf ? ` del ${fmtDate(trip.fx.asOf, { weekday: false, year: true })}` : ''}` : ''}. Gli importi in ¥ sono indicativi.` : ''}</p>
       ${(b.notes || []).length ? html`<ul class="al-notes muted">${b.notes.map((n) => html`<li>${n}</li>`)}</ul>` : ''}
     </section>`);
 }

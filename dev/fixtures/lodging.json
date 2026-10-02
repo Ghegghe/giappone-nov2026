@@ -18,9 +18,8 @@
       "costEurPerPerson": 79.5,
       "paid": true,
       "notes": [
-        "Namba a 8' di metro",
-        "Apartment (cucina)",
-        "Unità privata"
+        "Appartamento con cucina, tutto per voi.",
+        "Namba è a 8 minuti di metro."
       ]
     },
     {
@@ -41,9 +40,8 @@
       "costEurPerPerson": 20.7,
       "paid": false,
       "notes": [
-        "Sanmachi a ~10' a piedi",
-        "Business 3*",
-        "Camere private con bagno"
+        "Business hotel a 3 stelle, camere private con bagno.",
+        "Sanmachi è a circa 10 minuti a piedi."
       ],
       "payment": "da confermare"
     },
@@ -65,7 +63,7 @@
       "costEurPerPerson": 62.0,
       "paid": true,
       "notes": [
-        "Camera quadrupla privata economy, bagno in comune (confermato 12 lug)"
+        "Camera quadrupla privata economy, con bagno in comune. Confermata il 12 luglio."
       ]
     },
     {
@@ -86,8 +84,8 @@
       "costEurPerPerson": 148.65,
       "paid": false,
       "notes": [
-        "¥27.500/pax",
-        "Kaiseki incluso"
+        "Cena kaiseki inclusa.",
+        "Costa ¥27.500 a testa."
       ],
       "payment": "in struttura",
       "costJpyTotal": 110000
@@ -110,14 +108,13 @@
       "costEurPerPerson": 172.4,
       "paid": false,
       "notes": [
-        "Camera standard 10 tatami con bagno onsen privato",
-        "Cena kaiseki in sala (menu mensile) + colazione jūbako: l'orario della cena (18:00 o 18:30) si sceglie al check-in",
-        "Arrivare entro le 19, altrimenti niente cena",
-        "Cancellazione gratuita fino all'8 nov",
-        "Tassa onsen ¥150/pax in loco",
-        "Bagni comuni: Tenpyō Daiyokudō 1934 in hinoki + rotenburo Komorebi-no-yu e Sekka (tatuaggi vietati)",
-        "Con tatuaggi: kashikiri Hisui (gratis, senza prenotazione), Suiren (¥1.100/45', prenotare subito al check-in) o bagno in camera",
-        "Orari di rotazione dei bagni: chiedere al check-in"
+        "Camera standard di 10 tatami con bagno onsen privato.",
+        "Cena kaiseki in sala, con il menu del mese, e colazione jūbako. L'orario della cena, 18:00 o 18:30, si sceglie al check-in.",
+        "Arrivate entro le 19, altrimenti salta la cena.",
+        "Cancellazione gratuita fino all'8 novembre. La tassa onsen, ¥150 a testa, si paga lì.",
+        "Bagni comuni: il Tenpyō Daiyokudō del 1934 in hinoki e i rotenburo Komorebi-no-yu e Sekka. Con i tatuaggi non si entra.",
+        "Con i tatuaggi: il bagno privato Hisui, gratis e senza prenotazione; il Suiren, ¥1.100 per 45 minuti, da prenotare appena arrivati; oppure il bagno in camera.",
+        "Gli orari di rotazione dei bagni si chiedono al check-in."
       ],
       "payment": "da confermare"
     },
@@ -139,51 +136,54 @@
       "costEurPerPerson": 242.1,
       "paid": true,
       "notes": [
-        "2 letti matrimoniali (si dorme in coppia)",
-        "Shinjuku ~20' a piedi",
-        "Apt 25m²",
-        "Unità privata",
-        "Legno 1983 rumoroso (tappi forniti), no ascensore"
+        "Appartamento di 25 m² tutto per voi, con 2 letti matrimoniali: si dorme in coppia.",
+        "Shinjuku è a circa 20 minuti a piedi.",
+        "Casa in legno del 1983, rumorosa: i tappi per le orecchie ci sono. Niente ascensore."
       ]
     }
   ],
   "logistics": {
     "luggage": {
-      "choice": "Osaka → ufficio Yamato Yoyogi (営業所受け取りサービス)",
+      "choice": "Da Osaka all'ufficio Yamato di Yoyogi",
       "steps": [
         {
           "phase": "Spedizione",
-          "what": "Osaka → ufficio Yamato Yoyogi · 4 valigie (1/pax) taglia 160 · ¥2.630 cad. (≈€14)",
+          "what": "Spedite le 4 valigie all'ufficio Yamato di Yoyogi",
           "when": "mer 11 nov, ore 8:00",
-          "notes": "Dall'ufficio Yamato Osaka-Nakazaki (5' dal BON, che non ha reception). Non dal konbini: il ritiro in ufficio non è disponibile per spedizioni da konbini. La valigia è già l'imballo. Data desiderata 16 nov (max 7 gg dopo)"
+          "notes": "Una valigia a testa, taglia 160, ¥2.630 l'una: circa €14. Si spedisce dall'ufficio Yamato Osaka-Nakazaki, a 5 minuti dal BON, che non ha reception. Non dal konbini: da lì il ritiro in ufficio non si può scegliere. La valigia fa da imballo. Data di consegna da chiedere: 16 novembre, al massimo 7 giorni dopo. Il servizio si chiama 営業所受け取りサービス.",
+          "id": "bag-1"
         },
         {
           "phase": "In transito",
-          "what": "Si viaggia con solo bagaglio a mano",
+          "what": "Viaggiate con il solo bagaglio a mano",
           "when": "11 → 17 nov",
-          "notes": "6 giorni leggeri (Takayama → Shirakawa → Nagoya → Numazu/Uchiura → Shuzenji): niente valigie sui bus locali né posti oversize Shinkansen"
+          "notes": "Sei giorni leggeri: Takayama, Shirakawa, Nagoya, Numazu e Uchiura, Shuzenji. Niente valigie sui bus locali e niente posti oversize sugli Shinkansen.",
+          "id": "bag-2"
         },
         {
           "phase": "Ritiro",
-          "what": "Ufficio Yamato 渋谷代々木2丁目営業所 (Yoyogi 2-23-1-127)",
+          "what": "Ritirate le valigie all'ufficio Yamato 渋谷代々木2丁目営業所, Yoyogi 2-23-1-127",
           "when": "mar 17 nov, dopo le 12",
-          "notes": "Feriali 12-20 (il 17 è martedì) · passaporto · conservazione 7 gg dall'arrivo · ~10' a piedi da Yume-no-ya"
+          "notes": "È aperto nei feriali dalle 12 alle 20, e il 17 è martedì. Serve il passaporto. Le valigie restano lì fino a 7 giorni dall'arrivo. Dista circa 10 minuti a piedi da Yume-no-ya.",
+          "id": "bag-3"
         },
         {
           "phase": "Ritorno",
-          "what": "8 valigie (2/pax) → NRT",
+          "what": "Portate le 8 valigie a Narita, 2 a testa",
           "when": "mar 24 nov",
-          "notes": "Limousine Bus (stiva) già scelto · alternativa Airport TA-Q-BIN ≈¥3.170/valigia da spedire entro il 22"
+          "notes": "Vanno nella stiva del Limousine Bus, già scelto. In alternativa c'è Airport TA-Q-BIN, circa ¥3.170 a valigia, da spedire entro il 22.",
+          "id": "bag-4"
         }
       ],
       "options": [
         {
           "name": "Osaka → appartamento Yoyogi",
-          "how": "Spedizione dal konbini vicino BON l'11 mattina, data di consegna 17 nov fascia 14-16. Uno resta in casa a ricevere (o l'host conferma che ritira lui).",
+          "how": "Spedizione dal konbini vicino al BON la mattina dell'11, consegna il 17 novembre tra le 14 e le 16. Uno resta in casa a ricevere, oppure l'host conferma che ritira lui.",
           "eurGroup": 57,
-          "pro": "Zero fatica, valigie in casa al check-in",
-          "con": "Serve qualcuno in casa nella fascia oraria (Shibuya slitta di ~1h) o l'ok scritto dell'host",
-          "chosen": false
+          "pro": "Zero fatica: le valigie sono in casa al check-in.",
+          "con": "Serve qualcuno in casa nella fascia oraria, e Shibuya slitta di circa un'ora. Oppure l'ok scritto dell'host.",
+          "chosen": false,
+          "id": "opt-1"
         },
         {
           "name": "Osaka → ufficio Yamato Yoyogi (営業所受け取りサービス)",
@@ -191,98 +191,110 @@
           "eurGroup": 57,
           "pro": "Nessuno deve aspettare in casa; indipendente dall'host; conservazione 7 gg dall'arrivo",
           "con": "Il servizio non si può usare spedendo da konbini: bisogna andare all'ufficio Yamato (o chiamare il ritiro, tel. inglese 0120-67-9625) · ultimo tratto a piedi con 4 valigie",
-          "chosen": true
+          "chosen": true,
+          "id": "opt-2"
         },
         {
           "name": "Osaka → Arai Ryokan (Shuzenji)",
-          "how": "Spedizione l'11, consegna al ryokan il 16 (i ryokan accettano e custodiscono). Il 17 le valigie salgono con noi Sunzu → Mishima → Kodama (posti oversize se ≥160 cm) → Yoyogi.",
+          "how": "Spedizione l'11 e consegna al ryokan il 16: i ryokan accettano e custodiscono. Il 17 le valigie viaggiano con voi da Sunzu a Mishima, poi in Kodama fino a Yoyogi, con i posti oversize se superano i 160 cm.",
           "eurGroup": 54,
-          "pro": "Nessun problema di ricezione a Tokyo; costa meno",
-          "con": "Il 17 si viaggia con le valigie (Tokyo Station all'ora di pranzo); prenotazione posti oversize",
-          "chosen": false
+          "pro": "Nessun problema di ricezione a Tokyo, e costa meno.",
+          "con": "Il 17 si viaggia con le valigie, a Tokyo Station all'ora di pranzo, e vanno prenotati i posti oversize.",
+          "chosen": false,
+          "id": "opt-3"
         },
         {
           "name": "Portare fino a Nagoya",
-          "how": "Valigie a mano Osaka → Takayama → Shirakawa → Nagoya (Hida ok, locker Shirakawa ¥1.000, bus Gifu bagagli limitati); dal Glocal (ha reception) Yamato → Tokyo 17.",
+          "how": "Valigie a mano da Osaka a Takayama, Shirakawa e Nagoya. Sull'Hida nessun problema, a Shirakawa ci sono i locker a ¥1.000, sul bus Gifu i bagagli sono limitati. Dal Glocal, che ha la reception, Yamato fino a Tokyo per il 17.",
           "eurGroup": 54,
-          "pro": "Valigie disponibili a Osaka e Nagoya (shopping)",
-          "con": "Il 12 nov si viaggia carichi: la giornata più faticosa del viaggio",
-          "chosen": false
+          "pro": "Valigie a disposizione a Osaka e Nagoya, per lo shopping.",
+          "con": "Il 12 novembre si viaggia carichi: la giornata più faticosa del viaggio.",
+          "chosen": false,
+          "id": "opt-4"
         },
         {
           "name": "Tutto a mano",
           "how": "Nessuna spedizione.",
           "eurGroup": 0,
-          "pro": "Gratis",
-          "con": "Oversize su 3 Shinkansen, valigie sui bus locali Uchiura senza stiva, Shirakawa coi locker",
-          "chosen": false
+          "pro": "Gratis.",
+          "con": "Posti oversize su 3 Shinkansen, valigie sui bus locali di Uchiura senza stiva, locker a Shirakawa.",
+          "chosen": false,
+          "id": "opt-5"
         },
         {
           "name": "Konbini come destinazione",
-          "how": "Ritiro in konbini: solo pacchi ≤100 cm e ≤10 kg e serve l'account Kuroneko Members → non possibile per valigie.",
+          "how": "Il ritiro in konbini accetta solo pacchi fino a 100 cm e 10 kg, e serve l'account Kuroneko Members: con le valigie non si può.",
           "eurGroup": null,
           "pro": "",
-          "con": "Escluso",
-          "chosen": false
+          "con": "Escluso.",
+          "chosen": false,
+          "id": "opt-6"
         }
       ],
-      "rules": "Shinkansen Tokaido → valigie 160-250 cm (somma 3 lati) richiedono il posto 'oversize' prenotato (gratis su smartEX, ¥1.000 di penale senza); <160 in cappelliera. Yamato: consegna il giorno dopo, data designabile ≤7 gg dopo la spedizione, taglia 160 = max 25 kg (sopra → taglia 180, +~¥300). Hida: nessuna regola oversize, vani a fine carrozza.",
+      "rules": "Sugli Shinkansen Tokaido le valigie da 160 a 250 cm, sommando i tre lati, vogliono il posto «oversize» prenotato: gratis su smartEX, ¥1.000 di penale senza. Sotto i 160 cm vanno in cappelliera. Yamato consegna il giorno dopo, e la data si può fissare fino a 7 giorni dopo la spedizione. La taglia 160 arriva a 25 kg; oltre si passa alla 180, circa ¥300 in più. Sul treno Hida non ci sono regole oversize: le valigie vanno nei vani a fine carrozza.",
       "openQuestions": [
         {
           "n": 1,
-          "question": "Misure massime delle 4 valigie dell'andata (da comprare)",
+          "question": "Quanto possono essere grandi le 4 valigie dell'andata, ancora da comprare?",
           "who": "",
-          "why": "Devono stare nella taglia Yamato 160",
-          "answer": "Limite: lunghezza+larghezza+altezza ≤ 160 cm e ≤ 25 kg piene (es. 70×48×30 = 148 ok; 77×52×30 = 159 al limite). Sopra 160 → taglia 180 (+~¥300), sopra 250 non spedibile. Per la 2ª valigia comprata a Tokyo conta solo il Limousine Bus: ≤120×60×50, ≤30 kg.",
-          "status": "resolved"
+          "why": "Devono stare nella taglia Yamato 160.",
+          "answer": "Lunghezza più larghezza più altezza fino a 160 cm, e al massimo 25 kg piene. Per esempio 70×48×30 fa 148 e va bene; 77×52×30 fa 159, al limite. Sopra 160 si passa alla taglia 180, circa ¥300 in più; sopra 250 non si spedisce. Per la seconda valigia, comprata a Tokyo, conta solo il Limousine Bus: fino a 120×60×50 cm e 30 kg.",
+          "status": "resolved",
+          "id": "q1"
         },
         {
           "n": 2,
-          "question": "Host Yume-no-ya: accetta consegna Yamato?",
+          "question": "L'host di Yume-no-ya accetta una consegna Yamato?",
           "who": "",
-          "why": "Serviva solo per la consegna all'appartamento (scartata)",
+          "why": "Serviva solo per la consegna all'appartamento, poi scartata.",
           "answer": "Non serve: si ritira direttamente all'ufficio Yamato.",
-          "status": "resolved"
+          "status": "resolved",
+          "id": "q2"
         },
         {
           "n": 3,
           "question": "Quale ufficio Yamato usare come destinazione a Yoyogi?",
           "who": "kuronekoyamato.co.jp (ricerca uffici) / Maps",
           "why": "Serve per compilare la bolla di spedizione",
-          "answer": "渋谷代々木2丁目営業所 · Yoyogi 2-23-1-127 · feriali 12-20 (chiuso sab/dom/festivi; il 17 nov è martedì) · 7' da stazione Yoyogi · cod. 132810 (far confermare al banco). Alternativa aperta 7 lug 9-19: 渋谷代々木5丁目営業所 Yoyogi 5-59-5 (più lontano). Da fare: misurare su Maps la distanza da Yume-no-ya.",
-          "status": "resolved"
+          "answer": "渋谷代々木2丁目営業所 · Yoyogi 2-23-1-127 · feriali 12-20 (chiuso sab/dom/festivi; il 17 nov è martedì) · 7' da stazione Yoyogi · cod. 132810 (far confermare al banco). Alternativa aperta tutti i giorni 9-19: 渋谷代々木5丁目営業所 Yoyogi 5-59-5 (più lontano). Da fare: misurare su Maps la distanza da Yume-no-ya.",
+          "status": "resolved",
+          "id": "q3"
         },
         {
           "n": 4,
           "question": "Da dove si spedisce a Osaka, visto che il BON non ha reception?",
           "who": "Yamato FAQ a_id 1420",
-          "why": "Il ritiro in ufficio non è disponibile se si spedisce da konbini/PUDO",
-          "answer": "Ufficio Yamato 大阪中崎営業所 (Osaka-Nakazaki), 〒530-0028 Kita-ku Banzai-cho 5-9 · feriali 8:00-20:00 (chiuso sab/dom) · 4' da Nakazaki-cho, ~5' dal BON. L'11 nov è mercoledì → apre alle 8. Alternativa: ritiro a domicilio chiamando il numero inglese 0120-67-9625 (8-21), ma serve aspettare il corriere al BON.",
-          "status": "resolved"
+          "why": "Il ritiro in ufficio non si può scegliere se si spedisce da un konbini o da un PUDO.",
+          "answer": "Dall'ufficio Yamato 大阪中崎営業所, Osaka-Nakazaki: 〒530-0028 Kita-ku Banzai-cho 5-9. È aperto nei feriali dalle 8:00 alle 20:00, chiuso sabato e domenica, a 4 minuti da Nakazaki-cho e a circa 5 dal BON. L'11 novembre è mercoledì, quindi apre alle 8. In alternativa si chiama il ritiro a domicilio al numero inglese 0120-67-9625, dalle 8 alle 21, ma bisogna aspettare il corriere al BON.",
+          "status": "resolved",
+          "id": "q4"
         },
         {
           "n": 5,
-          "question": "Arai Ryokan riceve valigie in anticipo?",
+          "question": "L'Arai Ryokan riceve valigie in anticipo?",
           "who": "",
-          "why": "Serviva solo per la spedizione al ryokan (scartata)",
-          "answer": "Non serve: spedizione al ryokan scartata.",
-          "status": "resolved"
+          "why": "Serviva solo per la spedizione al ryokan, poi scartata.",
+          "answer": "Non serve: la spedizione al ryokan è stata scartata.",
+          "status": "resolved",
+          "id": "q5"
         },
         {
           "n": 6,
-          "question": "Ritorno con 8 valigie: basta il Limousine Bus?",
+          "question": "Al ritorno, con 8 valigie, basta il Limousine Bus?",
           "who": "limousinebus.co.jp",
-          "why": "Chiude la logistica del 24 nov",
-          "answer": "Sì: Airport Limousine ammette 2 valigie a passeggero, ciascuna ≤ 30 kg e ≤ 120×60×50 cm → 8 valigie per 4 pax ok, nessuna spedizione.",
-          "status": "resolved"
+          "why": "Chiude la logistica del 24 novembre.",
+          "answer": "Sì. Airport Limousine ammette 2 valigie a passeggero, ognuna fino a 30 kg e 120×60×50 cm: 8 valigie per 4 persone vanno bene, senza spedizioni.",
+          "status": "resolved",
+          "id": "q6"
         },
         {
           "n": 7,
-          "question": "Bus 12 nov: giovedì = tariffa C o D su highwaybus.com? (calendario Gifu Bus)",
-          "who": "gifubus.co.jp calendario PDF",
-          "why": "Solo per il costo esatto (¥3.600 vs ¥3.800)",
+          "question": "Bus del 12 novembre: il giovedì vale la tariffa C o la D su highwaybus.com?",
+          "who": "calendario PDF su gifubus.co.jp",
+          "why": "Serve solo per il costo esatto: ¥3.600 o ¥3.800.",
           "answer": "",
-          "status": "open"
+          "status": "open",
+          "id": "q7"
         }
       ]
     },
@@ -291,54 +303,61 @@
         "step": 0,
         "title": "Prima di partire",
         "where": "vjw-lp.digital.go.jp",
-        "details": "Visit Japan Web per i 4 pax · Registrazione fino a 2 settimane prima, QR pronto almeno 6 h prima dell'atterraggio. A KIX chioschi integrati immigrazione+dogana con un solo QR.",
+        "details": "Compilate Visit Japan Web per tutti e 4. Ci si registra fino a 2 settimane prima, e il QR dev'essere pronto almeno 6 ore prima dell'atterraggio. A KIX i chioschi fanno immigrazione e dogana con un solo QR.",
         "cost": "",
-        "todo": "Classe tariffaria China Eastern: verificare che includa 2 bagagli (Europa–Giappone economy = 2×23 kg, ≤158 cm/pezzo; la 'Basic' no)"
+        "id": "g1-0",
+        "todo": "Controllate che la classe tariffaria China Eastern includa 2 bagagli. In economy fra Europa e Giappone sono 2 da 23 kg, fino a 158 cm l'uno; la tariffa «Basic» no."
       },
       {
         "step": 1,
-        "title": "Atterraggio, immigrazione, ritiro valigia (1 a testa)",
+        "title": "Atterraggio, immigrazione e ritiro valigie",
         "where": "KIX Terminal 1",
-        "details": "Stima 45-75' dall'aereo alla sala arrivi (piano 1).",
+        "details": "Una valigia a testa. Dall'aereo alla sala arrivi, al piano 1, ci vogliono 45-75 minuti.",
         "cost": "",
-        "todo": "Controllare l'orario di atterraggio sul biglietto (previsto 12:10)"
+        "id": "g1-1",
+        "todo": "Controllate sul biglietto l'orario di atterraggio, previsto alle 12:10."
       },
       {
         "step": 2,
         "title": "Contanti",
-        "where": "Sala arrivi 1F: 2 bancomat Seven Bank dietro il caffè Doutor, sulla sinistra",
-        "details": "24 h, carte estere ok, max ¥30.000 per prelievo qui (¥100.000 negli altri Seven Bank). Commissione fissa ¥110/¥220. Prelevare con Trade Republic/Revolut, non con la carta della banca (ricarico cambio 1,5-2%).",
-        "cost": "~€1,2/prelievo",
-        "remember": "Yasudaya vuole solo contanti → ¥110.000 (¥27.500/pax) da prelevare prima del 15 nov (Seven Bank a Nagoya 13-14 nov, max ¥100.000/prelievo con TR)"
+        "where": "Sala arrivi, piano 1: due bancomat Seven Bank dietro il caffè Doutor, a sinistra.",
+        "details": "Sono aperti 24 ore e accettano carte estere. Qui si prelevano al massimo ¥30.000 alla volta, ¥100.000 negli altri Seven Bank. La commissione è fissa, ¥110 o ¥220. Prelevate con Trade Republic o Revolut, non con la carta della banca, che ricarica il cambio dell'1,5-2%.",
+        "cost": "circa €1,2 a prelievo",
+        "id": "g1-2",
+        "remember": "Lo Yasudaya vuole solo contanti: ¥110.000, cioè ¥27.500 a testa, da prelevare prima del 15 novembre. Ai Seven Bank di Nagoya, il 13 o il 14, con Trade Republic si prelevano fino a ¥100.000 alla volta."
       },
       {
         "step": 3,
         "title": "Carta IC",
-        "where": "Biglietteria/macchinette JR, stazione Kansai-Airport, piano 2 oltre la passerella",
-        "details": "ICOCA (a Osaka la Suica non si vende; è identica in tutto il Giappone, Tokyo compresa) · ¥2.000 = ¥500 deposito + ¥1.500 credito · ricarica solo in contanti (macchinette/konbini) · tetto ¥20.000 · non rimborsabile a Tokyo (solo JR West): a fine viaggio si spende il residuo, si perdono i ¥500 di deposito. Alternativa iPhone: Suica in Apple Wallet, senza deposito né scadenza, ricarica con Mastercard/Amex (le Visa straniere vengono rifiutate).",
+        "where": "Biglietteria e macchinette JR della stazione Kansai-Airport, al piano 2, oltre la passerella.",
+        "details": "Si compra la ICOCA: a Osaka la Suica non si vende, e la ICOCA funziona uguale in tutto il Giappone, Tokyo compresa. Costa ¥2.000: ¥500 di deposito e ¥1.500 di credito. Si ricarica solo in contanti, alle macchinette o nei konbini, fino a ¥20.000. A Tokyo non si rimborsa, solo con JR West: a fine viaggio spendete il residuo, e i ¥500 di deposito si perdono. Con l'iPhone c'è la Suica in Apple Wallet: niente deposito né scadenza, si ricarica con Mastercard o Amex, perché le Visa straniere vengono rifiutate.",
         "cost": "¥2.000",
-        "remember": "Chi vuole fa la ICOCA fisica a KIX, gli altri pagano in contanti i mezzi locali (biglietto singolo alle macchinette)"
+        "id": "g1-3",
+        "remember": "Chi vuole fa la ICOCA fisica a KIX. Gli altri pagano i mezzi locali in contanti, con il biglietto singolo alle macchinette."
       },
       {
         "step": 4,
-        "title": "Bus KATE → Yodobashi Umeda Tower (UM9)",
-        "where": "T1 piano 1, fermata N.5. Biglietto prima di salire: banco KATE 7-21 (cash/carta/ICOCA) o macchinetta",
-        "details": "Ogni 10' (13:00, 13:10, 13:20…), ~60'. Valigie in stiva: lo staff etichetta e dà lo scontrino di ritiro. Di pomeriggio il bus non ferma a Hankyu Sanban-gai: scendere alla 1ª fermata di Umeda = UM9 'Hotel Hankyu Respire Osaka / Yodobashi Umeda Tower' (poi farebbe UM2 Herbis).",
-        "cost": "¥1.800"
+        "title": "Bus KATE fino a Yodobashi Umeda Tower, UM9",
+        "where": "Terminal 1, piano 1, fermata 5. Il biglietto si compra prima di salire: al banco KATE dalle 7 alle 21, in contanti, con carta o ICOCA, oppure alla macchinetta.",
+        "details": "Passa ogni 10 minuti, alle 13:00, 13:10, 13:20, e ci mette circa un'ora. Le valigie vanno in stiva: lo staff le etichetta e vi dà lo scontrino per il ritiro. Di pomeriggio il bus non ferma a Hankyu Sanban-gai: scendete alla prima fermata di Umeda, UM9 «Hotel Hankyu Respire Osaka / Yodobashi Umeda Tower». La successiva sarebbe UM2 Herbis.",
+        "cost": "¥1.800",
+        "id": "g1-4"
       },
       {
         "step": 5,
         "title": "Dalla fermata al BON",
-        "where": "UM9 Yodobashi Umeda Tower → Nakazakinishi 3-1-4",
-        "details": "~13' a piedi, 900 m (Google Maps), verso nord-est lungo il lato nord di Osaka Station.",
-        "cost": ""
+        "where": "Da UM9 Yodobashi Umeda Tower a Nakazakinishi 3-1-4.",
+        "details": "Circa 13 minuti a piedi, 900 m, verso nord-est lungo il lato nord di Osaka Station.",
+        "cost": "",
+        "id": "g1-5"
       },
       {
         "step": 6,
         "title": "BON Condominium Umeda",
         "where": "Nakazakinishi 3-1-4",
-        "details": "Nessuna reception. Check-in dalle 16:00 con codice ricevuto via mail (tablet all'ingresso, chiave digitale). Prima delle 16: valigie nella stanza deposito self-service con lucchetti, giro a Nakazakichō.",
-        "cost": ""
+        "details": "Non c'è reception. Il check-in apre alle 16:00 con il codice ricevuto via mail: tablet all'ingresso e chiave digitale. Prima delle 16 lasciate le valigie nel deposito self-service con lucchetto e fate un giro a Nakazakichō.",
+        "cost": "",
+        "id": "g1-6"
       }
     ],
     "cash": {
@@ -348,12 +367,12 @@
         "where": "Sala arrivi 1F: 2 bancomat Seven Bank dietro il caffè Doutor, sulla sinistra",
         "details": "24 h, carte estere ok, max ¥30.000 per prelievo qui (¥100.000 negli altri Seven Bank). Commissione fissa ¥110/¥220. Prelevare con Trade Republic/Revolut, non con la carta della banca (ricarico cambio 1,5-2%).",
         "cost": "~€1,2/prelievo",
+        "id": "g1-2",
         "remember": "Yasudaya vuole solo contanti → ¥110.000 (¥27.500/pax) da prelevare prima del 15 nov (Seven Bank a Nagoya 13-14 nov, max ¥100.000/prelievo con TR)"
       },
-      "rule": "Pagare in yen con Revolut o Trade Republic (nessun ricarico sul cambio); per i siti JR solo carta fisica con numero stampato.",
+      "rule": "Pagate in yen con Revolut o Trade Republic, che non ricaricano il cambio. Sui siti JR serve una carta fisica con il numero stampato.",
       "reminders": [
-        "Yasudaya: paga solo contanti → ¥110.000 da prelevare a Nagoya il 13-14 nov",
-        "Contanti: ¥110.000 per Yasudaya + spese Uchiura/Shuzenji → Seven Bank con TR (max ¥100.000/prelievo)"
+        "Lo Yasudaya si paga solo in contanti: ¥110.000. Servono contanti anche per le spese di Uchiura e Shuzenji. Prelevate ai Seven Bank di Nagoya il 13 o il 14 novembre, con Trade Republic: fino a ¥100.000 alla volta."
       ]
     },
     "icCard": {
@@ -363,9 +382,10 @@
         "where": "Biglietteria/macchinette JR, stazione Kansai-Airport, piano 2 oltre la passerella",
         "details": "ICOCA (a Osaka la Suica non si vende; è identica in tutto il Giappone, Tokyo compresa) · ¥2.000 = ¥500 deposito + ¥1.500 credito · ricarica solo in contanti (macchinette/konbini) · tetto ¥20.000 · non rimborsabile a Tokyo (solo JR West): a fine viaggio si spende il residuo, si perdono i ¥500 di deposito. Alternativa iPhone: Suica in Apple Wallet, senza deposito né scadenza, ricarica con Mastercard/Amex (le Visa straniere vengono rifiutate).",
         "cost": "¥2.000",
+        "id": "g1-3",
         "remember": "Chi vuole fa la ICOCA fisica a KIX, gli altri pagano in contanti i mezzi locali (biglietto singolo alle macchinette)"
       },
-      "rule": "Le carte IC (ICOCA/Suica) non pagano Shinkansen, Hida e bus a prenotazione: solo metro, treni locali, bus urbani e konbini."
+      "rule": "Le carte IC, ICOCA o Suica, non pagano Shinkansen, Hida e bus a prenotazione. Servono per metro, treni locali, bus urbani e konbini."
     }
   }
 }

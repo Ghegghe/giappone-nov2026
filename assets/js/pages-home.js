@@ -1,6 +1,7 @@
-// pages-home.js — index.html: countdown, oggi/prossimo giorno, scadenze, sezioni, mappa, cambio.
-import { fmtDate, fmtEur, fmtJpy, fmtTime, todayInTokyo } from './app.js';
-import { html, mount, icon, pageUrl, safeUrl, daysBetween, fxRate, deadlineLabel, deadlineState } from './pages.js';
+// pages-home.js — index.html: una pagina, non una dashboard (DIRECTION 2 ott 2026).
+// Titolo · una riga (date, persone, quanto manca) · "Prossimo giorno" come lista semplice · le 3 scadenze più vicine. Fine.
+import { fmtDate, fmtTime, todayInTokyo } from './app.js';
+import { html, mount, pageUrl, daysBetween, deadlineLabel, deadlineState } from './pages.js';
 
 const nowMinutesTokyo = (tz) => {
   try {
@@ -19,110 +20,64 @@ export function tripStatus(trip, today) {
   return { phase: 'during', dayN: daysBetween(trip.start, today) + 1, total };
 }
 
-function countdown(trip, st) {
-  let big, small;
-  if (st.phase === 'before') {
-    big = st.days === 1 ? html`<span class="home-count__n mono">1</span> giorno alla partenza`
-      : html`<span class="home-count__n mono">${st.days}</span> giorni alla partenza`;
-    small = `Si parte ${fmtDate(trip.start)} · ${st.total} giorni`;
-  } else if (st.phase === 'during') {
-    big = html`Giorno <span class="home-count__n mono">${st.dayN}</span> di ${st.total}`;
-    small = `Ritorno ${fmtDate(trip.end)}`;
-  } else {
-    big = html`Viaggio concluso`;
-    small = `${fmtDate(trip.start)} – ${fmtDate(trip.end)}`;
-  }
-  return html`<section class="card card--accent home-count" aria-live="polite">
-    <h1 class="h1">${trip.title}</h1>
-    ${trip.subtitle ? html`<p class="muted">${trip.subtitle}</p>` : ''}
-    <p class="h2 home-count__big">${big}</p>
-    <p class="small muted">${small}</p>
-  </section>`;
+/** "sab 7 → mar 24 nov · 4 persone · tra 36 giorni" */
+export function tripLine(trip, st) {
+  const sameMonth = String(trip.start).slice(0, 7) === String(trip.end).slice(0, 7);
+  const from = sameMonth ? fmtDate(trip.start).split(' ').slice(0, 2).join(' ') : fmtDate(trip.start);
+  const when = st.phase === 'before' ? (st.days === 0 ? 'si parte oggi' : st.days === 1 ? 'si parte domani' : `tra ${st.days} giorni`)
+    : st.phase === 'during' ? `giorno ${st.dayN} di ${st.total}` : 'viaggio concluso';
+  return [`${from} → ${fmtDate(trip.end)}`, trip.people ? `${trip.people} persone` : '', when].filter(Boolean).join(' · ');
 }
 
-function dayCard(agenda, trip, st, today) {
+/** Giorno da mostrare: prima del viaggio il primo, durante oggi (dalle attività non ancora finite) o domani, dopo l'ultimo. */
+function pickDay(days, trip, st, today) {
+  if (st.phase === 'before') return { day: days[0], label: 'Prossimo giorno', items: days[0].items || [] };
+  if (st.phase === 'after') { const d = days[days.length - 1]; return { day: d, label: 'Ultimo giorno', items: d.items || [] }; }
+  const day = days.find((d) => d.date === today) || days[0];
+  const now = nowMinutesTokyo(trip.timezone || 'Asia/Tokyo');
+  const its = day.items || [];
+  const idx = its.findIndex((it) => {
+    const s = toMin(it.time); const e = toMin(it.end) ?? (s == null ? null : s + 60);
+    return e == null || e > now;
+  });
+  if (idx >= 0) return { day, label: 'Oggi', items: its.slice(idx) };
+  const next = days.find((d) => d.date > today);
+  return next ? { day: next, label: 'Domani', items: next.items || [] } : { day, label: 'Oggi', items: [] };
+}
+
+function nextDay(agenda, trip, st, today) {
   const days = (agenda && agenda.days) || [];
-  if (!days.length) return html`<section class="card"><h2 class="h3">Agenda</h2><p class="empty">Agenda non disponibile.</p></section>`;
-  let day, label, items;
-  if (st.phase === 'during') {
-    day = days.find((d) => d.date === today) || days[0];
-    label = 'Oggi';
-    const now = nowMinutesTokyo(trip.timezone || 'Asia/Tokyo');
-    const its = day.items || [];
-    // dal primo item non ancora finito (fine = end, altrimenti inizio + 60')
-    const idx = its.findIndex((it) => {
-      const s = toMin(it.time); const e = toMin(it.end) ?? (s == null ? null : s + 60);
-      return e == null || e > now;
-    });
-    items = its.slice(idx < 0 ? its.length : idx, (idx < 0 ? its.length : idx) + 3);
-    if (!items.length) { const next = days.find((d) => d.date > today); if (next) { day = next; label = 'Domani'; items = (next.items || []).slice(0, 3); } }
-  } else if (st.phase === 'before') {
-    day = days[0]; label = 'Primo giorno'; items = (day.items || []).slice(0, 3);
-  } else {
-    day = days[days.length - 1]; label = 'Ultimo giorno'; items = (day.items || []).slice(0, 3);
-  }
-  const href = pageUrl('giorno.html', { d: day.date });
-  return html`<section class="card home-day stack" aria-labelledby="home-day-h">
-    <div class="row home-day__head">
-      <h2 class="h3" id="home-day-h">${label} · ${fmtDate(day.date)}</h2>
-      ${day.status === 'draft' ? html`<span class="badge badge--draft">bozza</span>` : ''}
-    </div>
-    <p class="small">${day.title || ''}</p>
-    ${day.base || day.dayTrip ? html`<p class="row">${day.base ? html`<span class="badge">${day.base}</span>` : ''}${day.dayTrip ? html`<span class="badge">gita a ${day.dayTrip}</span>` : ''}</p>` : ''}
-    ${items.length ? html`<ul class="list">${items.map((it) => html`
-      <li class="list-item home-day__item">
-        <span class="mono home-day__time">${it.time ? fmtTime(it.time) : '—'}</span>
-        <span class="home-day__title">${it.title}${it.fixed ? html` ${icon('lock', 'vincolo fisso')}` : ''}${it.optional ? html` <span class="badge badge--opt">opz.</span>` : ''}</span>
-      </li>`)}</ul>` : html`<p class="empty">Nessuna attività in programma.</p>`}
-    <a class="btn btn--ghost" href="${href}"><span>Apri il giorno</span> ${icon('chevron-right')}</a>
+  if (!days.length) return html`<section class="home-sec"><h2 class="section-title">Prossimo giorno</h2><p class="empty">Agenda non disponibile.</p></section>`;
+  const { day, label, items } = pickDay(days, trip, st, today);
+  const where = [day.base, day.dayTrip ? `gita a ${day.dayTrip}` : ''].filter(Boolean).join(', ');
+  return html`<section class="home-sec home-day" aria-labelledby="home-day-h">
+    <h2 class="section-title" id="home-day-h">${label}<span class="home-sec__date">${fmtDate(day.date)}</span></h2>
+    <p class="home-day__title">${day.title || ''}${where ? html`<span class="muted">. ${where}</span>` : ''}</p>
+    ${items.length ? html`<ol class="home-list">${items.map((it) => html`
+      <li class="home-day__item${it.optional ? ' home-day__item--opt' : ''}">
+        <span class="home-day__time">${it.time ? fmtTime(it.time) : ''}</span>
+        <span>${it.title}${it.optional ? html` <span class="muted">(facoltativo)</span>` : ''}</span>
+      </li>`)}</ol>` : html`<p class="muted">Nessuna attività in programma.</p>`}
+    <p><a href="${pageUrl('giorno.html', { d: day.date })}">Apri il giorno</a></p>
   </section>`;
 }
 
 function deadlines(transport, todayIt) {
-  if (!transport) return html`<section class="card stack"><h2 class="h3">Prossime scadenze</h2><p class="empty">Scadenze non disponibili.</p></section>`;
-  const todo = ((transport && transport.checklist) || [])
+  const head = html`<h2 class="section-title" id="home-dl-h">Prossime scadenze</h2>`;
+  if (!transport) return html`<section class="home-sec">${head}<p class="empty">Scadenze non disponibili.</p></section>`;
+  const todo = (transport.checklist || [])
     .filter((c) => c.status !== 'done')
     .sort((a, b) => String(a.sortDate || '9999').localeCompare(String(b.sortDate || '9999')))
-    .slice(0, 5);
-  return html`<section class="card stack" aria-labelledby="home-dl-h">
-    <h2 class="h3" id="home-dl-h">Prossime scadenze</h2>
-    ${todo.length ? html`<ul class="list">${todo.map((c) => {
+    .slice(0, 3);
+  return html`<section class="home-sec" aria-labelledby="home-dl-h">${head}
+    ${todo.length ? html`<ul class="home-list">${todo.map((c) => {
       const st = deadlineState(c, todayIt);
-      return html`<li class="list-item home-dl">
-        <span class="small home-dl__when"><span class="mono">${deadlineLabel(c)}</span>${c.whenDetail ? html` <span class="muted">· ${c.whenDetail}</span>` : ''}</span>
-        <span class="home-dl__what">${c.what}${st === 'late' ? html` <span class="badge badge--todo">in ritardo</span>` : st === 'today' ? html` <span class="badge badge--draft">oggi</span>` : ''}</span>
+      return html`<li class="home-dl">
+        <span class="home-dl__when">${deadlineLabel(c)}</span>
+        <span class="home-dl__what">${c.what}${st === 'late' ? html` <span class="badge badge--todo">in ritardo</span>` : st === 'today' ? html` <span class="badge badge--todo">oggi</span>` : ''}</span>
       </li>`;
-    })}</ul>` : html`<p class="empty">Niente da fare: tutto prenotato.</p>`}
-    <a class="btn btn--ghost" href="${pageUrl('trasporti.html#scadenze')}"><span>Tutte le scadenze</span> ${icon('chevron-right')}</a>
-  </section>`;
-}
-
-function sectionsGrid(trip) {
-  const secs = (trip.sections || []).filter((s) => s.id !== 'home');
-  if (!secs.length) return '';
-  return html`<nav aria-label="Sezioni del sito" class="home-sections">
-    <h2 class="section-title">Sezioni</h2>
-    <div class="grid-3 home-grid">${secs.map((s) => html`
-      <a class="card home-grid__item" href="${pageUrl(s.href || `${s.id}.html`)}">${icon(s.icon || s.id)}<span>${s.label || s.id}</span></a>`)}
-    </div>
-  </nav>`;
-}
-
-function infoCard(trip) {
-  const rate = fxRate(trip);
-  const map = safeUrl(trip.mapsLink);
-  return html`<section class="card stack" aria-labelledby="home-info-h">
-    <h2 class="h3" id="home-info-h">In tasca</h2>
-    ${map ? html`<a class="btn btn--primary" href="${map}" target="_blank" rel="noopener noreferrer">${icon('pin')}<span>Mappa del viaggio</span> ${icon('external', 'apre in una nuova scheda')}</a>` : ''}
-    ${rate ? html`<dl class="kv">
-      <dt>Cambio</dt><dd class="mono">€1 = ¥${rate}</dd>
-      <dt>Esempi</dt><dd class="mono">${fmtEur(10)} ≈ ${fmtJpy(10, rate)} · ¥1.000 ≈ ${fmtEur(1000 / rate)}</dd>
-      ${trip.fx.asOf ? html`<dt>Fonte</dt><dd class="small muted">${trip.fx.source || ''} ${fmtDate(trip.fx.asOf, { weekday: false, year: true })}</dd>` : ''}
-    </dl>` : ''}
-    ${trip.flights ? html`<dl class="kv">
-      ${trip.flights.out ? html`<dt>Andata</dt><dd>${fmtDate(trip.flights.out.date)} · arrivo ${trip.flights.out.to} <span class="mono">${trip.flights.out.arr || ''}</span></dd>` : ''}
-      ${trip.flights.back ? html`<dt>Ritorno</dt><dd>${fmtDate(trip.flights.back.date)} · volo da ${trip.flights.back.from} <span class="mono">${trip.flights.back.dep || ''}</span></dd>` : ''}
-    </dl>` : ''}
+    })}</ul>` : html`<p class="muted">Niente da fare: è tutto prenotato.</p>`}
+    <p><a href="${pageUrl('trasporti.html#scadenze')}">Tutte le scadenze</a></p>
   </section>`;
 }
 
@@ -132,11 +87,10 @@ export async function render(root, { trip, loadData }) {
   const st = tripStatus(trip, today);
   const [agenda, transport] = await Promise.all([loadData('agenda'), loadData('transport')]);
   mount(root, html`
-    ${countdown(trip, st)}
-    <div class="grid-2">
-      ${dayCard(agenda, trip, st, today)}
-      ${deadlines(transport, todayInTokyo('Europe/Rome'))}
-    </div>
-    ${sectionsGrid(trip)}
-    ${infoCard(trip)}`);
+    <header class="home-head">
+      <h1 class="h1">${String(trip.title || '').split(' · ').map((t) => html`<span>${t.replace(/(\d)-(\d)/g, '$1\u2011$2')}</span>`)}</h1>
+      <p class="home-head__line">${tripLine(trip, st)}</p>
+    </header>
+    ${nextDay(agenda, trip, st, today)}
+    ${deadlines(transport, todayInTokyo('Europe/Rome'))}`);
 }

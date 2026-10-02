@@ -9,11 +9,12 @@ Contratto completo fra le parti: `SPEC.md`. Contratto della shell (head, attribu
 index.html agenda.html giorno.html trasporti.html alloggi.html luoghi.html budget.html   pagine
 404.html                     rimanda alla home (GitHub Pages)
 assets/css/base.css          layout e componenti (solo variabili)
-assets/css/themes/*.css      temi: washi (default), neutral, night
+assets/css/themes/neutral.css tema unico (washi.css, night.css: storici, non linkati)
 assets/js/app.js             shell: nav/topbar/footer, tema, loadData, formattazione €/¥/date
 assets/js/theme-boot.js      applica il tema salvato prima del paint (script classico nell'<head>)
 assets/js/agenda.js pages.js rendering delle pagine
 assets/icons/                sprite.svg + icone PWA 192/512
+assets/img/                  foto delle 6 basi, fornite dal cliente (vedi «Fotografie»)
 data/*.json                  dati generati da ../export_site_data.py (NON editare a mano)
 dev/                         pagine di prova e fixture (mai cachate dal service worker)
 sw.js manifest.webmanifest   PWA
@@ -40,17 +41,27 @@ Correzioni manuali solo in `../site_overrides.json`. Report dei valori non estra
 - `?today=2026-11-09` simula la data odierna (vista "oggi" della home).
 - `?nosw` non registra il service worker.
 
-## Temi
-- Cambio da footer (Tema + Modo auto/chiaro/scuro) o dal pulsante `.theme-switch` nella topbar. Persistito in `localStorage`.
-- Aggiungere un tema `foo`:
-  1. creare `assets/css/themes/foo.css` con TUTTE le variabili di SPEC §6 (chiaro su `:root`, scuro sotto
-     `@media (prefers-color-scheme: dark) { :root:not([data-theme-mode="light"]) {…} }` e `:root[data-theme-mode="dark"] {…}`);
-  2. aggiungere `{ id: 'foo', label: 'Foo' }` a `THEMES` in `assets/js/theme-boot.js` (e a `FALLBACK_THEMES` in `app.js`);
-  3. aggiungere il file a `PRECACHE` in `sw.js` e bumpare `CACHE_VERSION`.
+## Tema e colori
+- Tema **unico**: `assets/css/themes/neutral.css` (decisione del 2 ott 2026, `DIRECTION.md`). Chiaro e scuro seguono il
+  sistema; il pulsante nella topbar passa fra automatico, chiaro e scuro (salvato in `localStorage`, chiave `giappone.mode`).
+- `washi.css` e `night.css` restano nel repo come storia: non sono linkati, non sono in `PRECACHE`
+  (`tools/check_site.py` li esclude dal controllo di completezza). Regole del design: `DESIGN.md`.
+
+## Fotografie delle basi
+Slot pronti in testa a `giorno.html` e in cima a ogni card di `alloggi.html`. Finché il file non c'è si vede un blocco
+colore con il nome della città. Per aggiungere una foto:
+1. nome file = id della base: `osaka.jpg`, `takayama.jpg`, `nagoya.jpg`, `uchiura.jpg`, `shuzenji.jpg`, `tokyo.jpg`;
+   cartella `site/assets/img/`;
+2. JPEG orizzontale, **1600×900 px** (16:9; il sito ritaglia al centro a 3:1 su desktop e 5:2 nelle card), progressivo,
+   **al massimo 160 KB** (qualità 60-70 di solito basta). Solo foto vostre o con licenza che lo permetta;
+3. rilanciare `python3 ../export_site_data.py`: l'exporter guarda la cartella e scrive l'elenco in `data/trip.json`
+   (`photos`); il sito chiede solo le foto elencate, così gli slot vuoti non fanno richieste a vuoto. Se un file supera
+   i 160 KB finisce fra le ambiguità di `data/_export_report.md`;
+4. le foto non vanno in `PRECACHE`: il service worker le mette in cache alla prima visita. Bump di `CACHE_VERSION` non serve.
 
 ## Service worker: `CACHE_VERSION`
 In `sw.js` le pagine e gli asset sono **cache-first**: senza bump gli utenti continuano a vedere la versione in cache.
-A ogni deploy che cambia HTML/CSS/JS/icone: incrementare `const CACHE_VERSION` (ora `'v3'` → `'v4'` al prossimo deploy).
+A ogni deploy che cambia HTML/CSS/JS/icone: incrementare `const CACHE_VERSION` (ora `'v5'` → `'v6'` al prossimo deploy).
 Il nuovo SW si installa, si attiva subito (`skipWaiting` + `clients.claim`), cancella le cache vecchie e la pagina
 mostra il toast "Aggiornamento disponibile · ricarica". I JSON in `data/` sono network-first (aggiornati appena c'è rete),
 quindi un cambio solo-dati non richiede il bump. Un nuovo file statico va aggiunto a `PRECACHE` (lista esplicita).
@@ -68,7 +79,7 @@ puntino a file esistenti e che ogni file statico (html/css/js/svg/png/manifest f
 Il repo dev'essere **pubblico** (Pages gratuito). Due opzioni:
 - **Repo dedicato** (consigliato): il contenuto di `site/` va alla radice del repo (`index.html` in root).
   ```sh
-  rsync -a --delete --exclude dev/ --exclude 'NOTES_*.md' --exclude SPEC.md --exclude INTEGRATION_REPORT.md --exclude REVIEW_FINAL.md site/ ../giappone-site/
+  rsync -a --delete --exclude dev/ --exclude 'NOTES_*.md' --exclude SPEC.md --exclude INTEGRATION_REPORT.md --exclude REVIEW_FINAL.md --exclude REDESIGN_REPORT.md --exclude DIRECTION.md site/ ../giappone-site/
   cd ../giappone-site && git add -A && git commit -m "deploy" && git push
   ```
 - **Stesso repo**: copiare `site/` alla radice del branch `main` (Pages non serve sottocartelle arbitrarie: solo `/` o `/docs`).

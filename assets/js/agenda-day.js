@@ -1,7 +1,7 @@
 // Pagina giorno.html?d=YYYY-MM-DD: lista verticale leggibile, buchi "libero", totale €/pax e ¥, prev/next.
-import { loadData, fmtEur, fmtJpy, fmtDate, mapsUrl, initShell } from './app.js';
+import { loadData, fmtEur, fmtJpy, fmtDate, mapsUrl, initShell, photoHtml } from './app.js';
 import {
-  TYPES, TYPE_LABEL, BOOKING_LABEL, normalizeItems, computeGaps, dayTotals, nowInTz, fmtMin, fmtDur, timeRange, withDataParam, el, icon,
+  TYPES, TYPE_LABEL, normalizeItems, computeGaps, dayTotals, nowInTz, fmtMin, fmtDur, timeRange, withDataParam, el, icon,
 } from './agenda-gaps.js';
 
 const $ = (s) => document.querySelector(s);
@@ -17,25 +17,23 @@ function pickDay(days, trip) {
 function itemRow(n, fx) {
   const type = TYPES.includes(n.type) ? n.type : 'free';
   const b = n.booking || { status: 'none' };
-  const meta = el('div', { class: 'row giorno__badges' },
-    el('span', { class: `chip agenda-legend__chip tl-type--${type}` }, el('span', { class: 'agenda-legend__dot', 'aria-hidden': 'true' }), TYPE_LABEL[type]),
-    n.fixed ? el('span', { class: 'badge badge--fixed' }, icon('lock'), ' fisso') : null,
-    n.optional ? el('span', { class: 'badge badge--opt' }, 'opzionale') : null,
-    n.parallel ? el('span', { class: 'badge' }, 'in parallelo') : null,
-    b.status === 'todo' ? el('span', { class: 'badge badge--todo' }, BOOKING_LABEL.todo) : null,
-    b.status === 'done' ? el('span', { class: 'badge badge--done' }, BOOKING_LABEL.done) : null);
+  // tipo e stato come parole; un solo badge, e solo se c'è da prenotare
+  const words = [TYPE_LABEL[type], n.fixed && type !== 'fixed' ? 'orario fisso' : '', n.optional ? 'facoltativo' : '', n.parallel ? 'in parallelo' : '',
+    b.status === 'done' ? 'prenotato' : ''].filter(Boolean).join(' · ');
+  const meta = el('p', { class: 'small giorno__kind' }, words,
+    b.status === 'todo' ? el('span', { class: 'badge badge--todo' }, 'da prenotare') : null);
 
   // riga fatti: solo ciò che c'è (niente "gratis" quando il costo semplicemente non è indicato)
   const cost = Number(n.costEur) || 0;
   const bits = [
-    cost ? el('span', { class: 'mono' }, `${fmtEur(cost)} a testa · ${fmtJpy(cost, fx)}${n.costEstimate ? ' (stima)' : ''}`) : null,
+    cost ? el('span', { class: 'mono' }, `${fmtEur(cost)} a testa (${fmtJpy(cost, fx)})${n.costEstimate ? ', stima' : ''}`) : null,
     n.costNote ? el('span', { class: 'muted' }, n.costNote) : null,
     n.place && n.place !== n.title ? el('span', { class: 'muted' }, n.place) : null,
     b.status !== 'none' && (b.where || b.when) ? el('span', { class: 'muted' }, [b.where, b.when].filter(Boolean).join(' · ')) : null,
   ].filter(Boolean);
   const facts = bits.length ? el('p', { class: 'small giorno__facts' }, ...bits.flatMap((x, i) => (i ? [' · ', x] : [x]))) : null;
   const links = (n.links || []).filter((l) => /^[\w-]+\.html(#[\w-]*)?$/.test(l.href || ''))
-    .map((l) => el('a', { class: 'btn btn--ghost', href: withDataParam(l.href) }, el('span', null, l.label), icon('chevron-right')));
+    .map((l) => el('a', { class: 'giorno__link', href: withDataParam(l.href) }, l.label));
 
   return el('li', {
     class: `list-item giorno__item giorno__item--${type}${n.optional ? ' giorno__item--optional' : ''}`, id: n.id,
@@ -48,9 +46,9 @@ function itemRow(n, fx) {
     meta,
     n.note ? el('p', { class: 'giorno__note' }, n.note) : null,
     facts,
-    n.mapsQuery || links.length ? el('div', { class: 'row' }, n.mapsQuery ? el('a', {
-      class: 'btn btn--ghost', href: mapsUrl(n.mapsQuery), target: '_blank', rel: 'noopener', 'aria-label': `Apri in Google Maps: ${n.title || ''} (nuova scheda)`,
-    }, icon('map-pin'), el('span', null, 'Apri in Google Maps'), icon('external')) : null, ...links) : null));
+    n.mapsQuery || links.length ? el('p', { class: 'row giorno__links small' }, n.mapsQuery ? el('a', {
+      class: 'giorno__link', href: mapsUrl(n.mapsQuery), target: '_blank', rel: 'noopener', 'aria-label': `Apri in Google Maps: ${n.title || ''} (nuova scheda)`,
+    }, 'Apri in Maps') : null, ...links) : null));
 }
 
 const gapRow = (g) => el('li', { class: 'list-item giorno__gap' },
@@ -87,17 +85,17 @@ async function main() {
   const day = days[i];
   document.title = `${fmtDate(day.date)} · Agenda`;
 
-  // intestazione
-  $('#giorno-title').textContent = `${fmtDate(day.date)} · ${day.title || ''}`;
+  // intestazione: foto della base (o blocco colore), data e luogo in una riga, titolo serif, note.
+  // Niente badge: "bozza" compare una volta sola, in testa all'agenda.
+  $('#giorno-title').textContent = day.title || fmtDate(day.date);
   $('#giorno-title').title = day.title || '';
+  const where = [day.base, day.dayTrip ? `gita a ${day.dayTrip}` : ''].filter(Boolean).join(', ');
+  const head = $('#giorno-head');
+  head.insertAdjacentHTML('afterbegin', photoHtml(day.baseId || String(day.base || '').toLowerCase(), day.base, trip0, 'giorno__photo'));
+  $('#giorno-title').before(el('p', { class: 'giorno__date' }, [fmtDate(day.date), where].filter(Boolean).join(' · ')));
   // append/replaceChildren nativi convertono null in testo "null": filtrare sempre
-  $('#giorno-head').append(...[
-    el('div', { class: 'row' },
-      day.base ? el('span', { class: 'badge' }, day.base) : null,
-      day.dayTrip ? el('span', { class: 'badge' }, `gita a ${day.dayTrip}`) : null,
-      day.status === 'draft' ? el('span', { class: 'badge badge--draft' }, 'bozza') : null),
-    day.status === 'draft' && agenda.notice ? el('p', { class: 'small muted' }, agenda.notice) : null,
-    day.notes ? el('p', { class: 'small' }, day.notes) : null,
+  head.append(...[
+    day.notes ? el('p', { class: 'giorno__notes' }, day.notes) : null,
     day.moves && day.moves !== '—' ? el('p', { class: 'small' }, el('strong', null, 'Spostamenti: '), day.moves) : null].filter(Boolean));
   setPager($('#giorno-prev'), days[i - 1], 'Giorno precedente');
   setPager($('#giorno-next'), days[i + 1], 'Giorno successivo');
@@ -121,10 +119,10 @@ async function main() {
   const foot = $('#giorno-foot');
   foot.hidden = false;
   foot.replaceChildren(...[
-    el('p', { class: 'h3' }, 'Totale del giorno: ', el('span', { class: 'mono' }, `${fmtEur(tot.total)} a testa`), ' · ',
-      el('span', { class: 'mono muted' }, fmtJpy(tot.total, trip.fx))),
+    el('p', { class: 'giorno__total' }, 'Totale del giorno: ', el('span', { class: 'mono' }, `${fmtEur(tot.total)} a testa`), ' ',
+      el('span', { class: 'mono muted' }, `(${fmtJpy(tot.total, trip.fx)})`)),
     el('p', { class: 'small muted' }, [tot.optional ? `di cui opzionali ${fmtEur(tot.optional)}` : '', 'alloggi esclusi',
-      day.budgetEur != null ? `budget previsto ${fmtEur(day.budgetEur)} a testa` : ''].filter(Boolean).join(' · '))].filter(Boolean));
+      day.budgetEur != null ? `budget previsto ${fmtEur(day.budgetEur)} a testa` : ''].filter(Boolean).join(', ').replace(/^./, (c) => c.toUpperCase()) + '.')].filter(Boolean));
 
   // ancora #item-id: scorri ed evidenzia
   const id = decodeURIComponent(location.hash.slice(1));

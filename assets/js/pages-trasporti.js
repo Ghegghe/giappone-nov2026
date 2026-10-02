@@ -2,15 +2,14 @@
 // Card tratta = vista breve (opzione scelta, durata, €/¥, una riga di nota, prenotazione ripiegata);
 // la tab Prenotazioni è la vista estesa con tutti i dettagli aperti.
 import { fmtDate, fmtEur, fmtJpy, todayInTokyo } from './app.js';
-import { html, mount, icon, extLink, safeUrl, setupTabs, monthLabel, fxRate, internalLinks, deadlineLabel, deadlineState } from './pages.js';
+import { html, mount, extLink, safeUrl, setupTabs, monthLabel, fxRate, internalLinks, deadlineLabel, deadlineState } from './pages.js';
 
-const money = (eur, rate) => (eur == null || eur === '' ? '' : html`<span class="mono">${fmtEur(eur)}</span>${rate ? html` <span class="mono muted small">${fmtJpy(eur, rate)}</span>` : ''}`);
-const BOOK = { todo: ['badge--todo', 'da prenotare'], done: ['badge--done', 'prenotato'] };
+const money = (eur, rate) => (eur == null || eur === '' ? '' : html`<span class="mono">${fmtEur(eur)}</span>${rate ? html` <span class="mono">(${fmtJpy(eur, rate)})</span>` : ''}`);
 
 function opensText(b) {
   if (!b) return '';
-  if (b.opensApprox) return b.opensNote ? `quando: ${b.opensNote}` : '';
-  if (b.opens) return `apre ${fmtDate(b.opens)}${b.opensNote ? ` · ${b.opensNote}` : ''}`;
+  if (b.opensApprox) return b.opensNote ? `si prenota ${b.opensNote}` : '';
+  if (b.opens) return `apre ${fmtDate(b.opens)}${b.opensNote ? `, ${b.opensNote}` : ''}`;
   return b.opensNote || '';
 }
 
@@ -22,7 +21,7 @@ function howTo(o) {
   if (b) {
     const site = b.url ? extLink(b.url, b.site || null) : b.site;
     const when = opensText(b);
-    if (site || when) rows.push(['Prenota', html`${site || ''}${b.siteNote ? html` <span class="muted">(${b.siteNote})</span>` : ''}${when ? html`${site ? html`<br>` : ''}<span class="muted">${when}</span>` : ''}`]);
+    if (site || when) rows.push(['Prenota', html`${site || ''}${b.siteNote ? html`. ${b.siteNote}` : ''}${when ? html`${site ? html`<br>` : ''}<span class="muted">${when.charAt(0).toUpperCase() + when.slice(1)}.</span>` : ''}`]);
     if (b.howToPay) rows.push(['Pagamento', b.howToPay]);
     if (b.howToCollect) rows.push(['Ritiro', b.howToCollect]);
   }
@@ -30,29 +29,27 @@ function howTo(o) {
     if (d.how) rows.push(['Come funziona', d.how]);
     if (d.proCon) rows.push(['Pro e contro', d.proCon]);
   } else if ((o.noteMore || []).length) {
-    rows.push(['Altre note', html`<ul class="al-notes">${o.noteMore.map((n) => html`<li>${n}</li>`)}</ul>`]);
+    rows.push(['Note', html`${o.noteMore.join(' ')}`]);
   }
   if (!rows.length) return '';
   return html`<details class="tr-opt__details"><summary class="small">${b ? 'Come si prenota e si ritira' : 'Dettagli'}</summary>
     <dl class="kv small">${rows.map(([k, v]) => html`<dt>${k}</dt><dd>${v}</dd>`)}</dl></details>`;
 }
 
+/** Una riga di testo: durata, prezzo, stato. Un solo badge, e solo se c'è da fare qualcosa. */
 function meta(o, rate) {
   const b = o.booking;
-  const st = b && BOOK[b.status];
-  return html`<div class="tr-opt__meta row small">
-    ${o.duration ? html`<span>${icon('clock')} <span class="mono">${o.duration}</span></span>` : ''}
-    ${o.costEur != null ? html`<span>${money(o.costEur, rate)} <span class="muted">a testa</span></span>` : ''}
-    ${st ? html`<span class="badge ${st[0]}">${st[1]}</span>` : ''}
-    ${b && b.status === 'todo' && opensText(b) ? html`<span class="muted">${opensText(b)}</span>` : ''}
-  </div>`;
+  const bits = [o.duration ? html`<span class="mono">${o.duration}</span>` : '', o.costEur != null ? html`${money(o.costEur, rate)} a testa` : '',
+    b && b.status === 'done' ? 'prenotato' : ''].filter((x) => x !== '');
+  return html`<p class="tr-opt__meta small">${bits.map((x, i) => html`${i ? ' · ' : ''}${x}`)}</p>
+    ${b && b.status === 'todo' ? html`<p class="tr-opt__open small"><span class="badge badge--todo">da prenotare</span>${opensText(b) ? html`<span>${opensText(b).replace(/^./, (c) => c.toUpperCase())}.</span>` : ''}</p>` : ''}`;
 }
 
 /** Opzione scelta, sulla card. */
 function chosen(o, leg, rate) {
   const line = leg.summary || o.noteShort || '';
   return html`<div class="tr-opt tr-opt--chosen">
-    <div class="tr-opt__head row"><span class="tr-opt__name">${icon('check', 'scelta')} ${o.name}</span></div>
+    <p class="tr-opt__name">${o.name}</p>
     ${meta(o, rate)}
     ${line ? html`<p class="small">${line}</p>` : ''}
     ${howTo(o)}
@@ -61,8 +58,8 @@ function chosen(o, leg, rate) {
 
 /** Alternativa (ripiegata): nota completa. */
 function alternative(o, rate) {
-  return html`<li class="list-item tr-opt">
-    <div class="tr-opt__head row"><span class="tr-opt__name">${o.name}</span></div>
+  return html`<li class="tr-opt">
+    <p class="tr-opt__name">${o.name}</p>
     ${meta(o, rate)}
     ${o.note ? html`<p class="small muted">${o.note}</p>` : ''}
     ${o.details ? howTo({ details: o.details }) : ''}
@@ -81,7 +78,7 @@ function legCard(l, rate) {
     ${ch.map((o) => chosen(o, l, rate))}
     ${others.length ? html`<details class="tr-leg__alts">
       <summary class="small">${others.length === 1 ? '1 alternativa' : `${others.length} alternative`}</summary>
-      <ul class="list">${others.map((o) => alternative(o, rate))}</ul>
+      <ul>${others.map((o) => alternative(o, rate))}</ul>
     </details>` : ''}
   </article>`;
 }
@@ -103,22 +100,22 @@ function byDate(list, rate) {
 function totalChosen(t, rate) {
   const all = [...(t.legs || []), ...(t.transfers || [])];
   const sum = t.totalChosenEur != null ? Number(t.totalChosenEur) : all.reduce((s, l) => s + (l.options || []).filter((o) => o.chosen).reduce((a, o) => a + (Number(o.costEur) || 0), 0), 0);
-  return html`<p class="small muted tr-total">Totale delle opzioni scelte (tratte e aeroporti): ${money(sum, rate)} a testa</p>`;
+  return html`<p class="small muted tr-total">Le opzioni scelte, tratte e aeroporti insieme, costano ${money(sum, rate)} a testa.</p>`;
 }
 
 /** Vista estesa: una card per prenotazione, tutto visibile. */
 function guide(t) {
   const g = t.bookingGuide || [];
   if (!g.length) return html`<p class="empty">Nessuna prenotazione da fare.</p>`;
-  return html`<div class="grid-2">${g.map((x) => html`<article class="card stack tr-guide">
+  return html`<div class="tr-guides">${g.map((x) => html`<article class="tr-guide prose" id="${x.id || ''}">
     <h3 class="h3">${x.what}</h3>
     <dl class="kv small">
-      ${x.site || x.url ? html`<dt>Dove</dt><dd>${x.url ? extLink(x.url, x.site || null) : x.site}${x.siteNote ? html` <span class="muted">(${x.siteNote})</span>` : ''}</dd>` : ''}
+      ${x.site || x.url ? html`<dt>Dove</dt><dd>${x.url ? extLink(x.url, x.site || null) : x.site}${x.siteNote ? html`. ${x.siteNote}` : ''}</dd>` : ''}
       ${x.when ? html`<dt>Quando</dt><dd>${x.when}</dd>` : ''}
       ${x.payment ? html`<dt>Pagamento</dt><dd>${x.payment}</dd>` : ''}
       ${x.collect ? html`<dt>Biglietto</dt><dd>${x.collect}</dd>` : ''}
     </dl>
-    ${x.notes ? html`<p class="small muted">${x.notes}</p>` : ''}
+    ${x.notes ? html`<p class="small">${x.notes}</p>` : ''}
     ${internalLinks(x.links)}
   </article>`)}</div>`;
 }
@@ -132,12 +129,10 @@ const shortUrls = (s) => String(s || '').replace(/((?:[a-z0-9-]+\.)+[a-z]{2,})\/
 function chkRow(c, todayIt) {
   const st = deadlineState(c, todayIt);
   const u = safeUrl(c.url) || urlIn(c.where);
-  const lab = { done: ['badge--done', 'fatto'], late: ['badge--todo', 'in ritardo'], today: ['badge--draft', 'oggi'], todo: ['badge--todo', 'da fare'] }[st];
-  return html`<li class="list-item tr-chk${st === 'done' ? ' tr-chk--done' : ''}">
-    <div class="row tr-chk__head">
-      <span class="small"><span class="mono">${deadlineLabel(c)}</span>${c.whenDetail ? html` <span class="muted">· ${c.whenDetail}</span>` : ''}</span>
-      <span class="badge ${lab[0]}">${lab[1]}</span>
-    </div>
+  // badge solo quando serve agire adesso: in ritardo o oggi. "Da fare" è il default, "fatto" sta nella sezione a parte
+  const lab = { late: 'in ritardo', today: 'oggi' }[st];
+  return html`<li class="tr-chk${st === 'done' ? ' tr-chk--done' : ''}">
+    <p class="tr-chk__head small"><span class="mono">${deadlineLabel(c)}</span>${c.whenDetail ? html`<span>${c.whenDetail}</span>` : ''}${lab ? html`<span class="badge badge--todo">${lab}</span>` : ''}</p>
     <p class="tr-chk__what">${c.what}</p>
     ${c.where ? html`<p class="small muted">${u ? extLink(u, shortUrls(c.where)) : c.where}</p>` : ''}
     ${internalLinks(c.links)}
@@ -151,13 +146,13 @@ function checklist(t, todayIt) {
   const done = items.filter((c) => c.status === 'done');
   const groups = new Map();
   todo.forEach((c) => { const k = monthLabel(c.sortDate); if (!groups.has(k)) groups.set(k, []); groups.get(k).push(c); });
-  return html`<p class="small muted">${todo.length} da fare · ${done.length} già fatte</p>
-  ${[...groups].map(([m, cs]) => html`<section class="stack">
-    <h2 class="section-title">${m}</h2>
-    <ul class="list card">${cs.map((c) => chkRow(c, todayIt))}</ul>
+  return html`<p class="small muted">${todo.length} da fare, ${done.length} già fatte.</p>
+  ${[...groups].map(([m, cs]) => html`<section>
+    <h2 class="section-title">${m.charAt(0).toUpperCase() + m.slice(1)}</h2>
+    <ul class="rule-list">${cs.map((c) => chkRow(c, todayIt))}</ul>
   </section>`)}
-  ${done.length ? html`<details class="card tr-done"><summary class="small">Già fatte (${done.length})</summary>
-    <ul class="list">${done.map((c) => chkRow(c, todayIt))}</ul></details>` : ''}`;
+  ${done.length ? html`<details class="fold tr-done"><summary>Già fatte (${done.length})</summary>
+    <ul class="rule-list">${done.map((c) => chkRow(c, todayIt))}</ul></details>` : ''}`;
 }
 
 export async function render(root, { trip, loadData }) {

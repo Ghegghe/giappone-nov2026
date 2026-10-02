@@ -42,7 +42,7 @@ export function pageUrl(file, params = {}) {
 export function internalLinks(links, cls = 'ext-link small') {
   const ok = (links || []).filter((l) => l && /^[\w-]+\.html(#[\w-]*)?$/.test(l.href || ''));
   if (!ok.length) return '';
-  return html`<span class="row">${ok.map((l) => html`<a class="${cls}" href="${pageUrl(l.href)}"><span>${l.label}</span> ${icon('chevron-right')}</a>`)}</span>`;
+  return html`<span class="row">${ok.map((l) => html`<a class="${cls}" href="${pageUrl(l.href)}">${l.label}</a>`)}</span>`;
 }
 export const dirUrl = (lat, lon) =>
   `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(lat + ',' + lon)}&travelmode=walking`;
@@ -53,11 +53,11 @@ export const icon = (name, label) => label
   ? html`<svg class="icon" role="img" aria-label="${label}"><use href="${SPRITE}#i-${name}"></use></svg>`
   : html`<svg class="icon" aria-hidden="true" focusable="false"><use href="${SPRITE}#i-${name}"></use></svg>`;
 
-/** Link esterno con icona i-external (nuova scheda). */
+/** Link esterno (nuova scheda). Niente icona: la nuova scheda è detta agli screen reader. */
 export function extLink(url, text, cls = 'ext-link') {
   const u = safeUrl(url);
   if (!u) return text ? html`<span>${text}</span>` : '';
-  return html`<a class="${cls}" href="${u}" target="_blank" rel="noopener noreferrer"><span>${text || hostOf(u)}</span> ${icon('external', 'apre in una nuova scheda')}</a>`;
+  return html`<a class="${cls}" href="${u}" target="_blank" rel="noopener noreferrer">${text || hostOf(u)}<span class="sr-only"> (nuova scheda)</span></a>`;
 }
 export function hostOf(u) { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return u; } }
 
@@ -69,11 +69,11 @@ export function mapsIconBtn(query, name) {
   return html`<a class="btn btn--icon" href="${u}" target="_blank" rel="noopener noreferrer" aria-label="${label}" title="${label}">${icon('pin')}</a>`;
 }
 
-/** Bottone Maps (ricerca). */
-export function mapsBtn(query, label = 'Apri in Maps', cls = 'btn btn--primary') {
+/** Bottone Maps (ricerca), solo testo. */
+export function mapsBtn(query, label = 'Apri in Maps', cls = 'btn') {
   if (!query) return '';
   const u = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(query);
-  return html`<a class="${cls}" href="${u}" target="_blank" rel="noopener noreferrer">${icon('pin')}<span>${label}</span> ${icon('external', 'apre in una nuova scheda')}</a>`;
+  return html`<a class="${cls}" href="${u}" target="_blank" rel="noopener noreferrer">${label}<span class="sr-only"> (nuova scheda)</span></a>`;
 }
 
 // ---------- Numeri / date ----------
@@ -113,7 +113,7 @@ export function setupTabs(root, tabs, render, { hash = true, key = 'tab' } = {})
   mount(root, html`
     <div class="tabs" role="tablist">${tabs.map((t) => html`
       <button type="button" class="tab" role="tab" id="${uid}-t-${t.id}" data-tab="${t.id}"
-        aria-controls="${uid}-p" aria-selected="false" tabindex="-1">${t.label}${t.count != null ? html` <span class="badge">${t.count}</span>` : ''}</button>`)}
+        aria-controls="${uid}-p" aria-selected="false" tabindex="-1">${t.label}${t.count != null ? html` <span class="tab__count">${t.count}</span>` : ''}</button>`)}
     </div>
     <div class="tab-panel stack" id="${uid}-p" role="tabpanel" tabindex="0"></div>`);
   const panel = root.querySelector('.tab-panel');

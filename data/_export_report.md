@@ -1,6 +1,6 @@
 # Report export dati sito
 
-Sorgente: `build_xlsx_v33.py` (letto via `ast`, non eseguito) · CSV My Maps: `mymaps_csv/` · override: `site_overrides.json` · generatedAt (mtime sorgenti): 2026-10-01T22:37:16+02:00
+Sorgente: `build_xlsx_v33.py` (letto via `ast`, non eseguito) · CSV My Maps: `mymaps_csv/` · override: `site_overrides.json` · generatedAt (mtime sorgenti): 2026-10-02T08:46:16+02:00
 
 ## Conteggi
 
@@ -75,7 +75,7 @@ Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 1
 - rimossi metodo di pagamento/tasso da: «BPER addebito in € · tasso 185,34»
 - rimossi metodo di pagamento/tasso da: «Revolut/BPER · Booking/AirHost»
 
-## Note (29)
+## Note (32)
 
 - CSV `01_Osaka_(7-11_nov).csv`: nessuna colonna coordinate (colonne: Luogo, Nome, Note) → lat/lon omessi
 - CSV `02_Kyoto_(8-9_nov).csv`: nessuna colonna coordinate (colonne: Luogo, Nome, Note) → lat/lon omessi
@@ -105,6 +105,9 @@ Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 1
 - textFixes transport: «BAGAGLI: opzione A2 scelta (ufficio Yamato Yoyogi)» → «BAGAGLI: spediti all'ufficio Yamato Yoyogi» (1×)
 - textFixes transport: «Nozomi/Hikari ris.» → «Nozomi/Hikari (posto riservato)» (1×)
 - textFixes transport: «JR Hida LTD EXP ris. 12:48» → «JR Hida Limited Express 12:48 (posto riservato)» (1×)
+- textFixes transport: «NRT 24 nov ~11:45» → «Narita 24 nov 11:20» (1×)
+- textFixes lodging: «aperta 7/7 9-19» → «aperta tutti i giorni 9-19» (1×)
+- textFixes transport: «NRT 24/11 ~11:45» → «Narita 24/11 11:20» (1×)
 - agenda 2026-11-24: base '—' → base del giorno prima «Tokyo» (baseId resta vuoto)
 
 ## Validazione schemi

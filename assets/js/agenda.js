@@ -1,7 +1,7 @@
 // Pagina agenda.html: timeline 6-24, colonne giorno (7 visibili desktop, 1 per schermata mobile), buchi, filtri, pannello.
 import { loadData, fmtEur, fmtJpy, fmtDate, mapsUrl, initShell } from './app.js';
 import {
-  TYPES, TYPE_LABEL, BOOKING_LABEL, normalizeItems, rangeOfDays, assignColumns, computeGaps, dayTotals,
+  TYPES, TYPE_LABEL, FAMILY, FAMILY_LABEL, FAMILIES, BOOKING_LABEL, normalizeItems, rangeOfDays, assignColumns, computeGaps, dayTotals,
   nowInTz, itemAria, fmtMin, fmtDur, timeRange, withDataParam, el, icon,
 } from './agenda-gaps.js';
 
@@ -81,13 +81,14 @@ function renderDay(day, i, norm, now) {
 function renderItem(n, day) {
   const cls = ['tl-item', `tl-item--${TYPES.includes(n.type) ? n.type : 'free'}`];
   if (n.optional) cls.push('tl-item--optional');
+  if (n.fixed) cls.push('tl-item--locked');
   if (n.cols > 1) cls.push('tl-item--split');
   return el('button', {
     type: 'button', class: cls.join(' '), id: `tl-${n.id}`, 'data-id': n.id, 'data-date': day.date,
     'aria-label': itemAria(n), title: itemAria(n), 'aria-haspopup': 'dialog',
     style: { '--top': px(n.startMin), '--h': pxLen(n.endMin - n.startMin), '--i': String(n.col), '--n': String(n.cols) },
   },
-  el('span', { class: 'mono' }, n.fixed ? icon('lock') : null, n.fixed ? ' ' : null, n.allDay ? timeRange(n) : fmtMin(n.startMin), n.parallel ? ' · in parallelo' : null),
+  el('span', { class: 'mono' }, n.allDay ? timeRange(n) : fmtMin(n.startMin), n.parallel ? ' · in parallelo' : null),
   el('strong', null, n.title || ''));
 }
 
@@ -196,13 +197,14 @@ function renderFilters() {
   }, label);
   $('#agenda-filters').replaceChildren(mk('onlyFixed', 'Solo orari fissi'), mk('hideOpt', 'Senza opzionali'));
 
-  const used = new Set(state.days.flatMap((d) => (d.items || []).map((it) => it.type)));
+  // legenda: le 4 famiglie di colore + come si leggono fissi e facoltativi
+  const used = new Set(state.days.flatMap((d) => (d.items || []).map((it) => FAMILY[it.type] || 'free')));
   const frag = document.createDocumentFragment();
-  for (const t of TYPES.filter((x) => used.has(x))) {
-    frag.append(el('li', { class: `chip agenda-legend__chip tl-type--${t}` }, el('span', { class: 'agenda-legend__dot', 'aria-hidden': 'true' }), TYPE_LABEL[t]));
+  for (const f of FAMILIES.filter((x) => used.has(x))) {
+    frag.append(el('li', { class: `agenda-legend__chip tl-fam--${f}` }, el('span', { class: 'agenda-legend__dot', 'aria-hidden': 'true' }), FAMILY_LABEL[f]));
   }
-  frag.append(el('li', { class: 'chip agenda-legend__chip agenda-legend__chip--opt' }, 'bordo tratteggiato = opzionale'));
-  frag.append(el('li', { class: 'chip agenda-legend__chip' }, icon('lock'), ' = vincolo fisso'));
+  frag.append(el('li', { class: 'agenda-legend__chip agenda-legend__chip--locked' }, el('span', { class: 'agenda-legend__dot', 'aria-hidden': 'true' }), 'orario fisso: tinta più piena'));
+  frag.append(el('li', { class: 'agenda-legend__chip agenda-legend__chip--opt' }, el('span', { class: 'agenda-legend__dot', 'aria-hidden': 'true' }), 'facoltativo: senza fondo'));
   $('#agenda-legend-list').replaceChildren(frag);
 }
 
@@ -228,20 +230,20 @@ function openPanel(date, id, opener) {
   if (Number(n.costEur) > 0) row('Costo', el('span', { class: 'mono' }, `${fmtEur(n.costEur)} a testa · ${fmtJpy(n.costEur, fx)}`), n.costEstimate ? ' (stima)' : '', n.costNote ? ` · ${n.costNote}` : '');
   if (n.place && n.place !== n.title) row('Luogo', n.place);
   if (b.status === 'todo' || b.status === 'done') {
-    row('Prenotazione', el('span', { class: `badge badge--${b.status}` }, BOOKING_LABEL[b.status]),
-      b.where ? ` · ${b.where}` : '', b.when ? ` · ${b.when}` : '');
+    row('Prenotazione', BOOKING_LABEL[b.status].replace(/^./, (c) => c.toUpperCase()),
+      b.where ? `, ${b.where}` : '', b.when ? `, ${b.when}` : '', '.');
   }
 
-  const badges = el('div', { class: 'row' },
-    el('span', { class: `chip agenda-legend__chip tl-type--${n.type}` }, el('span', { class: 'agenda-legend__dot', 'aria-hidden': 'true' }), TYPE_LABEL[n.type] || n.type),
-    n.fixed ? el('span', { class: 'badge badge--fixed' }, icon('lock'), ' fisso') : null,
-    n.optional ? el('span', { class: 'badge badge--opt' }, 'opzionale') : null,
-    day.status === 'draft' && !state.allDraft ? el('span', { class: 'badge badge--draft' }, 'bozza') : null);
+  // una riga di testo: tipo, poi "orario fisso" col lucchetto (unico posto dove compare) e "facoltativo"
+  const badges = el('p', { class: `agenda-panel__kind small tl-type--${n.type}` },
+    el('span', { class: 'agenda-legend__dot', 'aria-hidden': 'true' }), ' ', TYPE_LABEL[n.type] || n.type,
+    n.fixed ? el('span', { class: 'agenda-panel__fixed' }, ' · ', icon('lock'), n.type === 'fixed' ? ' non spostabile' : ' orario fisso') : null,
+    n.optional ? ' · facoltativo' : null);
 
   const links = (n.links || []).filter((l) => /^[\w-]+\.html(#[\w-]*)?$/.test(l.href || ''))
-    .map((l) => el('a', { class: 'btn btn--ghost', href: withDataParam(l.href) }, el('span', null, l.label), icon('chevron-right')));
+    .map((l) => el('a', { class: 'btn btn--ghost', href: withDataParam(l.href) }, l.label));
   const actions = el('div', { class: 'row' },
-    n.mapsQuery ? el('a', { class: 'btn btn--primary', href: mapsUrl(n.mapsQuery), target: '_blank', rel: 'noopener' }, icon('map-pin'), el('span', null, 'Apri in Google Maps'), el('span', { class: 'sr-only' }, ' (nuova scheda)'), icon('external')) : null,
+    n.mapsQuery ? el('a', { class: 'btn btn--primary', href: mapsUrl(n.mapsQuery), target: '_blank', rel: 'noopener' }, 'Apri in Google Maps', el('span', { class: 'sr-only' }, ' (nuova scheda)')) : null,
     el('a', { class: 'btn btn--ghost', href: withDataParam(`giorno.html?d=${day.date}#${n.id}`) }, 'Vedi nel giorno'), ...links);
 
   const panel = $('#agenda-panel');
@@ -290,8 +292,8 @@ async function main() {
   if (state.trip.subtitle) $('#agenda-sub').textContent = state.trip.subtitle;
   // avviso globale (agenda.notice): una riga breve, visibile anche su mobile
   if (agenda.notice) {
-    $('.agenda__head').append(el('div', { class: 'small row agenda__notice', role: 'note' }, // div: i <p> della testata sono nascosti su mobile
-      icon('info'), el('span', null, agenda.notice)));
+    // l'unico "bozza" del sito: una riga in testa all'agenda (div: i <p> della testata sono nascosti su mobile)
+    $('.agenda__head').append(el('div', { class: 'small agenda__notice', role: 'note' }, el('span', null, agenda.notice)));
   }
 
   readFilters();
