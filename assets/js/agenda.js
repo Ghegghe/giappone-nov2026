@@ -7,7 +7,7 @@ import {
 
 const $ = (s, r = document) => r.querySelector(s);
 const FILTER_KEY = 'agenda.filters';
-const state = { trip: null, days: [], allDraft: false, idx: 0, range: null, hourH: 48, filters: { onlyFixed: false, hideOpt: false }, pendingIdx: null };
+const state = { trip: null, days: [], idx: 0, range: null, hourH: 48, filters: { onlyFixed: false, hideOpt: false }, pendingIdx: null };
 let timeline, dateBar, lastFocus = null;
 
 function readFilters() {
@@ -57,8 +57,7 @@ function renderDay(day, i, norm, now) {
   });
   col.append(el('header', { class: 'tl-day__header' },
     el('div', { class: 'tl-day__row' },
-      el('a', { class: 'tl-day__date', href: withDataParam(`giorno.html?d=${day.date}`) }, fmtDate(day.date)),
-      day.status === 'draft' && !state.allDraft ? el('span', { class: 'badge badge--draft' }, 'bozza') : null),
+      el('a', { class: 'tl-day__date', href: withDataParam(`giorno.html?d=${day.date}`) }, fmtDate(day.date))),
     el('span', { class: 'small muted' }, placeLabel(day)),
     el('span', { class: 'small tl-day__title', title: day.title || '' }, day.title || '')));
 
@@ -81,7 +80,7 @@ function renderDay(day, i, norm, now) {
 function renderItem(n, day) {
   const cls = ['tl-item', `tl-item--${TYPES.includes(n.type) ? n.type : 'free'}`];
   if (n.optional) cls.push('tl-item--optional');
-  if (n.fixed) cls.push('tl-item--locked');
+  if (n.fixed) cls.push('tl-item--locked');   // tinta più piena; il lucchetto è solo nel pannello
   if (n.cols > 1) cls.push('tl-item--split');
   return el('button', {
     type: 'button', class: cls.join(' '), id: `tl-${n.id}`, 'data-id': n.id, 'data-date': day.date,
@@ -197,14 +196,14 @@ function renderFilters() {
   }, label);
   $('#agenda-filters').replaceChildren(mk('onlyFixed', 'Solo orari fissi'), mk('hideOpt', 'Senza opzionali'));
 
-  // legenda: le 4 famiglie di colore + come si leggono fissi e facoltativi
+  // legenda: le 4 famiglie di colore + come si leggono fissi, facoltativi e tempo libero
   const used = new Set(state.days.flatMap((d) => (d.items || []).map((it) => FAMILY[it.type] || 'free')));
   const frag = document.createDocumentFragment();
   for (const f of FAMILIES.filter((x) => used.has(x))) {
-    frag.append(el('li', { class: `agenda-legend__chip tl-fam--${f}` }, el('span', { class: 'agenda-legend__dot', 'aria-hidden': 'true' }), FAMILY_LABEL[f]));
+    frag.append(el('li', { class: `chip agenda-legend__chip tl-fam--${f}` }, el('span', { class: 'agenda-legend__dot', 'aria-hidden': 'true' }), FAMILY_LABEL[f]));
   }
-  frag.append(el('li', { class: 'agenda-legend__chip agenda-legend__chip--locked' }, el('span', { class: 'agenda-legend__dot', 'aria-hidden': 'true' }), 'orario fisso: tinta più piena'));
-  frag.append(el('li', { class: 'agenda-legend__chip agenda-legend__chip--opt' }, el('span', { class: 'agenda-legend__dot', 'aria-hidden': 'true' }), 'facoltativo: senza fondo'));
+  frag.append(el('li', { class: 'chip agenda-legend__chip agenda-legend__chip--locked' }, el('span', { class: 'agenda-legend__dot', 'aria-hidden': 'true' }), 'tinta piena = orario fisso'));
+  frag.append(el('li', { class: 'chip agenda-legend__chip agenda-legend__chip--opt' }, el('span', { class: 'agenda-legend__dot', 'aria-hidden': 'true' }), 'senza fondo = facoltativo'));
   $('#agenda-legend-list').replaceChildren(frag);
 }
 
@@ -230,20 +229,20 @@ function openPanel(date, id, opener) {
   if (Number(n.costEur) > 0) row('Costo', el('span', { class: 'mono' }, `${fmtEur(n.costEur)} a testa · ${fmtJpy(n.costEur, fx)}`), n.costEstimate ? ' (stima)' : '', n.costNote ? ` · ${n.costNote}` : '');
   if (n.place && n.place !== n.title) row('Luogo', n.place);
   if (b.status === 'todo' || b.status === 'done') {
-    row('Prenotazione', BOOKING_LABEL[b.status].replace(/^./, (c) => c.toUpperCase()),
-      b.where ? `, ${b.where}` : '', b.when ? `, ${b.when}` : '', '.');
+    row('Prenotazione', el('span', { class: `badge badge--${b.status}` }, BOOKING_LABEL[b.status]),
+      b.where ? ` · ${b.where}` : '', b.when ? ` · ${b.when}` : '');
   }
 
-  // una riga di testo: tipo, poi "orario fisso" col lucchetto (unico posto dove compare) e "facoltativo"
-  const badges = el('p', { class: `agenda-panel__kind small tl-type--${n.type}` },
-    el('span', { class: 'agenda-legend__dot', 'aria-hidden': 'true' }), ' ', TYPE_LABEL[n.type] || n.type,
-    n.fixed ? el('span', { class: 'agenda-panel__fixed' }, ' · ', icon('lock'), n.type === 'fixed' ? ' non spostabile' : ' orario fisso') : null,
-    n.optional ? ' · facoltativo' : null);
+  // un badge al massimo: tipo come chip, "fisso" col lucchetto (unico posto dove compare); facoltativo a parole
+  const badges = el('div', { class: 'row' },
+    el('span', { class: `chip agenda-legend__chip tl-type--${n.type}` }, el('span', { class: 'agenda-legend__dot', 'aria-hidden': 'true' }), TYPE_LABEL[n.type] || n.type),
+    n.fixed ? el('span', { class: 'badge badge--fixed' }, icon('lock'), n.type === 'fixed' ? ' non spostabile' : ' orario fisso') : null,
+    n.optional ? el('span', { class: 'small muted' }, 'facoltativo') : null);
 
   const links = (n.links || []).filter((l) => /^[\w-]+\.html(#[\w-]*)?$/.test(l.href || ''))
-    .map((l) => el('a', { class: 'btn btn--ghost', href: withDataParam(l.href) }, l.label));
+    .map((l) => el('a', { class: 'btn btn--ghost', href: withDataParam(l.href) }, el('span', null, l.label), icon('chevron-right')));
   const actions = el('div', { class: 'row' },
-    n.mapsQuery ? el('a', { class: 'btn btn--primary', href: mapsUrl(n.mapsQuery), target: '_blank', rel: 'noopener' }, 'Apri in Google Maps', el('span', { class: 'sr-only' }, ' (nuova scheda)')) : null,
+    n.mapsQuery ? el('a', { class: 'btn btn--primary', href: mapsUrl(n.mapsQuery), target: '_blank', rel: 'noopener' }, icon('map-pin'), el('span', null, 'Apri in Google Maps'), el('span', { class: 'sr-only' }, ' (nuova scheda)'), icon('external')) : null,
     el('a', { class: 'btn btn--ghost', href: withDataParam(`giorno.html?d=${day.date}#${n.id}`) }, 'Vedi nel giorno'), ...links);
 
   const panel = $('#agenda-panel');
@@ -283,17 +282,16 @@ async function main() {
   const [trip, agenda] = await Promise.all([loadData('trip'), loadData('agenda')]);
   state.trip = trip || { fx: { jpyPerEur: 0 }, timezone: 'Asia/Tokyo' };
   state.days = ((agenda && agenda.days) || []).slice().sort((a, b) => a.date.localeCompare(b.date));
-  state.allDraft = state.days.length > 0 && state.days.every((d) => d.status === 'draft'); // avviso unico in testata
   if (!state.days.length) {
     $('#agenda-error').hidden = false;
     $('#agenda-error').textContent = agenda ? 'Agenda vuota.' : "Impossibile caricare l'agenda. Riprova più tardi o ricarica la pagina.";
     return;
   }
   if (state.trip.subtitle) $('#agenda-sub').textContent = state.trip.subtitle;
-  // avviso globale (agenda.notice): una riga breve, visibile anche su mobile
+  // avviso globale (agenda.notice): l'unico "bozza" del sito, una riga in testa all'agenda (anche su mobile)
   if (agenda.notice) {
-    // l'unico "bozza" del sito: una riga in testa all'agenda (div: i <p> della testata sono nascosti su mobile)
-    $('.agenda__head').append(el('div', { class: 'small agenda__notice', role: 'note' }, el('span', null, agenda.notice)));
+    $('.agenda__head').append(el('div', { class: 'small row agenda__notice', role: 'note' }, // div: i <p> della testata sono nascosti su mobile
+      icon('info'), el('span', null, agenda.notice)));
   }
 
   readFilters();

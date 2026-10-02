@@ -1,10 +1,7 @@
-/* Tema UNICO del sito (DIRECTION 2 ott 2026). Base: shadcn/ui "zinc" (v4, OKLCH → sRGB hex, ui.shadcn.com/r/colors/zinc.json).
-   Un solo accento, indaco tenue (--ink): link, stato attivo, "oggi"/"ora". Tutto il resto neutro.
-   Titoli in serif di sistema a peso normale, testo in sans di sistema, cifre tabulari (niente monospazio).
-   Timeline: 4 famiglie di colore (--fam-*), i 13 type vi sono mappati in (C) senza toccare i dati.
-   Struttura: (A) token grezzi, (B) mappa sulle variabili SPEC §6, (C) famiglie e type.
-   I blocchi scuri ridefiniscono solo (A) e (C): (B) si risolve da sé perché usa var().
-   washi.css e night.css restano nel repo come storia, ma non sono linkati né precacheati. */
+/* Tema NEUTRAL (default del sito) — trasposizione fedele di shadcn/ui, base color "zinc" (v4, OKLCH → sRGB hex).
+   Fonte: ui.shadcn.com/r/colors/zinc.json (1 ott 2026). Unica deroga: --radius 0.5rem (richiesta cliente; shadcn 0.625rem).
+   Struttura comune ai 3 temi: (A) token shadcn grezzi, (B) mappa sulle variabili SPEC §6, (C) 4 famiglie di colore della timeline (ibrido 2 ott).
+   I blocchi scuri ridefiniscono solo (A) e (C): (B) si risolve da sé perché usa var(). */
 
 :root {
   color-scheme: light;
@@ -30,7 +27,6 @@
   --input: #e4e4e7;
   --ring: #9f9fa9;                    /* oklch(0.705 0.015 286.067) zinc-400 */
   --focus: #71717b;                   /* contorno di focus: ring zinc-400 su bianco è 2.6:1, serve ≥3:1 (WCAG 1.4.11) */
-  --ink: #3a4796;                     /* accento indaco tenue: 8.0:1 su bianco */
   --radius: 0.5rem;
   --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / .05);
   --shadow: 0 1px 3px 0 rgb(0 0 0 / .1), 0 1px 2px -1px rgb(0 0 0 / .1);          /* shadow-sm */
@@ -44,20 +40,17 @@
   --fg: var(--foreground);
   --fg-muted: var(--muted-foreground);
   --fg-on-accent: var(--primary-foreground);
-  --accent: var(--ink);               /* stato attivo, "oggi", linea dell'ora */
-  --accent-2: var(--ink);             /* link */
-  --chip-on-bg: var(--ink);           /* filtro premuto = stato attivo */
-  --chip-on-fg: var(--background);
-  --nav-active-fg: var(--ink);
+  --accent: var(--primary);           /* azione primaria, "ora", conto alla rovescia */
+  --accent-2: var(--primary);         /* link: stesso inchiostro del testo, distinti dalla sottolineatura */
   --danger: var(--destructive);
   --ok: #166534;                      /* estensioni non-shadcn (stati): green-800 / amber-800 (AA sulle tinte badge) */
   --warn: #92400e;
 
-  /* tipografia: titoli serif di sistema con carattere (peso normale), testo sans di sistema, cifre tabulari */
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Sans", "Noto Sans JP", sans-serif;
-  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, "Hiragino Mincho ProN", "Yu Mincho", serif;
-  --font-mono: var(--font-sans);      /* niente monospazio: orari e importi = testo con tabular-nums */
-  --tracking-title: -.01em;
+  /* tipografia: sans di sistema "stile Inter", titoli tracking-tight */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --font-display: var(--font-sans);
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  --tracking-title: -.025em;
 
   /* spaziatura (scala 4px) */
   --space-1: 4px;
@@ -69,11 +62,12 @@
 
   --tl-hour-h: 48px;
 
-  /* (C) 4 famiglie della timeline (AA su --card e sulle tinte 10%) → i 13 type. "free" = spazio, grigio */
-  --fam-move: #2c5d6b;                /* spostamenti: treni, bus, transfer, logistica */
-  --fam-fixed: #8a2f45;               /* fissi: check-in, concerto, vincoli */
-  --fam-culture: #4b6627;             /* visite e cultura: luoghi, anime, onsen, shopping */
-  --fam-evening: #8a4f0c;             /* cibo e sera */
+  /* (C) 4 famiglie di colore della timeline (ibrido 2 ott) (AA su --card e sulle tinte dei blocchi) */
+  --fam-move: #3046a8;   /* spostamenti: treni, bus, transfer, logistica */
+  --fam-fixed: #8e2230;   /* orari fissi: vincoli, check-in */
+  --fam-culture: #0a6f52;   /* visite e cultura: luoghi, anime, onsen, shopping */
+  --fam-evening: #9c4600;   /* cibo e sera */
+  /* i 13 type dei dati → 4 famiglie (si risolvono con le --fam-* del modo attivo); "free" è spazio, in grigio */
   --c-train: var(--fam-move);
   --c-bus: var(--fam-move);
   --c-transfer: var(--fam-move);
@@ -122,11 +116,10 @@
     --overlay: rgb(0 0 0 / .6);
     --ok: #4ade80;
     --warn: #fbbf24;
-    --ink: #a9b5f0;
-    --fam-move: #86bccb;
-    --fam-fixed: #eb9aab;
-    --fam-culture: #aecb87;
-    --fam-evening: #e2ad69;
+    --fam-move: #98b1f8;
+    --fam-fixed: #f4948c;
+    --fam-culture: #5fd6b0;
+    --fam-evening: #eab45e;
   }
 }
 
@@ -158,9 +151,8 @@
   --overlay: rgb(0 0 0 / .6);
   --ok: #4ade80;
   --warn: #fbbf24;
-  --ink: #a9b5f0;
-  --fam-move: #86bccb;
-  --fam-fixed: #eb9aab;
-  --fam-culture: #aecb87;
-  --fam-evening: #e2ad69;
+  --fam-move: #98b1f8;
+  --fam-fixed: #f4948c;
+  --fam-culture: #5fd6b0;
+  --fam-evening: #eab45e;
 }

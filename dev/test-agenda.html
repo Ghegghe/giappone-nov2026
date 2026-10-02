@@ -77,8 +77,14 @@ frame.addEventListener('load', () => setTimeout(() => {
   const conc = d.getElementById('tl-d14-03'), altri = d.getElementById('tl-d14-04');
   t('concerto e "altri 3" affiancati', [conc.style.getPropertyValue('--i'), altri.style.getPropertyValue('--i'), altri.style.getPropertyValue('--n')], ['0', '1', '2']);
   t('concerto (fixed): blocco marcato, lucchetto solo nel dettaglio', [conc.classList.contains('tl-item--locked'), !!conc.querySelector('use[href$="#i-lock"]')], [true, false]);
+  t('nessun lucchetto nella timeline', d.querySelectorAll('.timeline use[href$="#i-lock"]').length, 0);
   t('legenda: 4 famiglie di colore', d.querySelectorAll('#agenda-legend-list [class*="tl-fam--"]').length, 4);
+  t('legenda: 4 colori distinti', new Set([...d.querySelectorAll('#agenda-legend-list [class*="tl-fam--"] .agenda-legend__dot')].map((x) => getComputedStyle(x).backgroundColor)).size, 4);
+  t('timeline: al massimo 4 colori di blocco (libero escluso)', new Set([...d.querySelectorAll('.tl-item:not(.tl-item--free)')].map((x) => getComputedStyle(x).borderLeftColor)).size <= 4, true);
   t('buchi senza tratteggio', getComputedStyle(d.querySelector('.tl-gap')).backgroundImage, 'none');
+  t('opzionale senza tratteggio', getComputedStyle(d.getElementById('tl-d07-08')).borderLeftStyle, 'solid');
+  t('orari senza monospazio', /mono/i.test(getComputedStyle(d.querySelector('.tl-item .mono')).fontFamily), false);
+  t('nessun badge "bozza" nella timeline', d.querySelectorAll('.timeline .badge--draft').length, 0);
   t('opzionale ha classe', d.getElementById('tl-d07-08').classList.contains('tl-item--optional'), true);
   t('.tl-now solo nel 14 nov', [...d.querySelectorAll('.tl-now')].map((x) => x.closest('.tl-day').dataset.date), ['2026-11-14']);
   const gaps8 = [...d.querySelectorAll('#day-2026-11-08 .tl-gap')].map((x) => x.textContent);

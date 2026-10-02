@@ -1,15 +1,31 @@
 /* theme-boot.js — script classico (non module) da includere nell'<head> SUBITO DOPO <link id="theme-css">.
-   Tema unico (neutral, DIRECTION 2 ott 2026): qui si applica solo il MODO salvato (auto/chiaro/scuro) prima del
-   primo paint, così non c'è flash. Una vecchia scelta di tema in localStorage viene ignorata. */
+   Applica tema e modo salvati prima del primo paint (niente flash). Nessuna dipendenza. */
 (function () {
+  // Elenco temi disponibili: per aggiungerne uno, aggiungere qui + assets/css/themes/<id>.css + PRECACHE in sw.js
+  var THEMES = [
+    { id: 'neutral', label: 'Neutro' },
+    { id: 'washi', label: 'Washi' },
+    { id: 'night', label: 'Notte' }
+  ];
   var MODES = ['auto', 'light', 'dark'];
-  window.GJ_THEMES = [{ id: 'neutral', label: 'Neutro' }];
-  var mode = 'auto';
+  window.GJ_THEMES = THEMES;
+
+  var theme = 'neutral', mode = 'auto';
   try {
+    var t = localStorage.getItem('giappone.theme');
     var m = localStorage.getItem('giappone.mode');
+    for (var i = 0; i < THEMES.length; i++) if (THEMES[i].id === t) theme = t;
     if (MODES.indexOf(m) >= 0) mode = m;
-  } catch (e) { /* storage non disponibile: auto */ }
+  } catch (e) { /* storage non disponibile: default */ }
+
   var html = document.documentElement;
-  html.setAttribute('data-theme', 'neutral');
+  html.setAttribute('data-theme', theme);
   html.setAttribute('data-theme-mode', mode);
+
+  var link = document.getElementById('theme-css');
+  if (link) {
+    var href = link.getAttribute('href') || '';
+    var next = href.replace(/[^\/]+\.css(\?.*)?$/, theme + '.css');
+    if (next !== href) link.setAttribute('href', next);
+  }
 })();

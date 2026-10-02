@@ -9,8 +9,7 @@ const FLAGS = [
 ];
 const FLAG_LABEL = Object.fromEntries(FLAGS.map((f) => [f.id, f.label]));
 const DEFAULT_FLAGS = ['Sì', 'Forse'];
-// "Andiamo?" come parola nella riga dei dettagli (niente badge): "Sì" è il caso normale e non si scrive
-const FLAG_WORD = { 'Sì': '', Forse: 'forse', No: 'no', Futuro: "un'altra volta", '': 'da decidere' };
+const FLAG_BADGE = { 'Sì': 'badge--done', Forse: 'badge--opt', No: '', Futuro: 'badge--draft', '': '' };
 const norm = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 const OPEN_ALL_MAX = 30; // con pochi risultati (ricerca, una città) i gruppi si aprono tutti
 
@@ -21,11 +20,12 @@ function placeRow(p) {
   const flag = p.flag || '';
   return html`<li class="list-item lu-row">
     <div class="stack lu-row__body">
-      <p class="lu-row__name"><strong>${p.name}</strong>${p.source === '★' ? html` <span class="lu-star" title="segnalato da voi" aria-label="segnalato da voi">★</span>` : ''}</p>
-      <p class="small muted">${[p.type, p.area, FLAG_WORD[flag] != null ? FLAG_WORD[flag] : FLAG_LABEL[flag]].filter(Boolean).join(' · ')}</p>
+      <p class="lu-row__name"><strong>${p.name}</strong>${p.source === '★' ? html` <span class="lu-star" title="segnalato da voi" aria-label="segnalato da voi">★</span>` : ''}
+        <span class="badge ${FLAG_BADGE[flag] || ''}" title="Andiamo? ${FLAG_LABEL[flag] || flag}">${FLAG_LABEL[flag] || flag}</span></p>
+      <p class="small muted">${[p.type, p.area].filter(Boolean).join(' · ')}</p>
       ${p.note ? html`<p class="small">${p.note}</p>` : ''}
       ${(p.dayDates || []).length ? html`<p class="row lu-days" aria-label="Giorni in agenda">${p.dayDates.map((d) => html`
-        <a class="chip" href="${pageUrl('giorno.html', { d })}">${fmtDate(d)}</a>`)}</p>` : ''}
+        <a class="chip" href="${pageUrl('giorno.html', { d })}">${icon('calendar')} ${fmtDate(d)}</a>`)}</p>` : ''}
     </div>
     <div class="row lu-row__actions">
       ${mapsIconBtn(q, p.name)}
@@ -118,14 +118,14 @@ export async function render(root, { loadData }) {
     countEl.textContent = res.length === 1 ? '1 luogo' : `${res.length} luoghi su ${places.length}`;
     store.set('luoghi', { cities: st.cities, flags: st.flags, sort: st.sort, q: st.q, open: st.open });
     if (!res.length) { mount(listEl, html`<p class="empty">Nessun luogo con questi filtri.</p>`); return; }
-    if (st.sort !== 'city') { mount(listEl, html`<ul class="list">${res.map(placeRow)}</ul>`); return; }
+    if (st.sort !== 'city') { mount(listEl, html`<ul class="list card">${res.map(placeRow)}</ul>`); return; }
     // per città: un gruppo richiudibile per città, con il conteggio; aperto se scelto o se i risultati sono pochi
     const groups = new Map();
     res.forEach((p) => { const c = p.city || '—'; if (!groups.has(c)) groups.set(c, []); groups.get(c).push(p); });
     const openAll = res.length <= OPEN_ALL_MAX || groups.size === 1;
     mount(listEl, [...groups].map(([c, ps]) => html`<details class="lu-group" data-group="${c}"${openAll || st.open.includes(c) ? ' open' : ''}>
-      <summary class="lu-group__head"><span class="h3">${c}</span> <span class="lu-group__count" aria-label="${ps.length} luoghi">${ps.length}</span></summary>
-      <ul class="list">${ps.map(placeRow)}</ul>
+      <summary class="lu-group__head"><span class="h3">${c}</span> <span class="badge" aria-label="${ps.length} luoghi">${ps.length}</span></summary>
+      <ul class="list card">${ps.map(placeRow)}</ul>
     </details>`));
   };
   // apertura/chiusura gruppi ricordata solo quando la cambia l'utente (click/Invio sul titolo del gruppo)

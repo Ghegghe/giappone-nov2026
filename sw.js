@@ -1,11 +1,9 @@
 // sw.js — service worker del sito. Bumpare CACHE_VERSION a ogni deploy che cambia file statici.
-const CACHE_VERSION = 'v5';
+const CACHE_VERSION = 'v6';
 const STATIC_CACHE = `giappone-static-${CACHE_VERSION}`;
 const DATA_CACHE = `giappone-data-${CACHE_VERSION}`;
 
 // Lista esplicita (path relativi alla cartella di sw.js). tools/check_site.py verifica che esistano.
-// Tema unico: washi.css e night.css restano nel repo ma non sono precacheati. Le foto assets/img/*.jpg
-// si mettono in cache alla prima visita (cache-first runtime), non qui.
 // PRECACHE-BEGIN
 const PRECACHE = [
   './',
@@ -21,7 +19,9 @@ const PRECACHE = [
   'assets/css/base.css',
   'assets/css/agenda.css',
   'assets/css/pages.css',
+  'assets/css/themes/washi.css',
   'assets/css/themes/neutral.css',
+  'assets/css/themes/night.css',
   'assets/js/app.js',
   'assets/js/theme-boot.js',
   'assets/js/agenda.js',

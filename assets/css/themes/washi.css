@@ -1,7 +1,7 @@
 /* Tema WASHI — carta washi, indaco 藍, vermiglio 朱, inchiostro sumi.
    Stesso scheletro shadcn del tema neutral (stessi token, stessi componenti): cambiano SOLO palette, famiglia dei titoli
    (Mincho/Iowan) e tre dettagli di superficie definiti come variabili (carta --bg-texture, sigillo --seal, segno --section-mark).
-   Struttura: (A) token shadcn grezzi, (B) mappa sulle variabili SPEC §6, (C) colori per type. I blocchi scuri ridefiniscono (A) e (C). */
+   Struttura: (A) token shadcn grezzi, (B) mappa sulle variabili SPEC §6, (C) 4 famiglie di colore della timeline (ibrido 2 ott). I blocchi scuri ridefiniscono (A) e (C). */
 
 :root {
   color-scheme: light;
@@ -82,20 +82,25 @@
 
   --tl-hour-h: 48px;
 
-  /* (C) colori per type (testo AA su --card e sulle tinte dei blocchi) */
-  --c-train: #2b3f8a;       /* 藍 indaco */
-  --c-bus: #1b6670;         /* 浅葱 asagi */
-  --c-transfer: #1c5e8a;    /* 縹 hanada */
-  --c-sight: #ad3219;       /* 朱 vermiglio */
-  --c-food: #964a08;        /* 柿 kaki */
-  --c-nightlife: #6a3a9c;   /* 紫 murasaki */
-  --c-lodging: #74502d;     /* 茶 cha */
-  --c-logistics: #57585b;   /* 墨 sumi */
-  --c-free: #5c6b2a;        /* 抹茶 matcha */
-  --c-fixed: #8a1f2e;       /* 臙脂 enji */
-  --c-anime: #b4246a;       /* 桜 sakura intenso */
-  --c-onsen: #1e6f57;       /* 青磁 seiji */
-  --c-shopping: #7d6200;    /* 山吹 yamabuki scuro */
+  /* (C) 4 famiglie di colore della timeline (ibrido 2 ott) (testo AA su --card e sulle tinte dei blocchi) */
+  --fam-move: #2b3f8a;   /* spostamenti: treni, bus, transfer, logistica */
+  --fam-fixed: #8a1f2e;   /* orari fissi: vincoli, check-in */
+  --fam-culture: #1e6f57;   /* visite e cultura: luoghi, anime, onsen, shopping */
+  --fam-evening: #964a08;   /* cibo e sera */
+  /* i 13 type dei dati → 4 famiglie (si risolvono con le --fam-* del modo attivo); "free" è spazio, in grigio */
+  --c-train: var(--fam-move);
+  --c-bus: var(--fam-move);
+  --c-transfer: var(--fam-move);
+  --c-logistics: var(--fam-move);
+  --c-fixed: var(--fam-fixed);
+  --c-lodging: var(--fam-fixed);
+  --c-sight: var(--fam-culture);
+  --c-anime: var(--fam-culture);
+  --c-onsen: var(--fam-culture);
+  --c-shopping: var(--fam-culture);
+  --c-food: var(--fam-evening);
+  --c-nightlife: var(--fam-evening);
+  --c-free: var(--fg-muted);
 }
 
 @media (min-width: 900px) {
@@ -136,19 +141,10 @@
       linear-gradient(67deg, transparent 49.2%, rgb(236 229 216 / .02) 49.6% 50.4%, transparent 50.8%),
       radial-gradient(rgb(236 229 216 / .035) .6px, transparent 1px);
     --bg-texture-size: 41px 29px, 31px 47px, 7px 11px;
-    --c-train: #98b3f7;
-    --c-bus: #5fc4cf;
-    --c-transfer: #7cc0e8;
-    --c-sight: #f58a4f;
-    --c-food: #e8b05a;
-    --c-nightlife: #cf98f2;
-    --c-lodging: #d1a77a;
-    --c-logistics: #b4b2ad;
-    --c-free: #b5c770;
-    --c-fixed: #f2918a;
-    --c-anime: #f285bd;
-    --c-onsen: #6fd0ae;
-    --c-shopping: #d9d24a;
+    --fam-move: #98b3f7;
+    --fam-fixed: #f2918a;
+    --fam-culture: #6fd0ae;
+    --fam-evening: #e8b05a;
   }
 }
 
@@ -185,17 +181,8 @@
     linear-gradient(67deg, transparent 49.2%, rgb(236 229 216 / .02) 49.6% 50.4%, transparent 50.8%),
     radial-gradient(rgb(236 229 216 / .035) .6px, transparent 1px);
   --bg-texture-size: 41px 29px, 31px 47px, 7px 11px;
-  --c-train: #98b3f7;
-  --c-bus: #5fc4cf;
-  --c-transfer: #7cc0e8;
-  --c-sight: #f58a4f;
-  --c-food: #e8b05a;
-  --c-nightlife: #cf98f2;
-  --c-lodging: #d1a77a;
-  --c-logistics: #b4b2ad;
-  --c-free: #b5c770;
-  --c-fixed: #f2918a;
-  --c-anime: #f285bd;
-  --c-onsen: #6fd0ae;
-  --c-shopping: #d9d24a;
+  --fam-move: #98b3f7;
+  --fam-fixed: #f2918a;
+  --fam-culture: #6fd0ae;
+  --fam-evening: #e8b05a;
 }

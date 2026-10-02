@@ -12,15 +12,15 @@ export const TYPE_LABEL = {
   lodging: 'Alloggio', logistics: 'Logistica', free: 'Libero', fixed: 'Vincolo fisso', anime: 'Anime/otaku',
   onsen: 'Onsen', shopping: 'Shopping',
 };
-// 4 famiglie di colore della timeline (DIRECTION): i 13 type dei dati restano, il colore viene dalla famiglia.
-// "free" non è una famiglia: è spazio, in grigio.
+// 4 famiglie di colore della timeline (ibrido 2 ott): i 13 type dei dati restano, il colore viene dalla famiglia
+// (mappa --c-<type> → --fam-* nei temi). "free" non è una famiglia: è spazio, in grigio.
 export const FAMILY = {
   train: 'move', bus: 'move', transfer: 'move', logistics: 'move',
   fixed: 'fixed', lodging: 'fixed',
   sight: 'culture', anime: 'culture', onsen: 'culture', shopping: 'culture',
   food: 'evening', nightlife: 'evening', free: 'free',
 };
-export const FAMILY_LABEL = { move: 'Spostamenti', fixed: 'Fissi', culture: 'Visite e cultura', evening: 'Cibo e sera', free: 'Libero' };
+export const FAMILY_LABEL = { move: 'Spostamenti', fixed: 'Orari fissi', culture: 'Visite e cultura', evening: 'Cibo e sera', free: 'Libero' };
 export const FAMILIES = ['move', 'fixed', 'culture', 'evening'];
 export const BOOKING_LABEL = { none: 'nessuna prenotazione', todo: 'da prenotare', done: 'prenotato' };
 

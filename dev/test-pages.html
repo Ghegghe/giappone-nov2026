@@ -72,10 +72,9 @@
   ok(s2.phase === 'during' && s2.dayN === 6 && s2.total === 18, 'in viaggio 12 nov → giorno 6 di 18');
   ok(home.tripStatus(trip, '2026-11-25').phase === 'after', 'dopo il 24 nov → concluso');
   const bh = box('home'); await home.render(bh, ctx);
-  ok(/tra \d+ giorni|si parte|giorno \d+ di|concluso/.test(bh.querySelector('.home-head__line')?.textContent || ''), 'home: una riga con date, persone e quanto manca');
-  ok(home.tripLine(trip, home.tripStatus(trip, '2026-10-02')) === 'sab 7 → mar 24 nov · 4 persone · tra 36 giorni', 'home: riga «sab 7 → mar 24 nov · 4 persone · tra 36 giorni»');
-  ok(bh.querySelectorAll('.home-day__item').length >= 1 && !bh.querySelector('.card'), 'home: «Prossimo giorno» come lista semplice, senza card');
-  ok(bh.querySelectorAll('.home-dl').length === 3, 'home: le 3 scadenze più vicine');
+  ok(/giorni alla partenza|Giorno \d+ di|concluso/.test(bh.textContent), 'home: countdown presente');
+  ok(bh.querySelectorAll('.home-day__item').length === 3, 'home: 3 item nella card giorno');
+  ok(bh.querySelectorAll('.home-dl').length === 5, 'home: 5 scadenze');
   // scadenze: "in ritardo" solo se la data (fine intervallo inclusa) è passata, in fuso italiano
   const { deadlineState, deadlineLabel } = await import('../assets/js/pages.js');
   ok(deadlineState({ status: 'todo', sortDate: '2026-10-01' }, '2026-10-01') === 'today', 'scadenza con data di oggi → "oggi", non in ritardo');
@@ -83,14 +82,20 @@
   ok(deadlineState({ status: 'todo', sortDate: '2026-09-30' }, '2026-10-01') === 'late', 'data passata → in ritardo');
   ok(deadlineLabel({ sortDate: '2026-10-11', when: '11 ott 3:00-16:30 IT' }) === 'dom 11 ott', 'etichetta scadenza leggibile (dom 11 ott)');
   ok(deadlineLabel({ sortDate: '2026-10-28', when: '~fine ott', dateApprox: true }) === '~fine ott', 'scadenza approssimata: testo originale');
-  ok(!bh.querySelector('.home-grid__item, .home-count') && !/€1 = ¥|Cambio/.test(bh.textContent), 'home: niente hero, niente griglia Sezioni, niente tasso');
+  ok(!bh.querySelector('.home-grid__item, .home-sections'), 'home: niente griglia "Sezioni" (duplica la nav)');
+  ok(!/€1 = ¥|Cambio/.test(bh.textContent), 'home: niente tasso di cambio');
+  ok(!!bh.querySelector('.home-count') && bh.querySelectorAll('.card').length >= 3, 'home: hero e card restano');
+  ok(![...bh.querySelectorAll('.badge')].some((x) => /bozza/i.test(x.textContent)) && !/bozza/i.test(bh.textContent), 'home: niente "bozza"');
+  ok(!bh.querySelector('use[href$="#i-lock"]'), 'home: niente lucchetto');
+  ok(!document.querySelector('figure.photo, .photo__name'), 'nessuno slot foto');
+  ok(!!bh.querySelector('a[href^="https://www.google.com/maps/d/"]'), 'home: link My Maps');
 
   // --- trasporti ---
   const bt = box('trasporti'); await tr.render(bt, ctx);
   const t = await app.loadData('transport');
   ok(bt.querySelectorAll('.tr-leg').length === t.legs.length, `trasporti: ${t.legs.length} tratte`);
   ok(bt.querySelectorAll('.tr-opt--chosen').length === t.legs.length, 'trasporti: 1 opzione scelta per tratta');
-  ok([...bt.querySelectorAll('.tr-opt--chosen')].every((c) => c.querySelectorAll(':scope > p:not(.tr-opt__name):not(.tr-opt__meta):not(.tr-opt__open)').length <= 1), 'trasporti: al massimo una riga di nota sulla card');
+  ok([...bt.querySelectorAll('.tr-opt--chosen')].every((c) => c.querySelectorAll(':scope > p').length <= 1), 'trasporti: al massimo una riga di nota sulla card');
   ok([...bt.querySelectorAll('.tr-opt--chosen details > summary')].some((x) => x.textContent === 'Come si prenota e si ritira'), 'trasporti: prenota/pagamento/ritiro in un details');
   const nDates = new Set(t.legs.map((l) => l.date)).size;
   ok(bt.querySelectorAll('.tr-day').length === nDates, `trasporti: tratte raggruppate in ${nDates} date`);
@@ -100,8 +105,7 @@
   tabs[1].click(); ok(bt.querySelectorAll('.tr-leg').length === t.transfers.length, `tab Aeroporti: ${t.transfers.length} transfer`);
   ok(!bt.textContent.includes('[object Object]') && !!bt.querySelector('.tr-opt__details dl'), 'aeroporti: details {cost,how,booking,proCon} resi come dl');
   tabs[2].click(); ok(bt.querySelectorAll('.tr-guide').length === t.bookingGuide.length, 'tab Prenotazioni: card guida');
-  ok(!!bt.querySelector('.tr-guide a[target=_blank] .sr-only') && !bt.querySelector('.tr-guide .icon'), 'prenotazioni: link esterni senza icona, «nuova scheda» per screen reader');
-  ok(!bt.querySelector('.tr-guide.card'), 'prenotazioni: sezioni tipografiche, non card');
+  ok(!!bt.querySelector('.tr-guide a[target=_blank] use[href$="#i-external"]'), 'prenotazioni: link esterni con i-external');
   tabs[3].click();
   ok(bt.querySelectorAll('.tr-chk').length === t.checklist.length, 'tab Scadenze: tutte le voci');
   ok(bt.querySelectorAll('.tr-chk--done').length === t.checklist.filter((c) => c.status === 'done').length, 'scadenze: badge fatto');
@@ -115,10 +119,7 @@
   const stays = [...ba.querySelectorAll('.al-stay')];
   ok(stays.length === 6, 'alloggi: 6 basi');
   ok(stays[0].id === 'osaka' && stays[5].id === 'tokyo', 'alloggi: ordine cronologico');
-  ok(stays.every((s) => s.querySelector('a.btn[href*="google.com/maps"]')), 'alloggi: bottone Maps su ogni base');
-  const photos = (trip.photos || []);
-  ok(stays.every((s) => s.querySelector('figure.photo .photo__name')?.textContent && !!s.querySelector('figure.photo img') === photos.includes(s.id)), 'alloggi: slot foto con fallback (immagine solo se elencata in trip.photos)');
-  ok(stays.every((s) => s.querySelectorAll('.badge').length <= 1), 'alloggi: al massimo un badge per base');
+  ok(stays.every((s) => s.querySelector('a.btn--primary[href*="google.com/maps"]')), 'alloggi: bottone Maps su ogni base');
   const at = [...ba.querySelectorAll('[role=tab]')];
   ok(at.length === 3, 'logistica: 3 sotto-schede');
   const lg = (await app.loadData('lodging')).logistics;
@@ -137,8 +138,7 @@
   const def = P.filter((p) => p.flag === 'Sì' || p.flag === 'Forse' || (!p.flag && (p.dayDates || []).length)).length;
   ok(bl.querySelectorAll('.lu-row').length === def, `luoghi: default Sì+Forse (+ senza flag in agenda) = ${def}`);
   ok(bl.querySelectorAll('details.lu-group').length === new Set(lu.filterPlaces(P, st0(P)).map((p) => p.city)).size, 'luoghi: un gruppo richiudibile per città');
-  ok([...bl.querySelectorAll('details.lu-group')].every((g) => Number(g.querySelector('summary .lu-group__count').textContent) === g.querySelectorAll('.lu-row').length), 'luoghi: conteggio nel titolo del gruppo');
-  ok(!bl.querySelector('.lu-row .badge'), 'luoghi: niente badge nelle righe (il flag è una parola)');
+  ok([...bl.querySelectorAll('details.lu-group')].every((g) => Number(g.querySelector('summary .badge').textContent) === g.querySelectorAll('.lu-row').length), 'luoghi: conteggio nel titolo del gruppo');
   ok([...bl.querySelectorAll('.lu-row')].every((r) => r.querySelector('a.btn--icon[aria-label][href*="google.com/maps"]')), 'luoghi: Maps come icona-bottone con aria-label');
   ok(lu.filterPlaces(P, { ...st0(P), flags: [''] }).length === P.filter((p) => !p.flag).length, 'chip Da decidere: tutti i luoghi senza flag');
   const st = { q: '', cities: [], flags: ['Sì', 'Forse'], sort: 'city', cityOrder: [...new Set(P.map((p) => p.city))] };
@@ -165,8 +165,7 @@
   const bb = box('budget'); await bu.render(bb, ctx);
   const b = await app.loadData('budget');
   ok(bb.querySelectorAll('.bu-table')[0].querySelectorAll('tbody tr').length === b.perPerson.categories.length, 'budget: righe categorie');
-  ok(bb.querySelectorAll('.bu-est').length === b.perPerson.categories.filter((c) => c.estimate).length + b.perPerson.common.filter((c) => c.estimate).length, 'budget: «stima» come parola');
-  ok(!bb.querySelector('.card'), 'budget: niente card');
+  ok(bb.querySelectorAll('.badge--draft').length === b.perPerson.categories.filter((c) => c.estimate).length + b.perPerson.common.filter((c) => c.estimate).length, 'budget: badge stima');
   ok(bb.textContent.includes('€2.765,61') && bb.textContent.includes('€11.062,44'), 'budget: totali persona e gruppo');
   ok(bb.querySelectorAll('.bu-bar__fill').length > 0, 'budget: barre proporzionali');
   const tf = [...bb.querySelectorAll('.bu-table tfoot td strong')].map((x) => x.textContent);
@@ -178,7 +177,6 @@
   // --- testi: niente gergo del dossier né valori rotti nel render ---
   const all = [bh, bt, ba, bl, bb].map((x) => x.textContent).join(' ');
   ok(!/📎|🗓|\bdossier\b|CHOICES|\bv2\d\b|undefined|\bnull\b|\[object/.test(all), 'render: niente riferimenti al dossier, "null", "undefined", "[object"');
-  ok(!/\(verificat|Verificato su|\([^()]*\(/.test(all), 'render: niente «(verificato)» né parentesi annidate');
 
   const sum = document.createElement('p');
   sum.className = fails ? 't-ko' : 't-ok';

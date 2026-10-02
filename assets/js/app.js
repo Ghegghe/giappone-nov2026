@@ -174,35 +174,16 @@ export function showEmpty(el, msg) {
   el.replaceChildren(p);
 }
 
-// ---------- Foto delle basi ----------
-/** Slot foto `assets/img/<baseId>.jpg` (DIRECTION): l'immagine esiste solo se il file è elencato in trip.photos
- *  (lo scrive l'exporter guardando la cartella), così uno slot vuoto non genera richieste 404. Senza foto resta il
- *  blocco colore con il nome della città. Ritorna HTML già escapato. */
-export function photoHtml(baseId, label, trip, cls = '') {
-  const id = /^[a-z0-9-]+$/.test(baseId || '') ? baseId : '';
-  const has = id && trip && Array.isArray(trip.photos) && trip.photos.includes(id);
-  return `<figure class="photo${cls ? ' ' + esc(cls) : ''}" data-base="${esc(id)}">` +
-    (has ? `<img src="${esc(rootUrl(`assets/img/${id}.jpg`))}" alt="${esc(label || '')}" loading="lazy" decoding="async">` : '') +
-    `<figcaption class="photo__name"${has ? ' aria-hidden="true"' : ''}>${esc(label || '')}</figcaption></figure>`;
-}
-// un file elencato ma illeggibile: via l'immagine, resta il blocco colore
-document.addEventListener('error', (e) => {
-  const t = e.target;
-  if (t && t.tagName === 'IMG' && t.parentElement && t.parentElement.classList.contains('photo')) {
-    t.nextElementSibling && t.nextElementSibling.removeAttribute('aria-hidden');
-    t.remove();
-  }
-}, true);
-
 function icon(name) {
   // aria-hidden: l'etichetta testuale accanto (o aria-label sul contenitore) descrive l'icona
   return `<svg class="icon" aria-hidden="true" focusable="false"><use href="${esc(rootUrl('assets/icons/sprite.svg'))}#i-${esc(name)}"></use></svg>`;
 }
 
-// ---------- Tema (unico) e modo ----------
-// Il tema è uno solo (neutral.css): resta solo il modo auto/chiaro/scuro, col pulsante nella topbar.
-const MODES = [{ id: 'auto', label: 'Automatico' }, { id: 'light', label: 'Chiaro' }, { id: 'dark', label: 'Scuro' }];
-const LS_MODE = 'giappone.mode';
+// ---------- Tema ----------
+const FALLBACK_THEMES = [{ id: 'neutral', label: 'Neutro' }, { id: 'washi', label: 'Washi' }, { id: 'night', label: 'Notte' }];
+const themes = () => (Array.isArray(window.GJ_THEMES) && window.GJ_THEMES.length ? window.GJ_THEMES : FALLBACK_THEMES);
+const MODES = [{ id: 'auto', label: 'Auto' }, { id: 'light', label: 'Chiaro' }, { id: 'dark', label: 'Scuro' }];
+const LS_THEME = 'giappone.theme', LS_MODE = 'giappone.mode';
 
 function currentTheme() {
   const h = document.documentElement;
@@ -216,25 +197,40 @@ function syncThemeColor() {
   if (bg) meta.setAttribute('content', bg);
 }
 
-/** Applica il modo (auto|light|dark) e lo persiste. Il primo argomento (tema) è ignorato: il tema è unico. */
-export function applyTheme(_theme, mode) {
-  const md = MODES.some((m) => m.id === mode) ? mode : currentTheme().mode;
+/** Applica tema (neutral|washi|night) e modo (auto|light|dark); persiste in localStorage. Argomenti omessi = valore corrente/salvato. */
+export function applyTheme(themeName, mode) {
+  const cur = currentTheme();
+  const theme = themes().some((t) => t.id === themeName) ? themeName : cur.theme;
+  const md = MODES.some((m) => m.id === mode) ? mode : cur.mode;
   const html = document.documentElement;
-  html.setAttribute('data-theme', 'neutral');
+  html.setAttribute('data-theme', theme);
   html.setAttribute('data-theme-mode', md);
-  try { localStorage.setItem(LS_MODE, md); } catch (e) { /* ignore */ }
+  const link = document.getElementById('theme-css');
+  if (link) {
+    const href = link.getAttribute('href') || '';
+    const next = href.replace(/[^/]+\.css(\?.*)?$/, theme + '.css');
+    if (next !== href) {
+      link.addEventListener('load', syncThemeColor, { once: true });
+      link.setAttribute('href', next);
+    }
+  }
+  try { localStorage.setItem(LS_THEME, theme); localStorage.setItem(LS_MODE, md); } catch (e) { /* ignore */ }
   syncThemeColor();
   updateThemeControls();
-  return { theme: 'neutral', mode: md };
+  return { theme, mode: md };
 }
 
 const MODE_ICON = { auto: 'auto', light: 'sun', dark: 'moon' };
 function updateThemeControls() {
-  const { mode } = currentTheme();
+  const { theme, mode } = currentTheme();
+  const ts = document.getElementById('theme-select');
+  const ms = document.getElementById('mode-select');
+  if (ts) ts.value = theme;
+  if (ms) ms.value = mode;
   document.querySelectorAll('.theme-switch').forEach((b) => {
     const label = MODES.find((m) => m.id === mode).label;
-    b.setAttribute('aria-label', `Colori: ${label.toLowerCase()} (cambia)`);
-    b.title = `Colori: ${label.toLowerCase()}`;
+    b.setAttribute('aria-label', `Modo colore: ${label} (cambia)`);
+    b.title = `Modo: ${label}`;
     b.innerHTML = icon(MODE_ICON[mode]) + `<span class="sr-only">${esc(label)}</span>`;
   });
 }
@@ -312,13 +308,17 @@ export async function initShell(activeSectionId = 'home') {
       `${icon(s.icon || s.id)}<span class="nav__label">${esc(s.label || s.id)}</span></a>`;
   }).join('');
 
-  // Footer: data dei dati e mappa del viaggio (il modo colori sta nella topbar)
+  // Footer
   const gen = trip && trip.generatedAt ? fmtStamp(trip.generatedAt) : '';
-  const map = trip && /^https:\/\//.test(trip.mapsLink || '') ? trip.mapsLink : '';
+  const opt = (list, id) => list.map((x) => `<option value="${esc(x.id)}">${esc(x.label)}</option>`).join('');
   footer.innerHTML =
     (gen ? `<p class="small muted">Dati aggiornati al ${esc(gen)}</p>` : trip ? '' : `<p class="small muted">Dati non disponibili</p>`) +
     (DATA_BASE !== 'data/' ? `<p class="small muted">Dati di prova: ${esc(DATA_BASE)}</p>` : '') +
-    (map ? `<p class="small"><a href="${esc(map)}" target="_blank" rel="noopener noreferrer">Mappa del viaggio su Google My Maps<span class="sr-only"> (nuova scheda)</span></a></p>` : '');
+    `<div class="footer__theme row">` +
+    `<label class="small">Tema <select id="theme-select">${opt(themes())}</select></label>` +
+    `<label class="small">Modo <select id="mode-select">${opt(MODES)}</select></label></div>`;
+  footer.querySelector('#theme-select').addEventListener('change', (e) => applyTheme(e.target.value));
+  footer.querySelector('#mode-select').addEventListener('change', (e) => applyTheme(undefined, e.target.value));
   updateThemeControls();
   syncThemeColor();
 

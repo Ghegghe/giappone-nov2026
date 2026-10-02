@@ -1,6 +1,6 @@
 /* Tema NIGHT — scuro profondo per leggere di notte (luminanza bassa, accento caldo ambra-lanterna).
    Sempre scuro: ignora data-theme-mode. Stesso scheletro shadcn degli altri temi: cambiano solo palette e famiglia titoli.
-   Struttura: (A) token shadcn grezzi, (B) mappa sulle variabili SPEC §6, (C) colori per type. */
+   Struttura: (A) token shadcn grezzi, (B) mappa sulle variabili SPEC §6, (C) 4 famiglie di colore della timeline (ibrido 2 ott). */
 
 :root,
 :root[data-theme-mode="light"],
@@ -66,20 +66,25 @@
 
   --tl-hour-h: 48px;
 
-  /* (C) colori per type: saturazione contenuta, luminanza media */
-  --c-train: #8ba5e6;
-  --c-bus: #4fb3bf;
-  --c-transfer: #6eaed4;
-  --c-sight: #e8844a;
-  --c-food: #d9a555;
-  --c-nightlife: #c08fe4;
-  --c-lodging: #c39d75;
-  --c-logistics: #a3a19c;
-  --c-free: #a2b866;
-  --c-fixed: #e2867e;
-  --c-anime: #e57fb5;
-  --c-onsen: #5fc1a0;
-  --c-shopping: #c9c34a;
+  /* (C) 4 famiglie di colore della timeline (ibrido 2 ott): saturazione contenuta, luminanza media */
+  --fam-move: #8ba5e6;   /* spostamenti: treni, bus, transfer, logistica */
+  --fam-fixed: #e2867e;   /* orari fissi: vincoli, check-in */
+  --fam-culture: #5fc1a0;   /* visite e cultura: luoghi, anime, onsen, shopping */
+  --fam-evening: #d9a555;   /* cibo e sera */
+  /* i 13 type dei dati → 4 famiglie (si risolvono con le --fam-* del modo attivo); "free" è spazio, in grigio */
+  --c-train: var(--fam-move);
+  --c-bus: var(--fam-move);
+  --c-transfer: var(--fam-move);
+  --c-logistics: var(--fam-move);
+  --c-fixed: var(--fam-fixed);
+  --c-lodging: var(--fam-fixed);
+  --c-sight: var(--fam-culture);
+  --c-anime: var(--fam-culture);
+  --c-onsen: var(--fam-culture);
+  --c-shopping: var(--fam-culture);
+  --c-food: var(--fam-evening);
+  --c-nightlife: var(--fam-evening);
+  --c-free: var(--fg-muted);
 }
 
 @media (min-width: 900px) {

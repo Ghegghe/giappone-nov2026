@@ -9,36 +9,42 @@
 .agenda__head .h1 { margin: 0; }
 .agenda__head p { margin: var(--space-1) 0 0; }
 /* avviso globale agenda.notice */
-.agenda__notice { margin-top: var(--space-2); font-size: .875rem; line-height: 1.25rem; color: var(--fg-muted); }
+.agenda__notice { margin-top: var(--space-2); flex-wrap: nowrap; align-items: flex-start; gap: var(--space-2); font-size: .875rem; line-height: 1.25rem; color: var(--fg-muted); }
+.agenda__notice > .icon { flex: none; width: 16px; height: 16px; margin-top: 2px; }
+.agenda__notice > span { min-width: 0; }
 .agenda__tools { display: flex; flex-wrap: wrap; gap: var(--space-2); align-items: flex-start; justify-content: space-between; }
 .agenda__tools > .row { gap: var(--space-2); }
 .agenda-legend > summary { list-style: none; cursor: pointer; }
 .agenda-legend > summary::-webkit-details-marker { display: none; }
+.agenda-legend > summary .icon { width: 16px; height: 16px; }
 /* mobile: testata compatta, filtri + legenda su una riga, il sottotitolo è già nella topbar */
 @media (max-width: 899.98px) {
   .agenda__head p { display: none; }
   .agenda__tools { flex-wrap: nowrap; }
   .agenda__tools > .row { flex-wrap: nowrap; }
+  .agenda-legend__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .agenda-legend[open] { flex-basis: 100%; }
   .agenda__tools:has(.agenda-legend[open]) { flex-wrap: wrap; }
 }
-/* legenda: testo semplice con un quadratino di colore (niente chip) */
-.agenda-legend__list { list-style: none; margin: var(--space-2) 0 0; padding: 0; column-gap: var(--space-4); row-gap: var(--space-1); }
-.agenda-legend__chip { display: inline-flex; align-items: center; gap: 6px; font-size: .8125rem; color: var(--fg-muted); }
-.agenda-legend__dot { display: inline-block; inline-size: 10px; block-size: 10px; border-radius: 2px; flex: none; }
-:where(.agenda-legend__dot) { background: color-mix(in srgb, var(--tc) 22%, var(--bg-elev)); box-shadow: inset 2px 0 0 var(--tc); }
-.agenda-legend__chip--locked { --tc: var(--fg-muted); }
-.agenda-legend__chip--locked .agenda-legend__dot { background: color-mix(in srgb, var(--tc) 30%, var(--bg-elev)); box-shadow: inset 3px 0 0 var(--tc); }
-.agenda-legend__chip--opt { --tc: var(--fg-muted); }
-.agenda-legend__chip--opt .agenda-legend__dot { background: none; box-shadow: inset 2px 0 0 var(--tc), inset 0 0 0 1px color-mix(in srgb, var(--tc) 40%, transparent); }
-:where(.tl-fam--move) { --tc: var(--fam-move); }
-:where(.tl-fam--fixed) { --tc: var(--fam-fixed); }
-:where(.tl-fam--culture) { --tc: var(--fam-culture); }
-:where(.tl-fam--evening) { --tc: var(--fam-evening); }
-/* pannello: tipo come riga di testo, col pallino del colore */
-.agenda-panel__kind { display: flex; align-items: center; flex-wrap: wrap; gap: 0 4px; color: var(--fg-muted); }
-.agenda-panel__fixed { display: inline-flex; align-items: center; gap: 4px; }
-.agenda-panel__fixed .icon { width: 14px; height: 14px; }
+.agenda-legend__list { list-style: none; margin: var(--space-2) 0 0; padding: 0; gap: var(--space-1); }
+.agenda-legend__chip { display: inline-flex; align-items: center; gap: 6px; cursor: default; }
+.agenda-legend__list .agenda-legend__chip { min-height: 28px; padding-inline: 10px; font-size: .8125rem; font-weight: 500; }
+.agenda-legend__chip::after { content: none; }
+:where(.agenda-legend__chip:hover) { border-color: var(--border); background: var(--bg-elev); }
+/* in giorno.html il type è un'etichetta, non un controllo: badge-like senza cornice da bottone */
+:is(.giorno__badges, .agenda-panel) .agenda-legend__chip {
+  min-height: 22px; padding: 0 10px 0 8px; gap: 5px; border-radius: 999px; box-shadow: none;
+  font-size: .75rem; font-weight: 600;
+}
+:is(.giorno__badges, .agenda-panel) .agenda-legend__chip {
+  background: color-mix(in srgb, var(--tc) 11%, var(--bg-elev)); color: var(--tc);
+  border-color: color-mix(in srgb, var(--tc) 28%, transparent);
+}
+:is(.giorno__badges, .agenda-panel) .agenda-legend__dot { inline-size: 7px; block-size: 7px; }
+.agenda-legend__dot { inline-size: 10px; block-size: 10px; border-radius: 50%; flex: none; }
+:where(.agenda-legend__dot) { background: var(--tc); }
+:where(.agenda-legend__chip--opt) .agenda-legend__dot { background: transparent; box-shadow: inset 0 0 0 1.5px var(--fg-muted); }
+:where(.agenda-legend__chip--locked) .agenda-legend__dot { background: var(--fg); }
 
 /* ---------- selettore date (chip scorrevoli, sticky) ---------- */
 .agenda__datebar {
@@ -59,7 +65,7 @@
   min-inline-size: 44px; min-block-size: 44px; padding: 2px 8px; line-height: 1.1; cursor: pointer;
 }
 .agenda-date__wd { font-size: .6875rem; letter-spacing: .02em; }
-.agenda-date__n { font-variant-numeric: tabular-nums; font-size: 1rem; font-weight: 600; }
+.agenda-date__n { font-variant-numeric: tabular-nums; font-size: 1rem; font-weight: 650; }
 
 /* ---------- timeline: completa base.css §7 (stesso DOM), solo override ---------- */
 .agenda .timeline {
@@ -75,7 +81,7 @@
 .timeline:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
 .tl-day__row { display: flex; align-items: center; gap: var(--space-1); min-width: 0; }
 .tl-day__date { text-decoration: none; overflow: hidden; text-overflow: ellipsis; }
-.tl-day__date { color: inherit; }
+:where(.tl-day__date) { color: inherit; }
 .tl-day__date:hover { text-decoration: underline; }
 .tl-day__header .badge { flex: none; }
 .tl-day__title { overflow: hidden; text-overflow: ellipsis; }
@@ -104,6 +110,11 @@
 :where(.tl-type--anime, .giorno__item--anime) { --tc: var(--c-anime); }
 :where(.tl-type--onsen, .giorno__item--onsen) { --tc: var(--c-onsen); }
 :where(.tl-type--shopping, .giorno__item--shopping) { --tc: var(--c-shopping); }
+/* legenda: 4 famiglie di colore (stesse --fam-* della timeline; dopo il default grigio) */
+:where(.tl-fam--move) { --tc: var(--fam-move); }
+:where(.tl-fam--fixed) { --tc: var(--fam-fixed); }
+:where(.tl-fam--culture) { --tc: var(--fam-culture); }
+:where(.tl-fam--evening) { --tc: var(--fam-evening); }
 
 /* ---------- pannello: base.css (.panel.is-open) fa tutto; qui solo il click-catcher trasparente ---------- */
 .agenda-overlay { position: fixed; inset: 0; z-index: 49; background: transparent; }
@@ -113,40 +124,34 @@
 .agenda-panel .btn .icon, .giorno .btn .icon { width: 1em; height: 1em; }
 .badge .icon { width: .9em; height: .9em; vertical-align: -1px; display: inline-block; }
 
-/* ---------- giorno.html: foto (o blocco colore), data e luogo, titolo serif, lista con il filo colorato ---------- */
-.giorno__photo { --photo-ratio: 16 / 9; --photo-name-size: 2.25rem; margin-bottom: var(--space-3); }
-@media (min-width: 900px) { .giorno__photo { --photo-ratio: 3 / 1; --photo-name-size: 3rem; } }
-.giorno__date { color: var(--fg-muted); }
-.giorno__notes { max-width: 68ch; }
-.giorno__kind { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); color: var(--fg-muted); margin: 0; }
-.giorno__links { gap: var(--space-4); margin: 0; }
-.giorno__link { display: inline-flex; align-items: center; min-height: 32px; }
-.giorno__total { font-size: 1.0625rem; }
+/* ---------- giorno.html ---------- */
 .giorno__pager { justify-content: space-between; flex-wrap: nowrap; margin-inline: calc(-1 * var(--space-3)); }
 .giorno__pager .btn { min-block-size: 44px; padding-inline: var(--space-3); font-size: .875rem; }
 .giorno__pager #giorno-agenda { color: var(--fg-muted); }
 .giorno__head { --stack-gap: var(--space-2); }
-.giorno__head .h1 { margin: 0; font-size: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem); line-height: 1.12; }
+.giorno__head .h1 { margin: 0; font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem); line-height: 1.15; }
 .giorno__list { list-style: none; margin: 0; padding: 0; }
 .giorno__item, .giorno__gap {
   display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: var(--space-3);
   padding: var(--space-3) var(--space-1) var(--space-3) var(--space-3);
 }
-.giorno__time { font-size: .9375rem; }
+.giorno__time { font-size: .875rem; }
 .giorno__time .small { font-weight: 500; font-size: .75rem; }
-:where(.giorno__item) { border-inline-start: 2px solid var(--tc); }
-:where(.giorno__item--optional) { border-inline-start-color: color-mix(in srgb, var(--tc) 40%, transparent); }
+:where(.giorno__item) { border-inline-start: 4px solid var(--tc); }
+:where(.giorno__item--optional) { border-inline-start-color: color-mix(in srgb, var(--tc) 45%, transparent); }
 .giorno__item--target { scroll-margin-block: 96px; }
 :where(.giorno__item--target) { outline: 2px solid var(--accent-2); outline-offset: -2px; background: color-mix(in srgb, var(--accent-2) 8%, transparent); }
 .giorno__item, .giorno__gap { align-items: start; }
 .giorno__time { display: flex; flex-direction: column; font-weight: 600; align-self: start; }
 .giorno__main > .row { justify-content: flex-start; }
+.giorno__main .btn--ghost { padding-inline: 10px; margin-inline-start: -10px; min-height: 40px; font-size: .875rem; }
 .giorno__main { min-inline-size: 0; --stack-gap: 6px; }
+.giorno__main > .row:last-child:has(.btn) { margin-top: -4px; }
 .giorno__title { margin: 0; overflow-wrap: anywhere; }
+.giorno__badges { gap: var(--space-1); }
 .giorno__note { margin: 0; white-space: pre-line; }
 .giorno__facts { margin: 0; }
-:where(.giorno__gap) { border-inline-start: 2px solid transparent; }
+:where(.giorno__gap) { border-inline-start: 4px solid transparent; }   /* libero: spazio con l'orario in grigio, senza tratteggio */
 .giorno__gap { padding-block: var(--space-2); font-size: .875rem; }
 .giorno__gap .giorno__time { color: var(--fg-muted); font-weight: 500; font-size: .8125rem; }
-.giorno__foot { border-top: 1px solid var(--fg); padding-top: var(--space-3); margin-top: var(--space-2); }
 .giorno__foot p { margin: 0; }

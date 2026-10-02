@@ -22,8 +22,7 @@ SKIP_SCHEMES = ("http:", "https:", "mailto:", "tel:", "data:", "javascript:", "b
 problems = []
 warnings = []
 # file statici volutamente fuori dalla precache (pagina di prova componenti, il SW stesso)
-# tema unico (DIRECTION 2 ott 2026): i vecchi temi restano nel repo, non linkati né precacheati
-PRECACHE_SKIP = {"_styleguide.html", "sw.js", "assets/css/themes/washi.css", "assets/css/themes/night.css"}
+PRECACHE_SKIP = {"_styleguide.html", "sw.js"}
 
 
 def rel(p):
