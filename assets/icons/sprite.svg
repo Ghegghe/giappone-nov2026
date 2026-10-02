@@ -31,5 +31,6 @@
     <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3-4.6-4.4 6.3-.9Z"/></symbol>
     <symbol id="i-walk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="4" r="1.75"/><path d="m9 21 2.5-6.5L14 17v4M7 12.5l2-4 4 .5 2.5 3.5 2.5 1M11.5 14.5l1.5-5.5"/></symbol>
     <symbol id="i-torii" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5c6 1.3 12 1.3 18 0M4.5 9h15M7 6.2V21M17 6.2V21M12 6.6V9"/></symbol>
+    <symbol id="i-anime" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5.6l2.1 5.4 5.7.3-4.5 3.6 1.5 5.5-4.8-3.1-4.8 3.1 1.5-5.5-4.5-3.6 5.7-.3Z"/><path d="M19 2.5v5M16.5 5h5"/></symbol>
   </defs>
 </svg>

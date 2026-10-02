@@ -10,9 +10,12 @@ index.html agenda.html giorno.html trasporti.html alloggi.html luoghi.html budge
 404.html                     rimanda alla home (GitHub Pages)
 assets/css/base.css          layout e componenti (solo variabili)
 assets/css/themes/*.css      temi: neutral (default), washi, night
+assets/css/home.css pages-b.css budget.css   CSS di pagina (dopo pages.css): home · trasporti/alloggi/luoghi · budget
+assets/css/charts.css        segni dei grafici (token --chart-* derivati da --fam-move, --fg, --fg-muted, --accent)
 assets/js/app.js             shell: nav/topbar/footer, tema, loadData, formattazione €/¥/date
 assets/js/theme-boot.js      applica il tema salvato prima del paint (script classico nell'<head>)
 assets/js/agenda.js pages.js rendering delle pagine
+assets/js/charts.js          grafici SVG inline senza librerie: routeStrip, dotTimeline, stackBar, bulletRows + wire()
 assets/icons/                sprite.svg + icone PWA 192/512
 data/*.json                  dati generati da ../export_site_data.py (NON editare a mano)
 dev/                         pagine di prova e fixture (mai cachate dal service worker)
@@ -54,7 +57,7 @@ Correzioni manuali solo in `../site_overrides.json`. Report dei valori non estra
 
 ## Service worker: `CACHE_VERSION`
 In `sw.js` le pagine e gli asset sono **cache-first**: senza bump gli utenti continuano a vedere la versione in cache.
-A ogni deploy che cambia HTML/CSS/JS/icone: incrementare `const CACHE_VERSION` (ora `'v6'` → `'v7'` al prossimo deploy).
+A ogni deploy che cambia HTML/CSS/JS/icone: incrementare `const CACHE_VERSION` (ora `'v7'`, presentazione dati 2 ott → `'v8'` al deploy successivo).
 Il nuovo SW si installa, si attiva subito (`skipWaiting` + `clients.claim`), cancella le cache vecchie e la pagina
 mostra il toast "Aggiornamento disponibile · ricarica". I JSON in `data/` sono network-first (aggiornati appena c'è rete),
 quindi un cambio solo-dati non richiede il bump. Un nuovo file statico va aggiunto a `PRECACHE` (lista esplicita).
@@ -83,3 +86,17 @@ Privacy: il sito è pubblico ma non indicizzato (`robots.txt` + `<meta name="rob
 su un project site il robots.txt non è alla radice del dominio, il meta è quello che conta). Non contiene numeri di
 prenotazione, carte o telefoni personali (SPEC §0); restano solo numeri pubblici di esercizi (ristoranti, linea
 inglese Yamato). Controllare i JSON prima di pubblicare (`python3 ../export_site_data.py --check` fa anche una scansione privacy).
+
+## Grafici (`assets/js/charts.js`)
+Quattro forme, una per tipo di dato (dettagli e regole in `DESIGN.md` § "Presentazione dati"). Ogni funzione restituisce
+un frammento `html```; dopo `mount()` chiamare `wire(root)` (ridisegno alla larghezza reale, tooltip, tastiera). Import dinamico
+con fallback testuale: `const ch = await import('./charts.js').catch(() => null);`.
+```js
+ch.routeStrip(lodging.stays, { today, start: trip.start, end: trip.end, link: true })   // home, alloggi: basi in proporzione alle notti
+ch.dotTimeline(events /* [{date,label,id,when}] */, { from: today, to: trip.start })     // trasporti › Scadenze
+ch.stackBar([{ id, label, value }, …], { total, fx })                                     // budget: pagato / prezzo noto / stima
+ch.bulletRows(budget.daily.map((d) => ({ date: d.date, value: d.eurAgenda, target: d.eurPlanned })))  // budget per giorno
+```
+Esempi con dati statici in `_styleguide.html` (sezione "Grafici"); test in `dev/test-charts.html` (32 asserzioni).
+Palette delle famiglie della timeline per tema: `DESIGN.md`; si valida con lo script `validate_palette.js` della skill dataviz
+(`--pairs all --surface <card del tema>`), più il contrasto del testo sulle tinte (vedi `PRESENTAZIONE_REPORT.md`).

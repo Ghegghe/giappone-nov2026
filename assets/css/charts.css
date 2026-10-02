@@ -1,0 +1,119 @@
+/* charts.css — segni dei grafici di charts.js (PLAN_PRESENTAZIONE §3). Solo var(--…) dei temi, tinte con color-mix.
+   I token --chart-* NON entrano nei temi: derivano da --fam-move, --fg, --fg-muted, --accent, --border, --card.
+   Fallback di --fam-move = valore neutral chiaro proposto e validato in §3.1 (#2b4aa4); i temi lo definiscono sempre. */
+
+.chart {
+  --chart-series: var(--fam-move, #2b4aa4);
+  --chart-ord-1: var(--chart-series);
+  --chart-ord-2: color-mix(in srgb, var(--chart-series) 68%, var(--chart-surface));
+  --chart-ord-3: color-mix(in srgb, var(--chart-series) 45%, var(--chart-surface));
+  --chart-ord-4: color-mix(in srgb, var(--chart-series) 28%, var(--chart-surface));   /* non validato: oltre 3 classi meglio non andare */
+  --chart-ink: var(--fg);
+  --chart-muted: var(--fg-muted);
+  --chart-grid: var(--border);
+  --chart-emph: var(--accent);
+  --chart-surface: var(--card, var(--bg-elev));   /* superficie sotto il grafico: anelli dei punti. Sovrascrivibile dalla pagina */
+  position: relative;
+  margin: 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.chart__caption { font-weight: 600; font-size: .9375rem; line-height: 1.375rem; color: var(--fg); }
+.chart__plot { min-width: 0; width: 100%; }
+.chart__plot svg { display: block; max-width: 100%; height: auto; overflow: visible; font-family: inherit; }
+
+/* testo: sempre in inchiostro, mai nel colore della serie */
+.chart__label { font-size: 12px; font-weight: 500; fill: var(--chart-ink); }
+.chart__label--muted { fill: var(--chart-muted); }
+.chart__label--strong { font-weight: 600; }
+.chart__axis-label { font-size: 12px; fill: var(--chart-muted); font-variant-numeric: tabular-nums; }
+.chart__in { font-size: 10px; font-weight: 600; fill: var(--chart-surface); pointer-events: none; }
+.chart__in--emph { fill: var(--fg-on-accent, var(--chart-surface)); }
+
+/* griglia e assi: hairline pieni, recessivi */
+.chart__grid, .chart__axis { stroke: var(--chart-grid); stroke-width: 1; shape-rendering: crispEdges; }
+.chart__ref { stroke: var(--chart-ink); stroke-width: 1; shape-rendering: crispEdges; }
+
+/* segni */
+.chart__hit { fill: transparent; }
+.chart__tap { fill: transparent; }
+/* striscia con link: tocca solo l'area 44×44 (.chart__tap), non segno né etichette, così le aree non si rubano spazio */
+.chart--route a.chart__mark > :not(.chart__tap), .chart--route .chart__label, .chart--route .chart__today { pointer-events: none; }
+.chart__seg { fill: var(--chart-muted); }
+.chart__seg--emph { fill: var(--chart-emph); }
+.chart__today-tick { fill: var(--chart-emph); }
+.chart__ord-1 { fill: var(--chart-ord-1); }
+.chart__ord-2 { fill: var(--chart-ord-2); }
+.chart__ord-3 { fill: var(--chart-ord-3); }
+.chart__ord-4 { fill: var(--chart-ord-4); }
+.chart__bar { fill: var(--chart-series); }
+.chart__target { fill: var(--chart-ink); }
+.chart__dot { fill: var(--chart-muted); stroke: var(--chart-surface); stroke-width: 2; }
+.chart__dot--emph { fill: var(--chart-ink); }
+.chart__hatch path { stroke: CanvasText; }
+
+/* hover/focus: il segno risponde (contorno in inchiostro), la riga si schiarisce */
+.chart__mark { cursor: default; outline: none; }
+a.chart__mark { cursor: pointer; }
+.chart__mark.is-active :is(.chart__seg, .chart__ord, .chart__dot) { stroke: var(--chart-ink); stroke-width: 1.5; paint-order: stroke; }
+.chart__mark.is-active .chart__hit--row { fill: color-mix(in srgb, var(--chart-ink) 6%, transparent); }
+.chart__mark:focus-visible .chart__hit { fill: none; stroke: var(--focus, var(--ring)); stroke-width: 2; }
+.chart__mark:focus-visible .chart__hit--row { fill: color-mix(in srgb, var(--chart-ink) 6%, transparent); }
+
+/* tooltip: valore in evidenza, etichetta secondaria */
+.chart__tip {
+  position: absolute; z-index: 5; pointer-events: none; left: 0; top: 0;
+  max-width: min(280px, 100%); padding: 6px 10px;
+  background: var(--popover, var(--card)); color: var(--popover-foreground, var(--fg));
+  border: 1px solid var(--border); border-radius: calc(var(--radius) - 2px); box-shadow: var(--shadow);
+  font-size: .8125rem; line-height: 1.125rem;
+}
+.chart__tip[hidden] { display: none; }
+.chart__tip strong { display: block; font-weight: 600; }
+.chart__tip span { display: block; color: var(--fg-muted); }
+
+/* legende */
+.chart__legend { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-4); margin: 0; padding: 0; list-style: none; font-size: .875rem; line-height: 1.25rem; color: var(--fg); }
+.chart__legend li { display: flex; align-items: center; gap: 6px; }
+.chart__legend strong { font-weight: 600; }
+.chart__key { display: inline-block; flex: none; width: 10px; height: 10px; border-radius: 2px; background: var(--chart-ord-1); }
+.chart__key--ord-2 { background: var(--chart-ord-2); }
+.chart__key--ord-3 { background: var(--chart-ord-3); }
+.chart__key--ord-4 { background: var(--chart-ord-4); }
+.chart__key--bar { width: 16px; height: 8px; border-radius: 0 3px 3px 0; background: var(--chart-series); }
+.chart__key--tick { width: 2px; height: 14px; border-radius: 0; background: var(--chart-ink); }
+.chart__inline-legend[hidden] { display: none; }
+
+/* tabella gemella */
+.chart__table > summary {
+  display: inline-flex; align-items: center; min-height: 44px; cursor: pointer;
+  font-size: .875rem; font-weight: 500; color: var(--fg);
+  text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--fg) 35%, transparent); text-underline-offset: 3px;
+}
+.chart__table > summary:focus-visible { outline: 2px solid var(--focus, var(--ring)); outline-offset: 2px; border-radius: 4px; }
+.chart__tbl-wrap { overflow-x: auto; }
+.chart__tbl { width: 100%; border-collapse: collapse; }
+.chart__tbl th[scope="row"] { color: var(--fg); font-weight: 500; }
+.chart__tbl .chart__num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.chart__tbl tfoot :is(th, td) { font-weight: 600; color: var(--fg); border-top: 2px solid var(--fg); }
+
+/* un solo movimento: la tacca "oggi" che si posa sulla striscia */
+@media (prefers-reduced-motion: no-preference) {
+  /* solo il filo si muove; l'etichetta resta ferma e piena (in uno screenshot o a metà animazione non risulta mai sbiadita) */
+  .chart__today--enter { animation: chart-settle .55s cubic-bezier(.2, .7, .2, 1) .15s both; transform-box: fill-box; }
+  @keyframes chart-settle { from { transform: translateY(-8px); opacity: 0; } }
+}
+
+/* alto contrasto: segni in CanvasText, classi ordinali a tratteggio, enfasi in Highlight */
+@media (forced-colors: active) {
+  .chart__seg, .chart__ord-1, .chart__bar, .chart__dot, .chart__target { fill: CanvasText; }
+  .chart__ord-2, .chart__ord-3, .chart__ord-4 { fill: var(--hatch, CanvasText); }
+  .chart__seg--emph, .chart__today-tick, .chart__dot--emph { fill: Highlight; }
+  .chart__dot { stroke: Canvas; }
+  .chart__label, .chart__axis-label { fill: CanvasText; }
+  .chart__in { fill: Canvas; }
+  .chart__grid, .chart__axis, .chart__ref { stroke: CanvasText; }
+  .chart__key { forced-color-adjust: none; background: CanvasText; }
+}

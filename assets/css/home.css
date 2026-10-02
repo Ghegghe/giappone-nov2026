@@ -1,0 +1,68 @@
+/* home.css — index.html (PLAN_PRESENTAZIONE §2.1). Linkato DOPO pages.css: stesse classi, sovrascrive.
+   Solo variabili dei temi (nessun colore letterale). Le vecchie regole .home-count*/.home-day__head di pages.css sono state tolte dall'integratore (2 ott). */
+
+/* ---------- hero: conto alla rovescia + striscia della rotta ---------- */
+.home-count { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; padding-block: 20px var(--card-p); }
+.home-count > * { margin: 0; order: 0; }
+.home-count__big {
+  display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 10px;
+  font-size: 1.25rem; line-height: 1.2; font-weight: 600; letter-spacing: var(--tracking-title);
+}
+/* numero hero: sans, cifre proporzionali (dataviz: mai tabular-nums su un numero isolato) */
+.hero-fig {
+  font-family: var(--font-sans); font-size: clamp(3.5rem, 2.9rem + 3vw, 4.5rem); line-height: .9; font-weight: 600;
+  letter-spacing: -.04em; font-variant-numeric: proportional-nums lining-nums; color: var(--accent);
+}
+.home-count > .home-count__big + .small { padding: var(--space-1) 0 0; margin: 0; border: 0; }
+.home-count__title { display: none; }               /* a 375 il titolo del viaggio è già nella topbar */
+.home-route { margin-top: var(--space-4); min-width: 0; }
+.home-route .chart { margin: 0; }
+/* rotta scritta (fallback senza charts.js): basi in fila con le notti, niente catena di punti */
+.home-route__text { display: flex; flex-wrap: wrap; gap: 2px var(--space-4); margin: 0; padding: 0; list-style: none; font-size: .9375rem; }
+.home-route__text .muted { font-variant-numeric: tabular-nums; }
+
+@media (min-width: 900px) {
+  /* conto alla rovescia a sinistra; titolo e rotta a destra oltre un filo verticale */
+  .home-count { grid-template-columns: max-content minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 0; align-items: end; padding: var(--space-5); }
+  .home-count__big { grid-column: 1; grid-row: 1; padding-right: var(--space-6); }
+  .home-count > .home-count__big + .small { grid-column: 1; grid-row: 2; align-self: start; padding: var(--space-2) var(--space-6) 0 0; }
+  .home-count__title, .home-route { grid-column: 2; padding-left: var(--space-6); border-left: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border)); }
+  .home-count__title { display: block; grid-row: 1; align-self: end; padding-bottom: var(--space-2); font-size: 1.125rem; line-height: 1.5rem; font-weight: 600; letter-spacing: var(--tracking-title); }
+  .home-route { grid-row: 2; align-self: start; margin: 0; }
+}
+
+/* ---------- primo giorno / oggi ---------- */
+.home-day { --stack-gap: var(--space-3); }
+.home-day__head { display: block; }
+.home-day__head .h3 { margin: 0; }
+.home-day__sub { margin: 2px 0 0; }
+.home-day .list-item { padding-block: 10px; }
+.home-day__item { grid-template-columns: 3.2em minmax(0, 1fr); }
+.home-day__title .muted { white-space: nowrap; }
+.home-more { align-self: flex-start; margin-inline-start: -12px; min-height: 44px; }
+
+/* ---------- scadenze: data e "tra N giorni" nella colonna data ---------- */
+.home-dls { --stack-gap: var(--space-3); }
+.home-dls .list-item { padding-block: 10px; }
+.home-dl__when .mono { color: var(--fg); font-weight: 500; }
+.home-dl__rel { color: var(--fg-muted); }
+.home-dl__rel::before, .home-dl__today::before { content: "· "; color: var(--fg-muted); font-weight: 400; }
+.home-dl__today { color: var(--fg); font-weight: 600; }
+.home-dl__when .badge { margin-inline-start: 4px; }
+@media (min-width: 900px) {
+  .home-dl { grid-template-columns: 7.5em minmax(0, 1fr); }
+  .home-dl__when { display: flex; flex-direction: column; align-items: flex-start; }
+  .home-dl__rel::before, .home-dl__today::before { content: none; }
+  .home-dl__when .badge { margin: 2px 0 0; }
+}
+
+/* ---------- in tasca: mappa e voli ---------- */
+.home-info { display: flex; flex-direction: column; align-items: stretch; gap: var(--space-3); }
+.home-info .h3 { margin: 0; }
+.home-info .kv { margin: 0; }
+@media (min-width: 900px) {
+  .home-info { display: grid; grid-template-columns: max-content max-content minmax(0, 1fr); align-items: center; column-gap: var(--space-6); }
+  .home-info .kv { grid-template-columns: max-content minmax(0, max-content) max-content minmax(0, 1fr); column-gap: var(--space-3); }
+  .home-info .kv > :is(dt, dd) { border: 0; padding-block: 0; }
+  .home-info .kv > dd + dt { padding-left: var(--space-5); }
+}

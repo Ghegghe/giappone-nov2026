@@ -1,7 +1,7 @@
-// pages-alloggi.js — alloggi.html: le basi in ordine cronologico (info nell'ordine utile in viaggio)
+// pages-alloggi.js — alloggi.html: striscia della rotta come indice, poi le basi in ordine cronologico (prezzo e pagamento in alto)
 // + Logistica (Bagagli · Giorno 1 · Contanti e carte IC) + "Da chiarire" in fondo.
-import { fmtDate, fmtEur } from './app.js';
-import { html, mount, icon, mapsBtn, extLink, setupTabs } from './pages.js';
+import { fmtDate, fmtEur, todayInTokyo } from './app.js';
+import { html, mount, icon, mapsIconBtn, extLink, setupTabs } from './pages.js';
 
 const TYPE = { apartment: 'Appartamento', hotel: 'Hotel', hostel: 'Ostello', ryokan: 'Ryokan', guesthouse: 'Guesthouse', capsule: 'Capsule' };
 const jpy = (n) => '¥' + String(Math.round(Number(n) || 0)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -14,24 +14,78 @@ function payBadge(s) {
   return '';
 }
 
+/** Riga prezzo e pagamento (2° elemento della card): è quella che decide le azioni. */
+function priceRow(s, people) {
+  const pax = s.costEurPerPerson != null ? s.costEurPerPerson : people && s.costEurTotal != null ? s.costEurTotal / people : null;
+  const badge = payBadge(s);
+  if (s.costEurTotal == null && !badge) return '';
+  return html`<div class="al-price">
+    ${s.costEurTotal != null ? html`<p class="al-price__eur"><span class="al-price__tot">${fmtEur(s.costEurTotal)}</span><span class="sr-only"> in tutto</span>${pax != null ? html`<span class="small"> · ${fmtEur(pax)} <span class="muted">a testa</span></span>` : ''}</p>` : ''}
+    ${badge}
+    ${s.costJpyTotal != null ? html`<p class="small al-price__jpy"><span class="mono">${jpy(s.costJpyTotal)}</span> in contanti</p>` : ''}
+  </div>`;
+}
+
+const NOTES_SHOWN = 2;
+function notesBlock(notes) {
+  if (!notes.length) return '';
+  const head = notes.slice(0, NOTES_SHOWN), rest = notes.slice(NOTES_SHOWN);
+  return html`<ul class="al-notes small">${head.map((x) => html`<li>${x}</li>`)}</ul>
+    ${rest.length ? html`<details class="al-more"><summary class="small">${rest.length === 1 ? 'Altra nota' : `Altre ${rest.length} note`}</summary>
+      <ul class="al-notes small">${rest.map((x) => html`<li>${x}</li>`)}</ul></details>` : ''}`;
+}
+
 function stayCard(s, people) {
   const n = Number(s.nights) || 0;
-  const times = [s.checkInTime ? `check-in dalle ${s.checkInTime}` : '', s.checkOutTime ? `check-out entro le ${s.checkOutTime}` : ''].filter(Boolean);
-  const pax = s.costEurPerPerson != null ? s.costEurPerPerson : people && s.costEurTotal != null ? s.costEurTotal / people : null;
-  return html`<article class="card stack al-stay" id="${s.id}">
+  const times = [s.checkInTime ? `check-in ${s.checkInTime}` : '', s.checkOutTime ? `check-out ${s.checkOutTime}` : ''].filter(Boolean);
+  const place = s.area && s.area !== s.city ? `${s.area}, ${s.city}` : s.city;
+  return html`<article class="card stack al-stay" id="${s.id}" tabindex="-1">
     <header class="al-stay__head">
-      <h2 class="h2">${s.name}</h2>
-      <p class="small muted">${[s.city, s.area && s.area !== s.city ? s.area : '', TYPE[s.type] || ''].filter(Boolean).join(' · ')}</p>
+      <div class="al-stay__title">
+        <h2 class="h3">${s.name}</h2>
+        <p class="small muted">${[place, TYPE[s.type] || ''].filter(Boolean).join(' · ')}</p>
+      </div>
+      <div class="row al-stay__actions">${s.url ? extLink(s.url, 'Sito', 'btn btn--ghost') : ''}${mapsIconBtn(s.mapsQuery || `${s.name} ${s.city}`, s.name)}</div>
     </header>
-    <dl class="kv">
+    ${priceRow(s, people)}
+    <dl class="kv small">
       <dt>Date</dt><dd>${fmtDate(s.checkIn)} → ${fmtDate(s.checkOut)}${n ? ` · ${n} ${n === 1 ? 'notte' : 'notti'}` : ''}</dd>
       ${times.length ? html`<dt>Orari</dt><dd class="mono">${times.join(' · ')}</dd>` : ''}
       ${s.address ? html`<dt>Indirizzo</dt><dd>${s.address}</dd>` : ''}
     </dl>
-    <div class="row">${mapsBtn(s.mapsQuery || `${s.name} ${s.city}`)}${s.url ? extLink(s.url, 'Sito', 'btn btn--ghost') : ''}</div>
-    ${list(s.notes).length ? html`<ul class="al-notes small">${list(s.notes).map((x) => html`<li>${x}</li>`)}</ul>` : ''}
-    ${s.costEurTotal != null ? html`<p class="small muted row"><span><span class="mono">${fmtEur(s.costEurTotal)}</span> in tutto${pax != null ? html` · <span class="mono">${fmtEur(pax)}</span> a testa` : ''}${s.costJpyTotal != null ? html` · <span class="mono">${jpy(s.costJpyTotal)}</span> in contanti` : ''}</span>${payBadge(s)}</p>` : payBadge(s)}
+    ${notesBlock(list(s.notes))}
   </article>`;
+}
+
+/** Testo lungo dei passi: le prime frasi (≈3 righe) visibili, il resto in "continua". */
+const CLIP = 100;
+function clipText(t, cls = 'small') {
+  const str = String(t || '');
+  if (str.length <= CLIP + 30) return html`<p class="${cls}">${str}</p>`;
+  const parts = str.split(/(?<=[.!?»])\s+(?=[A-ZÀ-Ý0-9«"(])/);
+  let head = '';
+  let i = 0;
+  while (i < parts.length && (!head || (head + ' ' + parts[i]).length <= CLIP)) { head = head ? `${head} ${parts[i]}` : parts[i]; i++; }
+  const rest = parts.slice(i).join(' ');
+  if (!rest) return html`<p class="${cls}">${str}</p>`;
+  return html`<div class="al-clip"><p class="${cls}">${head}</p>
+    <details class="al-more"><summary class="small">continua</summary><p class="${cls}">${rest}</p></details></div>`;
+}
+
+/** Striscia della rotta come indice della pagina (routeStrip di charts.js); senza il modulo, elenco di link. */
+function routeIndex(charts, stays, trip) {
+  if (!stays.length) return '';
+  let strip = '';
+  if (charts && typeof charts.routeStrip === 'function') {
+    try {
+      strip = charts.routeStrip(stays, { today: todayInTokyo(), start: trip && trip.start, end: trip && trip.end, link: true });
+    } catch (e) { console.warn('[alloggi] routeStrip', e); strip = ''; }
+  }
+  if (strip) return html`<nav class="al-route" aria-label="Le basi del viaggio">${strip}</nav>`;
+  return html`<nav class="al-route" aria-label="Le basi del viaggio"><ol class="row al-route__list">${stays.map((s) => {
+    const n = Number(s.nights) || 0;
+    return html`<li><a class="chip" href="#${s.id}">${s.city}${n ? html` <span class="muted">${n}</span>` : ''}</a></li>`;
+  })}</ol></nav>`;
 }
 
 /** Lista numerata pulita in una card: [{n, title, when, where, details, cost, remember}] */
@@ -44,9 +98,9 @@ function steps(arr) {
         <h3 class="h3">${p.title}</h3>
         ${p.when ? html`<p class="small muted">${p.when}</p>` : ''}
         ${p.where ? html`<p class="small">${icon('pin')} ${p.where}</p>` : ''}
-        ${p.details ? html`<p class="small">${p.details}</p>` : ''}
+        ${p.details ? clipText(p.details) : ''}
         ${p.cost ? html`<p class="small">Costo: <span class="mono">${p.cost}</span></p>` : ''}
-        ${p.remember ? html`<p class="small"><strong>Ricorda:</strong> ${p.remember}</p>` : ''}
+        ${p.remember ? html`<p class="small al-remember"><strong>Ricorda:</strong> ${p.remember}</p>` : ''}
       </div>
     </div>
   </li>`)}</ol>`;
@@ -63,16 +117,18 @@ function luggage(l) {
   return html`<div class="stack">
     ${l.choice ? html`<div class="card card--accent stack"><p class="small muted">Valigie spedite con Yamato</p><h2 class="h3">${l.choice}</h2></div>` : ''}
     ${steps(list(l.steps).map(lugStep))}
-    ${l.rules ? html`<details class="card"><summary class="small">Regole su valigie e treni</summary><p class="small">${l.rules}</p></details>` : ''}
-    ${alts.length ? html`<details class="card al-lug-alts"><summary class="small">Alternative scartate (${alts.length})</summary>
+    ${l.rules || alts.length || solved.length ? html`<div class="card al-acc">
+    ${l.rules ? html`<details class="al-acc__item"><summary class="small">Regole su valigie e treni</summary><p class="small">${l.rules}</p></details>` : ''}
+    ${alts.length ? html`<details class="al-acc__item al-lug-alts"><summary class="small">Alternative scartate (${alts.length})</summary>
       <ul class="list">${alts.map((o) => html`<li class="list-item stack">
         <p><strong>${o.name}</strong>${o.eurGroup != null ? html` <span class="mono small muted">${fmtEur(o.eurGroup)} in tutto</span>` : ''}</p>
         ${o.how ? html`<p class="small">${o.how}</p>` : ''}
         ${o.pro ? html`<p class="small">Pro: ${o.pro}</p>` : ''}
         ${o.con ? html`<p class="small muted">Contro: ${o.con}</p>` : ''}
       </li>`)}</ul></details>` : ''}
-    ${solved.length ? html`<details class="card al-lug-q"><summary class="small">Domande già risolte (${solved.length})</summary>
+    ${solved.length ? html`<details class="al-acc__item al-lug-q"><summary class="small">Domande già risolte (${solved.length})</summary>
       <ul class="list">${solved.map((q) => html`<li class="list-item stack"><p><strong>${q.question}</strong></p>${q.answer ? html`<p class="small">${q.answer}</p>` : ''}</li>`)}</ul></details>` : ''}
+    </div>` : ''}
   </div>`;
 }
 
@@ -99,15 +155,15 @@ function openPoints(lg) {
   if (!all.length) return '';
   return html`<section class="stack" aria-labelledby="al-open-h">
     <h2 class="section-title" id="al-open-h">Da chiarire</h2>
-    <ul class="list card">${all.map((x) => html`<li class="list-item stack">
-      <p>${x.text}</p>
+    <ul class="list card al-open">${all.map((x) => html`<li class="list-item stack">
+      ${clipText(x.text, '')}
       ${x.why || x.src ? html`<p class="small muted">${[x.why, x.src ? `fonte: ${x.src}` : ''].filter(Boolean).join(' · ')}</p>` : ''}
     </li>`)}</ul>
   </section>`;
 }
 
 export async function render(root, { trip, loadData }) {
-  const d = await loadData('lodging');
+  const [d, charts] = await Promise.all([loadData('lodging'), import('./charts.js').catch(() => null)]);
   if (!d) { mount(root, html`<h1 class="h1">Alloggi</h1><p class="empty">Dati degli alloggi non disponibili.</p>`); return; }
   const people = (trip && trip.people) || null;
   const stays = [...(d.stays || [])].sort((a, b) => String(a.checkIn).localeCompare(String(b.checkIn)));
@@ -116,12 +172,32 @@ export async function render(root, { trip, loadData }) {
   mount(root, html`
     <h1 class="h1">Alloggi</h1>
     <p class="muted">${stays.length} basi · ${nights} notti</p>
+    ${routeIndex(charts, stays, trip)}
     <div class="grid-2 al-stays">${stays.map((s) => stayCard(s, people))}</div>
     <section class="stack al-logistics" aria-labelledby="al-log-h">
       <h2 class="section-title" id="al-log-h">Logistica</h2>
       <div data-tabs></div>
     </section>
     ${openPoints(lg)}`);
+  if (charts && typeof charts.wire === 'function') { try { charts.wire(root); } catch (e) { console.warn('[alloggi] wire', e); } }
+  // indice (striscia o elenco) → card: scorre e dà il fuoco, senza saltare sotto la topbar
+  const toStay = (el) => {
+    el.scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    el.focus({ preventScroll: true });
+  };
+  root.addEventListener('click', (e) => {
+    const a = e.target.closest('.al-route a[href^="#"]');
+    if (!a) return;
+    const el = document.getElementById(a.getAttribute('href').slice(1));
+    if (!el) return;
+    e.preventDefault();
+    toStay(el);
+    try { history.replaceState(null, '', '#' + el.id); } catch (err) { /* ignore */ }
+  });
+  // apertura con #<stay> (link interno "alloggi.html#tokyo", reload dopo un tap sulla striscia)
+  const h = decodeURIComponent(location.hash.slice(1));
+  const stayEl = h && stays.some((s) => s.id === h) ? root.querySelector(`.al-stay[id="${CSS.escape(h)}"]`) : null;
+  if (stayEl) requestAnimationFrame(() => toStay(stayEl)); // dopo le tab sotto, a layout fatto
   const tabs = [];
   if (lg.luggage) tabs.push({ id: 'bagagli', label: 'Bagagli' });
   if (list(lg.day1).length) tabs.push({ id: 'giorno1', label: 'Giorno 1' });

@@ -1,0 +1,36 @@
+/* budget.css — budget.html (PLAN_PRESENTAZIONE §2.7). Caricato DOPO pages.css: sovrascrive con le stesse classi, niente !important.
+   Solo var(--…) dei temi. Il numero hero usa cifre proporzionali (mai tabular-nums su un numero isolato). */
+
+/* hero: un solo numero grande, il resto lo sostiene */
+.bu-hero { --stack-gap: var(--space-4); }
+.bu-hero__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-1) var(--space-4); }
+.hero-fig {
+  margin: 0; padding: 0;
+  font-family: var(--font-sans);   /* sans anche in washi (display serif): numero hero mai in serif */
+  font-size: 3.5rem; line-height: 1; font-weight: 600; letter-spacing: -.035em;
+  font-variant-numeric: proportional-nums; color: var(--fg);
+}
+.bu-hero__meta { display: flex; flex-direction: column; gap: 2px; }
+.bu-hero__meta p { margin: 0; }
+.bu-hero__per { font-size: 1rem; line-height: 1.5rem; font-weight: 500; color: var(--fg); }
+.bu-hero__note { margin: 0; }
+/* le figcaption dei due grafici restano per i lettori di schermo: a vista le nomina già il titolo di sezione / l'hero */
+:is(.bu-hero, .bu-daily) .chart__caption {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.bu-hero .chart { gap: var(--space-2); }
+
+/* tabelle (pages.css) + grafico per giorno: una colonna su mobile, due da 900px */
+.bu-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-4); align-items: start; }
+.bu-layout > * { min-width: 0; }
+.bu-layout .section-title { margin-block: var(--space-4) 0; }
+.bu-daily { padding: var(--space-4) var(--card-p) var(--space-2); }
+/* tabelle un filo più dense (stessa logica di pages.css) */
+.bu-table th, .bu-table td { padding-block: var(--space-2); }
+.bu-table .bu-bar { margin-top: 6px; }
+
+@media (min-width: 900px) {
+  .hero-fig { font-size: 4.5rem; }
+  .bu-hero__meta { padding-bottom: var(--space-1); }
+  .bu-layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-4) var(--space-6); }
+}

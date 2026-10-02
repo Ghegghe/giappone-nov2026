@@ -51,15 +51,19 @@ function renderTimeline() {
 
 function renderDay(day, i, norm, now) {
   const isToday = now.date === day.date;
+  // cambio di base rispetto al giorno prima: filo accent sull'intestazione (si vede scorrendo)
+  const prev = state.days[i - 1];
+  const newBase = !!prev && (prev.baseId || prev.base) !== (day.baseId || day.base);
   const col = el('section', {
-    class: `tl-day${day.status === 'draft' ? ' tl-day--draft' : ''}`, 'data-date': day.date, 'data-idx': i,
+    class: `tl-day${day.status === 'draft' ? ' tl-day--draft' : ''}${newBase ? ' tl-day--newbase' : ''}`, 'data-date': day.date, 'data-idx': i,
     id: `day-${day.date}`, 'aria-label': `${fmtDate(day.date)} · ${day.title || ''}`, 'aria-current': isToday ? 'date' : null,
   });
-  col.append(el('header', { class: 'tl-day__header' },
+  // intestazione su 2 livelli: data + base (vanno a capo se non stanno), poi il titolo su 2 righe al massimo
+  col.append(el('header', { class: 'tl-day__header', title: [fmtDate(day.date), placeLabel(day), day.title].filter(Boolean).join(' · ') },
     el('div', { class: 'tl-day__row' },
-      el('a', { class: 'tl-day__date', href: withDataParam(`giorno.html?d=${day.date}`) }, fmtDate(day.date))),
-    el('span', { class: 'small muted' }, placeLabel(day)),
-    el('span', { class: 'small tl-day__title', title: day.title || '' }, day.title || '')));
+      el('a', { class: 'tl-day__date', href: withDataParam(`giorno.html?d=${day.date}`) }, fmtDate(day.date)),
+      el('span', { class: 'small muted tl-day__base' }, placeLabel(day))),
+    el('span', { class: 'small tl-day__title' }, day.title || '')));
 
   const fromMin = Math.max(state.range.startMin, 6 * 60), toMin = Math.min(state.range.endMin, 24 * 60);
   for (const g of computeGaps(norm, { fromMin, toMin })) {
@@ -82,13 +86,17 @@ function renderItem(n, day) {
   if (n.optional) cls.push('tl-item--optional');
   if (n.fixed) cls.push('tl-item--locked');   // tinta più piena; il lucchetto è solo nel pannello
   if (n.cols > 1) cls.push('tl-item--split');
+  if (n.allDay) cls.push('tl-item--allday');   // occupa la scala dalle 6: non conta per lo scroll iniziale
   return el('button', {
     type: 'button', class: cls.join(' '), id: `tl-${n.id}`, 'data-id': n.id, 'data-date': day.date,
     'aria-label': itemAria(n), title: itemAria(n), 'aria-haspopup': 'dialog',
     style: { '--top': px(n.startMin), '--h': pxLen(n.endMin - n.startMin), '--i': String(n.col), '--n': String(n.cols) },
   },
-  el('span', { class: 'mono' }, n.allDay ? timeRange(n) : fmtMin(n.startMin), n.parallel ? ' · in parallelo' : null),
-  el('strong', null, n.title || ''));
+  // un solo contenitore di testo: il numero di righe lo decidono le container query di agenda.css (orario in linea nei blocchi bassi)
+  el('span', { class: 'tl-item__in' },
+    el('span', { class: 'mono' }, n.allDay ? timeRange(n) : fmtMin(n.startMin), n.parallel ? ' · in parallelo' : null),
+    ' ',
+    el('strong', null, n.title || '')));
 }
 
 // ---------- selettore date + navigazione ----------
@@ -159,12 +167,26 @@ function indexFromHash() {
   return t >= 0 ? t : 0;
 }
 
-// scroll verticale iniziale: ora attuale se oggi, altrimenti poco prima del primo item del giorno
+// colonne giorno visibili nello scroller (desktop ~7, mobile 1), a partire da idx
+function visibleDays(idx) {
+  const els = [...dayEls()];
+  const first = els[idx];
+  if (!first) return [];
+  const per = Math.max(1, Math.round((scroller.clientWidth - hoursW()) / first.offsetWidth));
+  // a fine corsa lo scroll non arriva a idx: le colonne visibili sono le ultime `per`
+  const start = Math.max(0, Math.min(idx, els.length - per));
+  return els.slice(start, start + per);
+}
+// scroll verticale iniziale: ora attuale se oggi è fra le colonne visibili; altrimenti 30' prima della
+// tappa più mattiniera fra le colonne visibili (nessuna tappa resta nascosta sopra)
 function scrollToMorning(idx) {
-  const d = dayEls()[idx];
-  if (!d) return;
-  const target = $('.tl-now', d) || $('.tl-item', d);
-  if (target) scroller.scrollTop = Math.max(0, parseFloat(target.style.getPropertyValue('--top')) - state.hourH / 2);
+  const cols = visibleDays(idx);
+  if (!cols.length) return;
+  const topOf = (x) => parseFloat(x.style.getPropertyValue('--top'));
+  const now = cols.map((c) => $('.tl-now', c)).find(Boolean);
+  const tops = cols.flatMap((c) => [...c.querySelectorAll('.tl-item:not(.tl-item--allday)')].map(topOf)).filter(Number.isFinite);
+  const at = now ? topOf(now) : tops.length ? Math.min(...tops) : null;
+  if (at !== null) scroller.scrollTop = Math.max(0, at - state.hourH / 2);
 }
 
 // altezza dello scroller = viewport meno ciò che sta sopra e la bottom-nav fissa (se c'è)

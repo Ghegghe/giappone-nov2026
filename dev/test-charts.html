@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Test grafici</title>
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" id="theme-css" href="../assets/css/themes/neutral.css">
+<link rel="stylesheet" href="../assets/css/pages.css">
+<link rel="stylesheet" href="../assets/css/charts.css">
+<script>window.__PAGES_NO_BOOT__ = true;</script>
+<style>
+  .t-ok { color: var(--ok); } .t-ko { color: var(--danger); font-weight: 700; }
+</style>
+</head>
+<body>
+<main class="container stack">
+  <h1 class="h1">Test grafici (charts.js)</h1>
+  <p class="small muted">Default <code>?data=dev/fixtures/</code> · <code>&amp;today=2026-11-12</code> per la tacca "oggi" in viaggio · <code>&amp;theme=washi|night&amp;mode=dark</code>.</p>
+  <ol id="results" class="stack small"></ol>
+  <section class="card stack" id="c-route"></section>
+  <section class="card stack" id="c-route-link"></section>
+  <section class="card stack" id="c-dots"></section>
+  <section class="card stack" id="c-stack"></section>
+  <section class="card stack" id="c-bullet"></section>
+  <section class="card stack"><h2 class="h3">Lista gemella (bersagli dei punti)</h2><ol id="dl-list" class="list small"></ol></section>
+  <section class="card stack" id="c-evil"></section>
+</main>
+<script type="module">
+  const q = new URLSearchParams(location.search);
+  if (!q.has('data')) { const u = new URL(location.href); u.searchParams.set('data', 'dev/fixtures/'); location.replace(u.href); }
+  const app = await import('../assets/js/app.js');
+  if (q.get('theme') || q.get('mode')) app.applyTheme(q.get('theme') || 'neutral', q.get('mode') || 'light');
+  const { html, mount, deadlineLabel } = await import('../assets/js/pages.js');
+  const ch = await import('../assets/js/charts.js');
+  const out = document.getElementById('results');
+  let fails = 0;
+  const ok = (cond, msg) => { const li = document.createElement('li'); li.className = cond ? 't-ok' : 't-ko'; li.textContent = (cond ? 'OK  ' : 'KO  ') + msg; out.append(li); if (!cond) { fails++; console.error('KO', msg); } };
+  const [trip, lodging, transport, budget] = await Promise.all(['trip', 'lodging', 'transport', 'budget'].map((n) => app.loadData(n)));
+  const today = app.todayInTokyo();
+  const overlaps = (els) => { const r = els.map((e) => e.getBoundingClientRect()); for (let i = 0; i < r.length; i++) for (let j = i + 1; j < r.length; j++) { const a = r[i], b = r[j]; if (a.left < b.right && b.left < a.right && a.top < b.bottom && b.top < a.bottom) return true; } return false; };
+  const inside = (svg) => { const s = svg.getBoundingClientRect(); return [...svg.querySelectorAll('text')].every((t) => { const r = t.getBoundingClientRect(); return r.left >= s.left - 0.5 && r.right <= s.right + 0.5; }); };
+
+  // --- routeStrip ---
+  const rEl = document.getElementById('c-route');
+  mount(rEl, html`<h2 class="h3">routeStrip</h2>${ch.routeStrip(lodging.stays, { today, start: trip.start, end: trip.end })}`);
+  ch.wire(rEl);
+  const rFig = rEl.querySelector('.chart--route');
+  ok(rFig && rFig.querySelectorAll('.chart__seg').length === lodging.stays.length, 'route: un segmento per base');
+  ok(rFig.querySelectorAll('.chart__seg--emph').length <= 1, 'route: al massimo una base in enfasi');
+  const legHidden = rFig.querySelector('.chart__inline-legend').hidden;
+  const rLabels = [...rFig.querySelectorAll('svg text.chart__label')];
+  ok(legHidden && rLabels.filter((t) => lodging.stays.some((s) => s.city === t.textContent)).length === lodging.stays.length, 'route: tutte le città scritte sulla striscia (niente legenda di ripiego)');
+  const lHid = () => document.querySelector('#c-route-link .chart__inline-legend').hidden;
+  ok(!overlaps(rLabels) && inside(rFig.querySelector('svg')), 'route: etichette senza sovrapposizioni e dentro la striscia');
+  ok(rFig.querySelector('ol.sr-only') && rFig.querySelectorAll('ol.sr-only li').length === lodging.stays.length, 'route: lista sr-only con le basi');
+  const w = [...rFig.querySelectorAll('.chart__seg')].map((r) => +r.getAttribute('width'));
+  const n = lodging.stays.map((s) => s.nights);
+  ok(Math.abs(w[0] / w[w.length - 1] - n[0] / n[n.length - 1]) < 0.02, 'route: larghezze proporzionali alle notti');
+  // con link
+  const lEl = document.getElementById('c-route-link');
+  mount(lEl, html`<h2 class="h3">routeStrip (link, in viaggio 12 nov)</h2>${ch.routeStrip(lodging.stays, { today: '2026-11-12', link: true })}`);
+  ch.wire(lEl);
+  const links = [...lEl.querySelectorAll('svg a')];
+  ok(links.length === lodging.stays.length && links.every((a, i) => a.getAttribute('href') === '#' + lodging.stays[i].id && /nott[ei]$/.test(a.getAttribute('aria-label'))), 'route: segmenti link #id con aria-label');
+  ok(lEl.querySelector('.chart__seg--emph').closest('a').getAttribute('href') === '#nagoya' && /oggi/.test(lEl.textContent), 'route: 12 nov → Nagoya in enfasi, tacca "oggi"');
+  ok(!lEl.querySelector('ol.sr-only'), 'route: con i link niente lista duplicata');
+  ok(lHid() && !overlaps([...lEl.querySelectorAll('svg text.chart__label')]), 'route (oggi): città scritte, nessuna sovrapposizione');
+
+  // --- dotTimeline ---
+  const todo = (transport.checklist || []).filter((c) => c.status !== 'done' && c.sortDate);
+  const from = today < trip.start ? today : trip.start;
+  const dl = document.getElementById('dl-list');
+  mount(dl, html`${todo.map((c, i) => html`<li class="list-item" id="dl-${i}">${deadlineLabel(c)} · ${c.what}</li>`)}`);
+  const evs = todo.map((c, i) => ({ date: c.sortDate, label: c.what, id: 'dl-' + i, when: deadlineLabel(c) }));
+  const dEl = document.getElementById('c-dots');
+  mount(dEl, html`<h2 class="h3">dotTimeline</h2>${ch.dotTimeline(evs, { from, to: trip.start, today })}`);
+  ch.wire(dEl);
+  const inRange = evs.filter((e) => e.date >= from && e.date <= trip.start);
+  ok(dEl.querySelectorAll('.chart__dot').length === inRange.length, `dots: un punto per scadenza nel periodo (${inRange.length})`);
+  ok(!inRange.length || dEl.querySelectorAll('.chart__dot--emph').length >= 1, 'dots: prossima scadenza in enfasi');
+  const dLabels = [...dEl.querySelectorAll('svg text.chart__label')];
+  ok(dLabels.length <= 3 && !overlaps(dLabels) && inside(dEl.querySelector('svg')), 'dots: ≤ 3 etichette, nessuna sovrapposizione');
+  ok(/scadenz/.test(dEl.querySelector('svg').getAttribute('aria-label')), 'dots: aria-label riassuntivo');
+  ok([...dEl.querySelectorAll('.chart__hit')].every((r) => +r.getAttribute('width') >= 24 && +r.getAttribute('height') >= 24), 'dots: area di tocco ≥ 24px');
+
+  // --- stackBar ---
+  const pp = budget.perPerson, people = trip.people || 4, ps = budget.paidSoFar || {};
+  const c = (x) => Math.round(Number(x || 0) * 100);
+  const totC = c(pp.totalEur), paidC = Math.round((c(ps.flightsEurGroup) + c(ps.lodgingEurGroupPaid)) / people);
+  const estC = [...pp.categories, ...pp.common].filter((x) => x.estimate).reduce((a, x) => a + c(x.eur), 0);
+  const segs = [{ id: 'paid', label: 'Pagato', value: paidC / 100 }, { id: 'known', label: 'Prezzo noto', value: (totC - paidC - estC) / 100 }, { id: 'est', label: 'Stima', value: estC / 100 }];
+  const sEl = document.getElementById('c-stack');
+  mount(sEl, html`<h2 class="h3">stackBar</h2>${ch.stackBar(segs, { total: pp.totalEur, fx: trip.fx })}`);
+  ch.wire(sEl);
+  ok(sEl.querySelectorAll('.chart__ord').length === 3, 'stack: 3 segmenti');
+  ok(segs.reduce((a, s) => a + Math.round(s.value * 100), 0) === totC, 'stack: somma = totale al centesimo');
+  const pctT = [...sEl.querySelectorAll('.chart__legend li')].map((li) => +(/(\d+)%/.exec(li.textContent) || [0, 0])[1]);
+  ok(pctT.length === 3 && pctT.reduce((a, b) => a + b, 0) === 100, 'stack: legenda con % che sommano a 100');
+  ok(sEl.textContent.includes('€1.189,61') && sEl.textContent.includes('€641') && sEl.textContent.includes('€935'), 'stack: importi in legenda');
+  ok(sEl.querySelectorAll('details.chart__table tbody tr').length === 3, 'stack: tabella gemella');
+
+  // --- bulletRows ---
+  const bEl = document.getElementById('c-bullet');
+  mount(bEl, html`<h2 class="h3">bulletRows</h2>${ch.bulletRows(budget.daily.map((d) => ({ date: d.date, value: d.eurAgenda, target: d.eurPlanned })))}`);
+  ch.wire(bEl);
+  ok(bEl.querySelectorAll('.chart__row').length === budget.daily.length, `bullet: ${budget.daily.length} righe`);
+  ok(bEl.querySelectorAll('.chart__label--muted').length <= 3, 'bullet: ≤ 3 etichette dirette');
+  const ax = [...bEl.querySelectorAll('.chart__axis-label')].map((t) => t.textContent);
+  ok(ax[0] === '0' && ax.length >= 3 && ax.length <= 5, 'bullet: un asse € da 0 (' + ax.join(' · ') + ')');
+  ok(bEl.querySelectorAll('details.chart__table tbody tr').length === budget.daily.length, 'bullet: tabella gemella completa');
+  ok(bEl.querySelectorAll('.chart__row[tabindex="0"]').length === 1, 'bullet: tabindex a rotazione');
+  const r0 = bEl.querySelector('.chart__row'); r0.focus(); r0.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+  ok(document.activeElement === bEl.querySelectorAll('.chart__row')[1], 'bullet: freccia giù sposta il fuoco');
+  ok(!bEl.querySelector('.chart__tip').hidden && bEl.querySelector('.chart__tip strong').textContent.length > 0, 'bullet: tooltip al fuoco');
+  document.activeElement.blur();
+
+  // --- sicurezza + idempotenza + vuoti ---
+  const eEl = document.getElementById('c-evil');
+  mount(eEl, html`<h2 class="h3">dati malevoli / vuoti</h2>
+    ${ch.routeStrip([{ id: 'x" onmouseover="alert(1)', city: '<img src=x onerror=alert(1)>', checkIn: '2026-11-07', checkOut: '2026-11-09', nights: 2 }], { link: true })}
+    ${ch.stackBar([{ id: 'a', label: '<b>x</b>', value: 1 }])}
+    ${ch.routeStrip([])}${ch.stackBar([])}${ch.bulletRows([])}${ch.dotTimeline([], { from: '2026-10-01', to: '2026-10-02', today: '2026-10-01' })}`);
+  ch.wire(eEl); ch.wire(eEl);
+  ok(!eEl.querySelector('img, b, [onmouseover]'), 'dati malevoli escapati');
+  ok(!eEl.querySelector('svg a[href]') || eEl.querySelector('svg a[href]').getAttribute('href') === '', 'href non sicuro scartato');
+  ok(eEl.querySelectorAll('.chart').length === 3, 'input vuoti → niente grafico (dotTimeline vuota resta, con l\'asse)');
+  ch.wire(document); ch.wire(document);
+  ok(document.querySelectorAll('.chart__plot > svg').length === document.querySelectorAll('.chart').length, 'wire idempotente: un svg per grafico');
+  ok(!/undefined|NaN|\[object|null/.test([...document.querySelectorAll('.chart')].map((f) => f.innerHTML).join(' ')), 'niente undefined/NaN/null nel markup');
+
+  const sum = document.createElement('li'); sum.className = fails ? 't-ko' : 't-ok';
+  const tot = out.children.length; sum.textContent = `${tot - fails}/${tot} ok`; out.prepend(sum);
+  document.title = `${fails ? 'KO' : 'OK'} ${tot - fails}/${tot} · test grafici`;
+</script>
+</body>
+</html>

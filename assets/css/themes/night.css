@@ -67,10 +67,10 @@
   --tl-hour-h: 48px;
 
   /* (C) 4 famiglie di colore della timeline (ibrido 2 ott): saturazione contenuta, luminanza media */
-  --fam-move: #8ba5e6;   /* spostamenti: treni, bus, transfer, logistica */
-  --fam-fixed: #e2867e;   /* orari fissi: vincoli, check-in */
-  --fam-culture: #5fc1a0;   /* visite e cultura: luoghi, anime, onsen, shopping */
-  --fam-evening: #d9a555;   /* cibo e sera */
+  --fam-move: #5c93e4;   /* spostamenti: treni, bus, transfer, logistica */
+  --fam-fixed: #bc69ab;   /* orari fissi: vincoli, check-in */
+  --fam-culture: #42a878;   /* visite e cultura: luoghi, anime, onsen, shopping */
+  --fam-evening: #c18434;   /* cibo e sera */
   /* i 13 type dei dati → 4 famiglie (si risolvono con le --fam-* del modo attivo); "free" è spazio, in grigio */
   --c-train: var(--fam-move);
   --c-bus: var(--fam-move);

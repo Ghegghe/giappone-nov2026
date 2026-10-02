@@ -9,27 +9,7 @@ main[data-page] .icon { display: inline-block; }
 .ext-link .icon { width: 14px; height: 14px; margin-left: 3px; vertical-align: -2px; }
 
 /* ---------- Home ---------- */
-/* hero: il conto alla rovescia è la cosa che conta prima del viaggio → in alto, grande; titolo e rotta sotto il filo */
-.home-count { display: flex; flex-direction: column; gap: var(--space-1); padding-block: 20px; }
-.home-count > .home-count__big, .home-count > .home-count__big + .small { order: -1; }
-.home-count__big { margin: 0; display: flex; align-items: baseline; flex-wrap: wrap; column-gap: 10px; font-size: 1.25rem; line-height: 1.2; }
-.home-count__n {
-  font-family: var(--font-display, var(--font-sans)); font-size: clamp(3.75rem, 3rem + 4vw, 5.5rem);
-  line-height: .9; font-weight: 600; letter-spacing: -.04em; color: var(--accent);
-}
-.home-count__big + .small { padding-bottom: var(--space-3); margin-bottom: var(--space-3); border-bottom: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border)); }
-.home-count .h1 { padding: 0; font-size: clamp(1.375rem, 1.2rem + .9vw, 1.75rem); line-height: 1.2; text-wrap: wrap; }
-.home-count .h1 + .muted { font-size: .9375rem; }
-@media (min-width: 900px) {   /* desktop: conto alla rovescia a sinistra, titolo e rotta a destra oltre un filo verticale */
-  .home-count { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 0; align-items: end; padding: var(--space-5) var(--space-5); }
-  .home-count > * { margin: 0; }
-  .home-count__big { grid-column: 1; grid-row: 1; padding-right: var(--space-6); }
-  .home-count > .home-count__big + .small { grid-column: 1; grid-row: 2; border: 0; padding: var(--space-1) var(--space-6) 0 0; margin: 0; }
-  .home-count > .h1, .home-count > .h1 + .muted { grid-column: 2; padding-left: var(--space-6); border-left: 1px solid color-mix(in srgb, var(--accent) 22%, var(--border)); }
-  .home-count > .h1 { grid-row: 1; padding-bottom: var(--space-1); }
-  .home-count > .h1 + .muted { grid-row: 2; }
-}
-.home-day__head { justify-content: space-between; }
+/* hero (.home-count*) e .home-day__head: in home.css (presentazione 2 ott) */
 .home-day__item, .home-dl { display: grid; grid-template-columns: 3.4em minmax(0, 1fr); align-items: baseline; gap: var(--space-3); }
 .home-dl { grid-template-columns: minmax(0, 1fr); gap: 2px; }
 @media (min-width: 900px) { .home-dl { grid-template-columns: 8em minmax(0, 1fr); gap: var(--space-3); } }
@@ -42,9 +22,6 @@ main[data-page] .icon { display: inline-block; }
 .tr-leg { --stack-gap: var(--space-2); }
 .tr-leg .list-item, .tr-chk { display: block; }
 .tr-opt { display: flex !important; flex-direction: column; align-items: stretch !important; gap: var(--space-1); }
-.tr-opt--chosen {   /* l'opzione scelta: filo verde a sinistra, niente riquadro in più (la card è già il contenitore) */
-  border-left: 3px solid var(--ok); padding-left: var(--space-3);
-}
 .tr-opt__head { justify-content: space-between; align-items: flex-start; flex-wrap: nowrap; }
 .tr-opt__name { font-weight: 600; min-width: 0; }
 .tr-opt__name .icon { color: var(--ok); }
@@ -80,7 +57,6 @@ ul.list.card { padding-block: var(--space-1); }
 
 /* ---------- Alloggi ---------- */
 .al-stay__head { display: flex; flex-direction: column; gap: var(--space-1); }
-.al-stay__head .h2 { margin: 0; }
 .al-notes { padding-left: 1.1em; display: flex; flex-direction: column; gap: var(--space-1); }
 ul.al-notes { list-style: disc; }
 .al-steps { counter-reset: none; }
@@ -141,9 +117,6 @@ details.lu-group > .list.card { margin-bottom: var(--space-4); padding-block: va
 .lu-days .chip { min-height: 32px; padding-inline: 10px; font-size: .8125rem; }
 
 /* ---------- Budget ---------- */
-.bu-kpi .card { --stack-gap: var(--space-1); }
-.bu-kpi__n { padding: 0; margin-top: var(--space-1); line-height: 1.05; }
-.bu-kpi .card--accent .bu-kpi__n { color: var(--accent); }
 .bu-table-wrap { overflow-x: auto; }
 .bu-table th, .bu-table td { text-align: left; padding: var(--space-3) var(--space-2); border-top: 1px solid var(--border); vertical-align: top; }
 .bu-table thead th { border-top: 0; font-size: .8125rem; color: var(--fg-muted); font-weight: 600; padding-block: var(--space-2); }

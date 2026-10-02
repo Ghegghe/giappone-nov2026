@@ -198,6 +198,8 @@ span.chip:hover { background: transparent; color: var(--fg); }
   border-color: color-mix(in srgb, var(--bc) 26%, transparent);
 }
 .badge--fixed { --bc: var(--c-fixed); }
+/* famiglia come testo (badge --fixed e badge con --bc: var(--c-*)): 80% verso --fg, come l'orario dei blocchi → AA su tinta in tutti i temi */
+.badge--fixed, .badge[style*="--bc"] { color: color-mix(in srgb, var(--bc) 80%, var(--fg)); }
 .badge--draft { --bc: var(--warn); }
 .badge--opt { background: transparent; color: var(--fg-muted); border: 1px dashed var(--fg-muted); }
 .badge--todo { --bc: var(--accent-strong, var(--accent)); }

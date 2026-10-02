@@ -8,6 +8,7 @@
 <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" id="theme-css" href="assets/css/themes/neutral.css">
+<link rel="stylesheet" href="assets/css/charts.css">
 <style>
   /* solo per la styleguide (usa comunque solo variabili) */
   .sg-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: var(--space-2); }
@@ -85,6 +86,8 @@
       </tbody>
     </table>
   </div>
+  <p class="h3">Famiglie della timeline (validate all-pairs, 2 ott)</p>
+  <div class="sg-swatches" id="sg-fam-sw"></div>
   <p class="h3">Colori per type</p>
   <div class="row" id="sg-legend"></div>
 
@@ -227,6 +230,17 @@
     </div>
   </div>
 
+  <!-- GRAFICI (charts.js) -->
+  <h2 class="section-title">Grafici (charts.js)</h2>
+  <p class="small muted">SVG inline senza librerie, colori solo da <span class="mono">charts.css</span>. Dati di esempio statici (non sono i dati del viaggio). Forme: striscia della rotta (parte-del-tutto nel tempo), punti su asse (eventi datati), barra impilata 100% (composizione ordinale), barre con tacca (valore contro obiettivo).</p>
+  <div class="grid-2" id="sg-charts">
+    <div class="card stack"><p class="h3">routeStrip</p><div id="sg-ch-route"></div></div>
+    <div class="card stack"><p class="h3">dotTimeline</p><div id="sg-ch-dots"></div></div>
+    <div class="card stack"><p class="h3">stackBar</p><div id="sg-ch-stack"></div></div>
+    <div class="card stack"><p class="h3">bulletRows</p><div id="sg-ch-bullet"></div></div>
+  </div>
+  <p class="empty" id="sg-ch-fallback" hidden>charts.js non caricato.</p>
+
   <!-- ICONE -->
   <h2 class="section-title">Icone (sprite.svg)</h2>
   <div class="card"><div class="row" id="sg-icons" style="--row-gap: var(--space-4)"></div></div>
@@ -346,9 +360,26 @@
     el.appendChild(i); el.appendChild(s); sw.appendChild(el);
   });
 
+  // famiglie: swatch con l'hex risolto del tema/modo attivo
+  var fsw = document.getElementById('sg-fam-sw');
+  var FAMS = [['--fam-move', 'spostamenti'], ['--fam-fixed', 'orari fissi'], ['--fam-culture', 'visite e cultura'], ['--fam-evening', 'cibo e sera']];
+  function drawFams() {
+    fsw.innerHTML = '';
+    FAMS.forEach(function (f) {
+      var el = document.createElement('div'); el.className = 'sg-sw';
+      var i = document.createElement('i'); i.style.background = 'var(' + f[0] + ')';
+      var s = document.createElement('span'); s.className = 'mono';
+      s.textContent = f[1] + ' ' + getComputedStyle(html).getPropertyValue(f[0]).trim();
+      el.appendChild(i); el.appendChild(s); fsw.appendChild(el);
+    });
+  }
+  drawFams();
+  link.addEventListener('load', drawFams);
+  new MutationObserver(drawFams).observe(html, { attributes: true, attributeFilter: ['data-theme-mode', 'data-theme'] });
+
   // icone
   var ICONS = ['calendar', 'train', 'bus', 'bed', 'map-pin', 'pin', 'wallet', 'home', 'lock', 'external', 'close', 'chevron-left', 'chevron-right',
-    'sun', 'moon', 'auto', 'search', 'filter', 'yen', 'info', 'warning', 'check', 'clock', 'food', 'onsen', 'bag', 'star', 'walk', 'torii'];
+    'sun', 'moon', 'auto', 'search', 'filter', 'yen', 'info', 'warning', 'check', 'clock', 'food', 'onsen', 'bag', 'star', 'walk', 'torii', 'anime'];
   var ic = document.getElementById('sg-icons'), NS = 'http://www.w3.org/2000/svg';
   ICONS.forEach(function (n) {
     var wrap = document.createElement('span'); wrap.className = 'stack small muted'; wrap.style.cssText = '--stack-gap:4px;align-items:center;width:72px';
@@ -359,6 +390,36 @@
     wrap.appendChild(svg); wrap.appendChild(lab); ic.appendChild(wrap);
   });
 })();
+</script>
+<script type="module">
+  // esempi dei 4 grafici con dati statici (styleguide: nessun dato del viaggio)
+  try {
+    const ch = await import('./assets/js/charts.js');
+    const { mount } = await import('./assets/js/pages.js');
+    const stays = [
+      { id: 'a', city: 'Alfa', checkIn: '2026-11-07', checkOut: '2026-11-11', nights: 4 },
+      { id: 'b', city: 'Beta', checkIn: '2026-11-11', checkOut: '2026-11-12', nights: 1 },
+      { id: 'c', city: 'Gamma', checkIn: '2026-11-12', checkOut: '2026-11-15', nights: 3 },
+      { id: 'd', city: 'Delta', checkIn: '2026-11-15', checkOut: '2026-11-17', nights: 2 },
+      { id: 'e', city: 'Epsilon', checkIn: '2026-11-17', checkOut: '2026-11-24', nights: 7 },
+    ];
+    mount(document.getElementById('sg-ch-route'), ch.routeStrip(stays, { today: '2026-11-13', caption: 'Rotta (esempio, oggi = 13 nov)' }));
+    mount(document.getElementById('sg-ch-dots'), ch.dotTimeline([
+      { date: '2026-10-11', label: 'Treno A' }, { date: '2026-10-11', label: 'Treno B' }, { date: '2026-10-12', label: 'Bus' },
+      { date: '2026-10-20', label: 'Ristorante' }, { date: '2026-11-01', label: 'Bus aeroporto' },
+    ], { from: '2026-10-02', to: '2026-11-07', today: '2026-10-02', caption: 'Scadenze (esempio)' }));
+    mount(document.getElementById('sg-ch-stack'), ch.stackBar([
+      { id: 'paid', label: 'Pagato', value: 1200 }, { id: 'known', label: 'Prezzo noto', value: 640 }, { id: 'est', label: 'Stima', value: 930 },
+    ], { caption: 'Composizione (esempio)', fx: 185 }));
+    mount(document.getElementById('sg-ch-bullet'), ch.bulletRows([
+      { date: '2026-11-07', value: 35, target: 60 }, { date: '2026-11-08', value: 54, target: 70 }, { date: '2026-11-09', value: 103, target: 80 },
+      { date: '2026-11-10', value: 18, target: 150 }, { date: '2026-11-11', value: 62, target: 70 },
+    ], { caption: 'Spesa per giorno (esempio)' }));
+    ch.wire(document.getElementById('sg-charts'));
+  } catch (e) {
+    document.getElementById('sg-charts').hidden = true;
+    document.getElementById('sg-ch-fallback').hidden = false;
+  }
 </script>
 </body>
 </html>

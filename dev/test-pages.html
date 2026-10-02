@@ -74,7 +74,7 @@
   const bh = box('home'); await home.render(bh, ctx);
   ok(/giorni alla partenza|Giorno \d+ di|concluso/.test(bh.textContent), 'home: countdown presente');
   ok(bh.querySelectorAll('.home-day__item').length === 3, 'home: 3 item nella card giorno');
-  ok(bh.querySelectorAll('.home-dl').length === 5, 'home: 5 scadenze');
+  ok(bh.querySelectorAll('.home-dl').length === 3, 'home: 3 scadenze');
   // scadenze: "in ritardo" solo se la data (fine intervallo inclusa) è passata, in fuso italiano
   const { deadlineState, deadlineLabel } = await import('../assets/js/pages.js');
   ok(deadlineState({ status: 'todo', sortDate: '2026-10-01' }, '2026-10-01') === 'today', 'scadenza con data di oggi → "oggi", non in ritardo');
@@ -119,7 +119,7 @@
   const stays = [...ba.querySelectorAll('.al-stay')];
   ok(stays.length === 6, 'alloggi: 6 basi');
   ok(stays[0].id === 'osaka' && stays[5].id === 'tokyo', 'alloggi: ordine cronologico');
-  ok(stays.every((s) => s.querySelector('a.btn--primary[href*="google.com/maps"]')), 'alloggi: bottone Maps su ogni base');
+  ok(stays.every((s) => s.querySelector('a.btn[href*="google.com/maps"]')) && !ba.querySelector('.al-stay .btn--primary'), 'alloggi: bottone Maps (outline) su ogni base');
   const at = [...ba.querySelectorAll('[role=tab]')];
   ok(at.length === 3, 'logistica: 3 sotto-schede');
   const lg = (await app.loadData('lodging')).logistics;

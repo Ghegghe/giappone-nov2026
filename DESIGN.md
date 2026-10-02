@@ -26,7 +26,7 @@ nella topbar; card con ombra, nav con icone (mobile e desktop), hero col conto a
 sans "stile Inter"; `_styleguide.html`, `manifest.webmanifest`, icone.
 
 **Da B (portate in A):**
-- **Badge**: al massimo uno per riga. Nel giorno il tipo resta una chip colorata, gli stati diventano parole
+- **Badge**: al massimo uno per riga. Nel giorno il tipo è **pallino + parola, senza pillola** (presentazione 2 ott, [decisione cliente]), gli stati diventano parole
   ("orario fisso · facoltativo · in parallelo · prenotato") e l'unico badge è "da prenotare". Base e gita sono una riga
   di testo grigio ("Osaka · gita a Kyoto"), non due badge.
 - **"bozza" una sola volta**: la riga `agenda.notice` in testa all'agenda. Niente badge bozza nelle colonne, nel pannello,
@@ -112,7 +112,7 @@ washi/night −0.01em perché serif). `.mono` = cifre tabulari nel font del test
 - **Empty**: bordo tratteggiato rounded-lg, p-8, text-sm muted, centrato. **Table**: text-sm, th medium muted, hover riga muted/50.
 - **Icone**: `<svg class="icon" aria-hidden="true"><use href="assets/icons/sprite.svg#i-NOME"></use></svg>`; 1.25em, `currentColor`.
   Sprite: calendar train bus bed map-pin pin wallet home lock external close chevron-left/right sun moon auto search filter
-  yen info warning check clock food onsen bag star walk torii.
+  yen info warning check clock food onsen bag star walk torii anime (stella + scintilla: luoghi anime/otaku/Love Live; `star` resta "segnalato da voi").
 
 ## Timeline
 ```html
@@ -131,18 +131,19 @@ Colore = famiglia (ibrido 2 ott, da B), definita in ogni tema; valori `neutral` 
 
 | Famiglia | Variabile | neutral | Type |
 |---|---|---|---|
-| Spostamenti | `--fam-move` | `#3046a8` / `#98b1f8` | train, bus, transfer, logistics |
-| Orari fissi | `--fam-fixed` | `#8e2230` / `#f4948c` | fixed, lodging |
-| Visite e cultura | `--fam-culture` | `#0a6f52` / `#5fd6b0` | sight, anime, onsen, shopping |
-| Cibo e sera | `--fam-evening` | `#9c4600` / `#eab45e` | food, nightlife |
+| Spostamenti | `--fam-move` | `#2b4aa4` / `#5390eb` | train, bus, transfer, logistics |
+| Orari fissi | `--fam-fixed` | `#9d1172` / `#c76ab5` | fixed, lodging |
+| Visite e cultura | `--fam-culture` | `#247a4b` / `#53a473` | sight, anime, onsen, shopping |
+| Cibo e sera | `--fam-evening` | `#823b15` / `#d47421` | food, nightlife |
 | (spazio) | `--fg-muted` | — | free |
 
-I valori sono i colori di A di train/fixed/onsen/food (già verificati AA); washi e night fanno lo stesso coi propri.
+Valori del 2 ott (validati all-pairs col validatore dataviz, washi e night nella sezione "Presentazione dati"); prima erano i colori di A, che fallivano il validatore.
 Densità: tinta 12% (`--tl-tint`); `fixed: true` → `.tl-item--locked` 20% (niente lucchetto nel blocco); `optional` →
 senza fondo, bordo pieno al 40% e filo sinistro pieno; `free` 0% testo muted; i buchi `.tl-gap` sono **spazio vuoto**
 con l'orario in grigio, senza tratteggio né pillola. Ora in testa al blocco nel colore della famiglia (80% verso `--fg`),
 cifre tabulari. Legenda: le 4 famiglie (`.tl-fam--*`) + "tinta piena = orario fisso" e "senza fondo = facoltativo".
 In `giorno.html` il filo sinistro di ogni riga ha il colore della famiglia (facoltativo = filo al 45%, libero = nessun filo).
+Testo nel colore di famiglia (chip del pannello, `.badge--fixed`, badge con `--bc`): sempre `color-mix(--tc 80%, --fg)`, la stessa ricetta dell'orario.
 Mappa JS: `FAMILY`, `FAMILY_LABEL`, `FAMILIES` in `agenda-gaps.js`.
 
 `--top` = minuti dall'inizio scala × `--tl-hour-h`/60 (px, oppure `calc(N * var(--tl-hour-h))`); `--tl-head-h` è
@@ -163,3 +164,43 @@ Ritocchi AA rispetto ai token shadcn puri: tab inattive `muted-foreground` mesco
    il blocco (B) resta identico. Facoltative le variabili di superficie (vedi sopra).
 2. Contrasto ≥4.5:1 per `--fg`, `--fg-muted`, `--accent-2`, le 4 `--fam-*` su `--card` e sulle tinte; i `--c-*` restano mappati sulle famiglie; `--primary-foreground` su `--primary`.
 3. Registra il tema in `theme-boot.js` (`THEMES`) e in `PRECACHE` di `sw.js`; prova in `_styleguide.html?theme=<nome>&mode=dark`.
+
+## Presentazione dati (2 ott, sera)
+Fonte: `PLAN_PRESENTAZIONE.md` (piano), `PRESENTAZIONE_REPORT.md` (esiti). Lo scheletro A resta intero; cambiano la palette delle
+famiglie, quattro grafici SVG e la densità di giorno, trasporti, alloggi, luoghi, budget.
+
+**Palette delle famiglie, 3 temi.** Le 4 tinte precedenti fallivano il validatore dataviz in tutti i temi ("orari fissi" e "cibo e sera"
+a ΔE 9,9 a vista normale; verde/rosso confusi dai deuteranopi). Nuove tinte cercate per enumerazione OKLCH vicino a quelle di prima, con
+vincoli: banda di luminosità, croma ≥ 0,10, all-pairs CVD ≥ 8, vista normale ≥ 15, segno ≥ 3:1 sulla card, testo AA (orario 80% verso
+`--fg` su tinta 20%, chip/badge 80% su tinta 12%). `node validate_palette.js "<hex>" --mode … --surface <card> --pairs all` → **tutto PASS**.
+
+| Tema (card) | move | fixed | culture | evening | CVD peggiore | normale peggiore |
+|---|---|---|---|---|---|---|
+| neutral chiaro (`#ffffff`) | `#2b4aa4` | `#9d1172` | `#247a4b` | `#823b15` | 8,1 | 16,8 |
+| neutral scuro (`#18181b`) | `#5390eb` | `#c76ab5` | `#53a473` | `#d47421` | 9,0 | 18,6 |
+| washi chiaro (`#fffcf6`): indaco, prugna, pino, kaki | `#2e4b9a` | `#812a62` | `#1c7851` | `#a54d07` | 8,5 | 17,1 |
+| washi scuro (`#1e2128`) | `#4a97e1` | `#ba79ac` | `#60a46f` | `#d37812` | 8,4 | 16,3 |
+| night (`#101219`): fredde contro l'ambra del primario | `#5c93e4` | `#bc69ab` | `#42a878` | `#c18434` | 8,4 | 17,0 |
+
+Washi scuro non arriva a 4,5:1 col colore puro sulla tinta 11% dentro la banda di luminosità: per questo il testo di famiglia usa
+sempre la ricetta 80% verso `--fg` (vedi Timeline). I `--c-*` dei 13 type puntano sempre alle famiglie.
+
+**Grafici: `assets/js/charts.js` + `assets/css/charts.css`.** SVG inline senza librerie, colori solo `var(--chart-*)` derivati da
+`--fam-move --fg --fg-muted --accent --border --card`. Contenitore `<figure class="chart chart--<tipo>">`, `wire(root)` dopo `mount`.
+
+| Forma | Quando | Dove | Regole |
+|---|---|---|---|
+| `routeStrip` | parte-del-tutto nel tempo con classi già scritte | home, alloggi (link alle card) | grigio + enfasi su una base (`--accent`), nomi su 2 corsie misurate, tacca "oggi"/"partenza" con etichetta sempre in `--fg` (si muove solo il filo) |
+| `dotTimeline` | eventi datati, non una serie | trasporti › Scadenze | un punto per scadenza, impilati; etichette solo "oggi", prossima, "partenza"; se la prossima cade oggi un'etichetta sola "oggi · N scadenze" |
+| `stackBar` | composizione ordinale (≤ 3 classi) | budget | barra 100% una riga, rampa di una tinta (100/68/45% verso la card), legenda con importo e %, tabella gemella |
+| `bulletRows` | valore contro obiettivo per riga | budget per giorno | barra = agenda, tacca in inchiostro = budget, un asse € da 0, ≤ 3 etichette dirette, tabella gemella |
+
+Niente torte, doppi assi, numero su ogni punto, testo nel colore della serie, `tabular-nums` sui numeri hero.
+Il nastro del giorno (`giorno-strip`) è timeline, non charts.js: sta in `agenda-day.js` e usa le famiglie.
+
+**Eccezioni allo scheletro, [decisione cliente da confermare].**
+- Giorno: tipo = pallino + parola (niente chip); riga 2 = tipo · costo · nota costo · luogo · stati · badge "da prenotare" · dove/quando.
+- Maps nelle liste (giorno, alloggi, luoghi): bottone **solo icona 44×44** (`mapsIconBtn`, ghost/outline) con `aria-label` "Apri <nome> in Google Maps (nuova scheda)". In alloggi nessun `.btn--primary` nelle card.
+- Budget: **un solo numero grande** (`.hero-fig`, cifre proporzionali) invece di due card KPI.
+- Luoghi: Sì/Forse sono **sotto-elenchi** dentro il gruppo (niente badge flag per riga); icona del tipo davanti al nome.
+- Temi serif (washi, night) a < 480px: nomi alloggio 18px e titolo guida bagagli 17px, per non andare a capo (`pages-b.css`).

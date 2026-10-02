@@ -1,0 +1,167 @@
+/* pages-b.css — trasporti, alloggi, luoghi (PLAN_PRESENTAZIONE §2.4-2.6). Caricato DOPO pages.css: stesse classi, si sovrascrive.
+   SOLO variabili dei temi (nessun colore letterale), tinte con color-mix. */
+
+/* ================= Trasporti ================= */
+.tr-leg, .tr-chk, .al-stay { scroll-margin-top: calc(var(--topbar-h) + var(--space-3)); }
+.tr-leg:focus { outline: none; }
+.tr-leg:focus-visible { outline: 2px solid var(--focus, var(--ring)); outline-offset: 2px; }
+
+/* --- catena: rail verticale che alterna basi (tratto spesso) e tratte (punto vuoto) --- */
+.tr-chain-wrap > .section-title { margin-block: 0 var(--space-2); }
+.tr-chain { list-style: none; margin: 0; padding: 0; position: relative; }
+.tr-chain > li { position: relative; padding-left: 28px; }
+.tr-chain > li::before {   /* il filo continuo */
+  content: ""; position: absolute; left: 9px; top: 0; bottom: 0; width: 2px; background: var(--border);
+}
+.tr-chain > li:first-child::before { top: 50%; }
+.tr-chain > li:last-child::before { bottom: 50%; }
+.tr-chain__link {
+  display: flex; flex-direction: column; justify-content: center; min-height: 44px;
+  padding: 2px 8px; margin-left: -8px; border-radius: var(--radius-md); color: inherit; text-decoration: none;
+}
+.tr-chain__link:hover { background: var(--accent-soft, var(--bg-sunken)); }
+.tr-chain__link:hover .tr-chain__title { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.tr-chain__link:focus-visible { outline: 2px solid var(--focus, var(--ring)); outline-offset: 0; }
+.tr-chain__leg::after {
+  content: ""; position: absolute; left: 5px; top: 17px; width: 10px; height: 10px; border-radius: 50%; box-sizing: border-box;
+  background: var(--card, var(--bg-elev)); border: 2px solid var(--fg-muted);
+}
+.tr-chain__top { display: flex; align-items: baseline; gap: var(--space-2); }
+.tr-chain__date { flex: none; width: 3.4em; font-size: .8125rem; color: var(--fg-muted); }
+.tr-chain__title { flex: 1; min-width: 0; font-weight: 600; font-size: .9375rem; line-height: 1.375rem; }
+.tr-chain__todo { flex: none; font-weight: 600; color: var(--accent-strong, var(--accent)); white-space: nowrap; }
+.tr-chain__sub { display: none; padding-left: calc(3.4em * 13 / 14 + var(--space-2)); }
+/* base: tratto spesso sul filo; in accento la base di oggi o la prossima */
+.tr-chain__base { display: flex; align-items: baseline; gap: var(--space-2); min-height: 28px; padding-block: 2px; }
+.tr-chain__base::after {
+  content: ""; position: absolute; left: 7px; top: 4px; bottom: 4px; width: 6px; border-radius: 3px; background: var(--fg-muted);
+}
+.tr-chain__base--focus::after { background: var(--accent); }
+.tr-chain__city { font-weight: 600; }
+.tr-chain__base--focus .tr-chain__city { color: var(--accent); }
+@media (min-width: 900px) {
+  .tr-chain__sub { display: block; }
+  .tr-chain__link { padding-block: 4px; }
+}
+
+.tr-tratte { display: flex; flex-direction: column; gap: var(--space-4); }
+@media (min-width: 900px) {
+  .tr-tratte { display: grid; grid-template-columns: minmax(300px, 380px) minmax(0, 1fr); gap: var(--space-6); align-items: start; }
+  .tr-chain-wrap { position: sticky; top: calc(var(--topbar-h) + var(--space-4)); max-height: calc(100dvh - var(--topbar-h) - var(--space-6)); overflow-y: auto; padding-right: var(--space-2); }
+}
+
+/* --- card tratta densa --- */
+.tr-leg { --stack-gap: var(--space-1); --card-p: var(--space-4); padding-block: var(--space-3); }
+.tr-leg .tr-opt__head { line-height: 1.25rem; }
+.tr-leg__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; column-gap: var(--space-2); row-gap: 2px; }
+.tr-leg__head > .h3 { margin: 0; font-size: 1rem; line-height: 1.5rem; font-weight: 600; min-width: 0; }
+.tr-leg__head > p { flex-basis: 100%; }
+.card.tr-leg > .tr-leg__head .h3 { margin-bottom: 0; }
+.tr-leg .tr-opt--chosen { border-left: 0; padding-left: 0; gap: 2px; }
+.tr-leg .tr-opt--chosen > .tr-opt__head .tr-opt__name { font-weight: 500; font-size: .875rem; }
+.tr-opt__meta { column-gap: var(--space-3); row-gap: 0; }
+/* i due <details> sulla stessa riga; quello aperto va a tutta larghezza, sotto */
+.tr-opt__more { display: flex; flex-wrap: wrap; column-gap: var(--space-4); }
+.tr-opt__more > details { flex: 0 0 auto; }
+.tr-opt__more > details > summary { min-height: 32px; position: relative; }
+.tr-opt__more > details > summary::before { content: ""; position: absolute; inset: -6px 0; }   /* tocco ≥ 44px */
+.tr-opt__more > details[open] { flex-basis: 100%; order: 2; }
+.tr-opt__more .tr-leg__alts > .list { margin-top: 0; }
+.tr-day { --stack-gap: var(--space-2); }
+/* la data è già nella riga dell'opzione (e nella catena): il titolo del giorno resta per lettori di schermo */
+.tr-day > .tr-day__title { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+.tr-cards { --stack-gap: var(--space-3); }
+.tr-opt__date { color: var(--fg-muted); font-weight: 400; }
+
+/* --- scadenze --- */
+.tr-strip { --stack-gap: var(--space-1); }
+.tr-strip__fallback { font-weight: 500; }
+.tr-chk:focus { outline: none; }
+.tr-chk:focus-visible { outline: 2px solid var(--focus, var(--ring)); outline-offset: -2px; }
+.tr-chk .icon { width: 14px; height: 14px; vertical-align: -2px; }
+
+/* ================= Alloggi ================= */
+.al-route { margin-bottom: var(--space-1); }
+.al-route__list { list-style: none; margin: 0; padding: 0; --row-gap: var(--space-2); }
+.al-route__list .chip .muted { font-weight: 400; }
+.al-stays { align-items: start; gap: var(--space-3); }
+.al-logistics.al-logistics { margin-top: 0; }
+.al-stay { --stack-gap: var(--space-3); }
+.al-stay:focus { outline: none; }
+.al-stay:focus-visible { outline: 2px solid var(--focus, var(--ring)); outline-offset: 2px; }
+.al-stay__head { flex-direction: row; align-items: flex-start; justify-content: space-between; gap: var(--space-3); }
+.al-stay__title { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.al-stay__head > .al-stay__actions { flex: none; flex-wrap: nowrap; margin-top: 0; }
+.al-stay__actions .btn--sm .icon { width: 14px; height: 14px; }
+.card.al-stay > .al-stay__head .h3 { margin: 0; font-size: 1.25rem; line-height: 1.75rem; font-weight: 600; letter-spacing: var(--tracking-title, -.025em); }
+/* prezzo e pagamento: importo a sinistra, badge a destra; i contanti sotto */
+.al-price { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; column-gap: var(--space-3); row-gap: 2px; }
+.al-price__eur { margin: 0; min-width: 0; }
+.al-price__tot { font-weight: 600; }
+.al-price__jpy { flex-basis: 100%; margin: 0; }
+.al-stay .kv > dt, .al-stay .kv > dd { padding-block: 6px; }
+.al-stay .kv > dt { padding-top: 6px; }
+.al-stay__actions { --row-gap: var(--space-2); }
+.al-stay .al-notes { gap: 2px; }
+/* details "Altre N note" / "continua": trigger link 44px come quelli delle tratte */
+.al-more > summary { cursor: pointer; min-height: 24px; position: relative; display: inline-flex; align-items: center; gap: 8px; color: var(--accent-2); font-weight: 500; list-style: none; }
+.al-more > summary::before { content: ""; position: absolute; inset: -10px 0; }   /* tocco 44px */
+.al-more > summary::-webkit-details-marker { display: none; }
+.al-more > summary::after {
+  content: ""; width: 7px; height: 7px; margin-top: -3px; flex: none;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; rotate: 45deg;
+  transition: rotate .2s var(--ease), margin .2s var(--ease);
+}
+.al-more[open] > summary::after { rotate: 225deg; margin-top: 3px; }
+.al-more > summary:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.al-more[open] > summary { margin-bottom: var(--space-1); }
+.al-clip { display: flex; flex-direction: column; gap: 0; }
+.al-steps .al-step__head .stack { --stack-gap: 2px; }
+/* card più dense (6 in colonna a 375) */
+.al-stay { --card-p: var(--space-4); --stack-gap: var(--space-2); }
+.al-stay .kv > dt, .al-stay .kv > dd { padding-block: 3px; }
+.al-stay .kv > dt { padding-top: 4px; }
+/* passi: titolo 16px, testo limitato (continua) */
+.al-steps .h3 { font-size: 1rem; line-height: 1.375rem; }
+.al-steps > .list-item { padding-block: var(--space-3); }
+/* approfondimenti bagagli: un solo accordion (3 trigger in una card) */
+.al-acc { padding-block: var(--space-1); }
+.al-acc__item + .al-acc__item { border-top: 1px solid var(--border); }
+.al-acc__item > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; justify-content: space-between; gap: 8px; font-weight: 500; list-style: none; }
+.al-acc__item > summary::-webkit-details-marker { display: none; }
+.al-acc__item > summary::after {
+  content: ""; width: 7px; height: 7px; margin-top: -3px; flex: none; color: var(--fg-muted);
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; rotate: 45deg;
+  transition: rotate .2s var(--ease), margin .2s var(--ease);
+}
+.al-acc__item[open] > summary::after { rotate: 225deg; margin-top: 3px; }
+.al-acc__item > summary:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.al-acc__item[open] { padding-bottom: var(--space-3); }
+.al-open .al-clip > p, .al-open > li > p:first-child { margin: 0; }
+
+/* ================= Luoghi ================= */
+/* sommario del gruppo: città + date sulla prima riga, conteggi sotto; badge totale e chevron a destra */
+.lu-group__head { align-items: center; min-height: 60px; padding-block: var(--space-2); }
+.lu-group__title { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: var(--space-2); row-gap: 0; min-width: 0; flex: 1; }
+.lu-group__counts { flex-basis: 100%; }
+.lu-group__head > .badge { flex: none; }
+.lu-group__head::after { margin-left: var(--space-2); }
+details.lu-group > .list.card { margin-bottom: var(--space-2); }
+details.lu-group > .list.card:last-child { margin-bottom: var(--space-4); }
+.lu-sub { margin: var(--space-3) 0 var(--space-2); font-weight: 600; color: var(--fg); }
+/* riga: icona del tipo davanti al nome */
+.lu-row__name { align-items: flex-start; gap: var(--space-2); }
+.lu-row__name > .icon { flex: none; width: 16px; height: 16px; margin-top: 4px; color: var(--fg-muted); }
+.lu-row__name > strong { min-width: 0; }
+.lu-row__meta { padding-left: 24px; }
+.lu-row__note { padding-left: 24px; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; }
+.lu-row .lu-days { padding-left: 24px; }
+.lu-row--compact { min-height: 52px; padding-block: var(--space-2); }
+.lu-row--compact .lu-row__name strong { font-weight: 500; }
+
+/* temi serif (washi, night) a 375: "BON Condominium Umeda" e il titolo della guida bagagli vanno a capo per pochi px
+   (Iowan è più larga del sans) → un gradino sotto, solo su mobile. Tiene alloggi ≤ 3600px anche in washi (integratore, 2 ott). */
+@media (max-width: 479.98px) {
+  :root:is([data-theme="washi"], [data-theme="night"]) .card.al-stay > .al-stay__head .h3 { font-size: 1.125rem; }
+  :root:is([data-theme="washi"], [data-theme="night"]) .al-logistics .card > .h3 { font-size: 1.0625rem; }
+}

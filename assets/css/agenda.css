@@ -32,15 +32,15 @@
 .agenda-legend__chip::after { content: none; }
 :where(.agenda-legend__chip:hover) { border-color: var(--border); background: var(--bg-elev); }
 /* in giorno.html il type è un'etichetta, non un controllo: badge-like senza cornice da bottone */
-:is(.giorno__badges, .agenda-panel) .agenda-legend__chip {
+.agenda-panel .agenda-legend__chip {
   min-height: 22px; padding: 0 10px 0 8px; gap: 5px; border-radius: 999px; box-shadow: none;
   font-size: .75rem; font-weight: 600;
 }
-:is(.giorno__badges, .agenda-panel) .agenda-legend__chip {
-  background: color-mix(in srgb, var(--tc) 11%, var(--bg-elev)); color: var(--tc);
+.agenda-panel .agenda-legend__chip {
+  background: color-mix(in srgb, var(--tc) 11%, var(--bg-elev)); color: color-mix(in srgb, var(--tc) 80%, var(--fg)); /* testo famiglia = ricetta dell'orario: AA su tinta anche in washi scuro */
   border-color: color-mix(in srgb, var(--tc) 28%, transparent);
 }
-:is(.giorno__badges, .agenda-panel) .agenda-legend__dot { inline-size: 7px; block-size: 7px; }
+.agenda-panel .agenda-legend__dot { inline-size: 7px; block-size: 7px; }
 .agenda-legend__dot { inline-size: 10px; block-size: 10px; border-radius: 50%; flex: none; }
 :where(.agenda-legend__dot) { background: var(--tc); }
 :where(.agenda-legend__chip--opt) .agenda-legend__dot { background: transparent; box-shadow: inset 0 0 0 1.5px var(--fg-muted); }
@@ -69,22 +69,39 @@
 
 /* ---------- timeline: completa base.css §7 (stesso DOM), solo override ---------- */
 .agenda .timeline {
-  --tl-head-h: 66px;              /* 3 righe: data+bozza · base · titolo */
+  --tl-head-h: 68px;              /* data + base · titolo su 2 righe (18 + 16 + 2 + 32) */
   --tl-foot-h: 30px;              /* piè giorno: totale €/pax · ¥ */
 }
 @media (min-width: 900px) {
-  /* ~7 giorni visibili */
-  .agenda .timeline { --tl-head-h: 70px; grid-auto-columns: max(var(--tl-col-min, 132px), calc((100% - var(--tl-hours-w)) / 7)); }
+  /* ~7 giorni visibili; 72px/ora solo qui (non nel tema): un blocco da 1h = orario + 3 righe */
+  .agenda .timeline {
+    --tl-hour-h: 72px; --tl-head-h: 84px;
+    grid-auto-columns: max(var(--tl-col-min, 132px), calc((100% - var(--tl-hours-w)) / 7));
+  }
 }
 .agenda .tl-day { height: calc(var(--tl-head-h) + var(--tl-span) * var(--tl-hour-h) + var(--tl-foot-h)); }
 .agenda .tl-hours::after { content: ""; display: block; height: var(--tl-foot-h); }
 .timeline:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 2px; }
-.tl-day__row { display: flex; align-items: center; gap: var(--space-1); min-width: 0; }
-.tl-day__date { text-decoration: none; overflow: hidden; text-overflow: ellipsis; }
+/* intestazione: data + base sulla prima riga (a capo se non stanno), titolo del giorno su 2 righe */
+.agenda .tl-day__header { justify-content: flex-start; gap: 2px; white-space: normal; padding-block: 8px 10px; }
+/* la riga data+base non si comprime mai; il titolo prende lo spazio che resta (righe intere: 84 − 18 − 2 = 64 = 4 × 16) */
+.agenda .tl-day__header > .tl-day__row { flex: none; }
+.agenda .tl-day__header > .tl-day__title { flex: 0 1 auto; min-height: 0; }
+.tl-day__row { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 6px; row-gap: 0; min-width: 0; }
+.tl-day__date { text-decoration: none; white-space: nowrap; }
+.agenda .tl-day__base { overflow: visible; white-space: normal; line-height: 1rem; }
+.agenda .tl-day__title {
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
+  white-space: normal; line-height: 1rem; font-weight: 600; color: var(--fg);
+}
+@media (min-width: 900px) { .agenda .tl-day__title { -webkit-line-clamp: 3; } }   /* 84px: data/base + 3 righe */
+/* cambio di base rispetto al giorno prima: filo accent di 2px sul bordo sinistro dell'intestazione */
+.agenda .tl-day--newbase .tl-day__header::before {
+  content: ""; position: absolute; inset: 0 auto 0 0; inline-size: 2px; background: var(--accent);
+}
 :where(.tl-day__date) { color: inherit; }
 .tl-day__date:hover { text-decoration: underline; }
 .tl-day__header .badge { flex: none; }
-.tl-day__title { overflow: hidden; text-overflow: ellipsis; }
 .agenda .tl-day--selected .tl-day__header { box-shadow: inset 0 -2px 0 var(--accent-2); }
 .tl-day__foot {
   position: absolute; inset: auto 0 0 0; height: var(--tl-foot-h);
@@ -95,8 +112,35 @@
 .tl-day__empty { position: absolute; top: calc(var(--tl-head-h) + var(--space-5)); inset-inline: var(--space-2); text-align: center; }
 .tl-item--split { padding-inline: 4px 3px; font-size: 11px; }
 
+/* blocchi: un solo contenitore di testo (.tl-item__in) con line-clamp a scalini sull'altezza del blocco
+   (container query sul .tl-item, container-type: size in base.css). Righe da 13px (soglia = 13·n − 1: l'ultima riga può usare 1px del padding), orario sempre in linea
+   all'inizio del testo (una riga in più per il titolo). Il titolo intero resta in title/aria-label del bottone. */
+.agenda .tl-item { padding: 1px 4px 1px 6px; }
+.agenda .tl-item--split { padding-inline: 4px 3px; }
+.agenda .tl-item > .tl-item__in {
+  flex: 1 1 100%; min-width: 0; margin: 0;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; overflow: hidden;
+  white-space: normal; line-height: 13px; overflow-wrap: anywhere;
+}
+@media (min-width: 900px) { .agenda .tl-item > .tl-item__in { hyphens: auto; } }   /* colonne da ~145px: sillabare aiuta */
+.agenda .tl-item__in > * { display: inline; white-space: normal; }
+.agenda .tl-item__in > strong { -webkit-line-clamp: none; font-size: 11.5px; }
+.agenda .tl-item__in > .mono { margin-right: 1px; }
+@container (min-height: 25px) { .agenda .tl-item > .tl-item__in { -webkit-line-clamp: 2; } }
+@container (min-height: 38px) { .agenda .tl-item > .tl-item__in { -webkit-line-clamp: 3; } }
+@container (min-height: 51px) { .agenda .tl-item > .tl-item__in { -webkit-line-clamp: 4; } }
+@container (min-height: 64px) { .agenda .tl-item > .tl-item__in { -webkit-line-clamp: 5; } }
+@container (min-height: 77px) { .agenda .tl-item > .tl-item__in { -webkit-line-clamp: 6; } }
+@container (min-height: 90px) { .agenda .tl-item > .tl-item__in { -webkit-line-clamp: 7; } }
+@container (min-height: 103px) { .agenda .tl-item > .tl-item__in { -webkit-line-clamp: 8; } }
+/* blocchi bassissimi (< 2 righe): una riga sola con l'ellissi */
+@container (max-height: 24.98px) {
+  .agenda .tl-item > .tl-item__in { display: block; white-space: nowrap; text-overflow: ellipsis; }
+  .agenda .tl-item__in > * { white-space: nowrap; }
+}
+
 /* colore per type → --tc (stessa variabile di base.css) per legenda e giorno.html */
-:where(.agenda-legend__chip, .giorno__item) { --tc: var(--fg-muted); }
+:where(.agenda-legend__chip, .giorno__item, .giorno-strip__seg) { --tc: var(--fg-muted); }
 :where(.tl-type--train, .giorno__item--train) { --tc: var(--c-train); }
 :where(.tl-type--bus, .giorno__item--bus) { --tc: var(--c-bus); }
 :where(.tl-type--transfer, .giorno__item--transfer) { --tc: var(--c-transfer); }
@@ -124,34 +168,91 @@
 .agenda-panel .btn .icon, .giorno .btn .icon { width: 1em; height: 1em; }
 .badge .icon { width: .9em; height: .9em; vertical-align: -1px; display: inline-block; }
 
-/* ---------- giorno.html ---------- */
+/* ---------- giorno.html (PLAN_PRESENTAZIONE §2.3) ---------- */
 .giorno__pager { justify-content: space-between; flex-wrap: nowrap; margin-inline: calc(-1 * var(--space-3)); }
 .giorno__pager .btn { min-block-size: 44px; padding-inline: var(--space-3); font-size: .875rem; }
 .giorno__pager #giorno-agenda { color: var(--fg-muted); }
 .giorno__head { --stack-gap: var(--space-2); }
 .giorno__head .h1 { margin: 0; font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem); line-height: 1.15; }
+.giorno__head p { margin: 0; }
+.giorno__notes { line-height: 1.25rem; }
+
+/* nastro del giorno: l'elemento memorabile. SVG con viewBox in minuti (preserveAspectRatio none):
+   il gap fra segmenti contigui è il bordo in --card a larghezza fissa (non-scaling-stroke). */
+.giorno-strip__wrap { margin-top: var(--space-2); }
+.giorno-strip { position: relative; padding-bottom: 18px; }
+.giorno-strip__svg { display: block; inline-size: 100%; block-size: 28px; overflow: visible; }
+.giorno-strip__track { fill: var(--bg-sunken, var(--muted)); }
+.giorno-strip__seg { cursor: pointer; outline: none; }
+.giorno-strip__seg rect { fill: var(--tc); stroke: var(--card, var(--bg-elev)); stroke-width: 2px; vector-effect: non-scaling-stroke; }
+.giorno-strip__seg--opt rect { fill: var(--card, var(--bg-elev)); stroke: var(--tc); stroke-width: 1.5px; }
+.giorno-strip__seg:hover rect { fill: color-mix(in srgb, var(--tc) 80%, var(--fg)); }
+.giorno-strip__seg--opt:hover rect { fill: color-mix(in srgb, var(--tc) 18%, var(--card, var(--bg-elev))); }
+.giorno-strip__seg:focus-visible rect { stroke: var(--focus, var(--ring)); stroke-width: 3px; }
+/* area di tocco 44px (agenda-day.js): trasparente, unica a ricevere il tocco; dopo le regole sopra (stessa specificità) */
+.giorno-strip__seg rect { pointer-events: none; }
+.giorno-strip__seg rect.giorno-strip__tap { fill: transparent; stroke: none; pointer-events: all; }
+.giorno-strip__ticks { position: absolute; inset: auto 0 0 0; height: 16px; pointer-events: none; }  /* sotto passa l'area di tocco */
+.giorno-strip__ticks > span {
+  position: absolute; left: var(--x); transform: translateX(-50%);
+  font-size: .75rem; line-height: 16px; color: var(--fg-muted); font-variant-numeric: tabular-nums;
+}
+.giorno-strip__ticks > span:first-child { transform: none; }
+.giorno-strip__ticks > span:last-child { transform: translateX(-100%); }
+.giorno-strip__foot { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px var(--space-3); margin-top: var(--space-1); }
+.giorno-strip__legend { display: contents; }   /* le voci si dispongono nella riga del piè insieme al totale */
+.giorno-strip__legend li { font-size: .8125rem; line-height: 1.25rem; color: var(--fg-muted); }
+.giorno-strip__legend li { display: inline-flex; align-items: center; gap: 6px; }
+.giorno-strip__legend .agenda-legend__dot { inline-size: 8px; block-size: 8px; }
+.giorno-strip__sum { white-space: nowrap; }
+.giorno__head .giorno-strip__sum { margin-inline-start: auto; }
+
+/* lista compatta a 3 livelli: [orario][titolo + Maps] / [tipo · costo · stato] / [nota] */
 .giorno__list { list-style: none; margin: 0; padding: 0; }
 .giorno__item, .giorno__gap {
-  display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: var(--space-3);
-  padding: var(--space-3) var(--space-1) var(--space-3) var(--space-3);
+  display: grid; grid-template-columns: 42px minmax(0, 1fr) auto; column-gap: 10px; row-gap: 2px; align-items: start;
+  padding: 6px 0 6px 10px;
 }
-.giorno__time { font-size: .875rem; }
-.giorno__time .small { font-weight: 500; font-size: .75rem; }
-:where(.giorno__item) { border-inline-start: 4px solid var(--tc); }
+/* main "si scioglie" nella griglia: solo il titolo sta accanto al bottone Maps, il resto va a tutta larghezza */
+.giorno__item > .giorno__main { display: contents; }
+.giorno__item > .giorno__time { grid-column: 1; grid-row: 1 / span 2; }
+.giorno__item .giorno__title { grid-column: 2; grid-row: 1; }
+.giorno__item :is(.giorno__meta, .giorno__note, .giorno__links) { grid-column: 2 / -1; }
+.giorno__item:not(:has(.giorno__maps)) :is(.giorno__title, .giorno__meta) { grid-column: 2 / -1; }
+.giorno__time { display: flex; flex-direction: column; font-size: .875rem; line-height: 1.5rem; font-weight: 600; align-self: start; }
+.giorno__time .small { font-weight: 500; font-size: .75rem; line-height: 1rem; }
+:where(.giorno__item) { border-inline-start: 3px solid var(--tc); }
 :where(.giorno__item--optional) { border-inline-start-color: color-mix(in srgb, var(--tc) 45%, transparent); }
 .giorno__item--target { scroll-margin-block: 96px; }
 :where(.giorno__item--target) { outline: 2px solid var(--accent-2); outline-offset: -2px; background: color-mix(in srgb, var(--accent-2) 8%, transparent); }
-.giorno__item, .giorno__gap { align-items: start; }
-.giorno__time { display: flex; flex-direction: column; font-weight: 600; align-self: start; }
-.giorno__main > .row { justify-content: flex-start; }
-.giorno__main .btn--ghost { padding-inline: 10px; margin-inline-start: -10px; min-height: 40px; font-size: .875rem; }
-.giorno__main { min-inline-size: 0; --stack-gap: 6px; }
-.giorno__main > .row:last-child:has(.btn) { margin-top: -4px; }
-.giorno__title { margin: 0; overflow-wrap: anywhere; }
-.giorno__badges { gap: var(--space-1); }
-.giorno__note { margin: 0; white-space: pre-line; }
-.giorno__facts { margin: 0; }
-:where(.giorno__gap) { border-inline-start: 4px solid transparent; }   /* libero: spazio con l'orario in grigio, senza tratteggio */
-.giorno__gap { padding-block: var(--space-2); font-size: .875rem; }
-.giorno__gap .giorno__time { color: var(--fg-muted); font-weight: 500; font-size: .8125rem; }
+.giorno__main { min-inline-size: 0; display: flex; flex-direction: column; gap: 2px; }
+.giorno__title { margin: 0; font-size: 1rem; line-height: 1.5rem; font-weight: 600; letter-spacing: -.01em; overflow-wrap: anywhere; }
+.giorno__meta { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 0 var(--space-3); line-height: 1.25rem; }
+.giorno__meta .badge { min-height: 20px; font-size: .75rem; }
+/* tipo: pallino + parola, senza pillola [decisione cliente] */
+.giorno__type { display: inline-flex; align-items: center; gap: 6px; font-weight: 500; }
+.giorno__type .agenda-legend__dot { inline-size: 8px; block-size: 8px; }
+.giorno__note { margin: 0; white-space: pre-line; line-height: 1.25rem; }
+
+.giorno__links { margin-top: 2px; }
+.giorno__links .btn--ghost { padding-inline: 10px; margin-inline-start: -10px; min-height: 44px; font-size: .875rem; }
+/* Maps: area di tocco 44×44, ma occupa nel layout solo 34×24 (margini negativi): il titolo non si stringe e la riga non cresce */
+.giorno__maps {
+  grid-column: 3; grid-row: 1; align-self: start;
+  inline-size: 44px; block-size: 44px; min-inline-size: 44px; margin: -10px 0 -10px -10px;
+  color: var(--fg-muted);
+}
+.giorno__maps:hover { color: var(--fg); }
+.giorno .btn .icon { width: 1.125em; height: 1.125em; }
+:where(.giorno__gap) { border-inline-start: 3px solid transparent; }   /* libero: una riga, orario in grigio */
+.giorno__gap { min-block-size: 32px; padding-block: 6px; align-items: center; font-size: .8125rem; }
+.giorno__gap .giorno__time { color: var(--fg-muted); font-weight: 500; font-size: .8125rem; line-height: 1.25rem; }
 .giorno__foot p { margin: 0; }
+@media (min-width: 900px) {
+  .giorno__list, .giorno__list ~ p, .giorno__foot { max-inline-size: 720px; }
+}
+@media (forced-colors: active) {
+  .giorno-strip__seg rect { fill: CanvasText; stroke: Canvas; }
+  .giorno-strip__seg--opt rect { fill: Canvas; stroke: CanvasText; }
+  .giorno-strip__track { fill: Canvas; stroke: CanvasText; }
+}
