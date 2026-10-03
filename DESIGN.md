@@ -100,6 +100,8 @@ washi/night −0.01em perché serif). `.mono` = cifre tabulari nel font del test
 - **Tabs**: TabsList `bg-muted p-1 rounded-lg` (44px), tab 36px rounded-md, attiva = "card" (`--card` + `shadow-sm`).
   Su mobile la lista scorre in orizzontale.
 - **Input**: h-10 rounded-md border-input shadow-xs; focus = bordo `--focus/--ring` + alone 3px `--ring` 45%. Mobile 44px e 16px.
+- **Select**: come Input, ma `appearance: none` + chevron "V" a due gradienti in `--fg-muted` (12×6px, a 14px dal bordo) e
+  `padding-right: 36px` con ellissi: la freccia nativa di Chrome stava a ~6px dal bordo, ignorava padding e tema. In forced-colors torna nativo.
 - **Card**: una sola azione primaria; nelle liste lunghe l'azione è outline o `.btn--icon`. Sotto-parti header/title/
   description/content/footer facoltative (24px tra le parti).
 - **Panel = Sheet**: mobile bottom-sheet `rounded-t-xl` con maniglia Drawer (100×6px, sticky in cima mentre il contenuto
@@ -203,4 +205,7 @@ Il nastro del giorno (`giorno-strip`) è timeline, non charts.js: sta in `agenda
 - Maps nelle liste (giorno, alloggi, luoghi): bottone **solo icona 44×44** (`mapsIconBtn`, ghost/outline) con `aria-label` "Apri <nome> in Google Maps (nuova scheda)". In alloggi nessun `.btn--primary` nelle card.
 - Budget: **un solo numero grande** (`.hero-fig`, cifre proporzionali) invece di due card KPI.
 - Luoghi: Sì/Forse sono **sotto-elenchi** dentro il gruppo (niente badge flag per riga); icona del tipo davanti al nome.
+- Luoghi, filtri: 2 righe a 375 (cerca + `<select>` città con "Tutte le città" · segmentato Sì/Forse/No + conteggio + bottone
+  filtro 44×44 che apre un popover `<details>` con "Un'altra volta"/"Da decidere" e Ordina; pallino se lì c'è un valore non di default),
+  1 riga da 900px, tutto a 44px. Il segmentato è un gruppo di toggle `aria-pressed` con un solo bordo e divisori interni.
 - Temi serif (washi, night) a < 480px: nomi alloggio 18px e titolo guida bagagli 17px, per non andare a capo (`pages-b.css`).

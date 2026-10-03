@@ -14,6 +14,7 @@ Misure su `python3 -m http.server 8775` + Chrome DevTools, in CSS px (`scrollHei
 | Trasporti (B) | Tratte: catena verticale basi/tratte in testa, card più dense; Scadenze: `dotTimeline` da oggi alla partenza + lista per mese con "tra N giorni". |
 | Alloggi (B) | `routeStrip` con link alle card; prezzo/pagamento subito sotto il nome; Maps outline-icona, nessun `.btn--primary`; note: 2 visibili + "Altre N note". |
 | Luoghi (B + integratore) | Gruppi con date e conteggi sì/forse/in agenda; si apre la base di oggi o la prossima; Sì e Forse come sotto-elenchi; icona tipo da `TYPE_ICON` (anime/otaku/Love Live = nuova `i-anime`). |
+| Luoghi, filtri (3 ott) | Filtri compattati: cerca + select città su una riga, Sì/Forse/No segmentato con conteggio e popover "Altro" (altri flag, ordinamento); blocco filtri a 375 da 185 a 107px (−42%), pagina 4321 → 4243px. Select del sito con chevron proprio (`base.css`). |
 | Budget (C) | Un solo numero (a persona) + `stackBar` pagato / prezzo noto / stima; titoli di sezione con subtotale e %; `bulletRows` 18 giorni (agenda contro budget); tabelle gemelle. |
 
 **File condivisi toccati dall'integratore:** `sw.js` (PRECACHE + 5 file, `CACHE_VERSION` v7) · `themes/neutral|washi|night.css` (solo le 4 `--fam-*`) ·

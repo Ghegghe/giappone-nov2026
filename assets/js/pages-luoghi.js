@@ -1,4 +1,4 @@
-// pages-luoghi.js — luoghi.html: filtri sticky (testo, città, flag, ordinamento) + gruppi per città con date e conteggi;
+// pages-luoghi.js — luoghi.html: filtri sticky in due righe (cerca + città · Sì/Forse/No + conteggio + Altro) + gruppi per città con date e conteggi;
 // dentro ogni gruppo prima i "Sì" (righe complete), poi "Forse" (righe compatte). Icona del tipo davanti al nome.
 import { fmtDate, todayInTokyo } from './app.js';
 import { html, mount, icon, pageUrl, dirUrl, store, mapsIconBtn } from './pages.js';
@@ -10,6 +10,8 @@ const FLAGS = [
 ];
 const FLAG_LABEL = Object.fromEntries(FLAGS.map((f) => [f.id, f.label]));
 const DEFAULT_FLAGS = ['Sì', 'Forse'];
+const MAIN_FLAGS = ['Sì', 'Forse', 'No'];
+const MULTI = '__multi'; // stato salvato da versioni con più città scelte insieme (chip): resta finché non si cambia città
 const FLAG_BADGE = { 'Sì': 'badge--done', Forse: 'badge--opt', No: '', Futuro: 'badge--draft', '': '' };
 const norm = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 const OPEN_ALL_MAX = 30; // con pochi risultati (ricerca, una città) i gruppi si aprono tutti
@@ -113,6 +115,9 @@ export async function render(root, { trip, loadData }) {
   const datesOf = new Map(cityOrder.map((c) => [c, layerDates(places.filter((p) => p.city === c), month)]));
   const focus = focusCity(lodging && lodging.stays, todayInTokyo(), cityOrder) || cityOrder[0] || null;
   const flagsPresent = FLAGS.filter((f) => places.some((p) => (p.flag || '') === f.id));
+  // Sì/Forse/No nel controllo segmentato; "Un'altra volta" e "Da decidere" nel pannello "Altro" con l'ordinamento
+  const flagsMain = flagsPresent.filter((f) => MAIN_FLAGS.includes(f.id));
+  const flagsExtra = flagsPresent.filter((f) => !MAIN_FLAGS.includes(f.id));
   const saved = store.get('luoghi', null) || {};
   const st = {
     q: typeof saved.q === 'string' ? saved.q : '',
@@ -126,28 +131,41 @@ export async function render(root, { trip, loadData }) {
   };
   mount(root, html`
     <h1 class="h1">Luoghi</h1>
-    <div class="filter-bar lu-filters stack" role="search">
-      <label class="lu-search">
-        <span class="sr-only">Cerca un luogo</span>
-        ${icon('search')}
-        <input type="search" name="q" class="lu-search__input" placeholder="Cerca (nome, zona, tipo…)" autocomplete="off" enterkeyhint="search">
-      </label>
-      <div class="row lu-chips" role="group" aria-label="Città">
-        <button type="button" class="chip" data-city="" aria-pressed="false">Tutte</button>
-        ${cityOrder.map((c) => html`<button type="button" class="chip" data-city="${c}" aria-pressed="false">${c}</button>`)}
-      </div>
-      <div class="row lu-row2">
-        <div class="row lu-chips" role="group" aria-label="Andiamo?">
-          ${flagsPresent.map((f) => html`<button type="button" class="chip" data-flag="${f.id}" aria-pressed="false">${f.label}</button>`)}
-        </div>
-        <label class="small lu-sort">Ordina
-          <select name="sort" class="lu-sort__select">
-            <option value="city">per città</option>
-            <option value="name">per nome</option>
+    <div class="filter-bar lu-filters" role="search">
+      <div class="lu-f1">
+        <label class="lu-search">
+          <span class="sr-only">Cerca un luogo (nome, zona, tipo)</span>
+          ${icon('search')}
+          <input type="search" name="q" class="lu-search__input" placeholder="Cerca luoghi" autocomplete="off" enterkeyhint="search">
+        </label>
+        <label class="lu-city"><span class="sr-only">Città</span>
+          <select name="city" class="lu-city__select">
+            <option value="">Tutte le città</option>
+            ${cityOrder.map((c) => html`<option value="${c}">${c}</option>`)}
           </select>
         </label>
       </div>
-      <p class="small muted lu-count" role="status" aria-live="polite"></p>
+      <div class="lu-f2">
+        <div class="lu-seg" role="group" aria-label="Andiamo?">
+          ${flagsMain.map((f) => html`<button type="button" data-flag="${f.id}" aria-pressed="false">${f.label}</button>`)}
+        </div>
+        <p class="small muted lu-count" role="status" aria-live="polite"></p>
+        <details class="lu-more">
+          <summary class="btn btn--icon btn--ghost lu-more__btn" aria-label="Altri filtri e ordinamento" title="Altri filtri e ordinamento">${icon('filter')}<span class="lu-more__dot" hidden></span></summary>
+          <div class="lu-more__panel">
+            ${flagsExtra.length ? html`<div class="stack lu-more__group" role="group" aria-label="Mostra anche">
+              <p class="small muted">Mostra anche</p>
+              <div class="row">${flagsExtra.map((f) => html`<button type="button" class="chip" data-flag="${f.id}" aria-pressed="false">${f.label}</button>`)}</div>
+            </div>` : ''}
+            <label class="small lu-sort">Ordina
+              <select name="sort" class="lu-sort__select">
+                <option value="city">per città</option>
+                <option value="name">per nome</option>
+              </select>
+            </label>
+          </div>
+        </details>
+      </div>
     </div>
     <div class="lu-list stack" aria-label="Risultati"></div>`);
 
@@ -156,21 +174,28 @@ export async function render(root, { trip, loadData }) {
   const countEl = root.querySelector('.lu-count');
   const input = root.querySelector('.lu-search__input');
   const sortSel = root.querySelector('.lu-sort__select');
+  const citySel = root.querySelector('.lu-city__select');
+  const more = root.querySelector('.lu-more');
+  const moreDot = root.querySelector('.lu-more__dot');
   sortSel.value = st.sort;
   input.value = st.q;
+  if (st.cities.length > 1) {
+    const o = document.createElement('option');
+    o.value = MULTI; o.textContent = st.cities.join(' + ');
+    citySel.append(o);
+  }
 
   const sync = () => {
-    root.querySelectorAll('[data-city]').forEach((b) => {
-      const c = b.dataset.city;
-      const on = c ? st.cities.includes(c) : st.cities.length === 0;
-      b.setAttribute('aria-pressed', String(on)); b.classList.toggle('chip--active', on);
-    });
+    if (st.cities.length <= 1) citySel.querySelector(`option[value="${MULTI}"]`)?.remove();
+    citySel.value = st.cities.length > 1 ? MULTI : (st.cities[0] || '');
     root.querySelectorAll('[data-flag]').forEach((b) => {
       const on = st.flags.includes(b.dataset.flag);
-      b.setAttribute('aria-pressed', String(on)); b.classList.toggle('chip--active', on);
+      b.setAttribute('aria-pressed', String(on)); b.classList.toggle('chip--active', on && b.classList.contains('chip'));
     });
+    // il pallino sul bottone "Altro" dice che lì dentro c'è qualcosa di diverso dal default
+    moreDot.hidden = !(st.sort !== 'city' || flagsExtra.some((f) => st.flags.includes(f.id)));
     const res = filterPlaces(places, st);
-    countEl.textContent = res.length === 1 ? '1 luogo' : `${res.length} luoghi su ${places.length}`;
+    mount(countEl, res.length === 1 ? html`1 luogo` : html`${res.length}<span class="lu-count__unit"> luoghi</span> su ${places.length}`);
     save();
     if (!res.length) { mount(listEl, html`<p class="empty">Nessun luogo con questi filtri.</p>`); return; }
     if (st.sort !== 'city') { mount(listEl, html`<ul class="list card">${res.map((p) => placeRow(p, { badge: true }))}</ul>`); return; }
@@ -209,11 +234,7 @@ export async function render(root, { trip, loadData }) {
   root.querySelector('.lu-filters').addEventListener('click', (e) => {
     const b = e.target.closest('button');
     if (!b) return;
-    if ('city' in b.dataset) {
-      const c = b.dataset.city;
-      if (!c) st.cities = [];
-      else st.cities = st.cities.includes(c) ? st.cities.filter((x) => x !== c) : [...st.cities, c];
-    } else if ('flag' in b.dataset) {
+    if ('flag' in b.dataset) {
       const f = b.dataset.flag;
       st.flags = st.flags.includes(f) ? st.flags.filter((x) => x !== f) : [...st.flags, f];
     } else return;
@@ -222,5 +243,15 @@ export async function render(root, { trip, loadData }) {
   let tmr;
   input.addEventListener('input', () => { clearTimeout(tmr); tmr = setTimeout(() => { st.q = input.value; sync(); }, 120); });
   sortSel.addEventListener('change', () => { st.sort = sortSel.value; sync(); });
+  citySel.addEventListener('change', () => {
+    if (citySel.value === MULTI) return;
+    st.cities = citySel.value ? [citySel.value] : [];
+    sync();
+  });
+  // pannello "Altro": si chiude con Esc (fuoco al bottone) o toccando fuori
+  more.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && more.open) { more.open = false; more.querySelector('summary').focus(); }
+  });
+  document.addEventListener('click', (e) => { if (more.open && !more.contains(e.target)) more.open = false; });
   sync();
 }

@@ -151,11 +151,17 @@
   ok(bl.querySelectorAll('.lu-days a.chip[href*="giorno.html?d=2026-11-"]').length > 0, 'chip giorni → giorno.html');
   const geo = P.some((p) => p.lat != null);
   ok(!!bl.querySelector('a[href*="maps/dir/?api=1&destination="]') === geo, geo ? 'Indicazioni se ci sono lat/lon' : 'nessuna Indicazioni senza lat/lon (dati reali)');
-  const kobe = bl.querySelector('[data-city="Kobe"]'); kobe.click();
-  ok([...bl.querySelectorAll('details.lu-group')].map((g) => g.dataset.group).join() === 'Kobe' && bl.querySelector('details.lu-group').open, 'chip Kobe filtra la lista (gruppo aperto)');
+  const citySel = bl.querySelector('select.lu-city__select');
+  const pick = (v) => { citySel.value = v; citySel.dispatchEvent(new Event('change')); };
+  pick('Kobe');
+  ok([...bl.querySelectorAll('details.lu-group')].map((g) => g.dataset.group).join() === 'Kobe' && bl.querySelector('details.lu-group').open, 'select città Kobe filtra la lista (gruppo aperto)');
   ok((JSON.parse(localStorage.getItem('giappone.pages.luoghi') || '{}').cities || []).includes('Kobe'), 'luoghi: filtri ricordati in localStorage');
-  ok(kobe.getAttribute('aria-pressed') === 'true', 'chip attivo con aria-pressed');
-  bl.querySelector('[data-city=""]').click();
+  const segNo = bl.querySelector('.lu-seg [data-flag="No"]'); const nBefore = bl.querySelectorAll('.lu-row').length; segNo.click();
+  ok(segNo.getAttribute('aria-pressed') === 'true' && bl.querySelectorAll('.lu-row').length >= nBefore, 'segmentato No: aria-pressed e lista allargata');
+  segNo.click();
+  const sortSel = bl.querySelector('.lu-more select.lu-sort__select');
+  ok(!!sortSel, 'Ordina dentro il pannello "Altro"');
+  pick('');
   try { localStorage.removeItem('giappone.pages.luoghi'); } catch (e) {}
   const evil = box('xss');
   await lu.render(evil, { trip, loadData: async () => ({ places: [{ id: 'x', name: '<img src=x onerror=alert(1)>', city: '"><b>', flag: 'Sì', mapsQuery: 'x' }] }) });

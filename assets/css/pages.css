@@ -70,24 +70,67 @@ ul.al-notes { list-style: disc; }
 .al-logistics { margin-top: var(--space-4); }
 
 /* ---------- Luoghi ---------- */
-.lu-filters.filter-bar { --stack-gap: var(--space-2); padding-block: var(--space-2);
+/* filtri: 2 righe a 375 (cerca + città · Sì/Forse/No + conteggio + Altro), 1 riga da 900px. Tutto 44px */
+.lu-filters.filter-bar {
   position: sticky; top: var(--topbar-h); z-index: 10;
-  display: flex; flex-direction: column; align-items: stretch; gap: var(--space-2);
-  overflow: visible; background: var(--bg);
+  display: flex; flex-direction: column; align-items: stretch; gap: 6px;
+  padding-block: 6px; overflow: visible; background: var(--bg);
   border-bottom: 1px solid var(--border);
 }
-.lu-filters > .lu-search { position: relative; display: block; flex: none; }
+.lu-f1, .lu-f2 { display: flex; align-items: center; gap: var(--space-2); min-width: 0; }
+.lu-search { position: relative; display: block; flex: 1 1 auto; min-width: 0; }
 .lu-search > .icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--fg-muted); pointer-events: none; }
 .lu-search__input { padding-left: 40px !important; }
-.lu-chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-block: 4px; margin-block: -4px; }
-.lu-chips::-webkit-scrollbar { display: none; }
-.lu-row2 { flex-wrap: nowrap; justify-content: space-between; gap: var(--space-3); }
-.lu-row2 > .lu-chips { flex: 1; min-width: 0; }
-.lu-sort { display: flex; align-items: center; gap: var(--space-2); flex: none; white-space: nowrap; }
-.lu-sort select { width: auto; }
+.lu-city { flex: 0 0 9.75rem; min-width: 0; }
+/* Sì/Forse/No: controllo segmentato (un solo bordo, divisori interni), toggle multipli con aria-pressed */
+.lu-seg {
+  display: inline-flex; flex: none; border-radius: var(--radius-md);
+  box-shadow: inset 0 0 0 1px var(--input, var(--border)), var(--shadow-xs, 0 0 0 transparent);
+}
+.lu-seg > button {
+  min-height: 44px; min-width: 44px; padding: 0 14px; border: 0; background: transparent; color: var(--fg);
+  font-size: .875rem; font-weight: 500; line-height: 1; cursor: pointer;
+  transition: background-color .15s, color .15s;
+}
+.lu-seg > button + button { box-shadow: inset 1px 0 0 var(--input, var(--border)); }
+.lu-seg > button:first-child { border-radius: var(--radius-md) 0 0 var(--radius-md); }
+.lu-seg > button:last-child { border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+.lu-seg > button:hover { background: var(--accent-soft, var(--bg-sunken)); color: var(--accent-soft-foreground, var(--fg)); }
+.lu-seg > button[aria-pressed="true"] { background: var(--chip-on-bg, var(--primary)); color: var(--chip-on-fg, var(--primary-foreground)); }
+.lu-seg > button[aria-pressed="true"]:hover { background: color-mix(in srgb, var(--chip-on-bg, var(--primary)) 90%, var(--bg)); }
+/* alone col colore di fondo tra bottone e anello: l'anello resta leggibile anche sopra il vicino premuto */
+.lu-seg > button:focus-visible { position: relative; z-index: 1; outline-offset: 2px; box-shadow: 0 0 0 2px var(--bg); }
+.lu-count { flex: 1 1 auto; min-width: 0; text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-variant-numeric: tabular-nums; }
+/* "Altro": popover ancorato al bottone (filtri meno usati + ordinamento) */
+.lu-more { position: relative; flex: none; }
+.lu-more__btn { width: 44px; min-height: 44px; list-style: none; cursor: pointer; }
+.lu-more__btn::-webkit-details-marker { display: none; }
+.lu-more[open] > .lu-more__btn { background: var(--accent-soft, var(--bg-sunken)); }
+.lu-more__dot {
+  position: absolute; top: 9px; right: 9px; width: 8px; height: 8px; border-radius: 999px;
+  background: var(--primary, var(--accent)); box-shadow: 0 0 0 2px var(--bg);
+}
+.lu-more__dot[hidden] { display: none; }
+.lu-more__panel {
+  position: absolute; right: 0; top: calc(100% + 6px); z-index: 20;
+  width: max-content; max-width: calc(100vw - 2 * var(--gutter));
+  display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-3);
+  background: var(--popover, var(--card, var(--bg-elev))); color: var(--popover-foreground, var(--fg));
+  border: 1px solid var(--border); border-radius: var(--radius-lg); box-shadow: var(--shadow-md, var(--shadow));
+}
+.lu-more__group { --stack-gap: 6px; }
+.lu-more__group .chip { min-height: 44px; }
+.lu-more__group .chip::after { display: none; }
+.lu-sort { display: flex; align-items: center; gap: var(--space-2); white-space: nowrap; font-weight: 500; color: var(--fg); }
+.lu-sort select { width: auto; flex: 1; }
 @media (min-width: 900px) {
-  .lu-filters.filter-bar { padding-inline: 0; }
-  .lu-chips { flex-wrap: wrap; overflow: visible; }
+  .lu-filters.filter-bar { flex-direction: row; align-items: center; gap: var(--space-3); padding-inline: 0; padding-block: var(--space-2); }
+  .lu-f1 { flex: 1 1 auto; }
+  .lu-city { flex-basis: 12rem; }
+  .lu-f2 { flex: none; gap: var(--space-3); }
+  .lu-count { flex: none; min-width: 7ch; }
+  /* stessa altezza del segmentato anche su desktop (base porta input/select a 40px da 900px) */
+  .lu-filters input.lu-search__input, .lu-filters select { min-height: 44px; }
 }
 .lu-list { --stack-gap: 0; }
 .lu-group { margin-top: var(--space-3); }
@@ -129,3 +172,6 @@ details.lu-group > .list.card { margin-bottom: var(--space-4); padding-block: va
 .bu-note { display: block; }
 .bu-bar { display: block; height: 6px; margin-top: var(--space-2); border-radius: 3px; background: var(--bg-sunken); overflow: hidden; }
 .bu-bar__fill { display: block; height: 100%; width: var(--w, 0%); background: var(--accent-2); border-radius: 3px; }   /* indaco: il vermiglio resta per il totale */
+@media (max-width: 359.98px) {   /* sotto 360 "luoghi" resta solo per i lettori di schermo */
+  .lu-count__unit { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
