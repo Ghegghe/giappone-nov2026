@@ -19,11 +19,7 @@
 </head>
 <body>
   <main id="main" data-page="agenda" class="container stack giorno">
-    <nav class="row giorno__pager" aria-label="Navigazione giorni">
-      <a class="btn btn--ghost" id="giorno-prev" aria-label="Giorno precedente"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-chevron-left"></use></svg><span></span></a>
-      <a class="btn btn--ghost" id="giorno-agenda" href="agenda.html">Agenda</a>
-      <a class="btn btn--ghost" id="giorno-next" aria-label="Giorno successivo"><span></span><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-chevron-right"></use></svg></a>
-    </nav>
+    <div class="day-strip__slot" id="giorno-days"></div>
 
     <header class="stack giorno__head" id="giorno-head">
       <h1 class="h1" id="giorno-title">Giorno</h1>
@@ -34,6 +30,14 @@
     <ol class="list giorno__list" id="giorno-list"></ol>
 
     <footer class="card card--accent giorno__foot" id="giorno-foot" hidden></footer>
+
+    <section class="stack giorno-extras" id="giorno-extras" aria-labelledby="giorno-extras-h" hidden></section>
+
+    <nav class="row giorno__pager" aria-label="Navigazione giorni">
+      <a class="btn btn--ghost" id="giorno-prev" aria-label="Giorno precedente"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-chevron-left"></use></svg><span></span></a>
+      <a class="btn btn--ghost" id="giorno-agenda" href="agenda.html">Agenda</a>
+      <a class="btn btn--ghost" id="giorno-next" aria-label="Giorno successivo"><span></span><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-chevron-right"></use></svg></a>
+    </nav>
   </main>
 </body>
 </html>

@@ -1,5 +1,5 @@
 // sw.js — service worker del sito. Bumpare CACHE_VERSION a ogni deploy che cambia file statici.
-const CACHE_VERSION = 'v8';
+const CACHE_VERSION = 'v9';
 const STATIC_CACHE = `giappone-static-${CACHE_VERSION}`;
 const DATA_CACHE = `giappone-data-${CACHE_VERSION}`;
 
@@ -30,6 +30,9 @@ const PRECACHE = [
   'assets/js/theme-boot.js',
   'assets/js/agenda.js',
   'assets/js/agenda-day.js',
+  'assets/js/day-strip.js',
+  'assets/js/view-switch.js',
+  'assets/js/view-boot.js',
   'assets/js/agenda-gaps.js',
   'assets/js/pages.js',
   'assets/js/pages-home.js',

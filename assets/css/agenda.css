@@ -57,9 +57,11 @@
 .agenda__nav:disabled { opacity: .35; cursor: default; }
 .agenda-dates {
   flex: 1; min-inline-size: 0; display: flex; gap: 6px;
-  overflow-x: auto; scrollbar-width: none; overscroll-behavior-x: contain;
+  overflow-x: auto; overflow-y: clip; touch-action: pan-x pan-y; scrollbar-width: none; overscroll-behavior-x: contain;
 }
 .agenda-dates::-webkit-scrollbar { display: none; }
+/* i chip qui sono già alti 44px: l'estensione di tocco ::after (inset -4px) di base.css creerebbe 3px di overflow verticale scrollabile */
+.agenda-dates .chip::after, .day-strip__list .chip::after { inset: 0; }
 .agenda-date {
   flex: none; display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
   min-inline-size: 44px; min-block-size: 44px; padding: 2px 8px; line-height: 1.1; cursor: pointer;
@@ -69,13 +71,13 @@
 
 /* ---------- timeline: completa base.css §7 (stesso DOM), solo override ---------- */
 .agenda .timeline {
-  --tl-head-h: 68px;              /* data + base · titolo su 2 righe (18 + 16 + 2 + 32) */
+  --tl-head-h: 86px;              /* data + base · titolo su 2 righe · "Apri il giorno" (16 + 18 + 2 + 32 + 2 + 16) */
   --tl-foot-h: 30px;              /* piè giorno: totale €/pax · ¥ */
 }
 @media (min-width: 900px) {
   /* ~7 giorni visibili; 72px/ora solo qui (non nel tema): un blocco da 1h = orario + 3 righe */
   .agenda .timeline {
-    --tl-hour-h: 72px; --tl-head-h: 84px;
+    --tl-hour-h: 72px; --tl-head-h: 104px;
     grid-auto-columns: max(var(--tl-col-min, 132px), calc((100% - var(--tl-hours-w)) / 7));
   }
 }
@@ -85,8 +87,8 @@
 /* intestazione: data + base sulla prima riga (a capo se non stanno), titolo del giorno su 2 righe */
 .agenda .tl-day__header { justify-content: flex-start; gap: 2px; white-space: normal; padding-block: 8px 10px; }
 /* la riga data+base non si comprime mai; il titolo prende lo spazio che resta (righe intere: 84 − 18 − 2 = 64 = 4 × 16) */
-.agenda .tl-day__header > .tl-day__row { flex: none; }
-.agenda .tl-day__header > .tl-day__title { flex: 0 1 auto; min-height: 0; }
+.agenda .tl-day__link > .tl-day__row { flex: none; }
+.agenda .tl-day__link > .tl-day__title { flex: 0 1 auto; min-height: 0; }
 .tl-day__row { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 6px; row-gap: 0; min-width: 0; }
 .tl-day__date { text-decoration: none; white-space: nowrap; }
 .agenda .tl-day__base { overflow: visible; white-space: normal; line-height: 1rem; }
@@ -94,7 +96,7 @@
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden;
   white-space: normal; line-height: 1rem; font-weight: 600; color: var(--fg);
 }
-@media (min-width: 900px) { .agenda .tl-day__title { -webkit-line-clamp: 3; } }   /* 84px: data/base + 3 righe */
+@media (min-width: 900px) { .agenda .tl-day__title { -webkit-line-clamp: 3; } }   /* 104px: data/base + 3 righe + "Apri il giorno" */
 /* cambio di base rispetto al giorno prima: filo accent di 2px sul bordo sinistro dell'intestazione */
 .agenda .tl-day--newbase .tl-day__header::before {
   content: ""; position: absolute; inset: 0 auto 0 0; inline-size: 2px; background: var(--accent);
@@ -255,4 +257,143 @@
   .giorno-strip__seg rect { fill: CanvasText; stroke: Canvas; }
   .giorno-strip__seg--opt rect { fill: Canvas; stroke: CanvasText; }
   .giorno-strip__track { fill: Canvas; stroke: CanvasText; }
+}
+
+/* ---------- striscia dei giorni (day-strip.js, SPEC §9.2): giorno.html e agenda.html ----------
+   Banda sticky sotto la topbar, a tutta larghezza della colonna; i chip scorrono dentro, la pagina mai. */
+.day-strip__slot { display: contents; }   /* la striscia resta sticky rispetto a <main>, non al segnaposto */
+.day-strip {
+  position: sticky; top: var(--topbar-h); z-index: 15;
+  display: flex; align-items: center; gap: 2px;
+  margin-inline: calc(-1 * var(--gutter)); padding: 4px calc(var(--gutter) - 10px);
+  border-bottom: 1px solid var(--border);
+}
+:where(.day-strip) { background: color-mix(in srgb, var(--bg) 94%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+:is(.giorno, .agenda) > .day-strip__slot:first-child > .day-strip { margin-top: calc(-1 * var(--space-5)); }
+.day-strip__arrow { flex: none; min-inline-size: 44px; min-block-size: 44px; padding: 0; }
+.day-strip__arrow[aria-disabled="true"], .day-strip__arrow:disabled { opacity: .3; }
+.day-strip__list {
+  flex: 1; min-inline-size: 0; display: flex; gap: 6px; margin: 0; padding: 4px 2px; list-style: none;
+  overflow-x: auto; overflow-y: clip; touch-action: pan-x pan-y; scrollbar-width: none; overscroll-behavior-x: contain; scroll-padding-inline: 24px;
+}
+.day-strip__list::-webkit-scrollbar { display: none; }
+.day-strip__list > li { flex: none; }
+.day-strip__chip { min-width: 56px; padding-inline: 10px; font-variant-numeric: tabular-nums; }
+.day-strip__chip:focus-visible { outline-offset: 1px; }
+@media (min-width: 900px) { .day-strip { margin-inline: 0; padding-inline: 0; } }
+
+/* ---------- agenda: intestazione del giorno = link al giorno ---------- */
+.tl-day__open { display: inline-flex; align-items: center; gap: 2px; margin-top: auto; font-size: .75rem; line-height: 1rem; font-weight: 500; white-space: nowrap; }
+:where(.tl-day__open) { color: var(--fg-muted); }
+.agenda .tl-day__header:has(.tl-day__link) { padding: 0; }
+.tl-day__link {
+  display: flex; flex-direction: column; gap: 2px; block-size: 100%; padding: 8px var(--space-2) 8px;
+  color: inherit; text-decoration: none;
+}
+.tl-day__link:hover { text-decoration: none; background: var(--accent-soft, var(--bg-sunken)); }
+.tl-day__link:hover .tl-day__open { color: var(--fg); }
+.tl-day__link:hover .tl-day__date { text-decoration: underline; }
+.tl-day__link:focus-visible { outline: 2px solid var(--focus, var(--ring)); outline-offset: -2px; }
+.tl-day__open .icon { width: 12px; height: 12px; }
+
+/* ---------- giorno.html: senso della giornata ---------- */
+.giorno__summary { font-size: 1rem; line-height: 1.5rem; max-inline-size: 62ch; text-wrap: pretty; }
+:where(.giorno__summary) { color: var(--fg); }
+
+/* ---------- foto 4:3 (Wikimedia Commons) con credit; fallback testuale se non carica ---------- */
+.photo { margin: 0; min-inline-size: 0; }
+.photo__frame { aspect-ratio: 4 / 3; overflow: hidden; border-radius: var(--radius-sm); }
+:where(.photo__frame) { background: var(--bg-sunken, var(--muted)); }
+.photo__frame img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
+.photo__frame--missing { display: grid; place-items: center; padding: 6px; text-align: center; }
+.photo__fallback { font-size: .75rem; line-height: 1rem; overflow-wrap: anywhere; }
+:where(.photo__credit) { color: var(--fg-muted); }
+:where(.photo__fallback) { color: color-mix(in srgb, var(--fg-muted) 60%, var(--fg)); }   /* su --bg-sunken il muted puro scende sotto 4.5:1 */
+.photo__credit { margin-top: 4px; font-size: .6875rem; line-height: .875rem; overflow-wrap: anywhere; }
+.photo__credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+.photo__credit a:hover { color: var(--fg); }
+
+/* item con foto: card con la foto a sinistra (112px, 168px da 600px), soprannome come titolo e titolo vero sotto */
+.giorno__item--photo {
+  grid-template-columns: 112px minmax(0, 1fr) auto; column-gap: 12px;
+  margin-block: 6px; padding: 10px 10px 10px 12px;
+  border: 1px solid var(--border); border-inline-start-width: 3px; border-radius: var(--radius-md);
+}
+.giorno__item--photo { border-inline-start-color: var(--tc); }
+.giorno__item--photo.giorno__item--optional { border-inline-start-color: color-mix(in srgb, var(--tc) 45%, transparent); }
+:where(.giorno__item--photo) { background: var(--card, var(--bg-elev)); }
+.giorno__item--photo > .giorno__photo { grid-column: 1; grid-row: 1 / span 4; align-self: start; }
+.giorno__item--photo > .giorno__time { grid-column: 2; grid-row: 1; flex-direction: row; font-size: .8125rem; line-height: 1.25rem; font-weight: 600; }
+.giorno__item--photo .giorno__title { grid-column: 2; grid-row: 2; line-height: 1.375rem; }
+.giorno__item--photo .giorno__subtitle { grid-column: 2 / -1; grid-row: 3; margin: 0; line-height: 1.125rem; }
+.giorno__item--photo .giorno__meta { grid-column: 2 / -1; grid-row: 4; }
+.giorno__item--photo :is(.giorno__note, .giorno__links) { grid-column: 1 / -1; }
+.giorno__item--photo .giorno__note { margin-top: var(--space-2); }
+.giorno__item--photo > .giorno__maps { grid-column: 3; grid-row: 1 / span 2; margin: -8px -8px 0 0; }
+@media (min-width: 600px) {
+  .giorno__item--photo { grid-template-columns: 168px minmax(0, 1fr) auto; column-gap: 16px; }
+  .giorno__item--photo > .giorno__photo { grid-row: 1 / span 6; }
+  .giorno__item--photo :is(.giorno__note, .giorno__links) { grid-column: 2 / -1; }
+}
+
+/* ---------- "Se ci capita, nei dintorni": mini-card in striscia orizzontale ---------- */
+.giorno-extras { --stack-gap: var(--space-3); margin-top: var(--space-4); }
+.giorno-extras > .h3 { margin: 0; }
+.giorno-extras__list {
+  display: flex; gap: var(--space-3); margin: 0 calc(-1 * var(--gutter)); padding: 4px var(--gutter) var(--space-2); list-style: none;
+  overflow-x: auto; overflow-y: clip; touch-action: pan-x pan-y; scroll-snap-type: x proximity; scroll-padding-inline: var(--gutter);
+  scrollbar-width: none; overscroll-behavior-x: contain;
+}
+.giorno-extras__list::-webkit-scrollbar { display: none; }
+.giorno-extras__list:focus-visible { outline: 2px solid var(--focus, var(--ring)); outline-offset: -2px; }
+.giorno-extra { flex: none; inline-size: calc(160px + 18px); padding: 8px; display: flex; flex-direction: column; gap: var(--space-2); scroll-snap-align: start; box-shadow: var(--shadow-xs, none); }
+.giorno-extra__body { flex: 1; display: flex; flex-direction: column; gap: 4px; min-inline-size: 0; }
+.giorno-extra__nick { margin: 0; font-size: .9375rem; line-height: 1.25rem; font-weight: 600; letter-spacing: -.01em; overflow-wrap: anywhere; }
+.giorno-extra__name { margin: 0; line-height: 1.125rem; }
+.giorno-extra__facts { display: flex; flex-wrap: wrap; align-items: center; gap: 4px var(--space-2); margin: 2px 0 0; line-height: 1.25rem; }
+.giorno-extra__maps { align-self: flex-start; margin: auto 0 -6px -8px; min-block-size: 44px; padding-inline: 8px; }
+@media (min-width: 900px) { .giorno-extras__list { margin-inline: 0; padding-inline: 0; } }
+
+/* giudizio: pillola sobria, colore del tema per variante (testo = tinta mescolata al testo: AA su chiaro e scuro) */
+.giorno-verdict {
+  display: inline-flex; align-items: center; min-block-size: 22px; padding: 0 9px; border-radius: 999px;
+  font-size: .75rem; line-height: 1; font-weight: 600; border: 1px solid transparent; white-space: nowrap;
+}
+:where(.giorno-verdict) { --vc: var(--fg-muted); background: color-mix(in srgb, var(--vc) 12%, var(--card, var(--bg-elev))); color: color-mix(in srgb, var(--vc) 78%, var(--fg)); border-color: color-mix(in srgb, var(--vc) 30%, transparent); }
+:where(.giorno-verdict--top) { --vc: var(--ok); }
+:where(.giorno-verdict--consigliato) { --vc: var(--fam-move); }
+:where(.giorno-verdict--opzionale) { --vc: var(--fg-muted); }
+:where(.giorno-verdict--sconsigliato) { --vc: var(--warn); }
+@media (forced-colors: active) { .giorno-verdict { border-color: CanvasText; } }
+
+/* ---------- selettore di vista (view-switch.js): due bottoni-icona fissi a sinistra della riga delle date ---------- */
+.view-switch__slot { display: contents; }
+.view-switch {
+  flex: none; display: inline-flex; align-items: center; gap: 0;
+  margin-inline-end: 2px; padding-inline-end: 4px; border-inline-end: 1px solid var(--border);
+}
+.view-switch__btn { min-inline-size: 44px; min-block-size: 40px; padding: 0; border-radius: 0; }
+.view-switch__btn::after { inset: -2px 0; }   /* 44px di tocco in verticale */
+.view-switch__btn:first-child { border-start-start-radius: var(--radius-md); border-end-start-radius: var(--radius-md); }
+.view-switch__btn:last-child { border-start-end-radius: var(--radius-md); border-end-end-radius: var(--radius-md); margin-inline-start: -1px; }
+.view-switch__btn .icon { width: 18px; height: 18px; }
+.view-switch__btn:focus-visible { position: relative; z-index: 1; }
+
+/* ---------- frecce delle strisce di date (day-strip.js stripHints): giorno.html e selettore storico di agenda.html ----------
+   Mobile (< 700px): solo indicatori di scorrimento, stretti e muted; spariscono a inizio/fine corsa. Lo spazio va ai chip.
+   Desktop: bottoni compatti da 32px. I chip della striscia restano alti 44px. */
+.day-strip__chip { min-block-size: 44px; }
+.day-strip__chip::after { content: none; }
+@media (max-width: 699.98px) {
+  .strip-hints > .strip-hint, .strip-hints > .strip-hint:disabled, .strip-hints > .strip-hint[aria-disabled="true"] {
+    min-inline-size: 16px; inline-size: 16px; min-block-size: 0; padding: 0; margin: 0;
+    background: none; border: 0; box-shadow: none; opacity: 1; pointer-events: none; color: var(--fg-muted);
+  }
+  .strip-hints > .strip-hint::after { content: none; }
+  .strip-hints > .strip-hint .icon { width: 16px; height: 16px; }
+  .strip-hints.is-start > .strip-hint--prev, .strip-hints.is-end > .strip-hint--next { visibility: hidden; }
+  .strip-hints { gap: 2px; }
+}
+@media (min-width: 700px) {
+  .strip-hints > .strip-hint { min-inline-size: 32px; inline-size: 32px; padding: 0; }
 }

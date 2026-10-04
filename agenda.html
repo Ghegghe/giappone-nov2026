@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" id="theme-css" href="assets/css/themes/neutral.css">
   <script src="assets/js/theme-boot.js"></script>
+  <script src="assets/js/view-boot.js"></script>
   <link rel="stylesheet" href="assets/css/agenda.css">
   <script type="module" src="assets/js/agenda.js"></script>
 </head>
@@ -33,6 +34,7 @@
     </div>
 
     <div class="agenda__datebar">
+      <div class="view-switch__slot" id="agenda-view"></div>
       <button type="button" class="btn btn--ghost btn--icon agenda__nav" id="agenda-prev" aria-label="Giorno precedente"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-chevron-left"></use></svg></button>
       <div class="agenda-dates" id="agenda-dates" role="group" aria-label="Giorni del viaggio"></div>
       <button type="button" class="btn btn--ghost btn--icon agenda__nav" id="agenda-next" aria-label="Giorno successivo"><svg class="icon" aria-hidden="true" focusable="false"><use href="assets/icons/sprite.svg#i-chevron-right"></use></svg></button>

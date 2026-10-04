@@ -4,11 +4,13 @@ import {
   TYPES, TYPE_LABEL, FAMILY, FAMILY_LABEL, FAMILIES, BOOKING_LABEL, normalizeItems, rangeOfDays, assignColumns, computeGaps, dayTotals,
   nowInTz, itemAria, fmtMin, fmtDur, timeRange, withDataParam, el, icon,
 } from './agenda-gaps.js';
+import { viewSwitch, setViewHref } from './view-switch.js';
+import { stripHints } from './day-strip.js';
 
 const $ = (s, r = document) => r.querySelector(s);
 const FILTER_KEY = 'agenda.filters';
 const state = { trip: null, days: [], idx: 0, range: null, hourH: 48, filters: { onlyFixed: false, hideOpt: false }, pendingIdx: null };
-let timeline, dateBar, lastFocus = null;
+let timeline, dateBar, viewSw = null, lastFocus = null;
 
 function readFilters() {
   try { Object.assign(state.filters, JSON.parse(localStorage.getItem(FILTER_KEY) || '{}')); } catch { /* storage non disponibile */ }
@@ -58,12 +60,14 @@ function renderDay(day, i, norm, now) {
     class: `tl-day${day.status === 'draft' ? ' tl-day--draft' : ''}${newBase ? ' tl-day--newbase' : ''}`, 'data-date': day.date, 'data-idx': i,
     id: `day-${day.date}`, 'aria-label': `${fmtDate(day.date)} · ${day.title || ''}`, 'aria-current': isToday ? 'date' : null,
   });
-  // intestazione su 2 livelli: data + base (vanno a capo se non stanno), poi il titolo su 2 righe al massimo
+  // intestazione = un solo link al giorno (§9.2): data + base, titolo su 2 righe al massimo, "Apri il giorno" in fondo
   col.append(el('header', { class: 'tl-day__header', title: [fmtDate(day.date), placeLabel(day), day.title].filter(Boolean).join(' · ') },
-    el('div', { class: 'tl-day__row' },
-      el('a', { class: 'tl-day__date', href: withDataParam(`giorno.html?d=${day.date}`) }, fmtDate(day.date)),
-      el('span', { class: 'small muted tl-day__base' }, placeLabel(day))),
-    el('span', { class: 'small tl-day__title' }, day.title || '')));
+    el('a', { class: 'tl-day__link', href: withDataParam(`giorno.html?d=${day.date}`) },
+      el('span', { class: 'tl-day__row' },
+        el('span', { class: 'tl-day__date' }, fmtDate(day.date)),
+        el('span', { class: 'small muted tl-day__base' }, placeLabel(day))),
+      el('span', { class: 'small tl-day__title' }, day.title || ''),
+      el('span', { class: 'tl-day__open' }, el('span', null, 'Apri il giorno'), icon('chevron-right')))));
 
   const fromMin = Math.max(state.range.startMin, 6 * 60), toMin = Math.min(state.range.endMin, 24 * 60);
   for (const g of computeGaps(norm, { fromMin, toMin })) {
@@ -120,11 +124,13 @@ function markSelected(idx, smooth = true) {
   });
   timeline.querySelectorAll('.tl-day').forEach((d, i) => d.classList.toggle('tl-day--selected', i === idx));
   const chip = dateBar.children[idx];
-  if (chip) dateBar.scrollTo({ left: chip.offsetLeft - (dateBar.clientWidth - chip.offsetWidth) / 2, behavior: smooth ? 'smooth' : 'auto' });
+  // offsetLeft è relativo alla barra sticky (che contiene anche selettore di vista e freccia): si sottrae l'inizio della lista
+  if (chip) dateBar.scrollTo({ left: chip.offsetLeft - dateBar.offsetLeft - (dateBar.clientWidth - chip.offsetWidth) / 2, behavior: smooth ? 'smooth' : 'auto' });
   const day = state.days[idx];
   if (day && location.hash !== `#${day.date}`) history.replaceState(null, '', `#${day.date}`);
   $('#agenda-prev').disabled = idx <= 0;
   $('#agenda-next').disabled = idx >= state.days.length - 1;
+  if (viewSw && day) setViewHref(viewSw, 'day', withDataParam(`giorno.html?d=${day.date}`));
   const cur = $('#agenda-current');
   if (cur && day) cur.textContent = `${fmtDate(day.date)} · ${placeLabel(day)}`;
 }
@@ -310,11 +316,12 @@ async function main() {
     return;
   }
   if (state.trip.subtitle) $('#agenda-sub').textContent = state.trip.subtitle;
-  // avviso globale (agenda.notice): l'unico "bozza" del sito, una riga in testa all'agenda (anche su mobile)
-  if (agenda.notice) {
-    $('.agenda__head').append(el('div', { class: 'small row agenda__notice', role: 'note' }, // div: i <p> della testata sono nascosti su mobile
-      icon('info'), el('span', null, agenda.notice)));
-  }
+  // agenda.notice NON si mostra più (4 ott, richiesta del cliente: ingombrava la testata; lo spazio va al calendario)
+
+  // selettore di vista: "Giorno" apre il giorno selezionato nella timeline (aggiornato in markSelected)
+  viewSw = viewSwitch({ active: 'grid', gridHref: withDataParam('agenda.html?view=grid'), dayHref: withDataParam(`giorno.html?d=${state.days[0].date}`) });
+  $('#agenda-view').replaceChildren(viewSw);
+  stripHints($('.agenda__datebar'), dateBar, [$('#agenda-prev'), $('#agenda-next')]);   // su mobile le frecce sono solo indicatori
 
   readFilters();
   renderFilters();

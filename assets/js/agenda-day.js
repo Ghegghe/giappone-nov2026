@@ -4,6 +4,8 @@ import {
   TYPES, TYPE_LABEL, FAMILY, FAMILY_LABEL, FAMILIES, BOOKING_LABEL, DAY_START_H, DAY_END_H, normalizeItems, assignColumns, computeGaps, dayTotals,
   nowInTz, fmtMin, fmtDur, timeRange, withDataParam, el, icon,
 } from './agenda-gaps.js';
+import { dayStripNav, revealActive, bindDayKeys } from './day-strip.js';
+import { viewSwitch } from './view-switch.js';
 
 const $ = (s) => document.querySelector(s);
 
@@ -117,6 +119,27 @@ const placeAdds = (place, title) => {
   return p !== t && !t.includes(p);
 };
 
+// ---------- foto (Wikimedia Commons, §9.1): solo https, credit visibile, lazy, no referrer ----------
+const httpsUrl = (u) => (/^https:\/\//i.test(String(u || '').trim()) ? String(u).trim() : '');
+function photoOf(image) {
+  const url = image && httpsUrl(image.url);
+  return url ? { url, credit: image.credit || '', page: httpsUrl(image.page), alt: image.alt || '' } : null;
+}
+// figura 4:3 + credit; se l'immagine non si carica (offline, link rotto) resta un riquadro col testo alternativo
+function photoFigure(img, fallback, cls) {
+  const alt = img.alt || fallback || '';
+  const pic = el('img', { src: img.url, alt, loading: 'lazy', decoding: 'async', referrerpolicy: 'no-referrer', width: '960', height: '720' });
+  const frame = el('div', { class: 'photo__frame' }, pic);
+  pic.addEventListener('error', () => {
+    frame.classList.add('photo__frame--missing');
+    frame.replaceChildren(el('span', { class: 'photo__fallback' }, alt || 'Foto non disponibile'));
+  }, { once: true });
+  const credit = img.credit ? (img.page
+    ? el('a', { href: img.page, target: '_blank', rel: 'noopener noreferrer', title: `Fonte della foto: ${img.credit}` }, img.credit)
+    : el('span', null, img.credit)) : null;
+  return el('figure', { class: `photo ${cls}` }, frame, credit ? el('figcaption', { class: 'photo__credit' }, credit) : null);
+}
+
 function itemRow(n, fx) {
   const type = TYPES.includes(n.type) ? n.type : 'free';
   const b = n.booking || { status: 'none' };
@@ -136,15 +159,20 @@ function itemRow(n, fx) {
     b.status === 'todo' && (b.where || b.when) ? el('span', { class: 'muted' }, `prenota: ${[b.where, b.when].filter(Boolean).join(', ')}`) : null);
   const links = (n.links || []).filter((l) => /^[\w-]+\.html(#[\w-]*)?$/.test(l.href || ''))
     .map((l) => el('a', { class: 'btn btn--ghost', href: withDataParam(l.href) }, el('span', null, l.label), icon('chevron-right')));
+  const img = photoOf(n.image);
+  const nick = img && n.nick ? n.nick : '';   // il soprannome fa da titolo solo nella card con foto (§9.2)
 
   return el('li', {
-    class: `list-item giorno__item giorno__item--${type}${n.optional ? ' giorno__item--optional' : ''}`, id: n.id,
+    class: `list-item giorno__item giorno__item--${type}${n.optional ? ' giorno__item--optional' : ''}${img ? ' giorno__item--photo' : ''}`, id: n.id,
   },
   n.allDay ? el('div', { class: 'giorno__time mono small' }, timeRange(n))
-    : el('div', { class: 'giorno__time mono' }, fmtMin(n.startMin),
-      el('span', { class: 'small muted' }, `${fmtMin(n.endMin)}${n.estimated ? '*' : ''}`)),
+    : img ? el('div', { class: 'giorno__time mono small' }, `${fmtMin(n.startMin)}-${fmtMin(n.endMin)}${n.estimated ? '*' : ''}`)
+      : el('div', { class: 'giorno__time mono' }, fmtMin(n.startMin),
+        el('span', { class: 'small muted' }, `${fmtMin(n.endMin)}${n.estimated ? '*' : ''}`)),
+  img ? photoFigure(img, nick || n.title, 'giorno__photo') : null,
   el('div', { class: 'giorno__main' },
-    el('h2', { class: 'giorno__title' }, n.title || ''),
+    el('h2', { class: 'giorno__title' }, nick || n.title || ''),
+    nick && n.title ? el('p', { class: 'small muted giorno__subtitle' }, n.title) : null,
     meta,
     n.note ? el('p', { class: 'small giorno__note' }, n.note) : null,
     links.length ? el('div', { class: 'row giorno__links' }, ...links) : null),
@@ -166,6 +194,46 @@ function goToItem(id, smooth = true) {
   target.scrollIntoView({ block: 'center', behavior: smooth && !reduce ? 'smooth' : 'auto' });
   target.focus({ preventScroll: true });
   return true;
+}
+
+// ---------- "Se ci capita, nei dintorni" (§9.2): mini-card in striscia orizzontale ----------
+const VERDICTS = ['top', 'consigliato', 'opzionale', 'sconsigliato'];
+function extraCard(x, fx) {
+  const img = photoOf(x.image);
+  const title = x.nick || x.name || '';
+  const v = VERDICTS.includes(x.verdict) ? x.verdict : '';
+  const cost = Number(x.costEur) || 0;
+  const facts = [x.duration ? el('span', { class: 'mono' }, x.duration) : null,
+    cost ? el('span', { class: 'mono' }, `${fmtEur(cost)} · ${fmtJpy(cost, fx)}`) : null].filter(Boolean);
+  return el('li', { class: 'card giorno-extra', id: x.id ? `extra-${x.id}` : null },
+    img ? photoFigure(img, title, 'giorno-extra__photo') : null,
+    el('div', { class: 'giorno-extra__body' },
+      el('h3', { class: 'giorno-extra__nick' }, title),
+      x.nick && x.name ? el('p', { class: 'small muted giorno-extra__name' }, x.name) : null,
+      el('p', { class: 'small giorno-extra__facts' },
+        v ? el('span', { class: `giorno-verdict giorno-verdict--${v}` }, v) : null, ...facts),
+      x.mapsQuery ? el('a', { class: 'btn btn--ghost giorno-extra__maps', href: mapsUrl(x.mapsQuery), target: '_blank', rel: 'noopener noreferrer',
+        'aria-label': `Apri ${x.name || title} in Google Maps (nuova scheda)` }, icon('pin'), el('span', null, 'Maps')) : null));
+}
+function renderExtras(day, fx) {
+  const list = (Array.isArray(day.extras) ? day.extras : []).filter((x) => x && (x.nick || x.name));
+  const box = $('#giorno-extras');
+  if (!box || !list.length) return;
+  const rank = (x) => { const r = VERDICTS.indexOf(x.verdict); return r < 0 ? VERDICTS.length : r; };
+  const sorted = list.map((x, i) => ({ x, i })).sort((a, b) => rank(a.x) - rank(b.x) || a.i - b.i).map((o) => o.x);
+  box.replaceChildren(
+    el('h2', { class: 'h3', id: 'giorno-extras-h' }, 'Se ci capita, nei dintorni'),
+    el('ul', { class: 'giorno-extras__list', role: 'list', tabindex: '0', 'aria-label': 'Luoghi vicini fuori programma, scorri in orizzontale' },
+      ...sorted.map((x) => extraCard(x, fx))));
+  box.hidden = false;
+}
+
+/** summary del piano definitivo (§9.1). I giorni del vecchio build hanno già un "summary" che è un'etichetta corta
+ *  ("Kyoto g.1 — Fushimi + …"): lo si mostra solo se il giorno viene dal piano (status final o campi §9.1 presenti). */
+function planSummary(day) {
+  if (!day || !day.summary) return '';
+  const fromPlan = day.status === 'final' || Array.isArray(day.extras) || (day.items || []).some((it) => it && (it.nick || it.image));
+  return fromPlan ? day.summary : '';
 }
 
 function setPager(a, day, prefix) {
@@ -192,11 +260,20 @@ async function main() {
   if (i < 0) {
     err.hidden = false;
     err.replaceChildren('Giorno non presente in agenda. ', el('a', { href: withDataParam(`giorno.html?d=${days[0].date}`) }, 'Vai al primo giorno'));
+    $('#giorno-days').replaceChildren(dayStripNav(days, { active: -1, mode: 'days' }));
     setPager($('#giorno-prev'), null); setPager($('#giorno-next'), null);
     return;
   }
   const day = days[i];
   document.title = `${fmtDate(day.date)} · Agenda`;
+  const strip = dayStripNav(days, { active: i, mode: 'days' });
+  // selettore di vista fisso a sinistra della striscia; "Griglia" con ?view=grid così view-boot.js non rimbalza qui
+  strip.prepend(viewSwitch({ active: 'day', gridHref: withDataParam(`agenda.html?view=grid#${day.date}`), dayHref: withDataParam(`giorno.html?d=${day.date}`) }));
+  $('#giorno-days').replaceChildren(strip);
+  // senza ?d= (arrivo da view-boot.js) l'URL diventa quello canonico del giorno scelto
+  if (!new URLSearchParams(location.search).get('d')) history.replaceState(null, '', withDataParam(`giorno.html?d=${day.date}`) + location.hash);
+  revealActive(strip);
+  bindDayKeys(days, i);
 
   // intestazione
   $('#giorno-title').textContent = `${fmtDate(day.date)} · ${day.title || ''}`;
@@ -205,6 +282,7 @@ async function main() {
   // base e gita in una riga di testo; niente badge: "bozza" compare una volta sola, in testa all'agenda
   const where = [day.base, day.dayTrip ? `gita a ${day.dayTrip}` : ''].filter(Boolean).join(' · ');
   $('#giorno-head').append(...[
+    planSummary(day) ? el('p', { class: 'giorno__summary' }, planSummary(day)) : null,
     where ? el('p', { class: 'muted giorno__where' }, where) : null,
     day.notes || (day.moves && day.moves !== '—') ? el('p', { class: 'small giorno__notes' }, ...[
       day.notes || null,
@@ -216,17 +294,17 @@ async function main() {
   // item + buchi in ordine cronologico
   const norm = normalizeItems(day.items);
   const tot = dayTotals(day.items);
-  const strip = dayStrip(norm);
+  const ribbon = dayStrip(norm);
   const sum = el('p', { class: 'small giorno-strip__sum' }, el('span', { class: 'mono' }, `${fmtEur(tot.total)} a testa`),
     day.budgetEur != null ? el('span', { class: 'muted' }, ` · budget ${fmtEur(day.budgetEur)}`) : null);
-  if (strip) {
-    strip.addEventListener('click', (e) => {
+  if (ribbon) {
+    ribbon.addEventListener('click', (e) => {
       const a = e.target.closest('a[data-id]');
       if (!a) return;
       e.preventDefault();
       if (goToItem(a.dataset.id)) history.replaceState(null, '', `#${a.dataset.id}`);
     });
-    $('#giorno-head').append(el('div', { class: 'giorno-strip__wrap' }, strip, el('div', { class: 'giorno-strip__foot' }, stripLegend(norm), sum)));
+    $('#giorno-head').append(el('div', { class: 'giorno-strip__wrap' }, ribbon, el('div', { class: 'giorno-strip__foot' }, stripLegend(norm), sum)));
   } else if (norm.length) $('#giorno-head').append(sum);
   const rows = [
     ...norm.map((n) => ({ at: n.startMin, k: 1, node: () => itemRow(n, trip.fx) })),
@@ -248,6 +326,8 @@ async function main() {
       el('span', { class: 'mono muted' }, fmtJpy(tot.total, trip.fx))),
     // al massimo 2 elementi uniti dal punto: il budget previsto sta già in testa, accanto al nastro
     el('p', { class: 'small muted' }, [tot.optional ? `di cui opzionali ${fmtEur(tot.optional)}` : '', 'alloggi esclusi'].filter(Boolean).join(' · '))].filter(Boolean));
+
+  renderExtras(day, trip.fx);
 
   // ancora #item-id: scorri ed evidenzia
   goToItem(decodeURIComponent(location.hash.slice(1)), false);

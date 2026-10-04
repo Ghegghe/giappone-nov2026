@@ -110,6 +110,31 @@ Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 1
 - textFixes transport: «NRT 24/11 ~11:45» → «Narita 24/11 11:20» (1×)
 - agenda 2026-11-24: base '—' → base del giorno prima «Tokyo» (baseId resta vuoto)
 
+## Scaletta / piano definitivo (SPEC §9.1)
+
+Blocchi fusi: nessuno
+Blocchi NON fusi (non confermati): A (proposta)
+
+### Giorni sostituiti (0)
+
+- nessuno
+
+### Item/extras senza foto (0)
+
+- nessuno
+
+### placeId non trovati nel catalogo (0)
+
+- nessuno
+
+### Luoghi del catalogo senza corrispondente in places.json (item senza `placeId`) (0)
+
+- nessuno
+
+### Warning (0)
+
+- nessuno
+
 ## Validazione schemi
 
 - ✅ tutti i file conformi a SPEC §2

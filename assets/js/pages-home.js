@@ -4,6 +4,10 @@
 import { fmtDate, fmtTime, todayInTokyo } from './app.js';
 import { html, mount, icon, pageUrl, safeUrl, daysBetween, deadlineLabel, deadlineState } from './pages.js';
 
+// stessa regola di agenda-day.js (planSummary): il summary si mostra solo per i giorni che vengono dal piano definitivo
+const planSummary = (day) => (day && day.summary && (day.status === 'final' || Array.isArray(day.extras)
+  || (day.items || []).some((it) => it && (it.nick || it.image))) ? day.summary : '');
+
 const nowMinutesTokyo = (tz) => {
   try {
     const p = new Intl.DateTimeFormat('en-GB', { timeZone: tz, hour: '2-digit', minute: '2-digit', hour12: false }).formatToParts(new Date());
@@ -73,17 +77,19 @@ function dayCard(agenda, trip, st, today) {
   const href = pageUrl('giorno.html', { d: day.date });
   // titolo e base su una riga (2 elementi): "Arrivo e prima sera · Osaka"; la gita va con la base
   const where = day.base ? (day.dayTrip ? `${day.base}, gita a ${day.dayTrip}` : day.base) : (day.dayTrip ? `gita a ${day.dayTrip}` : '');
-  return html`<section class="card home-day stack" aria-labelledby="home-day-h">
+  // card principale "Prossimo giorno" (§9.2): tutta la card apre il giorno (link esteso sul titolo)
+  return html`<section class="card card--accent home-day home-next stack" aria-labelledby="home-day-h">
     <div class="home-day__head">
-      <h2 class="h3" id="home-day-h">${label} · ${fmtDate(day.date)}</h2>
+      <h2 class="h3" id="home-day-h"><a class="home-next__link" href="${href}">${label} · ${fmtDate(day.date)}</a></h2>
       ${day.title || where ? html`<p class="small home-day__sub">${day.title || ''}${day.title && where ? html`<span class="muted"> · ${where}</span>` : where ? html`<span class="muted">${where}</span>` : ''}</p>` : ''}
     </div>
+    ${planSummary(day) ? html`<p class="home-next__summary">${planSummary(day)}</p>` : ''}
     ${items.length ? html`<ul class="list">${items.map((it) => html`
       <li class="list-item home-day__item">
         <span class="mono home-day__time">${it.time ? fmtTime(it.time) : '—'}</span>
         <span class="home-day__title">${it.title}${it.optional ? html` <span class="muted small">facoltativo</span>` : ''}</span>
       </li>`)}</ul>` : html`<p class="empty">Nessuna attività in programma.</p>`}
-    <a class="btn btn--ghost home-more" href="${href}"><span>Apri il giorno</span> ${icon('chevron-right')}</a>
+    <span class="btn btn--ghost home-more home-next__cta" aria-hidden="true"><span>Apri il giorno</span> ${icon('chevron-right')}</span>
   </section>`;
 }
 
@@ -149,10 +155,10 @@ export async function render(root, { trip, loadData }) {
   if (!route || !String(route)) route = routeText(stays);
   mount(root, html`
     ${countdown(trip, st, route)}
+    ${dayCard(agenda, trip, st, today)}
     <div class="grid-2 home-grid">
-      ${dayCard(agenda, trip, st, today)}
       ${deadlines(transport, todayInTokyo('Europe/Rome'))}
-    </div>
-    ${infoCard(trip)}`);
+      ${infoCard(trip)}
+    </div>`);
   try { if (charts && typeof charts.wire === 'function') charts.wire(root); } catch (e) { console.warn('[home] wire', e); }
 }

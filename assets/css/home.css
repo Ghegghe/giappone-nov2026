@@ -66,3 +66,29 @@
   .home-info .kv > :is(dt, dd) { border: 0; padding-block: 0; }
   .home-info .kv > dd + dt { padding-left: var(--space-5); }
 }
+
+/* ---------- prossimo giorno (SPEC §9.2): card principale subito sotto il conto alla rovescia, tutta cliccabile ---------- */
+.home-next { position: relative; }
+.home-next__link { color: inherit; text-decoration: none; }
+.home-next__link::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }   /* link esteso a tutta la card */
+.home-next:hover { background: color-mix(in srgb, var(--accent-soft, var(--bg-sunken)) 55%, var(--card, var(--bg-elev))); }
+.home-next:hover .home-next__cta { background: var(--accent-soft, var(--bg-sunken)); }
+.home-next:has(.home-next__link:focus-visible) { outline: 2px solid var(--focus, var(--ring)); outline-offset: 2px; }
+.home-next__link:focus-visible { outline: none; }
+.home-next .h3 { font-size: 1.25rem; line-height: 1.75rem; }
+.home-next__summary { margin: 0; max-inline-size: 62ch; line-height: 1.5rem; text-wrap: pretty; }
+.home-next__cta { pointer-events: none; }
+@media (min-width: 900px) {
+  /* a tutta larghezza: le prime tappe in due colonne accanto al titolo non servono, resta una lista leggibile */
+  .home-next .list { max-inline-size: 720px; }
+}
+
+/* "In tasca" ora sta nella griglia accanto alle scadenze: a mezza larghezza resta in colonna */
+@media (min-width: 900px) {
+  .home-grid .home-info { display: flex; flex-direction: column; align-items: stretch; }
+  .home-grid .home-info .btn { align-self: flex-start; }
+  .home-grid .home-info .kv { grid-template-columns: minmax(5.5em, max-content) minmax(0, 1fr); column-gap: 0; }
+  .home-grid .home-info .kv > :is(dt, dd) { border-top: 1px solid var(--border); padding-block: 8px; }
+  .home-grid .home-info .kv > :is(dt:first-of-type, dt:first-of-type + dd) { border-top: 0; }
+  .home-grid .home-info .kv > dd + dt { padding-left: 0; }
+}

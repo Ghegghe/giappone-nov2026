@@ -154,3 +154,54 @@ in `assets/css/agenda.css` / `assets/css/pages.css` (solo variabili, niente colo
 `app.js` → `loadData(name)` fa `fetch(\`${DATA_BASE}${name}.json\`)` dove `DATA_BASE` = valore del query param `?data=` (es. `?data=dev/fixtures/`)
 oppure `data/` di default. Ogni agente di pagina crea le proprie fixture realistiche in `site/dev/fixtures/<name>.json`
 conformi a §2 per sviluppare prima che l'export sia pronto. Le fixture NON vanno in produzione (il SW non le cacha).
+
+## 9. Estensioni del 4 ott 2026 — piano definitivo, foto e "se ci capita"
+Decise con il cliente durante la revisione dell'agenda (vedi `../data/piano/agenda_definitiva.md`). Tutti i campi nuovi sono OPZIONALI:
+il renderer deve funzionare identico se mancano.
+
+### 9.1 `data/agenda.json` — campi aggiunti
+```json
+{ "days": [ {
+  "summary": "2 frasi sul senso della giornata (dal piano definitivo).",
+  "status": "draft|final",             // final = blocco confermato dal cliente
+  "items": [ {
+     "nick": "I torii rossi con le scale",          // titolo 'come lo direbbe il cliente'; se presente è il titolo grande, title va sotto
+     "image": { "url": "https://upload.wikimedia.org/...960px-....jpg", "credit": "Autore · CC BY-SA 4.0 · Wikimedia Commons",
+                "page": "https://commons.wikimedia.org/wiki/File:...", "alt": "..." }
+  } ],
+  "extras": [ {                        // "Se ci capita, nei dintorni": luoghi vicini NON in scaletta, ordinati per verdict
+     "id": "shirakawa-gion", "nick": "Il canaletto con i salici", "name": "Shirakawa (Gion)", "type": "vista",
+     "verdict": "top|consigliato|opzionale|sconsigliato", "duration": "20'-30'", "costEur": 0, "costNote": "",
+     "mapsQuery": "Shirakawa Gion Kyoto", "image": { "url": "...", "credit": "...", "page": "..." }
+  } ]
+} ] }
+```
+Sorgente: `../data/piano/catalogo/scaletta/<B>.json` (giorni, items con `placeId`, `extras`) + `../data/piano/catalogo/data/<B>.json`
+(luoghi con foto). L'exporter fonde i blocchi con `status: "confermata"` sopra l'agenda del build (le date del blocco vengono
+SOSTITUITE); con `--scaletta-proposte` include anche i blocchi `proposta` (solo per sviluppo locale, mai per il deploy).
+Mappa `kind`→`type`: transfer→transfer (train/bus se il titolo contiene treno/Shinkansen/Hankyu/JR/Keihan/metro → train; bus/KATE/Limousine → bus) ·
+meal→food · free→free · place→ dal `type` del catalogo: tempio/cultura/vista/natura/museo/gita→sight · food/mercato→food ·
+bar/nightlife→nightlife · anime→anime · shopping→shopping · onsen→onsen. `optional` passa. Id item: `dGG-NN`.
+Foto: solo Wikimedia Commons, credit obbligatorio e visibile (licenze CC BY / CC BY-SA). `referrerpolicy="no-referrer"`, lazy.
+Precisazioni dell'exporter (4 ott): `items[].placeId` resta l'id di `places.json` (il luogo del catalogo viene abbinato per nome/mapsQuery;
+se non c'è corrispondenza l'item non ha `placeId`, ma ha comunque `nick`/`image`/`mapsQuery`) · `extras[].type` = tipo grezzo del catalogo
+(tempio/vista/…) · `image.alt` = `nick` · `booking` = none salvo match con la checklist (es. Mouriya → todo) · `budgetEur` = `costEur` del
+giorno di scaletta, `notes` vuoto, `moves` assente, `dayTrip` dedotto dalle zone dei luoghi · item `place` senza `costEur` → costo del catalogo.
+
+### 9.2 UI — accesso ai giorni e pagina giorno
+- **Striscia dei giorni** (componente condiviso `assets/js/day-strip.js` + CSS): chip con data breve per tutti i 18 giorni, chip attivo
+  evidenziato, frecce ← → (tap ≥44px), scroll orizzontale, sticky sotto la topbar. Presente in `giorno.html` (sopra il contenuto) e in
+  `agenda.html` (in testa: ogni chip apre direttamente `giorno.html?d=`). Tasti ← → cambiano giorno in `giorno.html`.
+- **Agenda**: l'intestazione di ogni giorno è un link completo al giorno con affordance esplicita ("Apri il giorno →"), non solo i singoli item.
+- **Home**: card principale "Prossimo giorno" (prima del viaggio = giorno 1; in viaggio = oggi) che apre `giorno.html`.
+- **Pagina giorno**: `summary` sotto il titolo; item con `image` → card con foto 4:3 a sinistra (112px mobile / 168px desktop), `nick`
+  grande e `title` piccolo, credit piccolo; item senza foto → riga come oggi. In fondo: sezione "Se ci capita, nei dintorni" = striscia
+  orizzontale di mini-card (foto 4:3 ~160px, nick, name, chip verdict, durata, link Maps) se `extras` non è vuoto.
+- **Selettore di vista** (`assets/js/view-switch.js` + `assets/js/view-boot.js`): due bottoni-icona a segmenti "Vista griglia" /
+  "Vista giorno" (solo icona, `aria-label` + `title`, 44×40, attivo come i chip), FISSI a sinistra della riga delle date, nessuno spazio
+  verticale in più: in `agenda.html` prima della freccia ‹ del selettore storico, in `giorno.html` prima della freccia ‹ della striscia.
+  Agenda: "Giorno" → `giorno.html?d=<giorno selezionato nella timeline>`. Giorno: "Griglia" → `agenda.html?view=grid#<data>`.
+  La scelta si salva in localStorage `agenda-view` = `grid|day` (try/catch). `view-boot.js` (classico, nell'`<head>` di agenda.html):
+  se la preferenza è `day` e l'URL non ha né `#data` né `?view=grid`, `location.replace` su `giorno.html` (che sceglie oggi in viaggio,
+  altrimenti il primo giorno, e scrive `?d=` nell'URL). Il link "Agenda" della nav resta `agenda.html`.
+- Nessun dato hard-coded; tutto da JSON. Deploy SOLO su richiesta del cliente (bump `CACHE_VERSION`).

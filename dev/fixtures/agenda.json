@@ -107,6 +107,13 @@
             "status": "none",
             "where": "",
             "when": ""
+          },
+          "nick": "Il canale con le insegne giganti e l'omino che corre",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Glico_Man_Neon_Sign_and_Ebisubashi_Bridge_at_night.jpg/960px-Glico_Man_Neon_Sign_and_Ebisubashi_Bridge_at_night.jpg",
+            "credit": "そらみみ · CC BY-SA 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Glico_Man_Neon_Sign_and_Ebisubashi_Bridge_at_night.jpg",
+            "alt": "Insegna Glico e ponte Ebisubashi di notte"
           }
         },
         {
@@ -127,6 +134,13 @@
             "status": "none",
             "where": "",
             "when": ""
+          },
+          "nick": "Il vicolo di pietra con le lanterne e la statua coperta di muschio",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Hozenji_Yokocho_at_night.jpg/960px-Hozenji_Yokocho_at_night.jpg",
+            "credit": "Choi2451 · CC BY-SA 3.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Hozenji_Yokocho_at_night.jpg",
+            "alt": "Vicolo Hozenji Yokocho con le lanterne accese"
           }
         },
         {
@@ -171,9 +185,75 @@
         }
       ],
       "gaps": "auto",
-      "summary": "Arrivo + Namba (leggero)",
+      "summary": "Si atterra, si lasciano le valigie e si fa un giro di ricognizione attorno a casa. La sera neon di Dōtonbori e poi i vicoli di izakaya di Tenma, dove bevono gli osakani.",
       "moves": "KIX → Umeda bus KATE ¥1.800",
-      "budgetEur": 60
+      "budgetEur": 60,
+      "extras": [
+        {
+          "id": "tenma",
+          "nick": "I vicoli di izakaya vicino a casa, dove bevono gli impiegati",
+          "name": "Tenma (Tenjinbashisuji)",
+          "type": "nightlife",
+          "verdict": "top",
+          "duration": "2h-3h",
+          "costEur": 15,
+          "costNote": "~¥2.000-3.000 a testa a sera (stima)",
+          "mapsQuery": "Tenma Station Osaka izakaya",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Tenjinbashisuji_Shopping_Street_2024_Dec_31_various.jpeg/960px-Tenjinbashisuji_Shopping_Street_2024_Dec_31_various.jpeg",
+            "credit": "Nesnad · CC BY 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Tenjinbashisuji_Shopping_Street_2024_Dec_31_various.jpeg"
+          }
+        },
+        {
+          "id": "hankyu-higashi-dori",
+          "nick": "La via coperta dei locali dietro la stazione di Umeda",
+          "name": "Hankyu Higashi-dōri",
+          "type": "nightlife",
+          "verdict": "consigliato",
+          "duration": "1h30-2h",
+          "costEur": 15,
+          "costNote": "cena ~¥2.000-3.000 (stima)",
+          "mapsQuery": "Hankyu Higashidori Shopping Street",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Hankyu-Higashi-dori_Shopping_Mall_at_Night_in_201408.JPG/960px-Hankyu-Higashi-dori_Shopping_Mall_at_Night_in_201408.JPG",
+            "credit": "Mc681 · CC BY-SA 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Hankyu-Higashi-dori_Shopping_Mall_at_Night_in_201408.JPG"
+          }
+        },
+        {
+          "id": "nakazakicho",
+          "nick": "Le casette vecchie con i caffè vintage dietro casa",
+          "name": "Nakazakichō",
+          "type": "cultura",
+          "verdict": "opzionale",
+          "duration": "30'-1h",
+          "costEur": 0,
+          "costNote": "gratis (caffè ~¥600)",
+          "mapsQuery": "Nakazakicho Osaka",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Nakazakicho_-_panoramio.jpg/960px-Nakazakicho_-_panoramio.jpg",
+            "credit": "DVMG · CC BY 3.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Nakazakicho_-_panoramio.jpg"
+          }
+        },
+        {
+          "id": "kaiyukan-tempozan",
+          "nick": "Il grande acquario con lo squalo balena e la ruota panoramica sul porto",
+          "name": "Acquario Kaiyukan + ruota di Tempozan",
+          "type": "museo",
+          "verdict": "sconsigliato",
+          "duration": "2h30",
+          "costEur": 19,
+          "costNote": "acquario ~¥2.700 + ruota ~¥800 (stima)",
+          "mapsQuery": "Osaka Aquarium Kaiyukan",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Kaiyukan_Manta_and_Whale_shark.JPG/960px-Kaiyukan_Manta_and_Whale_shark.JPG",
+            "credit": "SR EXR · CC0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Kaiyukan_Manta_and_Whale_shark.JPG"
+          }
+        }
+      ]
     },
     {
       "date": "2026-11-08",
@@ -222,6 +302,13 @@
             "status": "none",
             "where": "",
             "when": ""
+          },
+          "nick": "I torii rossi con le scale",
+          "image": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg/960px-Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg",
+            "credit": "Basile Morin · CC BY-SA 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine%2C_Kyoto%2C_Japan.jpg",
+            "alt": "Sentiero di torii rossi a Fushimi Inari"
           }
         },
         {
@@ -405,7 +492,7 @@
         }
       ],
       "gaps": "auto",
-      "summary": "Kyoto g.1 — Fushimi + Higashiyama + Gion",
+      "summary": "Fushimi Inari presto, prima della folla, poi a piedi giù per Higashiyama fino a Gion. Giornata lunga ma tutta in discesa, con la sera fra i vicoli delle geisha.",
       "moves": "Osaka⇄Kyoto JR ~29'",
       "budgetEur": 70,
       "dayTrip": "Kyoto"
