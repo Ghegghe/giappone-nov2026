@@ -239,7 +239,7 @@ function updateThemeControls() {
 const DEFAULT_SECTIONS = [
   { id: 'agenda', label: 'Agenda', icon: 'calendar' }, { id: 'trasporti', label: 'Trasporti', icon: 'train' },
   { id: 'alloggi', label: 'Alloggi', icon: 'bed' }, { id: 'luoghi', label: 'Luoghi', icon: 'pin' },
-  { id: 'budget', label: 'Budget', icon: 'wallet' },
+  { id: 'guide', label: 'Guide', icon: 'book' }, { id: 'budget', label: 'Budget', icon: 'wallet' },
 ];
 
 function sectionHref(s) {

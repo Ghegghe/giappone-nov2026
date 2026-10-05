@@ -387,6 +387,16 @@ a.sr-only:focus, a.sr-only:focus-visible {   /* link "Vai al contenuto" */
   border-radius: 999px; background: var(--nav-active-bg, var(--accent-soft, var(--bg-sunken)));
 }
 .nav__item:focus-visible { outline-offset: -4px; border-radius: var(--radius-lg); }
+/* 7 voci (con Guide): a 375px ogni voce ha ~53px → etichette 10px; sotto 360px solo icone (etichetta resta per i lettori di schermo) */
+@media (max-width: 419.98px) {
+  .nav__item { font-size: 10px; line-height: 13px; letter-spacing: -.01em; }
+  .nav__item--active::before { width: 46px; }
+}
+@media (max-width: 359.98px) {
+  .nav__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .nav__item .icon { width: 24px; height: 24px; }
+  .nav__item--active::before { top: 50%; width: 42px; height: 34px; translate: -50% -50%; }
+}
 
 .footer {
   max-width: var(--container); margin: var(--space-6) auto 0; padding: var(--space-5) var(--gutter);
@@ -420,7 +430,13 @@ a.sr-only:focus, a.sr-only:focus-visible {   /* link "Vai al contenuto" */
   .footer { flex-direction: row; justify-content: space-between; align-items: flex-end; }
   .footer__theme label { flex: 0 0 170px; }
 }
-@media (min-width: 1200px) { .topbar__title { max-width: calc(100% - 760px); } }
+/* 7 voci (con Guide): fra 900 e 1150px la nav non sta accanto al titolo con le icone → solo etichette, padding ridotto */
+@media (min-width: 900px) and (max-width: 1149.98px) {
+  .nav__item { padding: 0 10px; }
+  .nav__item .icon { display: none; }
+  .topbar__title { max-width: calc(100% - 560px); }
+}
+@media (min-width: 1150px) { .topbar__title { max-width: calc(100% - 760px); } }
 
 /* ---------- 6. Panel = Sheet shadcn (bottom-sheet con maniglia, side sheet ≥900px) e toast ----------
    <aside class="panel" role="dialog" aria-modal="true"><button class="panel__close">…</button>…</aside>, aperto con .is-open. */

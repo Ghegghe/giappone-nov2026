@@ -91,23 +91,23 @@
   "daily": [
     {
       "date": "2026-11-07",
-      "eurPlanned": 60,
-      "eurAgenda": 34.7
+      "eurPlanned": 75,
+      "eurAgenda": 67
     },
     {
       "date": "2026-11-08",
-      "eurPlanned": 70,
-      "eurAgenda": 54
+      "eurPlanned": 125,
+      "eurAgenda": 105.5
     },
     {
       "date": "2026-11-09",
-      "eurPlanned": 70,
-      "eurAgenda": 53
+      "eurPlanned": 75,
+      "eurAgenda": 125.5
     },
     {
       "date": "2026-11-10",
-      "eurPlanned": 110,
-      "eurAgenda": 101
+      "eurPlanned": 58,
+      "eurAgenda": 58.5
     },
     {
       "date": "2026-11-11",

@@ -121,8 +121,10 @@ const placeAdds = (place, title) => {
 
 // ---------- foto (Wikimedia Commons, §9.1): solo https, credit visibile, lazy, no referrer ----------
 const httpsUrl = (u) => (/^https:\/\//i.test(String(u || '').trim()) ? String(u).trim() : '');
+// copia locale scaricata dall'exporter (--fetch-images): solo assets/img/places/<id>.webp|jpg
+const localImg = (u) => (/^assets\/img\/places\/[\w-]+\.(?:webp|jpe?g)$/.test(String(u || '').trim()) ? String(u).trim() : '');
 function photoOf(image) {
-  const url = image && httpsUrl(image.url);
+  const url = image && (localImg(image.url) || httpsUrl(image.url));
   return url ? { url, credit: image.credit || '', page: httpsUrl(image.page), alt: image.alt || '' } : null;
 }
 // figura 4:3 + credit; se l'immagine non si carica (offline, link rotto) resta un riquadro col testo alternativo

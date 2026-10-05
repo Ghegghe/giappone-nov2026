@@ -1,5 +1,5 @@
 // sw.js — service worker del sito. Bumpare CACHE_VERSION a ogni deploy che cambia file statici.
-const CACHE_VERSION = 'v9';
+const CACHE_VERSION = 'v10';
 const STATIC_CACHE = `giappone-static-${CACHE_VERSION}`;
 const DATA_CACHE = `giappone-data-${CACHE_VERSION}`;
 
@@ -13,6 +13,7 @@ const PRECACHE = [
   'trasporti.html',
   'alloggi.html',
   'luoghi.html',
+  'guide.html',
   'budget.html',
   '404.html',
   'manifest.webmanifest',
@@ -23,6 +24,7 @@ const PRECACHE = [
   'assets/css/pages-b.css',
   'assets/css/budget.css',
   'assets/css/charts.css',
+  'assets/css/guide.css',
   'assets/css/themes/washi.css',
   'assets/css/themes/neutral.css',
   'assets/css/themes/night.css',
@@ -40,6 +42,7 @@ const PRECACHE = [
   'assets/js/pages-alloggi.js',
   'assets/js/pages-luoghi.js',
   'assets/js/pages-budget.js',
+  'assets/js/pages-guide.js',
   'assets/js/charts.js',
   'assets/icons/sprite.svg',
   'assets/icons/favicon.svg',
@@ -51,7 +54,7 @@ const PRECACHE = [
 
 // JSON precaricati (best effort) così l'app funziona offline già dalla prima visita.
 // DATA-BEGIN
-const DATA_FILES = ['trip', 'agenda', 'transport', 'lodging', 'places', 'budget'].map((n) => `data/${n}.json`);
+const DATA_FILES = ['trip', 'agenda', 'transport', 'lodging', 'places', 'budget', 'guides'].map((n) => `data/${n}.json`);
 // DATA-END
 
 const BASE = new URL('./', self.location).href;

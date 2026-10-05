@@ -165,6 +165,12 @@
       "href": "luoghi.html"
     },
     {
+      "id": "guide",
+      "label": "Guide",
+      "icon": "book",
+      "href": "guide.html"
+    },
+    {
       "id": "budget",
       "label": "Budget",
       "icon": "wallet",

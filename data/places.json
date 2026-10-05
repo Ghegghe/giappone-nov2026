@@ -14,7 +14,8 @@
       "layer": "Osaka (7-11 nov)",
       "mapNote": "7 sera",
       "dayDates": [
-        "2026-11-07"
+        "2026-11-07",
+        "2026-11-08"
       ]
     },
     {
@@ -101,10 +102,7 @@
       "note": "Polpette di polpo, specialità di Osaka; ~600 yen",
       "mapsQuery": "Takoyaki Wanaka Sennichimae Osaka",
       "layer": "Osaka (7-11 nov)",
-      "mapNote": "7 sera · cena street food",
-      "dayDates": [
-        "2026-11-07"
-      ]
+      "mapNote": "7 sera · cena street food"
     },
     {
       "id": "namba-parks",
@@ -183,7 +181,10 @@
       "note": "Torre-simbolo retrò di Shinsekai, terrazza e Tower Slider; ~1.000 yen",
       "mapsQuery": "Tsutenkaku Shinsekai Osaka",
       "layer": "Osaka (7-11 nov)",
-      "mapNote": "(opz.) 10 sera"
+      "mapNote": "(opz.) 10 sera",
+      "dayDates": [
+        "2026-11-10"
+      ]
     },
     {
       "id": "shinsekai",
@@ -324,10 +325,7 @@
       "note": "Quartiere elegante di bar, club e ristoranti; girarlo gratis",
       "mapsQuery": "Kitashinchi Osaka",
       "layer": "Osaka (7-11 nov)",
-      "mapNote": "(opz.) nightcap sera 7",
-      "dayDates": [
-        "2026-11-07"
-      ]
+      "mapNote": "(opz.) nightcap sera 7"
     },
     {
       "id": "nakazakicho",
@@ -355,6 +353,7 @@
       "layer": "Osaka (7-11 nov)",
       "mapNote": "11 mattina 8:30",
       "dayDates": [
+        "2026-11-08",
         "2026-11-11"
       ]
     },
@@ -451,7 +450,10 @@
       "note": "Negozio culto di videogiochi e console retrò; entrare gratis",
       "mapsQuery": "Super Potato Nipponbashi Osaka",
       "layer": "Osaka (7-11 nov)",
-      "mapNote": "10 pom · retro game"
+      "mapNote": "10 pom · retro game",
+      "dayDates": [
+        "2026-11-10"
+      ]
     },
     {
       "id": "ota-road-maid-cafe",
@@ -635,7 +637,7 @@
       "layer": "Kobe (10 nov)",
       "mapNote": "10 · PRANZO 13:00 · PRENOTARE TableCheck",
       "dayDates": [
-        "2026-11-10"
+        "2026-11-08"
       ]
     },
     {
@@ -664,7 +666,7 @@
       "layer": "Kobe (10 nov)",
       "mapNote": "(opz.) 10 pom",
       "dayDates": [
-        "2026-11-10"
+        "2026-11-08"
       ]
     },
     {
@@ -681,7 +683,7 @@
       "layer": "Kobe (10 nov)",
       "mapNote": "(opz.) 10 · case occidentali",
       "dayDates": [
-        "2026-11-10"
+        "2026-11-08"
       ]
     },
     {
@@ -808,7 +810,7 @@
       "layer": "Kyoto (8-9 nov)",
       "mapNote": "8 · AL TRAMONTO (fino alle 18)",
       "dayDates": [
-        "2026-11-08"
+        "2026-11-09"
       ]
     },
     {
@@ -823,10 +825,7 @@
       "note": "Vie in pietra verso Kiyomizu, case in legno e botteghe; gratis",
       "mapsQuery": "Ninenzaka Sannenzaka Kyoto",
       "layer": "Kyoto (8-9 nov)",
-      "mapNote": "8 · by night",
-      "dayDates": [
-        "2026-11-08"
-      ]
+      "mapNote": "8 · by night"
     },
     {
       "id": "gion",
@@ -854,7 +853,7 @@
       "layer": "Kyoto (8-9 nov)",
       "mapNote": "8 sera · cena",
       "dayDates": [
-        "2026-11-08"
+        "2026-11-09"
       ]
     },
     {
@@ -867,7 +866,10 @@
       "flag": "Forse",
       "source": "💡",
       "note": "Santuario tra Gion e Maruyama, lanterne; gratis",
-      "mapsQuery": "Yasaka Shrine Kyoto"
+      "mapsQuery": "Yasaka Shrine Kyoto",
+      "dayDates": [
+        "2026-11-09"
+      ]
     },
     {
       "id": "maruyama-park",
@@ -891,7 +893,10 @@
       "flag": "Forse",
       "source": "💡",
       "note": "Giardini zen, bambù, illuminazioni di foliage serali; ~600 yen",
-      "mapsQuery": "Kodai-ji Temple Kyoto"
+      "mapsQuery": "Kodai-ji Temple Kyoto",
+      "dayDates": [
+        "2026-11-09"
+      ]
     },
     {
       "id": "yasaka-pagoda",
@@ -905,7 +910,10 @@
       "note": "Pagoda a 5 piani icona di Higashiyama; scorcio gratis dalla via",
       "mapsQuery": "Yasaka Pagoda Hokan-ji Kyoto",
       "layer": "Kyoto (8-9 nov)",
-      "mapNote": "8 · illuminata"
+      "mapNote": "8 · illuminata",
+      "dayDates": [
+        "2026-11-09"
+      ]
     },
     {
       "id": "kennin-ji",
@@ -917,7 +925,10 @@
       "flag": "Forse",
       "source": "💡",
       "note": "Tempio zen più antico di Kyoto, soffitto dei draghi; ~600 yen",
-      "mapsQuery": "Kennin-ji Temple Kyoto"
+      "mapsQuery": "Kennin-ji Temple Kyoto",
+      "dayDates": [
+        "2026-11-09"
+      ]
     },
     {
       "id": "ginkaku-ji",
@@ -931,10 +942,7 @@
       "note": "Padiglione d'Argento e giardino di sabbia/muschio; ~500 yen",
       "mapsQuery": "Ginkaku-ji Temple Kyoto",
       "layer": "Kyoto (8-9 nov)",
-      "mapNote": "8 · 13:30",
-      "dayDates": [
-        "2026-11-08"
-      ]
+      "mapNote": "8 · 13:30"
     },
     {
       "id": "path-of-philosophy",
@@ -948,10 +956,7 @@
       "note": "Sentiero lungo il canale tra Ginkaku-ji e Nanzen-ji; aceri a nov; gratis",
       "mapsQuery": "Philosopher's Path Kyoto",
       "layer": "Kyoto (8-9 nov)",
-      "mapNote": "8 · a piedi verso sud",
-      "dayDates": [
-        "2026-11-08"
-      ]
+      "mapNote": "8 · a piedi verso sud"
     },
     {
       "id": "nanzen-ji",
@@ -977,10 +982,7 @@
       "note": "Tra i luoghi di foliage più celebri; ~1.000 yen in autunno; illuminazioni",
       "mapsQuery": "Eikando Zenrin-ji Temple Kyoto",
       "layer": "Kyoto (8-9 nov)",
-      "mapNote": "8 · entro le 16:00",
-      "dayDates": [
-        "2026-11-08"
-      ]
+      "mapNote": "8 · entro le 16:00"
     },
     {
       "id": "heian-jingu",
@@ -1006,10 +1008,7 @@
       "note": "Padiglione d'Oro riflesso sullo stagno; ~500 yen; iconico",
       "mapsQuery": "Kinkaku-ji Temple Kyoto",
       "layer": "Kyoto (8-9 nov)",
-      "mapNote": "9 · 11:30",
-      "dayDates": [
-        "2026-11-09"
-      ]
+      "mapNote": "9 · 11:30"
     },
     {
       "id": "ryoan-ji",
@@ -1047,10 +1046,7 @@
       "note": "Santuario dello studio, giardino d'aceri momiji-en a nov; giardino ~1.000 yen",
       "mapsQuery": "Kitano Tenmangu Shrine Kyoto",
       "layer": "Kyoto (8-9 nov)",
-      "mapNote": "9 · giardino momiji ¥1.200",
-      "dayDates": [
-        "2026-11-09"
-      ]
+      "mapNote": "9 · giardino momiji ¥1.200"
     },
     {
       "id": "daitoku-ji",
@@ -1102,10 +1098,7 @@
       "note": "Ponte simbolo con colline autunnali sullo sfondo; gratis",
       "mapsQuery": "Togetsukyo Bridge Arashiyama",
       "layer": "Kyoto (8-9 nov)",
-      "mapNote": "9 mattina",
-      "dayDates": [
-        "2026-11-09"
-      ]
+      "mapNote": "9 mattina"
     },
     {
       "id": "iwatayama-monkey-park",
@@ -1131,10 +1124,7 @@
       "note": "Villa e giardino panoramico oltre il bambù; ~1.000 yen con tè",
       "mapsQuery": "Okochi Sanso Villa Kyoto",
       "layer": "Kyoto (8-9 nov)",
-      "mapNote": "(opz.) 9 · villa+tè ¥1.000",
-      "dayDates": [
-        "2026-11-09"
-      ]
+      "mapNote": "(opz.) 9 · villa+tè ¥1.000"
     },
     {
       "id": "jojakko-ji",
@@ -1174,7 +1164,7 @@
       "layer": "Kyoto (8-9 nov)",
       "mapNote": "8 · ore 7:45, presto!",
       "dayDates": [
-        "2026-11-08"
+        "2026-11-09"
       ]
     },
     {
@@ -1201,10 +1191,7 @@
       "note": "Quartiere delle distillerie, degustazioni; Gekkeikan museum ~600 yen",
       "mapsQuery": "Gekkeikan Okura Sake Museum Fushimi",
       "layer": "Kyoto (8-9 nov)",
-      "mapNote": "(opz.) 8 mattina",
-      "dayDates": [
-        "2026-11-08"
-      ]
+      "mapNote": "(opz.) 8 mattina"
     },
     {
       "id": "sennyu-ji",
@@ -1247,10 +1234,7 @@
       "note": "Vicolo storico di ristoranti lungo il fiume; atmosfera serale; gratis",
       "mapsQuery": "Pontocho Alley Kyoto",
       "layer": "Kyoto (8-9 nov)",
-      "mapNote": "9 sera · cena",
-      "dayDates": [
-        "2026-11-09"
-      ]
+      "mapNote": "9 sera · cena"
     },
     {
       "id": "kawaramachi-shijo",

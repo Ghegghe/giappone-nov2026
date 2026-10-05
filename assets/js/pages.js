@@ -1,4 +1,4 @@
-// pages.js — nucleo condiviso delle pagine contenuto (home, trasporti, alloggi, luoghi, budget).
+// pages.js — nucleo condiviso delle pagine contenuto (home, trasporti, alloggi, luoghi, guide, budget).
 // Ogni pagina: <main data-page="..."> + <script type="module" src="assets/js/pages.js">.
 // Il rendering vero sta in pages-<pagina>.js; qui: helper HTML sicuro, icone, link, tab, dispatcher.
 import { esc, initShell, loadData, DATA_BASE, fmtDate } from './app.js';
@@ -157,6 +157,7 @@ const PAGES = {
   alloggi: () => import('./pages-alloggi.js'),
   luoghi: () => import('./pages-luoghi.js'),
   budget: () => import('./pages-budget.js'),
+  guide: () => import('./pages-guide.js'),
 };
 
 export async function boot() {

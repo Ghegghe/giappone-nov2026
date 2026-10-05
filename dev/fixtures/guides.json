@@ -1,0 +1,52 @@
+{
+  "guides": [
+    {
+      "id": "tenma-sera",
+      "title": "Orientarsi a Tenma di sera",
+      "icon": "compass",
+      "summary": "Dove sono i vicoli dei localini, come si legge l'arcata coperta e da dove conviene entrare.",
+      "order": 10,
+      "tags": [
+        "osaka",
+        "sera",
+        "bere"
+      ],
+      "updated": "2026-10-05",
+      "html": "<h2>Il quartiere in due minuti</h2><p>Tenma è un <strong>reticolo di vicoli</strong> stretto fra la stazione JR Tenma e l'arcata coperta di <em>Tenjinbashisuji</em>. Di giorno è un mercato, di sera diventa una fila di banconi da 6-10 posti.</p><blockquote><p><strong>In breve:</strong> si entra dalla stazione JR, si gira a sinistra sotto i binari e si cammina <em>parallelo</em> all'arcata, non dentro.</p></blockquote><h3>La mappa mentale</h3><svg viewBox=\"0 0 640 360\" width=\"640\" height=\"360\" font-size=\"22\" role=\"img\" aria-label=\"Schema di Tenma: l'arcata coperta a sinistra, la ferrovia in alto, i vicoli paralleli a destra\">\n  <title>Schema di Tenma</title>\n  <rect class=\"g-fill\" x=\"0\" y=\"0\" width=\"640\" height=\"360\" rx=\"12\"/>\n  <rect class=\"g-accent-fill\" x=\"60\" y=\"20\" width=\"44\" height=\"320\" rx=\"6\"/>\n  <text class=\"g-text\" x=\"82\" y=\"350\" text-anchor=\"middle\">Arcata</text>\n  <line class=\"g-ink\" x1=\"0\" y1=\"70\" x2=\"640\" y2=\"70\" stroke-width=\"6\" stroke-dasharray=\"14 8\"/>\n  <text class=\"g-text\" x=\"600\" y=\"58\" text-anchor=\"end\">JR Loop Line · stazione Tenma</text>\n  <g class=\"g-muted\">\n    <line x1=\"160\" y1=\"90\" x2=\"160\" y2=\"330\" stroke-width=\"3\"/>\n    <line x1=\"230\" y1=\"90\" x2=\"230\" y2=\"330\" stroke-width=\"3\"/>\n    <line x1=\"300\" y1=\"90\" x2=\"300\" y2=\"330\" stroke-width=\"3\"/>\n    <line x1=\"104\" y1=\"150\" x2=\"560\" y2=\"150\" stroke-width=\"3\"/>\n    <line x1=\"104\" y1=\"240\" x2=\"560\" y2=\"240\" stroke-width=\"3\"/>\n  </g>\n  <circle class=\"g-accent-fill\" cx=\"160\" cy=\"150\" r=\"9\"/>\n  <circle class=\"g-accent-fill\" cx=\"230\" cy=\"240\" r=\"9\"/>\n  <text class=\"g-text\" x=\"176\" y=\"138\">bancone del pesce</text>\n  <text class=\"g-text\" x=\"246\" y=\"230\">spiedini alla brace</text>\n</svg><h3>I tre tipi di locale</h3><div class=\"g-table\" role=\"region\" aria-label=\"Tabella\" tabindex=\"0\"><table><thead><tr><th scope=\"col\">Tipo</th><th scope=\"col\">Come funziona</th><th scope=\"col\" class=\"ta-r\">Spesa a testa</th><th scope=\"col\" class=\"ta-c\">Quando</th></tr></thead><tbody><tr><td>Tachinomi</td><td>In piedi al bancone, si ordina a voce</td><td class=\"ta-r\">€8-12</td><td class=\"ta-c\">17-20</td></tr><tr><td>Izakaya</td><td>Seduti, piattini da dividere, <em>otōshi</em> obbligatorio</td><td class=\"ta-r\">€20-30</td><td class=\"ta-c\">18-23</td></tr><tr><td>Yatai coperto</td><td>Chiosco con 6 sgabelli, una specialità</td><td class=\"ta-r\">€10-15</td><td class=\"ta-c\">20-2</td></tr></tbody></table></div><h3>Il giro consigliato</h3><ol><li>Uscita est della stazione JR Tenma.</li><li>Primo bancone: pesce crudo in piedi.<ul><li>Si paga a ogni ordine o alla fine: chiedere <em>okaikei</em>.</li><li>Se c'è la fila, si aspetta fuori in silenzio.</li></ul></li><li>Secondo giro: spiedini, seduti.</li><li>Chiusura nell'arcata, che resta illuminata.</li></ol><ul><li>Contanti: molti banconi non prendono carte.</li><li>Gruppi da 4: meglio dividersi in 2+2 nei posti piccoli.</li></ul><hr><p>Per approfondire: <a href=\"https://ja.wikipedia.org/wiki/天神橋筋商店街\" rel=\"noopener\" target=\"_blank\">la pagina di Tenjinbashisuji</a> e il <a href=\"giorno.html?d=2026-11-07\">giorno 7 in agenda</a>. Un link non ammesso: clic.</p>",
+      "places": [
+        {
+          "id": "tenma",
+          "nick": "I vicoli di izakaya vicino a casa, dove bevono gli impiegati",
+          "name": "Tenma (Tenjinbashisuji)",
+          "mapsQuery": "Tenma Station Osaka izakaya"
+        },
+        {
+          "id": "tenma-uosho",
+          "nick": "Il bancone in piedi del pesce, pieno di ragazzi giapponesi",
+          "name": "立ち呑み処 魚しょう 天満 (Tachinomi-dokoro Uoshō Tenma)",
+          "mapsQuery": "立ち呑み処 魚しょう 天満 大阪市北区天神橋5-7-12"
+        },
+        {
+          "id": "tenma-mame",
+          "nick": "Gli spiedini di pollo alla brace, seduti, fino alle 2",
+          "name": "本気炭火焼鶏 豆 (Honki Sumibi Yakitori Mame)",
+          "mapsQuery": "本気炭火焼鶏 豆 大阪市北区天神橋4-11-13"
+        }
+      ]
+    },
+    {
+      "id": "contanti-giappone",
+      "title": "Contanti e carte, la regola dei 10.000 yen",
+      "icon": "yen",
+      "summary": "Quanto contante tenere in tasca e dove prelevare senza commissioni.",
+      "order": 20,
+      "tags": [
+        "soldi",
+        "pratico"
+      ],
+      "updated": "2026-10-05",
+      "html": "<p>Tenere <strong>sempre</strong> almeno ¥10.000 a testa in contanti: banconi, templi e bus spesso non prendono carte.</p><p>Si preleva ai bancomat dei <em>konbini</em> (7-Eleven, Lawson), aperti 24 ore.</p>",
+      "places": []
+    }
+  ]
+}

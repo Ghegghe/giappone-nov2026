@@ -1,0 +1,147 @@
+/* guide.css — pagina Guide (SPEC §10.3): indice a card con filtro per tag, guida in stile di lettura.
+   Solo variabili dei temi. Il corpo (.prose) arriva come HTML dall'exporter: qui si stilano i tag nudi. */
+
+/* ---------- testata e filtro ---------- */
+.g-head { display: flex; flex-direction: column; gap: var(--space-2); }
+.g-head .muted { max-width: 60ch; }
+/* filtro compatto come in Luoghi (pages.css .lu-f1): cerca + select tag su una riga, 44px, chevron a tema da base.css */
+.g-filters { display: flex; align-items: center; gap: var(--space-2); min-width: 0; }
+.g-search { position: relative; display: block; flex: 1 1 auto; min-width: 0; }
+.g-search > .icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--fg-muted); pointer-events: none; }
+.g-filters input.g-search__input { padding-left: 40px; }   /* = specificità di base.css, file successivo */
+.g-tagsel { flex: 0 0 9.75rem; min-width: 0; }
+.g-filters input.g-search__input, .g-filters select { min-height: 44px; }
+@media (min-width: 900px) { .g-filters { max-width: 40rem; gap: var(--space-3); } .g-tagsel { flex-basis: 12rem; } }
+.g-none { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); }
+.g-none[hidden] { display: none; }
+.g-missing { margin: 0; }
+
+/* tassello icona: quadrato del colore tenue del tema, la stessa forma nell'indice e in testa alla guida */
+.g-tile {
+  flex: none; display: grid; place-items: center;
+  width: 44px; height: 44px; border-radius: var(--radius-md);
+  background: var(--accent-soft, var(--bg-sunken)); color: var(--accent-soft-foreground, var(--fg));
+  border: 1px solid color-mix(in srgb, var(--fg) 8%, transparent);
+}
+.g-tile .icon { width: 22px; height: 22px; }
+
+/* ---------- indice ---------- */
+.g-index { display: grid; gap: var(--space-3); grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 720px) { .g-index { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); } }
+.g-index > li { display: flex; min-width: 0; }
+a.card.g-card {   /* a.card di base.css è display:block */
+  flex: 1; display: flex; align-items: flex-start; gap: var(--space-4);
+  padding: var(--space-4) var(--space-4) var(--space-4) var(--space-4);
+}
+.g-card > .icon { flex: none; align-self: center; width: 18px; height: 18px; color: var(--fg-muted); }
+.g-card:hover > .icon { color: var(--fg); }
+.g-card__body { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+.g-card__title {
+  font-family: var(--font-display, var(--font-sans)); font-weight: 600; font-size: 1.0625rem; line-height: 1.4;
+  letter-spacing: var(--tracking-title, -.025em); color: var(--fg); text-wrap: balance;
+}
+.g-card__summary { font-size: .875rem; line-height: 1.35rem; color: var(--fg-muted); }
+.g-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+
+/* ---------- guida ---------- */
+.g-back { margin-bottom: calc(-1 * var(--space-2)); }
+.g-back .btn { margin-left: -12px; }
+.g-article { display: flex; flex-direction: column; gap: var(--space-5); }
+.g-article__head { display: flex; align-items: flex-start; gap: var(--space-4); max-width: 70ch; }
+.g-article__head .g-tile { margin-top: 2px; }
+.g-article__titles { --stack-gap: var(--space-2); min-width: 0; }
+.g-article__titles .g-tags { margin-top: 0; }
+.g-lede { font-size: 1.0625rem; line-height: 1.6; color: var(--fg); }
+@media (max-width: 479.98px) {
+  .g-article__head { flex-direction: column; gap: var(--space-3); }
+}
+
+/* corpo: colonna di lettura ~68ch, ritmo verticale su 1.7 */
+.prose {
+  max-width: 68ch; font-size: 1.0625rem; line-height: 1.7; color: var(--fg);
+}
+.prose > * + * { margin-top: 1em; }
+.prose h2, .prose h3, .prose h4 {
+  font-family: var(--font-display, var(--font-sans)); color: var(--fg);
+  letter-spacing: var(--tracking-title, -.025em); text-wrap: balance;
+}
+.prose h2 { font-size: 1.375rem; line-height: 1.3; font-weight: 650; margin-top: 2em; }
+.prose h3 { font-size: 1.125rem; line-height: 1.4; font-weight: 600; margin-top: 1.6em; }
+.prose h4 { font-size: 1rem; line-height: 1.5; font-weight: 600; margin-top: 1.4em; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 + *, .prose h3 + *, .prose h4 + * { margin-top: .5em; }
+.prose strong { font-weight: 650; }
+.prose a { color: var(--accent-2); overflow-wrap: anywhere; }
+.prose code {
+  font-family: var(--font-mono); font-size: .875em; padding: .1em .35em; border-radius: var(--radius-sm);
+  background: var(--bg-sunken);
+}
+.prose ul, .prose ol { padding-left: 1.4em; }
+.prose li + li { margin-top: .35em; }
+.prose li > ul, .prose li > ol { margin-top: .35em; }
+.prose ol > li::marker { font-variant-numeric: tabular-nums; color: var(--fg-muted); font-weight: 600; }
+.prose ul > li::marker { color: var(--fg-muted); }
+.prose hr { border: 0; border-top: 1px solid var(--border); margin-block: 2em; }
+
+/* citazione = "in breve / attenzione": riquadro tenue con filo a sinistra del colore primario */
+.prose blockquote {
+  padding: var(--space-3) var(--space-4); border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--accent) 6%, var(--bg-sunken));
+  box-shadow: inset 3px 0 0 var(--accent);
+  font-size: 1rem; line-height: 1.6;
+}
+.prose blockquote > * + * { margin-top: .6em; }
+
+/* tabelle: scorrono dentro il loro contenitore, mai la pagina */
+.prose .g-table {
+  max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain;
+  border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--card, var(--bg-elev));
+}
+.prose .g-table:focus-visible { outline-offset: 2px; }
+.prose table { width: 100%; min-width: 32rem; border-collapse: collapse; font-size: .9375rem; line-height: 1.45; }
+.prose th, .prose td { padding: 10px 12px; text-align: left; vertical-align: top; border-top: 1px solid var(--border); }
+.prose thead th {
+  border-top: 0; background: var(--bg-sunken); font-weight: 600; font-size: .8125rem; color: var(--fg-muted); white-space: nowrap;
+}
+.prose td:first-child { font-weight: 600; }
+.prose .ta-r { text-align: right; font-variant-numeric: tabular-nums; }
+.prose .ta-c { text-align: center; font-variant-numeric: tabular-nums; }
+.prose td.ta-r, .prose td.ta-c { white-space: nowrap; }
+
+/* SVG e figure: sempre dentro la colonna, proporzioni dal viewBox */
+.prose svg, .prose img { max-width: 100%; height: auto; }
+.prose > svg { width: 100%; }
+.prose figure { margin-inline: 0; }
+.prose figure > * + * { margin-top: var(--space-2); }
+.prose figcaption { font-size: .8125rem; line-height: 1.4; color: var(--fg-muted); }
+/* classi per i disegni inline (si adattano a tema chiaro/scuro): vedi NOTES_guide.md */
+/* niente regole su `svg text`: il CSS batterebbe gli attributi fill/font-size dell'autore. Il colore di base è
+   currentColor (= --fg); le classi qui sotto sono opzionali */
+.prose svg { color: var(--fg); font-family: var(--font-sans); }
+.prose .g-text { fill: var(--fg); }
+.prose .g-ink { stroke: var(--fg); fill: none; }
+.prose .g-muted { stroke: var(--fg-muted); fill: none; }
+.prose .g-muted-fill { fill: var(--fg-muted); }
+.prose .g-fill { fill: var(--bg-sunken); }
+.prose .g-card-fill { fill: var(--card, var(--bg-elev)); stroke: var(--border); }
+.prose .g-accent { stroke: var(--accent); fill: none; }
+.prose .g-accent-fill { fill: var(--accent); }
+.prose .g-move { stroke: var(--fam-move); fill: none; }
+.prose .g-move-fill { fill: var(--fam-move); }
+.prose .g-evening-fill { fill: var(--fam-evening); }
+
+/* ---------- luoghi citati e prev/next ---------- */
+.g-places { max-width: 70ch; }
+.g-place { display: flex; align-items: center; gap: var(--space-3); }
+.g-place__text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.g-place__nick { font-weight: 600; }
+.list-item.g-place > a.btn.btn--icon { flex: none; }   /* batte .list-item > :first-of-type di base.css */
+.g-pager { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-3); max-width: 70ch; }
+a.card.g-pager__link { display: flex; flex-direction: column; gap: 2px; padding: var(--space-3) var(--space-4); }
+.g-pager__link--next { text-align: right; grid-column: 2; }
+.g-pager__title { font-weight: 600; line-height: 1.35; color: var(--fg); }
+@media (max-width: 479.98px) {
+  .g-pager { grid-template-columns: minmax(0, 1fr); }
+  .g-pager__link--next { grid-column: 1; }
+  .g-pager > span:empty { display: none; }
+}

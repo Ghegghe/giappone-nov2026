@@ -11,7 +11,7 @@
   },
   "timezone": "Asia/Tokyo",
   "mapsLink": "https://www.google.com/maps/d/edit?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&usp=sharing",
-  "generatedAt": "2026-10-02T08:46:16+02:00",
+  "generatedAt": "2026-10-05T09:03:06+02:00",
   "sourceVersion": "build_xlsx_v33.py",
   "flights": {
     "out": {
@@ -163,6 +163,12 @@
       "label": "Luoghi",
       "icon": "map-pin",
       "href": "luoghi.html"
+    },
+    {
+      "id": "guide",
+      "label": "Guide",
+      "icon": "book",
+      "href": "guide.html"
     },
     {
       "id": "budget",

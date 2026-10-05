@@ -8,6 +8,8 @@ Verifica:
   4. manifest.webmanifest: JSON valido, icone esistenti;
   5. sw.js: ogni voce di PRECACHE esiste e non comincia con "/"; ogni file statico (html/css/js/svg/png/manifest,
      esclusi dev/ data/ tools/ e PRECACHE_SKIP) è in PRECACHE.
+  6. trip.json (data e fixture): ogni voce di `sections` punta a una pagina esistente;
+  7. guides.json (data e fixture): chiavi della guida presenti e `html` senza script/eventi/javascript: (SPEC §10.2).
 Uso:  python3 tools/check_site.py   (da site/ o da qualunque cwd). Exit 1 se ci sono problemi.
 """
 import json
@@ -124,6 +126,26 @@ def main():
                 json.loads(f.read_text(encoding="utf-8"))
             except (ValueError, UnicodeDecodeError) as e:
                 problems.append(f"{rel(f)}: JSON non valido: {e}")
+
+    # Nav (trip.sections) e guide
+    unsafe = re.compile(r"<script|<[^>]*\son\w+\s*=|<[^>]*javascript:", re.I)
+    for d in (SITE / "data", SITE / "dev" / "fixtures"):
+        tf, gf = d / "trip.json", d / "guides.json"
+        try:
+            trip = json.loads(tf.read_text(encoding="utf-8")) if tf.exists() else {}
+            for sec in trip.get("sections", []):
+                href = sec.get("href") or ("index.html" if sec.get("id") == "home" else f"{sec.get('id')}.html")
+                if not (SITE / href.split("#")[0].split("?")[0]).exists():
+                    problems.append(f"{rel(tf)}: sezione «{sec.get('id')}» → pagina mancante {href}")
+            guides = json.loads(gf.read_text(encoding="utf-8")).get("guides", []) if gf.exists() else []
+        except (ValueError, AttributeError):
+            continue   # JSON non valido: già segnalato sopra
+        for g in guides:
+            miss = [k for k in ("id", "title", "icon", "html") if not g.get(k)]
+            if miss:
+                problems.append(f"{rel(gf)}: guida «{g.get('id', '?')}» senza {', '.join(miss)}")
+            if unsafe.search(g.get("html", "")):
+                problems.append(f"{rel(gf)}: guida «{g.get('id', '?')}»: html non sicuro (script/eventi/javascript:)")
 
     # Manifest
     mf = SITE / "manifest.webmanifest"

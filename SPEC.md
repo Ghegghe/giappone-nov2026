@@ -205,3 +205,40 @@ giorno di scaletta, `notes` vuoto, `moves` assente, `dayTrip` dedotto dalle zone
   se la preferenza è `day` e l'URL non ha né `#data` né `?view=grid`, `location.replace` su `giorno.html` (che sceglie oggi in viaggio,
   altrimenti il primo giorno, e scrive `?d=` nell'URL). Il link "Agenda" della nav resta `agenda.html`.
 - Nessun dato hard-coded; tutto da JSON. Deploy SOLO su richiesta del cliente (bump `CACHE_VERSION`).
+
+## 10. Pagina GUIDE (5 ott 2026) — tutorial pratici per il viaggio
+Richiesta del cliente: "una pagina di guide locali, come dei tutorial che spiegano nel dettaglio una cosa utile per il viaggio"
+(es. come orientarsi fra i localini di Tenma e le vie parallele all'arcata coperta; come funzionano izakaya e tachinomi; bere; mangiare...).
+
+### 10.1 Sorgente: `data/guide/<slug>.md` (mantenuti a mano, in italiano)
+Frontmatter YAML minimale + corpo Markdown (sottoinsieme: `#`/`##`/`###`, paragrafi, liste `-`/`1.`, **grassetto**, *corsivo*, link
+`[testo](url)`, tabelle `|`, citazioni `>`, blocchi `<svg>…</svg>` o `<figure>…</figure>` inline passati così come sono, separatore `---`).
+```
+---
+title: Orientarsi a Tenma di sera
+icon: compass            # nome icona dello sprite del sito (compass, beer, food, train, yen, onsen, torii, phone, bag, map, info…)
+summary: Una frase per la card dell'indice.
+order: 10                # ordine nell'indice
+tags: [osaka, sera, bere]
+places: [tenma-uosho, tenma-mame]   # opzionale: id del catalogo citati → il renderer aggiunge i link Maps in fondo
+updated: 2026-10-05
+---
+corpo markdown…
+```
+
+### 10.2 Dati: `site/data/guides.json` (generato dall'exporter, step `build_guides`)
+```json
+{ "guides": [ { "id": "tenma-sera", "title": "...", "icon": "compass", "summary": "...", "order": 10, "tags": ["osaka"],
+  "updated": "2026-10-05", "html": "<h2>…</h2><p>…</p>",  // markdown convertito in HTML sanificato dall'exporter (nessuna lib esterna)
+  "places": [ { "id": "tenma-uosho", "nick": "…", "name": "…", "mapsQuery": "…" } ] } ] }
+```
+L'exporter converte il markdown con un convertitore proprio (sottoinsieme sopra), escapa l'HTML tranne i blocchi `<svg>`/`<figure>`
+che devono essere sicuri (niente script/eventi); `places` risolti dai cataloghi `data/piano/catalogo/data/*.json` quando esistono.
+
+### 10.3 UI: `site/guide.html`
+- Indice: card per guida (icona, titolo, summary, tag), ordinate per `order`, filtro per tag (chip). `?g=<id>` o `#<id>` apre la guida.
+- Guida: titolo, "aggiornata il", corpo HTML con stile di lettura (max 70ch, tabelle scrollabili, SVG responsive `max-width:100%`),
+  in fondo "Luoghi citati" con link Maps, e nav prev/next fra guide. Torna all'indice.
+- Nav: voce **Guide** (icona libro) in tutte le pagine. Su mobile la bottom bar passa a 7 voci: ridurre padding/etichette (font 10-11px)
+  o nascondere le etichette sotto 360px; MAI scroll orizzontale della barra. Aggiornare `sw.js` PRECACHE (+ bump versione al deploy).
+- Nessun contenuto hard-coded: tutto da `guides.json`.
