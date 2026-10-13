@@ -1719,7 +1719,7 @@
         {
           "id": "d10-11",
           "time": "18:30",
-          "end": "20:15",
+          "end": "19:30",
           "title": "Cena di spiedini fritti a Shinsekai",
           "type": "food",
           "fixed": false,
@@ -1729,7 +1729,7 @@
           "costNote": "",
           "place": "Shinsekai + Kushikatsu Daruma",
           "mapsQuery": "Kushikatsu Daruma Shinsekai",
-          "note": "Il locale più famoso (Daruma) ha spesso coda: quelli accanto sono uguali e senza fila. Salsa: si intinge una volta sola",
+          "note": "Il locale più famoso (Daruma) ha spesso coda: quelli accanto sono uguali e senza fila. Salsa: si intinge una volta sola ⏱ Stasera si finisce per le 19:30: le valigie vanno all'ufficio Yamato entro le 21 (treno diretto dell'11 alle 7:58).",
           "nick": "Il quartiere retrò anni '50 con gli spiedini fritti e il pupazzo arrabbiato",
           "image": {
             "url": "assets/img/places/shinsekai.webp",
@@ -1746,18 +1746,18 @@
         },
         {
           "id": "d10-12",
-          "time": "20:15",
-          "end": "20:45",
+          "time": "19:30",
+          "end": "19:45",
           "title": "Janjan Yokocho",
           "type": "nightlife",
           "fixed": false,
-          "optional": false,
+          "optional": true,
           "costEur": 10,
           "costEstimate": true,
           "costNote": "~¥1.000-2.000 (stima)",
           "place": "Janjan Yokocho",
           "mapsQuery": "Janjan Yokocho Osaka",
-          "note": "Il corridoio dei baretti: un ultimo bicchiere al banco",
+          "note": "Un bicchiere al banco se si è in orario, altrimenti si salta: le valigie hanno la precedenza",
           "nick": "Il corridoio stretto di Shinsekai con i baretti e i vecchi che giocano a shogi",
           "image": {
             "url": "assets/img/places/janjan-yokocho.webp",
@@ -1773,7 +1773,68 @@
         },
         {
           "id": "d10-13",
-          "time": "21:00",
+          "time": "19:45",
+          "end": "20:15",
+          "title": "Metro Midōsuji Dōbutsuen-mae → Umeda",
+          "type": "train",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Umeda",
+          "mapsQuery": "Umeda Station",
+          "note": "Poi ~12' a piedi al BON · ~15' · Passando dalla stazione JR di Osaka: ritirare i 4 biglietti del Hida 25 (prenotazione e5489 del 12 ott, non riservati) a una macchinetta JR West fuori dai tornelli: 'Receive reserved ticket' → 'JR-West Online Train Reservation' → inserire la carta visa fisica usata per pagare (oppure numero di prenotazione + codice). Macchinette 4:30-23:20. Se fatto di giorno, dritti a casa.",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d10-14",
+          "time": "20:15",
+          "end": "20:30",
+          "title": "Al BON",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "BON Condominium Umeda",
+          "mapsQuery": "BON Condominium Umeda Osaka",
+          "note": "Valigie chiuse (preparate la mattina), con noi restano solo gli zaini · Da domani fino al 17 si vive con lo zaino: ricambi per 6 notti, caricabatterie, documenti, contanti, cover seal.",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d10-15",
+          "time": "20:30",
+          "end": "20:55",
+          "title": "Consegna delle 4 valigie all'ufficio Yamato",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 14,
+          "costEstimate": false,
+          "costNote": "¥2.630 a valigia (taglia 160), −¥100 se portata a mano",
+          "place": "ヤマト運輸 大阪梅田営業所（大阪梅新）· Yamato Transport Osaka-Umeda",
+          "mapsQuery": "ヤマト運輸 大阪梅田営業所 太融寺町1-17 梅田アスカビル",
+          "note": "Ufficio Yamato Osaka-Umeda (Umeshin), Taiyūji-chō 1-17, palazzo Umeda Asuka: ~12' a piedi, aperto fino alle 21. L'ufficio di Banzai-chō non esiste più. Una bolla di carta per valigia: destinatario ufficio Yamato Yoyogi 2-chome (cod. 132810), casella «ritiro in ufficio», consegna 16 nov, nostro nome e cellulare giapponese. Ritiro a Tokyo dal 17 dopo le 12, con le 4 ricevute e il passaporto.",
+          "nick": "L'ufficio del corriere dove si lasciano le valigie per Tokyo",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d10-16",
+          "time": "21:10",
           "end": "23:00",
           "title": "Naniwa no Yu",
           "type": "onsen",
@@ -1784,7 +1845,7 @@
           "costNote": "¥900 feriali / ¥1.000 weekend + asciugamani ¥150-500",
           "place": "Naniwa no Yu",
           "mapsQuery": "Naniwa no Yu Osaka",
-          "note": "Aperto fino all'1 (ultimo ingresso 24:00), ¥900 + asciugamani. Tatuaggi vietati, anche coperti: chi li ha resta fuori",
+          "note": "Dall'ufficio Yamato ~15-20' a piedi verso nord-est. Aperto fino all'1 (ultimo ingresso 24:00), ¥900 + asciugamani. Tatuaggi vietati, anche coperti: chi li ha resta fuori",
           "nick": "Le terme vere sul tetto, vicino a casa",
           "booking": {
             "status": "none",
@@ -1794,7 +1855,7 @@
         }
       ],
       "gaps": "auto",
-      "summary": "Mattina lenta fra i banchi del mercato coperto e la via dei coltelli, pranzo di soba e pomeriggio intero nel quartiere otaku: anime, videogiochi retrò e manga usati. Sera di spiedini fritti a Shinsekai e bagno caldo alle terme prima di preparare le valigie per Takayama.",
+      "summary": "Mattina lenta fra i banchi del mercato coperto e la via dei coltelli, pranzo di soba e pomeriggio intero nel quartiere otaku: anime, videogiochi retrò e manga usati. Sera di spiedini fritti a Shinsekai e bagno caldo alle terme prima di preparare le valigie per Takayama. Variante (5 ott): la sera si chiude presto a Shinsekai perché le valigie vanno all'ufficio Yamato entro le 21; in alternativa dopo la torre si torna dritti a casa, valigie all'ufficio e cena a Tenma.",
       "budgetEur": 58,
       "extras": [
         {
@@ -2011,51 +2072,46 @@
     {
       "date": "2026-11-11",
       "weekday": "mer",
-      "title": "Castello di Osaka → Takayama",
+      "title": "Treno diretto, templi sulla collina e serata all'osteria a Takayama",
       "base": "Takayama",
       "baseId": "takayama",
-      "status": "draft",
-      "notes": "Da qui solo bagaglio a mano",
+      "status": "final",
+      "notes": "",
       "items": [
         {
           "id": "d11-01",
-          "time": "08:00",
-          "title": "Spedizione valigie da Yamato Osaka-Nakazaki",
-          "type": "logistics",
-          "fixed": true,
+          "time": "06:30",
+          "end": "07:00",
+          "title": "Sveglia 6:30, check-out dal BON, zaini in spalla",
+          "type": "transfer",
+          "fixed": false,
           "optional": false,
           "costEur": 0,
           "costEstimate": false,
           "costNote": "",
-          "place": "Ufficio Yamato Osaka-Nakazaki",
-          "mapsQuery": "UFFICIO YAMATO Osaka-Nakazaki",
-          "note": "Ufficio Yamato Banzai-cho 5-9, 5' dal BON · 4 valigie → ufficio Yamato Yoyogi 2-chome, consegna 16 nov · bolla in inglese, spuntare 'ricevi in ufficio' · ¥2.630×4",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Chiavi come da istruzioni · Le valigie sono partite ieri sera. Biglietti del treno già in tasca (ritirati il 10). Colazione: onigiri e caffè al konbini sulla strada o in stazione.",
           "booking": {
             "status": "none",
             "where": "",
             "when": ""
-          },
-          "links": [
-            {
-              "href": "alloggi.html#bagagli",
-              "label": "Procedura bagagli"
-            }
-          ]
+          }
         },
         {
           "id": "d11-02",
-          "time": "09:00",
-          "title": "Castello di Osaka",
-          "type": "sight",
+          "time": "07:00",
+          "end": "07:13",
+          "title": "A piedi alla stazione JR di Osaka",
+          "type": "train",
           "fixed": false,
           "optional": false,
-          "costEur": 2,
+          "costEur": 0,
           "costEstimate": false,
           "costNote": "",
-          "place": "Castello di Osaka",
-          "mapsQuery": "Osaka Castle",
-          "note": "Parco + esterni + Hōkoku Jinja + giardino Nishinomaru · Nishinomaru ¥200, apre alle 9 (mer ok) · da Nakazaki: Tanimachi line → Tanimachi 4-chome ~15'",
-          "placeId": "castello-di-osaka",
+          "place": "",
+          "mapsQuery": "",
+          "note": "850-900 m, 12-13', in piano, verso sud-ovest · È la stazione grande di Umeda, non Shin-Osaka. Google Maps verificato il 12 ott: 12-13 minuti.",
           "booking": {
             "status": "none",
             "where": "",
@@ -2064,97 +2120,105 @@
         },
         {
           "id": "d11-03",
-          "time": "10:15",
-          "title": "Ritiro biglietti Hida a Shin-Osaka",
-          "type": "logistics",
-          "fixed": true,
+          "time": "07:13",
+          "end": "07:50",
+          "title": "Tornelli con i biglietti di carta, binario 11",
+          "type": "transfer",
+          "fixed": false,
           "optional": false,
           "costEur": 0,
           "costEstimate": false,
           "costNote": "",
-          "place": "Shin-Osaka",
-          "mapsQuery": "Shin-Osaka",
-          "note": "Ritiro biglietti Hida alla macchinetta e5489 (Revolut fisica + n. prenotazione + n. identificazione) · Shinkansen con QR-Ticket sul telefono · 15' di margine · i QR-Ticket vanno inoltrati a tutti e 4",
+          "place": "",
+          "mapsQuery": "",
+          "note": "In fila davanti ai segni a terra della carrozza non riservata del Hida 25 · Prenotato il 12 ott su e5489: 4 biglietti non riservati (base + Limited Express), ¥7.920 a testa. Nessun posto assegnato: il treno parte da qui e arriva vuoto al binario ~7:45-7:50, chi è in fila sale per primo e si siede in 4. Il tabellone del binario dice quale carrozza è 自由席/Non-reserved. Il biglietto vale su qualunque Hida del giorno in non riservato.",
           "booking": {
-            "status": "todo",
-            "where": "westjr.co.jp → treno Hida",
-            "when": "11 ott 3:00-16:30 (ora italiana)"
+            "status": "none",
+            "where": "",
+            "when": ""
           }
         },
         {
           "id": "d11-04",
-          "time": "10:45",
-          "end": "11:35",
-          "title": "Shin-Osaka → Nagoya (Shinkansen)",
-          "type": "train",
-          "fixed": true,
+          "time": "07:58",
+          "end": "12:14",
+          "title": "Limited Express Hida 25 diretto Osaka → Takayama 12:14",
+          "type": "transfer",
+          "fixed": false,
           "optional": false,
-          "costEur": 42,
+          "costEur": 0,
           "costEstimate": false,
           "costNote": "",
-          "place": "Nagoya",
-          "mapsQuery": "Nagoya Station",
-          "note": "~50' · smartEX (11 ott) · QR-Ticket al tornello → tenere il foglietto Seat Information",
+          "place": "Takayama",
+          "mapsQuery": "Takayama",
+          "note": "Non riservato · Binario 11 · 4h16 · Nessun cambio: a Gifu il treno si aggancia al Hida 5 e cambia senso di marcia (si resta seduti). Gole del fiume Hida nell'ultima ora. Posti riservati esauriti già il 12 ott (△ sul sito JR): per questo si viaggia in non riservato, salendo presto al capolinea.",
           "booking": {
-            "status": "todo",
-            "where": "smartEX",
-            "when": "11 ott 3:00-16:30 (ora italiana)"
+            "status": "done",
+            "where": "e5489",
+            "when": "12 ott"
           }
         },
         {
           "id": "d11-05",
-          "time": "12:48",
-          "end": "15:15",
-          "title": "Nagoya → Takayama (JR Hida, finestrini panoramici)",
-          "type": "train",
-          "fixed": true,
-          "optional": false,
-          "costEur": 34,
-          "costEstimate": false,
-          "costNote": "",
-          "place": "Takayama",
-          "mapsQuery": "Takayama Station",
-          "note": "2h30 · arrivo ~15:15 · posti riservati su e5489 (11 ott)",
-          "booking": {
-            "status": "todo",
-            "where": "westjr.co.jp → treno Hida",
-            "when": "11 ott 3:00-16:30 (ora italiana)"
-          }
-        },
-        {
-          "id": "d11-06",
-          "time": "15:30",
-          "title": "Check-in Country Hotel Takayama",
-          "type": "lodging",
-          "fixed": true,
+          "time": "12:14",
+          "end": "12:25",
+          "title": "A piedi al Country Hotel",
+          "type": "transfer",
+          "fixed": false,
           "optional": false,
           "costEur": 0,
           "costEstimate": false,
           "costNote": "",
           "place": "Country Hotel Takayama",
           "mapsQuery": "Country Hotel Takayama",
-          "note": "",
-          "stayId": "takayama",
+          "note": "Hanasato-machi 6-38, ~130 m a est della stazione · Reception aperta 24 ore: zaini alla reception, check-in dalle 15. Il deposito prima del check-in non è indicato sul sito: chiedete al banco.",
           "booking": {
-            "status": "done",
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d11-06",
+          "time": "12:25",
+          "end": "12:35",
+          "title": "A piedi verso nord-est al ramen per la via Honmachi",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "~480 m, 8-9'",
+          "booking": {
+            "status": "none",
             "where": "",
             "when": ""
           }
         },
         {
           "id": "d11-07",
-          "time": "16:00",
-          "title": "Sanmachi Suji + sake breweries (negozi chiudono ~17)",
-          "type": "sight",
+          "time": "12:35",
+          "end": "13:15",
+          "title": "Pranzo seduto",
+          "type": "food",
           "fixed": false,
           "optional": false,
           "costEur": 5,
-          "costEstimate": true,
+          "costEstimate": false,
           "costNote": "",
-          "place": "Sanmachi Suji",
-          "mapsQuery": "Sanmachi Suji Takayama",
-          "note": "Centro Edo",
-          "placeId": "sanmachi-suji",
+          "place": "Kikyōya (中華そば 桔梗屋)",
+          "mapsQuery": "中華そば 桔梗屋 高山",
+          "note": "Ramen di Takayama · Brodo di soia leggero e tagliolini sottili, in tavola in 10 minuti (aperto 11-15, chiuso il giovedì). Piano B a 3' più a sud sulla stessa via: Kamon (Honmachi 2-19, mer 11:30-14:30).",
+          "nick": "Il ramen di Takayama: brodo di soia leggero, 10 minuti",
+          "image": {
+            "url": "assets/img/places/kikyoya-ramen.webp",
+            "credit": "Ocdp · CC0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Takayama_ramen_001.jpg",
+            "alt": "Il ramen di Takayama: brodo di soia leggero, 10 minuti"
+          },
           "booking": {
             "status": "none",
             "where": "",
@@ -2163,53 +2227,46 @@
         },
         {
           "id": "d11-08",
-          "time": "18:30",
-          "title": "Cena Hida beef",
-          "type": "food",
+          "time": "13:15",
+          "end": "13:25",
+          "title": "A piedi verso sud lungo Honmachi fino al palazzo del…",
+          "type": "transfer",
           "fixed": false,
           "optional": false,
-          "costEur": 20,
-          "costEstimate": true,
+          "costEur": 0,
+          "costEstimate": false,
           "costNote": "",
-          "place": "Hida beef street food",
-          "mapsQuery": "Hida beef Sanmachi Takayama",
-          "note": "Specialità locale",
-          "placeId": "hida-beef-street-food",
+          "place": "",
+          "mapsQuery": "",
+          "note": "A piedi verso sud lungo Honmachi fino al palazzo del governatore · ~440 m, 8' · Si scende sul lato ovest del fiume; al ritorno verso nord si sale sul lato est (vie vecchie): è un anello, non si ripassa per la stessa strada.",
           "booking": {
             "status": "none",
             "where": "",
             "when": ""
           }
-        }
-      ],
-      "gaps": "auto",
-      "summary": "Spedizione valigie + Castello → Takayama",
-      "moves": "Shinkansen + Hida EXP",
-      "budgetEur": 120
-    },
-    {
-      "date": "2026-11-12",
-      "weekday": "gio",
-      "title": "Takayama → Shirakawa-gō → Nagoya",
-      "base": "Nagoya",
-      "baseId": "nagoya",
-      "status": "draft",
-      "notes": "2 biglietti, 2 siti · aprono 12 ott",
-      "items": [
+        },
         {
-          "id": "d12-01",
-          "time": "07:30",
-          "title": "Miyagawa morning market: colazione lungo il fiume",
+          "id": "d11-09",
+          "time": "13:25",
+          "end": "14:05",
+          "title": "Takayama Jinya",
           "type": "sight",
           "fixed": false,
           "optional": false,
-          "costEur": 5,
-          "costEstimate": true,
+          "costEur": 3,
+          "costEstimate": false,
           "costNote": "",
-          "place": "Miyagawa Morning Market",
-          "mapsQuery": "Miyagawa Morning Market Takayama",
-          "note": "",
-          "placeId": "miyagawa-morning-market",
+          "place": "Takayama Jinya",
+          "mapsQuery": "Takayama Jinya",
+          "note": "Ultimo ingresso alle 16:00: quasi 2 ore di margine. Biglietto ¥500; si entra scalzi e il palazzo chiede di portarsi un sacchetto per le scarpe.",
+          "nick": "Il palazzo del governatore dello shōgun",
+          "image": {
+            "url": "assets/img/places/takayama-jinya.webp",
+            "credit": "Alexkom000 · CC BY 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:2024-10-27_Takayama_Jinya.jpg",
+            "alt": "Il palazzo del governatore dello shōgun"
+          },
+          "placeId": "takayama-jinya",
           "booking": {
             "status": "none",
             "where": "",
@@ -2217,39 +2274,158 @@
           }
         },
         {
-          "id": "d12-02",
-          "time": "09:35",
-          "end": "10:25",
-          "title": "Bus Nohi → Shirakawa-go (arr 10:25)",
-          "type": "bus",
-          "fixed": true,
+          "id": "d11-10",
+          "time": "14:05",
+          "end": "14:10",
+          "title": "Nakabashi",
+          "type": "sight",
+          "fixed": false,
           "optional": false,
-          "costEur": 15,
+          "costEur": 0,
           "costEstimate": false,
-          "costNote": "",
-          "place": "Shirakawa-go",
-          "mapsQuery": "Shirakawa-go",
-          "note": "Fallback 8:50 senza prenot. · Prenotare 12 ott su japanbusonline.com · ¥2.800",
+          "costNote": "gratis",
+          "place": "Nakabashi",
+          "mapsQuery": "Nakabashi Bridge Takayama",
+          "note": "Il ponte rosso sul fiume, 150 m a est del palazzo: si attraversa verso le vie vecchie. Ci si ripassa al tramonto scendendo dalla collina.",
+          "nick": "Il ponte rosso sul fiume",
+          "image": {
+            "url": "assets/img/places/nakabashi.webp",
+            "credit": "K.F. · CC BY 2.5 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Nakabashi_at_hida_takayama.jpg",
+            "alt": "Il ponte rosso sul fiume"
+          },
+          "placeId": "nakabashi-bridge",
           "booking": {
-            "status": "todo",
-            "where": "japanbusonline.com",
-            "when": "12 ott"
+            "status": "none",
+            "where": "",
+            "when": ""
           }
         },
         {
-          "id": "d12-03",
-          "time": "10:45",
-          "title": "Ogimachi",
+          "id": "d11-11",
+          "time": "14:10",
+          "end": "14:25",
+          "title": "Funasaka Shuzō (distilleria di sake)",
+          "type": "nightlife",
+          "fixed": false,
+          "optional": false,
+          "costEur": 5,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Funasaka Shuzō (distilleria di sake)",
+          "mapsQuery": "Funasaka Sake Brewery Takayama",
+          "note": "La distilleria sta all'imbocco sud delle vie vecchie, 90 m dal ponte (aperta fino alle 18): un bicchiere nel 'bar del magazzino' prima di risalire le vie verso nord",
+          "nick": "La cantina di sake con degustazione in centro",
+          "image": {
+            "url": "assets/img/places/funasaka-sake.webp",
+            "credit": "Kat Clay from Sydney, Australia · CC BY 2.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Sake_shop_-Takayama.jpg",
+            "alt": "La cantina di sake con degustazione in centro"
+          },
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d11-12",
+          "time": "14:25",
+          "end": "14:55",
+          "title": "Sanmachi Suji",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 3,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Sanmachi Suji",
+          "mapsQuery": "Sanmachi Suji Takayama",
+          "note": "Le vie di legno con le botteghe aperte (chiudono verso le 17), percorse da sud a nord (~400 m): assaggi di sake, dolcetti di riso, artigiani. Se c'è fame, il sushi di manzo su cracker di riso (Kotte Ushi, ¥600 per 2 pezzi) è su questa via: 5' in piedi.",
+          "nick": "Le tre vie di case di legno scuro",
+          "image": {
+            "url": "assets/img/places/sanmachi-suji.webp",
+            "credit": "663highland · CC BY-SA 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:260922_Sanmachi_Takayama_Japan02s3.jpg",
+            "alt": "Le tre vie di case di legno scuro"
+          },
+          "placeId": "sanmachi-suji",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d11-13",
+          "time": "14:55",
+          "end": "15:25",
+          "title": "Takayama Shōwa-kan",
+          "type": "sight",
+          "fixed": false,
+          "optional": true,
+          "costEur": 6,
+          "costEstimate": false,
+          "costNote": "¥1.200 (adulti)",
+          "place": "Takayama Shōwa-kan",
+          "mapsQuery": "Takayama Showa-kan",
+          "note": "In fondo alle vie vecchie verso nord, 100 m più su: è sulla strada per la collina, nessun ritorno indietro. Il museo degli anni '50-'60 (giocattoli, cinema, bottega) chiude alle 17, ¥1.200. Se si è in ritardo si salta e si sale subito sulla collina: più luce per i templi.",
+          "nick": "Il museo degli anni '50-'60 con giocattoli e cinema",
+          "image": {
+            "url": "assets/img/places/showa-kan.webp",
+            "credit": "R. Fred Williams · CC BY-SA 2.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:%E9%AB%98%E5%B1%B1%E6%98%AD%E5%92%8C%E9%A4%A8_(41691517394).jpg",
+            "alt": "Il museo degli anni '50-'60 con giocattoli e cinema"
+          },
+          "placeId": "takayama-showa-kan",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d11-14",
+          "time": "15:25",
+          "end": "15:35",
+          "title": "A piedi verso nord-est fino al capo nord della passeggiata…",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "A piedi verso nord-est fino al capo nord della passeggiata dei templi · ~520 m, 10' in salita leggera · Si attraversa il torrente Enako e si sale al santuario Higashiyama Hakusan: la passeggiata si fa da nord a sud, così si finisce scendendo verso il ponte e la città.",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d11-15",
+          "time": "15:35",
+          "end": "16:40",
+          "title": "Higashiyama Yūhodō",
           "type": "sight",
           "fixed": false,
           "optional": false,
           "costEur": 0,
           "costEstimate": false,
           "costNote": "",
-          "place": "Ogimachi (Shirakawa-gō)",
-          "mapsQuery": "Ogimachi Village Shirakawa-go",
-          "note": "Il villaggio gassho-zukuri",
-          "placeId": "villaggio-di-ogimachi",
+          "place": "Higashiyama Yūhodō",
+          "mapsQuery": "Higashiyama Walking Course Takayama",
+          "note": "Da nord a sud: santuario Hakusan → Daiō-ji → Sogen-ji → Tenshō-ji → Zennō-ji → Sōyū-ji → parco del vecchio castello (~1,3 km in linea d'aria, ~1,7 km di sentiero). Templi e cimiteri fra gli alberi, gratis, nessuno in giro. Si fa con la luce: tramonto ~16:50, alle 16:40 si è già all'ultimo tratto nel parco. Non si sale in cima al castello: si resta sul sentiero basso.",
+          "nick": "La passeggiata dei templi sulla collina",
+          "image": {
+            "url": "assets/img/places/higashiyama-walk.webp",
+            "credit": "Sjaak Kempe from Groningen, The Netherlands · CC BY 2.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:20131010_51_Takayama_-_Higashiyama_Walking_Course_(10491225116).jpg",
+            "alt": "La passeggiata dei templi sulla collina"
+          },
+          "placeId": "higashiyama-walking-course",
           "booking": {
             "status": "none",
             "where": "",
@@ -2257,19 +2433,19 @@
           }
         },
         {
-          "id": "d12-04",
-          "time": "11:15",
-          "title": "Shiroyama Viewpoint (navetta o 15' a piedi)",
-          "type": "sight",
+          "id": "d11-16",
+          "time": "16:40",
+          "end": "16:55",
+          "title": "Discesa dal parco del castello per le scale del tempio…",
+          "type": "transfer",
           "fixed": false,
           "optional": false,
-          "costEur": 2,
+          "costEur": 0,
           "costEstimate": false,
           "costNote": "",
-          "place": "Shiroyama Viewpoint",
-          "mapsQuery": "Shiroyama Viewpoint Shirakawa-go",
-          "note": "La cartolina di Shirakawa",
-          "placeId": "shiroyama-viewpoint",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Discesa dal parco del castello per le scale del tempio Shōren-ji fino al ponte rosso · ~510 m, 10-15', verso nord-ovest · al crepuscolo (~16:50): il ponte rosso e il fiume con le prime luci, la foto della giornata.",
           "booking": {
             "status": "none",
             "where": "",
@@ -2277,14 +2453,15 @@
           }
         },
         {
-          "id": "d12-05",
-          "time": "12:30",
-          "title": "Pranzo soba / hōba miso",
-          "type": "food",
+          "id": "d11-17",
+          "time": "16:55",
+          "end": "17:10",
+          "title": "A piedi verso ovest fino all'hotel (~650 m, 11')",
+          "type": "transfer",
           "fixed": false,
           "optional": false,
-          "costEur": 14,
-          "costEstimate": true,
+          "costEur": 0,
+          "costEstimate": false,
           "costNote": "",
           "place": "",
           "mapsQuery": "",
@@ -2296,19 +2473,19 @@
           }
         },
         {
-          "id": "d12-06",
-          "time": "13:30",
-          "title": "Wada House + eventualmente Kanda House / Myōzen-ji",
-          "type": "sight",
+          "id": "d11-18",
+          "time": "17:10",
+          "end": "17:20",
+          "title": "In hotel",
+          "type": "transfer",
           "fixed": false,
           "optional": false,
-          "costEur": 4,
+          "costEur": 0,
           "costEstimate": false,
           "costNote": "",
-          "place": "Wada House",
-          "mapsQuery": "Wada House Shirakawa-go",
-          "note": "Dentro una casa gassho",
-          "placeId": "wada-house",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Check-in, chiave, zaini in camera · la strada per le terme passa comunque davanti all'hotel (si attraversa la ferrovia nel passaggio coperto della stazione).",
           "booking": {
             "status": "none",
             "where": "",
@@ -2316,59 +2493,160 @@
           }
         },
         {
-          "id": "d12-07",
-          "time": "15:30",
-          "end": "18:16",
-          "title": "Bus Gifu → Nagoya Meitetsu Bus Center (arr 18:16)",
-          "type": "bus",
-          "fixed": true,
-          "optional": false,
-          "costEur": 20,
-          "costEstimate": false,
-          "costNote": "",
-          "place": "Nagoya Meitetsu Bus Center",
-          "mapsQuery": "Nagoya Meitetsu Bus Center",
-          "note": "Prenotare 12 ott su highwaybus.com · ¥3.600-4.700",
-          "booking": {
-            "status": "todo",
-            "where": "highwaybus.com",
-            "when": "12 ott"
-          }
-        },
-        {
-          "id": "d12-08",
-          "time": "18:30",
-          "title": "Check-in Glocal Nagoya (Meieki)",
-          "type": "lodging",
-          "fixed": true,
+          "id": "d11-19",
+          "time": "17:20",
+          "end": "17:30",
+          "title": "A piedi alle terme, lato ovest della stazione",
+          "type": "transfer",
+          "fixed": false,
           "optional": false,
           "costEur": 0,
           "costEstimate": false,
           "costNote": "",
-          "place": "Glocal Nagoya Backpackers",
-          "mapsQuery": "Glocal Nagoya Backpackers Hostel",
-          "note": "",
-          "stayId": "nagoya",
+          "place": "",
+          "mapsQuery": "",
+          "note": "~600 m, 10', verso sud-ovest",
           "booking": {
-            "status": "done",
+            "status": "none",
             "where": "",
             "when": ""
           }
         },
         {
-          "id": "d12-09",
-          "time": "19:30",
-          "title": "Yabaton",
-          "type": "food",
+          "id": "d11-20",
+          "time": "17:30",
+          "end": "18:30",
+          "title": "Tenryō no Yu (Takayama Green Hotel, bagno per esterni)",
+          "type": "onsen",
           "fixed": false,
           "optional": true,
-          "costEur": 14,
-          "costEstimate": true,
+          "costEur": 8,
+          "costEstimate": false,
           "costNote": "",
-          "place": "Yabaton",
-          "mapsQuery": "Yabaton Yabacho Nagoya",
-          "note": "Miso-katsu di benvenuto",
-          "placeId": "yabaton",
+          "place": "Tenryō no Yu (Takayama Green Hotel, bagno per esterni)",
+          "mapsQuery": "Takayama Green Hotel Tenryo no Yu",
+          "note": "Bagno caldo prima di cena (dopo il sake il bagno caldo è sconsigliato): 15-22, ultimo ingresso alle 21:00, ¥1.500 con asciugamano piccolo. Tatuaggi: la FAQ ufficiale dell'hotel (in inglese) dice che chi copre il tatuaggio con un cerotto o un adesivo può entrare: per il tatuaggio piccolo sul braccio basta il cerotto. Piano B: se alla cassa fanno storie, chi ha il tatuaggio torna in hotel (bagno privato, 10') e raggiunge gli altri da Ajihei alle 18:45.",
+          "nick": "Le terme vere a 6' dalla stazione",
+          "image": {
+            "url": "assets/img/places/tenryo-no-yu.webp",
+            "credit": "Opqr · CC BY-SA 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Takayama_green_hotel.jpg",
+            "alt": "Le terme vere a 6' dalla stazione"
+          },
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d11-21",
+          "time": "18:30",
+          "end": "18:45",
+          "title": "A piedi verso nord-est all'osteria",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Ripassando dal passaggio della stazione · ~920 m, 15'",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d11-22",
+          "time": "18:45",
+          "end": "20:15",
+          "title": "Cena all'osteria dei locali",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 20,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Taishū Izakaya Ajihei",
+          "mapsQuery": "Ajihei Takayama izakaya",
+          "note": "Osteria anni '80 (17-24, ultimo ordine 23, aperta tutti i giorni): cucina di Hida, sake locali, i sottaceti di cavolo saltati con l'uovo; carte e ICOCA ok. Prenotabile su Hot Pepper: conviene prenotare le 18:45 per 4 (di mercoledì sera è il locale dei residenti).",
+          "nick": "L'osteria anni '80 dove mangiano quelli di Takayama",
+          "image": {
+            "url": "assets/img/places/ajihei.webp",
+            "credit": "そらみみ · CC BY-SA 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Night_view_near_Takayama_Station_20150122-2.JPG",
+            "alt": "L'osteria anni '80 dove mangiano quelli di Takayama"
+          },
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d11-23",
+          "time": "20:15",
+          "end": "20:20",
+          "title": "A piedi verso est al vicolo dei baretti (~240 m, 4')",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d11-24",
+          "time": "20:20",
+          "end": "22:30",
+          "title": "Dekonaru Yokochō",
+          "type": "nightlife",
+          "fixed": false,
+          "optional": false,
+          "costEur": 15,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Dekonaru Yokochō",
+          "mapsQuery": "Dekonaru Yokocho Takayama",
+          "note": "Il vicolo dei baretti: sake locali al banco (bar Lucca, aperto il mercoledì), banco in piedi, ravioli, spiedini fritti, ramen di Takayama; si cambia posto quando si vuole. Di mercoledì sono chiusi la griglia di manzo e frattaglie, l'osteria di oden e il tiro a segno",
+          "nick": "Il vicolo dei baretti dove si beve sake di sera",
+          "image": {
+            "url": "assets/img/places/dekonaru-yokocho.webp",
+            "credit": "Harald Johnsen · CC BY-SA 3.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Takayama_Old_Town_At_Night_(135528503).jpeg",
+            "alt": "Il vicolo dei baretti dove si beve sake di sera"
+          },
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d11-25",
+          "time": "22:30",
+          "end": "22:40",
+          "title": "Rientro a piedi in hotel (~450 m, 8', verso sud-ovest)",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Takayama si spegne presto: se si vuole un ultimo bicchiere, Ajihei (240 m indietro) resta aperta fino a mezzanotte, ultimo ordine alle 23.",
           "booking": {
             "status": "none",
             "where": "",
@@ -2377,9 +2655,823 @@
         }
       ],
       "gaps": "auto",
-      "summary": "Shirakawa-go → Nagoya",
-      "moves": "Nohi 9:35 + Gifu bus 15:30",
-      "budgetEur": 110
+      "summary": "Valigie partite ieri sera: alle 7:58 si sale sul treno panoramico diretto da Osaka (biglietti non riservati già in tasca, in fila sul binario alle 7:30), senza cambi, e alle 12:14 si è a Takayama. Pranzo seduto di ramen, palazzo del governatore, vie di legno con le botteghe aperte, sake, templi sulla collina, poi terme, osteria e il vicolo dei baretti.",
+      "budgetEur": 127,
+      "extras": [
+        {
+          "id": "hida-kotte-ushi",
+          "nick": "Il sushi di manzo servito su un cracker di riso",
+          "name": "Hida Kotte Ushi",
+          "type": "food",
+          "verdict": "top",
+          "duration": "15'",
+          "costEur": 5,
+          "costNote": "2 pezzi ¥600, 3 pezzi ¥900 (Mapple; 2026 n.v.)",
+          "mapsQuery": "Hida Kotte Ushi Takayama",
+          "image": {
+            "url": "assets/img/places/hida-kotte-ushi.webp",
+            "credit": "Miyuki Meinaka · CC BY-SA 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Sushi,_Hida_Beef.jpg",
+            "alt": "Il sushi di manzo servito su un cracker di riso"
+          }
+        },
+        {
+          "id": "maruaki",
+          "nick": "Il manzo Hida alla griglia della macelleria",
+          "name": "Hida-gyū Maruaki (ristorante)",
+          "type": "food",
+          "verdict": "top",
+          "duration": "1h15",
+          "costEur": 30,
+          "costNote": "~¥4.000-7.000 a testa a seconda del taglio (stima; il listino online è del 2021). Prenotazione online NON attiva: si va senza o si telefona",
+          "mapsQuery": "Maruaki Hida Takayama",
+          "image": {
+            "url": "assets/img/places/maruaki.webp",
+            "credit": "Ankur P from Pune, India · CC BY 2.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Grilling_Hida_Beef_(Takayama_Street_Food)_(35910429046).jpg",
+            "alt": "Il manzo Hida alla griglia della macelleria"
+          }
+        },
+        {
+          "id": "yatai-kaikan",
+          "nick": "I carri giganti della festa d'autunno",
+          "name": "Takayama Matsuri Yatai Kaikan",
+          "type": "museo",
+          "verdict": "consigliato",
+          "duration": "45'",
+          "costEur": 5,
+          "costNote": "¥1.000",
+          "mapsQuery": "Takayama Festival Floats Exhibition Hall",
+          "image": {
+            "url": "assets/img/places/yatai-kaikan.webp",
+            "credit": "Daderot · CC0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Takayama_Festival_Float_Exhibition_Hall_-_Takayama,_Gifu,_Japan_-_DSC06503.jpg",
+            "alt": "I carri giganti della festa d'autunno"
+          }
+        },
+        {
+          "id": "sakurayama-hachimangu",
+          "nick": "Il santuario della festa, fra i cedri",
+          "name": "Sakurayama Hachimangū",
+          "type": "tempio",
+          "verdict": "consigliato",
+          "duration": "20'",
+          "costEur": 0,
+          "costNote": "gratis",
+          "mapsQuery": "Sakurayama Hachimangu",
+          "image": {
+            "url": "assets/img/places/sakurayama-hachimangu.webp",
+            "credit": "KimonBerlin · CC BY-SA 2.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Sakurayama_Hachimangu_Shrine_(11273179124).jpg",
+            "alt": "Il santuario della festa, fra i cedri"
+          }
+        },
+        {
+          "id": "kyoya",
+          "nick": "La casa di legno col focolare e il manzo cotto sulla foglia",
+          "name": "Kyōya",
+          "type": "food",
+          "verdict": "consigliato",
+          "duration": "1h15",
+          "costEur": 25,
+          "costNote": "~¥3.000-6.000 (stima)",
+          "mapsQuery": "Kyoya Takayama",
+          "image": {
+            "url": "assets/img/places/kyoya.webp",
+            "credit": "inazakira · CC BY-SA 2.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:%E9%A3%9B%E9%A8%A8%E3%81%AE%E9%83%B7%E5%9C%9F%E6%96%99%E7%90%86_(25441874934).jpg",
+            "alt": "La casa di legno col focolare e il manzo cotto sulla foglia"
+          }
+        },
+        {
+          "id": "hida-kokubunji",
+          "nick": "Il tempio con la pagoda e il ginkgo di 1.200 anni",
+          "name": "Hida Kokubun-ji",
+          "type": "tempio",
+          "verdict": "opzionale",
+          "duration": "10'",
+          "costEur": 0,
+          "costNote": "cortile gratis (sala interna a pagamento, n.v.)",
+          "mapsQuery": "Hida Kokubunji Takayama",
+          "image": {
+            "url": "assets/img/places/hida-kokubunji.webp",
+            "credit": "Ginkgotree · Public domain · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Ginkgo_Tree_Hida_Kokubunji_Temple.jpg",
+            "alt": "Il tempio con la pagoda e il ginkgo di 1.200 anni"
+          }
+        },
+        {
+          "id": "hie-jinja",
+          "nick": "Il santuario con gli aceri rossi in fondo al viale",
+          "name": "Hie Jinja (Sannō-sama)",
+          "type": "tempio",
+          "verdict": "opzionale",
+          "duration": "30'",
+          "costEur": 0,
+          "costNote": "gratis",
+          "mapsQuery": "Hie Shrine Takayama",
+          "image": {
+            "url": "assets/img/places/hie-jinja.webp",
+            "credit": "Miyuki Meinaka · CC BY-SA 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Sand%C5%8D_of_Hie_Shrine,_Takayama.jpg",
+            "alt": "Il santuario con gli aceri rossi in fondo al viale"
+          }
+        },
+        {
+          "id": "hida-no-sato",
+          "nick": "Il villaggio-museo delle case di paglia vicino a Takayama",
+          "name": "Hida no Sato (Hida Folk Village)",
+          "type": "cultura",
+          "verdict": "sconsigliato",
+          "duration": "1h30",
+          "costEur": 4,
+          "costNote": "¥700",
+          "mapsQuery": "Hida Folk Village",
+          "image": {
+            "url": "assets/img/places/hida-no-sato.webp",
+            "credit": "Celuici · CC BY-SA 3.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Hida_Folk_Village,_May_2017.jpg",
+            "alt": "Il villaggio-museo delle case di paglia vicino a Takayama"
+          }
+        },
+        {
+          "id": "yoshijima-house",
+          "nick": "La casa del mercante con le travi a vista",
+          "name": "Yoshijima Heritage House",
+          "type": "cultura",
+          "verdict": "sconsigliato",
+          "duration": "30'",
+          "costEur": 3,
+          "costNote": "¥500",
+          "mapsQuery": "Yoshijima Heritage House",
+          "image": {
+            "url": "assets/img/places/yoshijima-house.webp",
+            "credit": "663highland · CC BY-SA 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:260922_Yoshijima_Heritage_House_Takayama_Japan01s3.jpg",
+            "alt": "La casa del mercante con le travi a vista"
+          }
+        }
+      ]
+    },
+    {
+      "date": "2026-11-12",
+      "weekday": "gio",
+      "title": "Bus all'alba per Shirakawa-gō, il villaggio intero, sera a Nagoya",
+      "base": "Nagoya",
+      "baseId": "nagoya",
+      "status": "final",
+      "notes": "",
+      "items": [
+        {
+          "id": "d12-01",
+          "time": "06:30",
+          "end": "06:45",
+          "title": "Check-out dal Country Hotel con gli zaini in spalla",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Chiave alla reception 24h · Colazione al volo: konbini accanto alla stazione, o al mercato.",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-02",
+          "time": "06:45",
+          "end": "07:00",
+          "title": "A piedi verso est al fiume Miyagawa (~530 m, 9')",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Facoltativo: se si preferisce dormire 20' in più, si va dritti al terminal alle 7:30.",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-03",
+          "time": "07:00",
+          "end": "07:20",
+          "title": "Colazione al mercato sul fiume",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 8,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Miyagawa Asaichi (mercato del mattino)",
+          "mapsQuery": "Miyagawa Morning Market",
+          "note": "Apre alle 7:00: giro veloce di 20' fra i banchi (dolcetti di riso alla griglia, caffè caldo). Facoltativo, si decide sul momento.",
+          "nick": "Il mercato della mattina lungo il fiume",
+          "image": {
+            "url": "assets/img/places/miyagawa-asaichi.webp",
+            "credit": "bryan... from Taipei, Taiwan · CC BY-SA 2.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Hida-Takayama_Miyagawa_Morning_Market_(15668520238).jpg",
+            "alt": "Il mercato della mattina lungo il fiume"
+          },
+          "placeId": "miyagawa-morning-market",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-04",
+          "time": "07:20",
+          "end": "07:35",
+          "title": "A piedi verso ovest al terminal Nohi accanto alla stazione",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "~1 km, 15'",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-05",
+          "time": "07:35",
+          "end": "07:50",
+          "title": "Terminal bus Nohi",
+          "type": "bus",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Takayama Nohi Bus Center, aperto dalle 6:15 · Biglietto elettronico nell'email Japan Bus Online: si mostra al conducente prima di salire.",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-06",
+          "time": "07:50",
+          "end": "08:40",
+          "title": "Bus Nohi Takayama 7:50 → Shirakawa-gō (Ogimachi) 8:40",
+          "type": "bus",
+          "fixed": true,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Shirakawa-gō",
+          "mapsQuery": "Shirakawa-gō",
+          "note": "Comprato il 12 ott su Japan Bus Online, posti 7C 7D 8C 8D. E-ticket nell'email: si mostra al conducente. Linea per Kanazawa: si scende alla fermata «Shirakawa-go (Ogimachi)». Niente toilette a bordo.",
+          "booking": {
+            "status": "done",
+            "where": "japanbusonline.com",
+            "when": "12 ott"
+          }
+        },
+        {
+          "id": "d12-07",
+          "time": "08:40",
+          "end": "09:05",
+          "title": "Shirakawa-gō",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "A piedi su per il sentiero fino al belvedere (15-20' in salita); zaini in spalla · Si arriva prima di tutti i pullman delle gite: il belvedere è vuoto. La navetta (¥200-300) parte accanto alla casa Wada, orari da verificare sul posto.",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-08",
+          "time": "09:05",
+          "end": "09:35",
+          "title": "Shiroyama Tenshukaku (belvedere)",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 2,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Shiroyama Tenshukaku (belvedere)",
+          "mapsQuery": "Shiroyama Viewpoint Shirakawa-go",
+          "note": "Per primo, appena scesi dal bus, prima che arrivino i pullman delle gite: la vista di tutto il villaggio dall'alto",
+          "nick": "La vista da cartolina sul villaggio dall'alto",
+          "image": {
+            "url": "assets/img/places/shiroyama-viewpoint.webp",
+            "credit": "Alpsdake · CC BY-SA 3.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Shirakawa-go_from_Shiroyama.JPG",
+            "alt": "La vista da cartolina sul villaggio dall'alto"
+          },
+          "placeId": "shiroyama-viewpoint",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-09",
+          "time": "09:35",
+          "end": "09:55",
+          "title": "Discesa a piedi per il sentiero fino al villaggio",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-10",
+          "time": "09:55",
+          "end": "10:30",
+          "title": "Wada-ke (casa Wada)",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 3,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Wada-ke (casa Wada)",
+          "mapsQuery": "Wada House Shirakawa-go",
+          "note": "La casa di paglia più grande, abitata ancora oggi: i piani alti dove si allevavano i bachi da seta (aperta 9-17). Da qui in poi si scende sempre verso sud.",
+          "nick": "La casa di paglia più grande, da visitare dentro",
+          "image": {
+            "url": "assets/img/places/wada-house.webp",
+            "credit": "小石川人晃 · CC BY-SA 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Wada_House_(Shirakawa_Village,_Gifu_Prefecture)_02.jpg",
+            "alt": "La casa di paglia più grande, da visitare dentro"
+          },
+          "placeId": "wada-house",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-11",
+          "time": "10:30",
+          "end": "10:32",
+          "title": "A piedi verso sud alla casa Kanda (~250 m)",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-12",
+          "time": "10:32",
+          "end": "11:05",
+          "title": "Kanda-ke (casa Kanda)",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 3,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Kanda-ke (casa Kanda)",
+          "mapsQuery": "Kanda House Shirakawa-go",
+          "note": "Apre alle 10:00.",
+          "nick": "La casa di 5 piani con le finestre sul villaggio",
+          "image": {
+            "url": "assets/img/places/kanda-house.webp",
+            "credit": "DimiTalen · CC0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Kanda_House,_Ogimachi,_Shirakawa.jpg",
+            "alt": "La casa di 5 piani con le finestre sul villaggio"
+          },
+          "placeId": "kanda-house",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-13",
+          "time": "11:05",
+          "end": "11:30",
+          "title": "Nagase-ke (casa Nagase)",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 3,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Nagase-ke (casa Nagase)",
+          "mapsQuery": "Nagase House Shirakawa-go",
+          "note": "La casa dei medici con l'altare di 500 anni (aperta 9-16 secondo japan-guide). Prima cosa da tagliare se si è in ritardo",
+          "nick": "La casa dei medici con l'altare di 500 anni",
+          "image": {
+            "url": "assets/img/places/nagase-house.webp",
+            "credit": "小石川人晃 · CC BY-SA 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Nagase_House_in_Shirakawago_(Shirakawa_Village,_Gifu_Prefecture).jpg",
+            "alt": "La casa dei medici con l'altare di 500 anni"
+          },
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-14",
+          "time": "11:30",
+          "end": "12:30",
+          "title": "Pranzo presto al focolare",
+          "type": "food",
+          "fixed": false,
+          "optional": false,
+          "costEur": 9,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Oshokujidokoro Irori",
+          "mapsQuery": "Irori Shirakawa-go",
+          "note": "Pranzo al focolare presto, prima della folla (aperto 10-14).",
+          "nick": "Il pranzo di soba attorno al focolare",
+          "image": {
+            "url": "assets/img/places/irori-shirakawa.webp",
+            "credit": "Savannah Rivka · CC BY-SA 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Irori_at_Shirakawa-go_(195).jpg",
+            "alt": "Il pranzo di soba attorno al focolare"
+          },
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-15",
+          "time": "12:30",
+          "end": "12:50",
+          "title": "Myōzen-ji",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 3,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Myōzen-ji",
+          "mapsQuery": "Myozenji Shirakawa-go",
+          "note": "Il tempio col tetto di paglia (8:30-17). Se si è in ritardo, si guarda solo da fuori (gratis) e si salta l'interno: seconda cosa da tagliare",
+          "nick": "Il tempio col tetto di paglia",
+          "image": {
+            "url": "assets/img/places/myozen-ji.webp",
+            "credit": "小石川人晃 · CC BY-SA 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Myozenji_Temple_(Shirakawa_Village,_Gifu_Prefecture)_01.jpg",
+            "alt": "Il tempio col tetto di paglia"
+          },
+          "placeId": "myozen-ji-museo",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-16",
+          "time": "12:50",
+          "end": "13:00",
+          "title": "A piedi sul ponte sospeso oltre il fiume (~260 m)",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-17",
+          "time": "13:00",
+          "end": "14:00",
+          "title": "Gasshō-zukuri Minkaen",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 5,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Gasshō-zukuri Minkaen",
+          "mapsQuery": "Gassho-zukuri Minkaen",
+          "note": "Il museo all'aperto (¥800, aperto 8:40-17, ultimo ingresso 16:40) sta subito oltre il ponte: si entra nelle case senza folla. È l'ultima cosa da sacrificare: se si arriva dopo le 14:45 conviene solo la passeggiata sul ponte",
+          "nick": "Il museo all'aperto delle case di paglia oltre il ponte sospeso",
+          "image": {
+            "url": "assets/img/places/gassho-minkaen.webp",
+            "credit": "663highland · CC BY 2.5 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Gasshodukuri-minkaen14n4272.jpg",
+            "alt": "Il museo all'aperto delle case di paglia oltre il ponte sospeso"
+          },
+          "placeId": "gassho-zukuri-minkaen",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-18",
+          "time": "14:00",
+          "end": "15:30",
+          "title": "Tempo libero nel villaggio",
+          "type": "free",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Caffè nella casa di paglia, passeggiata fra le risaie, foto. Se il bus del ritorno si sposta alle 14:30 questo blocco salta.",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-19",
+          "time": "15:30",
+          "end": "15:55",
+          "title": "Fila per il bus delle 15:55; bagno al terminal prima",
+          "type": "bus",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Niente toilette a bordo: bagno al terminal prima di salire. Sui bus autostradali non si sta in piedi: se si perde questa corsa serve un biglietto nuovo, se ci sono posti (17:15, arrivo 20:00, l'ultima).",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-20",
+          "time": "15:55",
+          "end": "18:41",
+          "title": "Bus Gifu n. 13803 Shirakawa-gō 15:55 → Nagoya Meitetsu Bus…",
+          "type": "bus",
+          "fixed": true,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Nagoya Meitetsu Bus Center",
+          "mapsQuery": "Nagoya Meitetsu Bus Center",
+          "note": "Comprato il 12 ott su highwaybus.com, posti 01A-01D in prima fila. Mobile Ticket sul telefono, copia nell'email: si mostra al conducente. Arrivo al Meitetsu Bus Center, sopra la stazione. Niente toilette a bordo. Altre corse dello stesso giorno: 14:30, 15:30 e 17:15 (con toilette).",
+          "booking": {
+            "status": "done",
+            "where": "highwaybus.com",
+            "when": "12 ott"
+          }
+        },
+        {
+          "id": "d12-21",
+          "time": "18:41",
+          "end": "19:00",
+          "title": "A piedi all'ostello Glocal",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Glocal Nagoya Backpackers",
+          "mapsQuery": "Glocal Nagoya Backpackers Hostel",
+          "note": "Noritake 1-21-3, lato ovest della stazione, ~820 m verso nord-ovest, ~15' · Dal bus center si attraversa la stazione verso l'uscita ovest (Taikō-dōri). Il check-in è aperto 16:00-22:30 (reception 9:00-22:30, niente check-in dopo), quindi nessuna corsa.",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-22",
+          "time": "19:00",
+          "end": "19:15",
+          "title": "Check-in al Glocal",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Glocal Nagoya Backpackers",
+          "mapsQuery": "Glocal Nagoya Backpackers Hostel",
+          "note": "Camera quadrupla privata, bagno in comune",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-23",
+          "time": "19:15",
+          "end": "20:45",
+          "title": "Cena a caso a Nagoya",
+          "type": "free",
+          "fixed": false,
+          "optional": false,
+          "costEur": 15,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Si decide lì, senza prenotare: un quartierino di localini a ~20' a piedi dall'ostello (galleria coperta vecchio stile e vicolo dei magazzini), oppure una delle tre specialità vicino alla stazione: alette di pollo pepate (5' dall'ostello), cotoletta al miso o ramen piccante (5-8').",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d12-24",
+          "time": "20:45",
+          "title": "Serata libera",
+          "type": "free",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Letto presto o primo giro nella Nagoya notturna · a 2 fermate di metro dalla stazione; il grosso della movida è nei giorni seguenti",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        }
+      ],
+      "gaps": "auto",
+      "summary": "Il bus delle 9:35 era esaurito: si parte alle 7:50 (prenotato) e si arriva al villaggio prima dei pullman, belvedere vuoto. Giro completo di case, pranzo al focolare e museo all'aperto, poi bus delle 15:55 per Nagoya e cena libera.",
+      "budgetEur": 100,
+      "dayTrip": "Shirakawa",
+      "extras": [
+        {
+          "id": "sakurayama-hachimangu",
+          "nick": "Il santuario della festa, fra i cedri",
+          "name": "Sakurayama Hachimangū",
+          "type": "tempio",
+          "verdict": "consigliato",
+          "duration": "20'",
+          "costEur": 0,
+          "costNote": "gratis",
+          "mapsQuery": "Sakurayama Hachimangu",
+          "image": {
+            "url": "assets/img/places/sakurayama-hachimangu.webp",
+            "credit": "KimonBerlin · CC BY-SA 2.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Sakurayama_Hachimangu_Shrine_(11273179124).jpg",
+            "alt": "Il santuario della festa, fra i cedri"
+          }
+        },
+        {
+          "id": "jinya-mae-asaichi",
+          "nick": "Il mercatino davanti al palazzo del governatore",
+          "name": "Jinya-mae Asaichi",
+          "type": "mercato",
+          "verdict": "consigliato",
+          "duration": "15'",
+          "costEur": 3,
+          "costNote": "assaggi ¥100-500",
+          "mapsQuery": "Jinya-mae Morning Market Takayama",
+          "image": {
+            "url": "assets/img/places/jinya-mae-asaichi.webp",
+            "credit": "KimonBerlin · CC BY-SA 2.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Morning_market_(11272886764).jpg",
+            "alt": "Il mercatino davanti al palazzo del governatore"
+          }
+        },
+        {
+          "id": "yabaton-esca",
+          "nick": "La cotoletta con la salsa di miso, il piatto di Nagoya",
+          "name": "Yabaton (galleria Esca, stazione di Nagoya)",
+          "type": "food",
+          "verdict": "consigliato",
+          "duration": "1h",
+          "costEur": 9,
+          "costNote": "cotoletta al miso ~¥1.500",
+          "mapsQuery": "Yabaton Esca Nagoya",
+          "image": {
+            "url": "assets/img/places/yabaton-esca.webp",
+            "credit": "Totti · CC BY-SA 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Warajikatsu_Yabaton.jpg",
+            "alt": "La cotoletta con la salsa di miso, il piatto di Nagoya"
+          }
+        },
+        {
+          "id": "misen-jr-nagoya",
+          "nick": "Il ramen piccantissimo 'di Taiwan' inventato a Nagoya",
+          "name": "Misen (stazione JR di Nagoya)",
+          "type": "food",
+          "verdict": "consigliato",
+          "duration": "45'",
+          "costEur": 8,
+          "costNote": "ramen ~¥800-1.000 (stima)",
+          "mapsQuery": "Misen JR Nagoya Station",
+          "image": {
+            "url": "assets/img/places/misen-jr-nagoya.webp",
+            "credit": "Kanesue · CC BY 2.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Misen_Taiwan_Ramen_20180929.jpg",
+            "alt": "Il ramen piccantissimo 'di Taiwan' inventato a Nagoya"
+          }
+        },
+        {
+          "id": "ochiudo",
+          "nick": "Il caffè dentro una casa di paglia, col dolce al focolare",
+          "name": "Kissa Ochiudo",
+          "type": "food",
+          "verdict": "opzionale",
+          "duration": "20'",
+          "costEur": 5,
+          "costNote": "~¥700 (stima)",
+          "mapsQuery": "Kissa Ochiudo Shirakawa-go",
+          "image": {
+            "url": "assets/img/places/ochiudo.webp",
+            "credit": "Savannah Rivka · CC BY-SA 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Cafe_at_Shirakawa-go_in_Gifu,_Japan_(212).jpg",
+            "alt": "Il caffè dentro una casa di paglia, col dolce al focolare"
+          }
+        },
+        {
+          "id": "hida-kokubunji",
+          "nick": "Il tempio con la pagoda e il ginkgo di 1.200 anni",
+          "name": "Hida Kokubun-ji",
+          "type": "tempio",
+          "verdict": "opzionale",
+          "duration": "10'",
+          "costEur": 0,
+          "costNote": "cortile gratis (sala interna a pagamento, n.v.)",
+          "mapsQuery": "Hida Kokubunji Takayama",
+          "image": {
+            "url": "assets/img/places/hida-kokubunji.webp",
+            "credit": "Ginkgotree · Public domain · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Ginkgo_Tree_Hida_Kokubunji_Temple.jpg",
+            "alt": "Il tempio con la pagoda e il ginkgo di 1.200 anni"
+          }
+        }
+      ]
     },
     {
       "date": "2026-11-13",
@@ -2641,22 +3733,22 @@
       "items": [
         {
           "id": "d15-01",
-          "time": "08:30",
-          "end": "10:30",
-          "title": "Nagoya → Mishima (Kodama) + locale → Numazu",
+          "time": "08:43",
+          "end": "10:18",
+          "title": "Hikari 640 Nagoya 8:43 → Mishima 9:57, locale → Numazu",
           "type": "train",
           "fixed": true,
           "optional": false,
-          "costEur": 54,
+          "costEur": 46.65,
           "costEstimate": false,
           "costNote": "",
           "place": "Numazu",
           "mapsQuery": "Numazu Station",
-          "note": "2h01 · arrivo ~10:30",
+          "note": "Comprato il 13 ott su smartEX. Posti assegnati il 15 ott via email; al tornello QR dell'app o carta IC registrata. A Mishima locale delle 10:12 → Numazu 10:18, con la carta IC (¥190).",
           "booking": {
-            "status": "todo",
+            "status": "done",
             "where": "smartEX",
-            "when": "15 ott 3:00-16:30 (ora italiana)"
+            "when": "13 ott"
           }
         },
         {
@@ -2880,7 +3972,7 @@
       ],
       "gaps": "auto",
       "summary": "Numazu + Uchiura (Love Live)",
-      "moves": "Kodama+locale; Tokai bus",
+      "moves": "Hikari + locale; bus Tōkai",
       "budgetEur": 150
     },
     {
@@ -3084,27 +4176,27 @@
         },
         {
           "id": "d17-02",
-          "time": "10:30",
-          "end": "12:35",
-          "title": "Sunzu → Mishima + Kodama → Tokyo",
+          "time": "12:35",
+          "end": "15:05",
+          "title": "Odoriko 4 Shuzenji 12:35 → Shinagawa 14:43, Yamanote → Yoyogi",
           "type": "train",
           "fixed": true,
           "optional": false,
-          "costEur": 32,
+          "costEur": 25.68,
           "costEstimate": false,
           "costNote": "",
-          "place": "Tokyo",
-          "mapsQuery": "Tokyo Station",
-          "note": "2h05",
+          "place": "Shinagawa",
+          "mapsQuery": "Shinagawa Station",
+          "note": "Diretto, posti riservati: si prenota dal 17 ott su Eki-net (JR East). Dal paese di Shuzenji alla stazione: bus, ¥300. Si scende a Shinagawa e si prende la Yamanote fino a Yoyogi, ~20'.",
           "booking": {
             "status": "todo",
-            "where": "smartEX",
-            "when": "17 ott 3:00-16:30 (ora italiana)"
+            "where": "Eki-net (JR East)",
+            "when": "17 ott"
           }
         },
         {
           "id": "d17-03",
-          "time": "13:00",
+          "time": "15:10",
           "title": "Check-in Yume-no-ya (Yoyogi)",
           "type": "lodging",
           "fixed": true,
@@ -3114,7 +4206,7 @@
           "costNote": "",
           "place": "Yume-no-ya Yoyogi #203",
           "mapsQuery": "夢の舎 代々木 Yoyogi Tokyo",
-          "note": "Poi ritiro 4 valigie all'ufficio Yamato Yoyogi 2-chome (12-20) con passaporto · ufficio ~10' a piedi · conservazione fino al 22",
+          "note": "Self check-in con key box: il codice arriva per email verso le 11. Poi ritiro delle 4 valigie all'ufficio Yamato Yoyogi 2-chome (feriali 12-20) con il passaporto · ufficio ~10' a piedi · custodia fino al 22",
           "stayId": "tokyo",
           "booking": {
             "status": "done",
@@ -3124,7 +4216,7 @@
         },
         {
           "id": "d17-04",
-          "time": "15:00",
+          "time": "16:15",
           "title": "Shibuya",
           "type": "sight",
           "fixed": false,
@@ -3144,7 +4236,7 @@
         },
         {
           "id": "d17-05",
-          "time": "16:00",
+          "time": "16:45",
           "title": "Center Gai + giro di Shibuya",
           "type": "sight",
           "fixed": false,
@@ -3225,7 +4317,7 @@
       ],
       "gaps": "auto",
       "summary": "→ Tokyo; bagagli; Shibuya",
-      "moves": "Sunzu → Mishima → Tokyo",
+      "moves": "bus → Shuzenji Sta.; Odoriko → Shinagawa; Yamanote",
       "budgetEur": 70
     },
     {
@@ -3964,17 +5056,17 @@
         {
           "id": "d24-03",
           "time": "11:20",
-          "end": "13:35",
-          "title": "Limousine Bus da Busta Shinjuku 4° piano → Narita T1 13:35",
+          "end": "13:15",
+          "title": "Limousine Bus da Busta Shinjuku 4° piano → Narita T1 13:15",
           "type": "bus",
           "fixed": true,
           "optional": false,
           "costEur": 19.5,
           "costEstimate": false,
           "costNote": "",
-          "place": "Busta Shinjuku",
-          "mapsQuery": "Busta Shinjuku",
-          "note": "Da prenotare online, ~fine ott · ¥3.600 · orario ufficiale · 2 valigie/pax ≤50×60×120 ≤30 kg in stiva → 8 ok · alt. N'EX ¥3.250",
+          "place": "Narita T1",
+          "mapsQuery": "Narita T1",
+          "note": "Da prenotare online verso fine ottobre · ¥3.600 · 2 valigie a testa in stiva, fino a 50×60×120 cm e 30 kg: le 8 valigie ci stanno · in alternativa N'EX, ¥3.250",
           "booking": {
             "status": "todo",
             "where": "limousinebus.co.jp (carta) · alt. N'EX",
@@ -3983,7 +5075,7 @@
         },
         {
           "id": "d24-04",
-          "time": "13:55",
+          "time": "13:15",
           "title": "Aeroporto NRT",
           "type": "logistics",
           "fixed": false,
@@ -3991,8 +5083,8 @@
           "costEur": 0,
           "costEstimate": false,
           "costNote": "",
-          "place": "Narita Airport T1",
-          "mapsQuery": "Narita International Airport Terminal 1",
+          "place": "NRT",
+          "mapsQuery": "NRT Tokyo",
           "note": "Check-in volo",
           "booking": {
             "status": "none",

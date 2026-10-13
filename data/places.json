@@ -353,8 +353,7 @@
       "layer": "Osaka (7-11 nov)",
       "mapNote": "11 mattina 8:30",
       "dayDates": [
-        "2026-11-08",
-        "2026-11-11"
+        "2026-11-08"
       ]
     },
     {
@@ -1460,7 +1459,10 @@
       "flag": "",
       "source": "💡",
       "note": "Unico ufficio governativo Edo rimasto in Giappone; ~440 yen",
-      "mapsQuery": "Takayama Jinya"
+      "mapsQuery": "Takayama Jinya",
+      "dayDates": [
+        "2026-11-11"
+      ]
     },
     {
       "id": "higashiyama-walking-course",
@@ -1472,7 +1474,10 @@
       "flag": "",
       "source": "💡",
       "note": "Sentiero tra ~13 templi e Shiroyama park; tranquillo, gratis",
-      "mapsQuery": "Higashiyama Walking Course Takayama"
+      "mapsQuery": "Higashiyama Walking Course Takayama",
+      "dayDates": [
+        "2026-11-11"
+      ]
     },
     {
       "id": "hida-folk-village",
@@ -1532,7 +1537,10 @@
       "flag": "",
       "source": "💡",
       "note": "Ponte rosso iconico sul Miyagawa, foto e foliage; gratis",
-      "mapsQuery": "Nakabashi Bridge Takayama"
+      "mapsQuery": "Nakabashi Bridge Takayama",
+      "dayDates": [
+        "2026-11-11"
+      ]
     },
     {
       "id": "yoshijima-heritage-house",
@@ -1568,10 +1576,7 @@
       "flag": "",
       "source": "💡",
       "note": "Nigiri di manzo Hida, spiedini, croquette a Sanmachi; ~500-800 yen",
-      "mapsQuery": "Hida beef Sanmachi Takayama",
-      "dayDates": [
-        "2026-11-11"
-      ]
+      "mapsQuery": "Hida beef Sanmachi Takayama"
     },
     {
       "id": "takayama-showa-kan",
@@ -1583,7 +1588,10 @@
       "flag": "",
       "source": "💡",
       "note": "Nostalgia anni Showa immersiva; ~1.000 yen",
-      "mapsQuery": "Takayama Showa-kan"
+      "mapsQuery": "Takayama Showa-kan",
+      "dayDates": [
+        "2026-11-11"
+      ]
     },
     {
       "id": "villaggio-di-ogimachi",
@@ -1597,10 +1605,7 @@
       "note": "Il gassho village principale; gratis passeggiare",
       "mapsQuery": "Ogimachi Shirakawa-go",
       "layer": "Takayama & Shirakawa-gō (11-12)",
-      "mapNote": "12 · gassho-zukuri",
-      "dayDates": [
-        "2026-11-12"
-      ]
+      "mapNote": "12 · gassho-zukuri"
     },
     {
       "id": "shiroyama-viewpoint",
@@ -1648,7 +1653,10 @@
       "note": "Interno gassho su 4 piani con irori; ~400 yen",
       "mapsQuery": "Kanda House Shirakawa-go",
       "layer": "Takayama & Shirakawa-gō (11-12)",
-      "mapNote": "(opz.) 12"
+      "mapNote": "(opz.) 12",
+      "dayDates": [
+        "2026-11-12"
+      ]
     },
     {
       "id": "myozen-ji-museo",
@@ -1662,7 +1670,10 @@
       "note": "Tempio con tetto gassho e museo di vita rurale; ~400 yen",
       "mapsQuery": "Myozenji Shirakawa-go",
       "layer": "Takayama & Shirakawa-gō (11-12)",
-      "mapNote": "(opz.) 12"
+      "mapNote": "(opz.) 12",
+      "dayDates": [
+        "2026-11-12"
+      ]
     },
     {
       "id": "gassho-zukuri-minkaen",
@@ -1674,7 +1685,10 @@
       "flag": "",
       "source": "💡",
       "note": "Case gassho traslocate, artigianato; ~600 yen",
-      "mapsQuery": "Shirakawa-go Gassho-zukuri Minkaen"
+      "mapsQuery": "Shirakawa-go Gassho-zukuri Minkaen",
+      "dayDates": [
+        "2026-11-12"
+      ]
     },
     {
       "id": "deai-bridge",
@@ -2096,10 +2110,7 @@
       "note": "Tempio del miso-katsu (cotoletta con salsa di miso); ~1.500 yen",
       "mapsQuery": "Yabaton Yabacho Nagoya",
       "layer": "Nagoya (12-14)",
-      "mapNote": "(opz.) 12 sera",
-      "dayDates": [
-        "2026-11-12"
-      ]
+      "mapNote": "(opz.) 12 sera"
     },
     {
       "id": "sekai-no-yamachan",

@@ -118,6 +118,7 @@ export async function render(root, { trip, loadData }) {
     <section class="card stack small">
       <p class="muted">Le barre delle due tabelle usano la stessa scala.${rate ? html` Cambio usato: <span class="mono">€1 = ¥${rate}</span>${trip.fx.source ? ` (${trip.fx.source}${trip.fx.asOf ? ` ${fmtDate(trip.fx.asOf, { weekday: false, year: true })}` : ''})` : ''}; gli importi in ¥ sono indicativi.` : ''}</p>
       ${(b.notes || []).length ? html`<ul class="al-notes muted">${b.notes.map((n) => html`<li>${n}</li>`)}</ul>` : ''}
+      ${internalLinks(b.links)}
     </section>`);
   wire(root);
 }

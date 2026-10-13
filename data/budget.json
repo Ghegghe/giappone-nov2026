@@ -16,7 +16,7 @@
       {
         "name": "Alloggi (tutte le basi)",
         "detail": "Prenotazioni reali divise per persona",
-        "eur": 725.35,
+        "eur": 730.19,
         "estimate": false,
         "links": [
           {
@@ -77,14 +77,14 @@
       }
     ],
     "commonTotalEur": 883.06,
-    "totalEur": 2765.61
+    "totalEur": 2770.45
   },
   "group": {
-    "totalEur": 11062.44
+    "totalEur": 11081.8
   },
   "paidSoFar": {
-    "lodgingEurGroup": 2901.4,
-    "lodgingEurGroupPaid": 1534.42,
+    "lodgingEurGroup": 2920.77,
+    "lodgingEurGroupPaid": 1553.79,
     "lodgingEurGroupToPay": 1366.98,
     "flightsEurGroup": 3224
   },
@@ -107,17 +107,17 @@
     {
       "date": "2026-11-10",
       "eurPlanned": 58,
-      "eurAgenda": 58.5
+      "eurAgenda": 72.5
     },
     {
       "date": "2026-11-11",
-      "eurPlanned": 120,
-      "eurAgenda": 103
+      "eurPlanned": 127,
+      "eurAgenda": 65
     },
     {
       "date": "2026-11-12",
-      "eurPlanned": 110,
-      "eurAgenda": 74
+      "eurPlanned": 100,
+      "eurAgenda": 51
     },
     {
       "date": "2026-11-13",
@@ -183,5 +183,11 @@
   "notes": [
     "Le voci con «stima» sono indicative. Il concerto è escluso (biglietto a parte, 1 persona).",
     "Lo Yasudaya si paga in contanti in yen: nel totale alloggi è convertito in euro al cambio del sito."
+  ],
+  "links": [
+    {
+      "href": "conto.html",
+      "label": "Spese già anticipate: il conto per i rimborsi"
+    }
   ]
 }

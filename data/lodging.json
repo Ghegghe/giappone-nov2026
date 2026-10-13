@@ -19,7 +19,12 @@
       "paid": true,
       "notes": [
         "Appartamento con cucina, tutto per voi.",
-        "Namba è a 8 minuti di metro."
+        "Namba è a 8 minuti di metro.",
+        "Self check-in senza reception: tablet nella lobby e operatore collegato a distanza, che controlla i passaporti originali di tutti e 4.",
+        "Check-in dalle 16:00, senza anticipo. Check-out entro le 10:00.",
+        "Il codice del portone arriva per email 2 giorni prima; il codice di check-in è nell'email di conferma.",
+        "Deposito bagagli self-service al 1° piano, solo nel giorno di arrivo e in quello di partenza: borse chiudibili con lucchetto.",
+        "Nessuna pulizia durante il soggiorno."
       ]
     },
     {
@@ -31,8 +36,8 @@
       "checkIn": "2026-11-11",
       "checkOut": "2026-11-12",
       "nights": 1,
-      "checkInTime": "",
-      "checkOutTime": "",
+      "checkInTime": "15:00",
+      "checkOutTime": "10:00",
       "address": "",
       "mapsQuery": "Country Hotel Takayama",
       "status": "booked",
@@ -41,6 +46,7 @@
       "paid": false,
       "notes": [
         "Business hotel a 3 stelle, camere private con bagno.",
+        "Reception aperta 24 ore: check-in dalle 15:00, check-out entro le 10:00.",
         "Sanmachi è a circa 10 minuti a piedi."
       ],
       "payment": "da confermare"
@@ -54,7 +60,7 @@
       "checkIn": "2026-11-12",
       "checkOut": "2026-11-15",
       "nights": 3,
-      "checkInTime": "",
+      "checkInTime": "16:00",
       "checkOutTime": "",
       "address": "",
       "mapsQuery": "Glocal Nagoya Backpackers Hostel",
@@ -63,7 +69,8 @@
       "costEurPerPerson": 62.0,
       "paid": true,
       "notes": [
-        "Camera quadrupla privata economy, con bagno in comune. Confermata il 12 luglio."
+        "Camera quadrupla privata economy, con bagno in comune. Confermata il 12 luglio.",
+        "Check-in dalle 16:00 alle 22:30: dopo non si entra."
       ]
     },
     {
@@ -110,7 +117,7 @@
       "notes": [
         "Camera standard di 10 tatami con bagno onsen privato.",
         "Cena kaiseki in sala, con il menu del mese, e colazione jūbako. L'orario della cena, 18:00 o 18:30, si sceglie al check-in.",
-        "Arrivate entro le 19, altrimenti salta la cena.",
+        "Check-in dalle 15:00, arrivo entro le 19, altrimenti salta la cena. Check-out entro le 11:00.",
         "Cancellazione gratuita fino all'8 novembre. La tassa onsen, ¥150 a testa, si paga lì.",
         "Bagni comuni: il Tenpyō Daiyokudō del 1934 in hinoki e i rotenburo Komorebi-no-yu e Sekka. Con i tatuaggi non si entra.",
         "Con i tatuaggi: il bagno privato Hisui, gratis e senza prenotazione; il Suiren, ¥1.100 per 45 minuti, da prenotare appena arrivati; oppure il bagno in camera.",
@@ -127,17 +134,19 @@
       "checkIn": "2026-11-17",
       "checkOut": "2026-11-24",
       "nights": 7,
-      "checkInTime": "",
-      "checkOutTime": "",
-      "address": "Yoyogi 1-chome, Shibuya-ku, Tokyo",
+      "checkInTime": "15:00",
+      "checkOutTime": "11:00",
+      "address": "1-4-1 Yoyogi, Shibuya-ku, Tokyo 151-0053",
       "mapsQuery": "夢の舎 代々木 Yoyogi Tokyo",
       "status": "booked",
-      "costEurTotal": 968.42,
+      "costEurTotal": 987.79,
       "costEurPerPerson": 242.1,
       "paid": true,
       "notes": [
         "Appartamento di 25 m² tutto per voi, con 2 letti matrimoniali: si dorme in coppia.",
-        "Shinjuku è a circa 20 minuti a piedi.",
+        "Self check-in con key box dalle 15:00: il codice arriva per email la mattina del 17, verso le 11. Check-out entro le 11:00.",
+        "Prima dell'arrivo va compilato il modulo di pre-registrazione, con i passaporti di tutti: il link è nell'email di conferma.",
+        "Le valigie spedite con Yamato si ritirano dopo il check-in: l'ufficio è aperto nei feriali dalle 12 alle 20, a circa 10 minuti a piedi.",
         "Casa in legno del 1983, rumorosa: i tappi per le orecchie ci sono. Niente ascensore."
       ]
     }
@@ -149,8 +158,8 @@
         {
           "phase": "Spedizione",
           "what": "Spedite le 4 valigie all'ufficio Yamato di Yoyogi",
-          "when": "mer 11 nov, ore 8:00",
-          "notes": "Una valigia a testa, taglia 160, ¥2.630 l'una: circa €14. Si spedisce dall'ufficio Yamato Osaka-Nakazaki, a 5 minuti dal BON, che non ha reception. Non dal konbini: da lì il ritiro in ufficio non si può scegliere. La valigia fa da imballo. Data di consegna da chiedere: 16 novembre, al massimo 7 giorni dopo. Il servizio si chiama 営業所受け取りサービス.",
+          "when": "mar 10 nov, sera, entro le 21",
+          "notes": "Una valigia a testa, taglia 160, circa ¥2.500 l'una: circa €14. Si spediscono dall'ufficio Yamato Osaka-Umeda (Umeshin), Taiyūji-chō 1-17, palazzo Umeda Asuka: circa 12 minuti a piedi dal BON, aperto tutti i giorni fino alle 21. Non dal konbini: da lì il ritiro in ufficio non si può scegliere. Una bolla per valigia, con la casella «ritiro in ufficio» e consegna il 16 novembre. Tenete le ricevute: servono al ritiro con il passaporto. Il servizio si chiama 営業所受け取りサービス.",
           "id": "bag-1"
         },
         {
@@ -162,9 +171,9 @@
         },
         {
           "phase": "Ritiro",
-          "what": "Ritirate le valigie all'ufficio Yamato 渋谷代々木2丁目営業所, Yoyogi 2-23-1-127",
-          "when": "mar 17 nov, dopo le 12",
-          "notes": "È aperto nei feriali dalle 12 alle 20, e il 17 è martedì. Serve il passaporto. Le valigie restano lì fino a 7 giorni dall'arrivo. Dista circa 10 minuti a piedi da Yume-no-ya.",
+          "what": "Ufficio Yamato 渋谷代々木2丁目営業所 (Yoyogi 2-23-1-127)",
+          "when": "mar 17 nov, dopo le 12, dopo il check-in",
+          "notes": "Feriali 12-20 (il 17 è martedì) · passaporto · conservazione 7 gg dall'arrivo · ~10' a piedi da Yume-no-ya",
           "id": "bag-3"
         },
         {
@@ -187,7 +196,7 @@
         },
         {
           "name": "Osaka → ufficio Yamato Yoyogi (営業所受け取りサービス)",
-          "how": "Mer 11 nov ore 8:00: le 4 valigie all'ufficio Yamato Osaka-Nakazaki (大阪中崎営業所, Banzai-cho 5-9, 5' dal BON, feriali 8-20). Bolla cartacea (in inglese) col destinatario = ヤマト運輸 渋谷代々木2丁目営業所, 〒151-0053 Shibuya-ku Yoyogi 2-23-1-127 (cod. 132810), nome+cellulare nostro, spunta 'ricevi in ufficio', data desiderata 16 nov. Si paga cash/carta ¥2.630×4 (−¥100 cad. portandole). Mar 17 nov dopo le 12: ritiro con passaporto (ufficio feriali 12-20, chiuso sab/dom), ~10' a piedi da casa.",
+          "how": "Mar 10 nov sera, entro le 21: le 4 valigie all'ufficio Yamato Osaka-Umeda (Umeshin), Taiyūji-chō 1-17, palazzo Umeda Asuka, circa 12' a piedi dal BON. Bolla di carta col destinatario ヤマト運輸 渋谷代々木2丁目営業所, 〒151-0053 Shibuya-ku Yoyogi 2-23-1-127 (cod. 132810), casella «ritiro in ufficio», consegna 16 nov. Mar 17 nov dopo le 12: ritiro con il passaporto (ufficio feriali 12-20, chiuso sab/dom), circa 10' a piedi da casa.",
           "eurGroup": 57,
           "pro": "Nessuno deve aspettare in casa; indipendente dall'host; conservazione 7 gg dall'arrivo",
           "con": "Il servizio non si può usare spedendo da konbini: bisogna andare all'ufficio Yamato (o chiamare il ritiro, tel. inglese 0120-67-9625) · ultimo tratto a piedi con 4 valigie",
@@ -264,8 +273,8 @@
           "n": 4,
           "question": "Da dove si spedisce a Osaka, visto che il BON non ha reception?",
           "who": "Yamato FAQ a_id 1420",
-          "why": "Il ritiro in ufficio non si può scegliere se si spedisce da un konbini o da un PUDO.",
-          "answer": "Dall'ufficio Yamato 大阪中崎営業所, Osaka-Nakazaki: 〒530-0028 Kita-ku Banzai-cho 5-9. È aperto nei feriali dalle 8:00 alle 20:00, chiuso sabato e domenica, a 4 minuti da Nakazaki-cho e a circa 5 dal BON. L'11 novembre è mercoledì, quindi apre alle 8. In alternativa si chiama il ritiro a domicilio al numero inglese 0120-67-9625, dalle 8 alle 21, ma bisogna aspettare il corriere al BON.",
+          "why": "Il ritiro in ufficio non è disponibile se si spedisce da konbini/PUDO",
+          "answer": "Dall'ufficio Yamato Osaka-Umeda (Umeshin): Taiyūji-chō 1-17, palazzo Umeda Asuka, 〒530-0051, circa 12 minuti a piedi dal BON. È aperto tutti i giorni, la sera fino alle 21: le valigie si consegnano la sera del 10, perché l'11 il treno parte alle 7:58. L'ufficio di Banzai-chō indicato prima non esiste più.",
           "status": "resolved",
           "id": "q4"
         },
@@ -355,7 +364,7 @@
         "step": 6,
         "title": "BON Condominium Umeda",
         "where": "Nakazakinishi 3-1-4",
-        "details": "Non c'è reception. Il check-in apre alle 16:00 con il codice ricevuto via mail: tablet all'ingresso e chiave digitale. Prima delle 16 lasciate le valigie nel deposito self-service con lucchetto e fate un giro a Nakazakichō.",
+        "details": "Non c'è reception. Il check-in apre alle 16:00, senza anticipo: tablet nella lobby e operatore collegato a distanza, che controlla i passaporti originali di tutti. Il codice del portone arriva per email 2 giorni prima. Prima delle 16 lasciate le valigie nel deposito self-service al 1° piano, in borse chiuse con lucchetto, e fate un giro a Nakazakichō.",
         "cost": "",
         "id": "g1-6"
       }

@@ -5,107 +5,33 @@
       "kind": "intercity",
       "date": "2026-11-11",
       "from": "Osaka",
-      "to": "Nagoya",
-      "title": "Osaka → Nagoya",
+      "to": "Takayama",
+      "title": "Osaka → Takayama",
       "options": [
-        {
-          "id": "leg-1-1",
-          "name": "Shinkansen Nozomi/Hikari (posto riservato)",
-          "duration": "48 min",
-          "costEur": 42,
-          "chosen": true,
-          "note": "Passa circa ogni 10 minuti.",
-          "booking": {
-            "site": "smartEX",
-            "url": "https://smart-ex.jp/en",
-            "howToPay": "Serve un account, da creare prima. Si paga con una carta straniera con 3-D Secure: la Revolut fisica va bene.",
-            "howToCollect": "Ci sono tre modi. Il QR-Ticket: uno per passeggero da «My Trips», da inoltrare agli altri; al tornello esce il foglietto «Seat Information», che va tenuto. La ICOCA registrata: si inserisce il codice di 17 caratteri scritto sul retro e la si tappa al tornello. I biglietti di carta: alle macchinette col logo EX, da 3 giorni prima, con pickup code e password.",
-            "opens": "2026-10-11",
-            "opensNote": "dalle 3:00 alle 16:30, ora italiana",
-            "status": "todo",
-            "siteNote": ""
-          },
-          "noteShort": "Passa circa ogni 10 minuti.",
-          "noteMore": []
-        },
-        {
-          "id": "leg-1-2",
-          "name": "Kintetsu Hinotori",
-          "duration": "2h11",
-          "costEur": 34,
-          "chosen": false,
-          "note": "€8 in meno, 1 ora e mezza in più.",
-          "noteShort": "−€8, +1h30",
-          "noteMore": []
-        },
         {
           "id": "leg-1-3",
           "name": "Hida 25 diretto Osaka 7:58 → Takayama 12:14",
           "duration": "4h16",
-          "costEur": 46,
-          "chosen": false,
-          "note": "Diretto, senza cambio a Nagoya. Costa circa ¥8.450 in tutto, contro ¥12.000 di Shinkansen più Hida: €20 a testa in meno. Ma parte alle 7:58: niente Yamato alle 8 né castello, e la spedizione va spostata alla sera del 10. Una sola corsa al giorno, su e5489.",
-          "noteShort": "Salta il cambio a Nagoya",
-          "noteMore": [
-            "~¥8.450 tutto compreso vs ~¥12.000 Shinkansen+Hida: −€20/pax e nessun cambio, ma partenza 7:58 = niente Yamato alle 8 né castello (spedizione da spostare alla sera del 10)",
-            "1 corsa al giorno",
-            "e5489"
-          ]
-        },
-        {
-          "id": "leg-1-4",
-          "name": "Tokaido locale",
-          "duration": "2h36",
-          "costEur": 21,
-          "chosen": false,
-          "note": "Lento, con cambi.",
-          "noteShort": "Lento, cambi",
-          "noteMore": []
-        }
-      ]
-    },
-    {
-      "id": "leg-1b",
-      "kind": "intercity",
-      "date": "2026-11-11",
-      "from": "Nagoya",
-      "to": "Takayama",
-      "title": "Nagoya → Takayama",
-      "options": [
-        {
-          "id": "leg-1b-1",
-          "name": "JR Hida Limited Express 12:48 (posto riservato)",
-          "duration": "2h24",
-          "costEur": 34,
+          "costEur": 42.81,
           "chosen": true,
-          "note": "Costa circa ¥6.140-6.340. Si prenota su e5489 in inglese dall'11 ottobre, da ospite; il biglietto di carta si ritira alla macchinetta.",
-          "booking": {
-            "site": "JR-West Online Train Reservation",
-            "url": "https://westjr.co.jp/travel-information/en/tickets-passes/route-search/",
-            "howToPay": "Si prenota da ospite, senza account. JR accetta solo carte fisiche con il numero stampato: la Revolut fisica sì, la Trade Republic no. La carta si inserisce a ogni acquisto.",
-            "howToCollect": "Biglietti di carta, da ritirare a Shin-Osaka la mattina dell'11. Vanno bene le macchinette col marchio e5489 o gli sportelli delle stazioni JR West, Shikoku, Kyushu e Central. Servono la stessa carta fisica, il numero di identificazione di 4 cifre e il numero di prenotazione di 5 cifre, che inizia con 4, oppure il QR.",
-            "opens": "2026-10-11",
-            "opensNote": "dalle 3:00 alle 16:30, ora italiana",
-            "status": "todo",
-            "siteNote": ""
-          },
-          "noteShort": "",
+          "note": "Diretto, senza cambi. Parte dal binario 11 della stazione JR Osaka, a 12-13 minuti a piedi dal BON: sveglia alle 6:30, uscita alle 7:00, in stazione alle 7:13. ¥7.920 a testa.",
+          "noteShort": "Parte dal binario 11 della stazione JR Osaka, a 12-13 minuti a piedi dal BON.",
           "noteMore": [
-            "Costa circa ¥6.140-6.340."
-          ]
-        },
-        {
-          "id": "leg-1b-2",
-          "name": "Bus Nohi",
-          "duration": "2h50",
-          "costEur": 23,
-          "chosen": false,
-          "note": "€15 in meno, 26 minuti in più.",
-          "noteShort": "−€15, +26'",
-          "noteMore": []
+            "Sveglia alle 6:30, uscita alle 7:00, in stazione alle 7:13.",
+            "Il biglietto vale anche sugli altri Hida dello stesso giorno, in carrozza non riservata. Si può cambiare una volta sola."
+          ],
+          "booking": {
+            "site": "JR-West Online Train Reservation (e5489)",
+            "url": "https://www.westjr.co.jp/global/en/",
+            "status": "done",
+            "opens": "",
+            "opensNote": "Comprato il 12 ottobre, da ospite.",
+            "howToPay": "Pagato con carta fisica: serve la stessa carta per ritirare i biglietti.",
+            "howToCollect": "Biglietti di carta da ritirare la sera del 10 alla macchinetta JR West FUORI dai tornelli della stazione JR Osaka: si inserisce la carta fisica usata per pagare. In alternativa numero di prenotazione e codice, nell'email di conferma."
+          }
         }
       ],
-      "summary": "La carrozza 4 non è riservata e col foliage il treno si riempie."
+      "summary": "Comprato: 4 posti NON riservati. In fila sul binario 11 alle 7:25-7:30, davanti alla carrozza non riservata."
     },
     {
       "id": "leg-1c",
@@ -117,27 +43,29 @@
       "options": [
         {
           "id": "leg-1c-1",
-          "name": "Nohi Bus 9:35, arrivo 10:25",
-          "duration": "~50'",
-          "costEur": 15,
+          "name": "Nohi Bus 7:50 → Shirakawa-gō (Ogimachi) 8:40",
+          "duration": "50'",
+          "costEur": 15.14,
           "chosen": true,
-          "note": "Parte dal Takayama Bus Terminal, accanto alla stazione JR. Costa ¥2.800. Se non trovate posto c'è la corsa delle 8:50, senza prenotazione.",
+          "note": "Parte dal terminal Nohi accanto alla stazione JR, aperto dalle 6:15. ¥2.800 a testa. Linea per Kanazawa.",
           "booking": {
             "site": "japanbusonline.com",
             "url": "https://japanbusonline.com/en",
-            "howToPay": "Con carta. Pagate entro pochi giorni, altrimenti la prenotazione si cancella.",
-            "howToCollect": "E-ticket sul telefono.",
-            "opens": "2026-10-12",
-            "opensNote": "",
-            "status": "todo"
+            "howToPay": "Pagato con carta.",
+            "howToCollect": "E-ticket nell'email di conferma: si mostra al conducente prima di salire.",
+            "opens": "",
+            "opensNote": "Comprato il 12 ottobre.",
+            "status": "done"
           },
-          "noteShort": "Parte dal Takayama Bus Terminal, accanto alla stazione JR.",
+          "noteShort": "Parte dal terminal Nohi accanto alla stazione JR, aperto dalle 6:15.",
           "noteMore": [
-            "Costa ¥2.800.",
-            "Se non trovate posto c'è la corsa delle 8:50, senza prenotazione."
+            "¥2.800 a testa.",
+            "Linea per Kanazawa: si scende a «Shirakawa-go (Ogimachi)».",
+            "Sui bus autostradali non si sta in piedi."
           ]
         }
-      ]
+      ],
+      "summary": "Comprato. Si scende alla fermata «Shirakawa-go (Ogimachi)». Niente toilette a bordo."
     },
     {
       "id": "leg-1c-2",
@@ -149,26 +77,29 @@
       "options": [
         {
           "id": "leg-1c-2-1",
-          "name": "Gifu Bus 15:30 → Meitetsu Bus Center 18:16",
-          "duration": "~2h45",
-          "costEur": 20,
+          "name": "Gifu Bus 15:55 → Meitetsu Bus Center 18:41",
+          "duration": "2h46",
+          "costEur": 20.54,
           "chosen": true,
-          "note": "Altre corse alle 14:30, 15:55 e 18:25. La tariffa segue un calendario, da ¥3.600 a ¥4.700: il giovedì è C o D.",
+          "note": "Arriva al Meitetsu Bus Center, sopra la stazione di Nagoya. ¥3.800 a testa. Altre corse: 14:30, 15:30 e 17:15, quest'ultima con toilette; serve un biglietto nuovo, se ci sono posti.",
           "booking": {
             "site": "highwaybus.com",
             "url": "https://highwaybus.com",
-            "howToPay": "Con carta.",
-            "howToCollect": "E-ticket sul telefono.",
-            "opens": "2026-10-12",
-            "opensNote": "",
-            "status": "todo"
+            "howToPay": "Pagato con carta.",
+            "howToCollect": "Mobile Ticket sul telefono, copia nell'email: si mostra al conducente.",
+            "opens": "",
+            "opensNote": "Comprato il 12 ottobre.",
+            "status": "done"
           },
-          "noteShort": "Altre corse alle 14:30, 15:55 e 18:25.",
+          "noteShort": "Arriva al Meitetsu Bus Center, sopra la stazione di Nagoya.",
           "noteMore": [
-            "La tariffa segue un calendario, da ¥3.600 a ¥4.700: il giovedì è C o D."
+            "¥3.800 a testa.",
+            "Altre corse: 14:30, 15:30 e 17:15, quest'ultima con toilette; serve un biglietto nuovo, se ci sono posti.",
+            "Sui bus autostradali non si sta in piedi."
           ]
         }
-      ]
+      ],
+      "summary": "Comprato: posti in prima fila. Niente toilette a bordo: bagno al terminal prima di salire."
     },
     {
       "id": "leg-2",
@@ -180,45 +111,29 @@
       "options": [
         {
           "id": "leg-2-1",
-          "name": "Kodama → Mishima + locale",
-          "duration": "2h01",
-          "costEur": 54,
+          "name": "Hikari 640 Nagoya 8:43 → Mishima 9:57, poi locale → Numazu 10:18",
+          "duration": "1h35",
+          "costEur": 46.65,
           "chosen": true,
-          "note": "Un cambio a Mishima.",
+          "note": "A Mishima si cambia: treno locale delle 10:12, arrivo a Numazu alle 10:18, pagato con la carta IC (¥190). Lo Shinkansen costa ¥8.440 a testa.",
           "booking": {
             "site": "smartEX",
             "url": "https://smart-ex.jp/en",
-            "howToPay": "Serve un account, da creare prima. Si paga con una carta straniera con 3-D Secure: la Revolut fisica va bene.",
-            "howToCollect": "Ci sono tre modi. Il QR-Ticket: uno per passeggero da «My Trips», da inoltrare agli altri; al tornello esce il foglietto «Seat Information», che va tenuto. La ICOCA registrata: si inserisce il codice di 17 caratteri scritto sul retro e la si tappa al tornello. I biglietti di carta: alle macchinette col logo EX, da 3 giorni prima, con pickup code e password.",
-            "opens": "2026-10-15",
-            "opensNote": "dalle 3:00 alle 16:30, ora italiana",
-            "status": "todo",
+            "howToPay": "Pagato con carta su smartEX.",
+            "howToCollect": "Posti assegnati il 15 ottobre, comunicati via email. Al tornello si passa con il QR-Ticket dell'app, uno per passeggero da «My Trips», oppure con la carta IC registrata; esce il foglietto «Seat Information», da tenere.",
+            "opens": "",
+            "opensNote": "Comprato il 13 ottobre.",
+            "status": "done",
             "siteNote": ""
           },
-          "noteShort": "Un cambio a Mishima.",
-          "noteMore": []
-        },
-        {
-          "id": "leg-2-2",
-          "name": "Kodama → Shizuoka + locale",
-          "duration": "2h31",
-          "costEur": 46,
-          "chosen": false,
-          "note": "30 minuti in più.",
-          "noteShort": "+30'",
-          "noteMore": []
-        },
-        {
-          "id": "leg-2-3",
-          "name": "Tokaido locale",
-          "duration": "4h01",
-          "costEur": 25,
-          "chosen": false,
-          "note": "Quattro ore: mezza giornata.",
-          "noteShort": "4h = mezza giornata",
-          "noteMore": []
+          "noteShort": "A Mishima treno locale delle 10:12 → Numazu 10:18, con la carta IC (¥190).",
+          "noteMore": [
+            "Lo Shinkansen costa ¥8.440 a testa: il 15 novembre è stagione di punta.",
+            "Treno perso: con smartEX si sale gratis su uno Shinkansen successivo dello stesso giorno, in carrozza non riservata."
+          ]
         }
-      ]
+      ],
+      "summary": "Comprato su smartEX. Posti assegnati il 15 ottobre via email."
     },
     {
       "id": "leg-3",
@@ -232,11 +147,14 @@
           "id": "leg-3-1",
           "name": "Tokai Bus → Izu-Mito",
           "duration": "~35-40'",
-          "costEur": 6,
+          "costEur": 5.62,
           "chosen": true,
-          "note": "Il bus con la livrea delle Aqours.",
-          "noteShort": "Il bus con la livrea delle Aqours.",
-          "noteMore": []
+          "note": "Linee N22 o N24 dalla piattaforma 3. ¥1.040 fino a Mito Sea Paradise, con le tariffe Tōkai in vigore dal 1° ottobre 2026. Contanti o carta IC: una carta può pagare per più persone, ditelo all'autista prima.",
+          "noteShort": "Il bus con la livrea delle Aqours. ¥1.040, tariffe dal 1° ottobre 2026.",
+          "noteMore": [
+            "Linee N22 o N24 dalla piattaforma 3.",
+            "Contanti o carta IC: una carta può pagare per più persone, ditelo all'autista prima."
+          ]
         },
         {
           "id": "leg-3-2",
@@ -244,11 +162,12 @@
           "duration": "~35'",
           "costEur": 6,
           "chosen": false,
-          "note": "Orari alternativi.",
+          "note": "Alt. orari",
           "noteShort": "Alt. orari",
           "noteMore": []
         }
-      ]
+      ],
+      "summary": "Non si prenota. Bus Tōkai dalla stazione di Numazu, piattaforma 3: contanti o carta IC a bordo."
     },
     {
       "id": "leg-4",
@@ -262,11 +181,15 @@
           "id": "leg-4-1",
           "name": "Izuhakone bus + Sunzu",
           "duration": "1h05",
-          "costEur": 5,
+          "costEur": 4.65,
           "chosen": true,
-          "note": "Senza tornare indietro.",
+          "note": "Bus Izuhakone fino alla stazione di Izu-Nagaoka, ¥550, pagato a bordo. Poi la linea Sunzu fino a Shuzenji, ¥310, con carta IC o biglietto. Dalla stazione di Shuzenji al paese: bus Tōkai, ¥300.",
           "noteShort": "Senza tornare indietro.",
-          "noteMore": []
+          "noteMore": [
+            "Bus Izuhakone fino a Izu-Nagaoka, ¥550, a bordo.",
+            "Linea Sunzu fino a Shuzenji, ¥310, carta IC o biglietto.",
+            "Dalla stazione di Shuzenji al paese: bus Tōkai, ¥300."
+          ]
         },
         {
           "id": "leg-4-2",
@@ -274,11 +197,12 @@
           "duration": "1h43",
           "costEur": 10,
           "chosen": false,
-          "note": "Si torna indietro.",
+          "note": "Backtracking",
           "noteShort": "Backtracking",
           "noteMore": []
         }
-      ]
+      ],
+      "summary": "Non si prenota: bus Izuhakone fino a Izu-Nagaoka, poi la linea Sunzu fino a Shuzenji."
     },
     {
       "id": "leg-5",
@@ -289,34 +213,27 @@
       "title": "Shuzenji → Tokyo",
       "options": [
         {
-          "id": "leg-5-1",
-          "name": "Sunzu → Mishima + Kodama",
-          "duration": "2h05",
-          "costEur": 32,
-          "chosen": true,
-          "note": "Bagagli lo stesso giorno.",
-          "booking": {
-            "site": "smartEX",
-            "url": "https://smart-ex.jp/en",
-            "howToPay": "Serve un account, da creare prima. Si paga con una carta straniera con 3-D Secure: la Revolut fisica va bene.",
-            "howToCollect": "Ci sono tre modi. Il QR-Ticket: uno per passeggero da «My Trips», da inoltrare agli altri; al tornello esce il foglietto «Seat Information», che va tenuto. La ICOCA registrata: si inserisce il codice di 17 caratteri scritto sul retro e la si tappa al tornello. I biglietti di carta: alle macchinette col logo EX, da 3 giorni prima, con pickup code e password.",
-            "opens": "2026-10-17",
-            "opensNote": "dalle 3:00 alle 16:30, ora italiana",
-            "status": "todo",
-            "siteNote": ""
-          },
-          "noteShort": "Bagagli lo stesso giorno.",
-          "noteMore": []
-        },
-        {
           "id": "leg-5-2",
-          "name": "Sunzu + Odoriko",
-          "duration": "2h35",
-          "costEur": 28,
-          "chosen": false,
-          "note": "Panoramico.",
-          "noteShort": "Panoramico",
-          "noteMore": []
+          "name": "Odoriko 4 diretto Shuzenji 12:35 → Shinagawa 14:43",
+          "duration": "2h08",
+          "costEur": 25.68,
+          "chosen": true,
+          "note": "Treno diretto, posti riservati: ¥4.750 a testa. A Atami si aggancia un'altra parte del treno: si resta seduti. Tratto sul mare fra Atami e Odawara. A Tokyo Station arriverebbe alle 14:49.",
+          "noteShort": "Diretto, posti riservati. Tratto sul mare fra Atami e Odawara.",
+          "noteMore": [
+            "¥4.750 a testa.",
+            "A Atami si aggancia un'altra parte del treno: si resta seduti.",
+            "Shinagawa → Yoyogi con la Yamanote, circa 20 minuti."
+          ],
+          "booking": {
+            "site": "Eki-net (JR East)",
+            "url": "",
+            "status": "todo",
+            "opens": "2026-10-17",
+            "opensNote": "un mese prima, alle 10 giapponesi: le 3 di notte in Italia",
+            "howToPay": "Con carta. Il sito non si apre dall'Italia: carta straniera e tratto Izuhakone da provare al momento. Piano B: biglietto in stazione.",
+            "howToCollect": "Da verificare al momento della prenotazione."
+          }
         },
         {
           "id": "leg-5-3",
@@ -324,9 +241,44 @@
           "duration": "3h05",
           "costEur": 19,
           "chosen": false,
-          "note": "Un'ora in più, con cambi.",
+          "note": "+1h, cambi",
           "noteShort": "+1h, cambi",
           "noteMore": []
+        }
+      ],
+      "summary": "Diretto. Scendete a Shinagawa e prendete la Yamanote fino a Yoyogi, circa 20 minuti. Dal paese alla stazione di Shuzenji: bus, ¥300."
+    },
+    {
+      "id": "leg-14",
+      "kind": "intercity",
+      "date": "2026-11-14",
+      "from": "Nagoya",
+      "to": "Nagashima e Nabana no Sato",
+      "title": "Nagoya ⇄ Nagashima e Nabana no Sato",
+      "summary": "Non si prenota: biglietto al 3° piano del Meitetsu Bus Center il giorno stesso, o carta IC a bordo.",
+      "options": [
+        {
+          "id": "leg-14-1",
+          "name": "Bus Meitetsu dal Meitetsu Bus Center",
+          "duration": "~55'",
+          "costEur": 17.03,
+          "chosen": true,
+          "note": "Andata 13:30 dal 4° piano, banchina 22 → Nagashima Onsen 14:25 (orario del sabato), ¥1.400. Nagashima Onsen → Nabana, ¥550. Ritorno Nabana 20:25 → Bus Center 21:05, ¥1.200; l'ultima corsa è alle 21:05.",
+          "noteShort": "Si parte dal 4° piano del Meitetsu Bus Center, banchina 22.",
+          "noteMore": [
+            "Andata 13:30 → Nagashima Onsen 14:25 (orario del sabato), ¥1.400.",
+            "Nagashima Onsen → Nabana, ¥550.",
+            "Ritorno Nabana 20:25 → Bus Center 21:05, ¥1.200. Ultima corsa 21:05 → 21:45."
+          ],
+          "booking": {
+            "site": "",
+            "url": "",
+            "status": "none",
+            "opens": "",
+            "opensNote": "Non serve prenotare.",
+            "howToPay": "Al banco del 3° piano del Meitetsu Bus Center, o con la carta IC a bordo.",
+            "howToCollect": "Biglietto di carta, oppure carta IC."
+          }
         }
       ]
     }
@@ -481,20 +433,16 @@
           },
           "details": {
             "cost": "¥3.600 · €19,5 · ~2h10 da orario ufficiale (T3 → T2 → T1)",
-            "how": "Busta Shinjuku è lo Shinjuku Expressway Bus Terminal, Sendagaya 5-24-55. Si sale al 4° piano, fermate A1, A2 o B4 secondo l'orario. Da casa: una fermata di Yamanote da Yoyogi a Shinjuku, o 15 minuti a piedi. Orari da Busta a Narita T1: 11:00 → 13:15, 11:20 → 13:35, 11:40 → 13:50, 12:00 → 14:10, 12:20 → 14:25. In stiva 2 colli a persona, ognuno entro 50×60×120 cm e 30 kg. Non metteteci passaporto, valori o cose fragili, e al ritiro controllate che il collo sia il vostro. Si prenota online fino a 5 minuti prima, oppure alla macchinetta o al banco di Busta il giorno stesso.",
-            "booking": "Sì: online su limousinebus.co.jp con carta, verso fine ottobre. Consigliato il bus delle 11:20, che arriva alle 13:35, 3 ore e 20 prima del volo.",
+            "how": "Busta Shinjuku è lo Shinjuku Expressway Bus Terminal, Sendagaya 5-24-55. Si sale al 4° piano, fermate A1, A2 o B4 secondo l'orario. Da casa: una fermata di Yamanote da Yoyogi a Shinjuku, o 15 minuti a piedi. Orari da Busta a Narita T1: 11:20 → 13:15, 11:40 → 13:35. In stiva 2 colli a persona, ognuno entro 50×60×120 cm e 30 kg. Non metteteci passaporto, valori o cose fragili, e al ritiro controllate che il collo sia il vostro. Si prenota online fino a 5 minuti prima, oppure alla macchinetta o al banco di Busta il giorno stesso.",
+            "booking": "Sì: online su limousinebus.co.jp con carta, verso fine ottobre. Consigliato il bus delle 11:20, che arriva alle 13:15, 3 ore e 40 prima del volo.",
             "proCon": "Pro: le 8 valigie vanno in stiva per regolamento, e si scende davanti al terminal. Contro: il traffico può allungare il viaggio, quindi partite con margine."
           },
-          "noteShort": "orari ufficiali da Busta: 11:00 → T1 13:15",
+          "noteShort": "Da Busta Shinjuku: 11:20 → Narita T1 13:15.",
           "noteMore": [
-            "¥3.600",
-            "Prenotare online limousinebus.co.jp (fino a 5' prima; anche macchinetta a Busta il giorno stesso)",
-            "11:20 → 13:35",
-            "11:40 → 13:50",
-            "12:00 → 14:10",
-            "12:20 → 14:25",
-            "Stiva: 2 colli/pax ≤50×60×120 cm, ≤30 kg cad.",
-            "Imbarco Busta 4° piano fermate A1/A2/B4"
+            "¥3.600.",
+            "Da Busta: 11:20 → T1 13:15, oppure 11:40 → T1 13:35.",
+            "Stiva: 2 colli a testa, fino a 50×60×120 cm e 30 kg l'uno.",
+            "Si sale al 4° piano di Busta, fermate A1, A2 o B4."
           ]
         },
         {
@@ -557,61 +505,61 @@
         }
       ],
       "subtitle": "Volo 16:55, 8 valigie",
-      "summary": "Bus consigliato: le 11:20, arrivo a Narita T1 alle 13:35. In stiva vanno 2 valigie a testa."
+      "summary": "Bus consigliato: le 11:20, arrivo a Narita T1 alle 13:15. In stiva vanno 2 valigie a testa."
     }
   ],
-  "totalChosenEur": 237.2,
+  "totalChosenEur": 207.32,
   "bookingGuide": [
     {
-      "what": "Tre Shinkansen: 11, 15 e 17 novembre",
+      "what": "Shinkansen Hikari 640 Nagoya → Mishima, 15 novembre alle 8:43",
       "site": "smartEX",
       "url": "https://smart-ex.jp/en",
-      "when": "Si prenota un mese prima, alle 10 giapponesi: le 3 di notte in Italia. Le date sono l'11, il 15 e il 17 ottobre. Il sito chiude ogni giorno dalle 16:30 alle 22:30 italiane, dal 26 ottobre dalle 15:30 alle 21:30: prenotate di mattina.",
-      "payment": "Serve un account, da creare prima. Si paga con una carta straniera con 3-D Secure: la Revolut fisica va bene.",
-      "collect": "Ci sono tre modi. Il QR-Ticket: uno per passeggero da «My Trips», da inoltrare agli altri; al tornello esce il foglietto «Seat Information», che va tenuto. La ICOCA registrata: si inserisce il codice di 17 caratteri scritto sul retro e la si tappa al tornello. I biglietti di carta: alle macchinette col logo EX, da 3 giorni prima, con pickup code e password.",
-      "notes": "Le tratte sono Shin-Osaka → Nagoya l'11, Nagoya → Mishima il 15 e Mishima → Tokyo il 17. Posti normali, senza «oversize»: le valigie viaggiano con Yamato.",
+      "when": "Comprato il 13 ottobre.",
+      "payment": "Pagato con carta su smartEX.",
+      "collect": "Posti assegnati il 15 ottobre, comunicati via email. Al tornello si passa con il QR-Ticket dell'app, uno per passeggero da «My Trips», oppure con la carta IC registrata; esce il foglietto «Seat Information», da tenere.",
+      "notes": "Treno perso: si sale gratis su uno Shinkansen successivo dello stesso giorno, in carrozza non riservata. A Mishima il locale per Numazu si paga a parte con la carta IC, ¥190.",
       "id": "bg-shinkansen",
       "siteNote": ""
     },
     {
-      "what": "Hida Nagoya → Takayama, 11 novembre alle 12:48",
-      "site": "JR-West Online Train Reservation",
+      "what": "Hida 25 Osaka → Takayama, 11 novembre alle 7:58",
+      "site": "JR-West Online Train Reservation (e5489)",
       "url": "https://westjr.co.jp/travel-information/en/tickets-passes/route-search/",
-      "when": "Apre l'11 ottobre alle 10 giapponesi, le 3 di notte in Italia. Partite da westjr.co.jp, poi scegliete il treno Hida e la tratta Nagoya → Takayama.",
-      "payment": "Si prenota da ospite, senza account. JR accetta solo carte fisiche con il numero stampato: la Revolut fisica sì, la Trade Republic no. La carta si inserisce a ogni acquisto.",
-      "collect": "Biglietti di carta, da ritirare a Shin-Osaka la mattina dell'11. Vanno bene le macchinette col marchio e5489 o gli sportelli delle stazioni JR West, Shikoku, Kyushu e Central. Servono la stessa carta fisica, il numero di identificazione di 4 cifre e il numero di prenotazione di 5 cifre, che inizia con 4, oppure il QR.",
-      "notes": "È il treno che rischia di più di esaurirsi, per il foliage. La carrozza 4 non è riservata: non contateci.",
+      "when": "Comprato il 12 ottobre, da ospite.",
+      "payment": "Pagato con carta fisica: serve la stessa carta per ritirare i biglietti.",
+      "collect": "Biglietti di carta da ritirare la sera del 10 alla macchinetta JR West FUORI dai tornelli della stazione JR Osaka: si inserisce la carta fisica usata per pagare. In alternativa numero di prenotazione e codice, nell'email di conferma.",
+      "notes": "4 posti NON riservati: in fila sul binario 11 alle 7:25-7:30, davanti alla carrozza non riservata. Il biglietto vale sugli altri Hida dello stesso giorno, in non riservato. Si può cambiare una volta sola.",
       "id": "bg-hida",
       "siteNote": ""
     },
     {
-      "what": "Bus Nohi Takayama → Shirakawa-gō, 12 novembre alle 9:35",
+      "what": "Bus Nohi Takayama → Shirakawa-gō, 12 novembre alle 7:50",
       "site": "japanbusonline.com",
       "url": "https://japanbusonline.com/en",
-      "when": "Apre il 12 ottobre, un mese prima.",
-      "payment": "Con carta. Pagate entro pochi giorni, altrimenti la prenotazione si cancella.",
-      "collect": "E-ticket sul telefono.",
-      "notes": "Se non trovate posto c'è la corsa delle 8:50, senza prenotazione: il biglietto si compra al Takayama Bus Terminal.",
+      "when": "Comprato il 12 ottobre.",
+      "payment": "Pagato con carta.",
+      "collect": "E-ticket nell'email di conferma: si mostra al conducente.",
+      "notes": "Si scende alla fermata «Shirakawa-go (Ogimachi)», alle 8:40. Niente toilette a bordo. Sui bus autostradali non si sta in piedi.",
       "id": "bg-nohi"
     },
     {
-      "what": "Bus Gifu Shirakawa-gō → Nagoya, 12 novembre alle 15:30",
+      "what": "Bus Gifu Shirakawa-gō → Nagoya, 12 novembre alle 15:55",
       "site": "highwaybus.com",
       "url": "https://highwaybus.com",
-      "when": "Apre il 12 ottobre, un mese prima.",
-      "payment": "Con carta.",
-      "collect": "E-ticket sul telefono.",
-      "notes": "Arriva al Meitetsu Bus Center alle 18:16. La tariffa segue un calendario: da ¥3.600 a ¥4.700.",
+      "when": "Comprato il 12 ottobre.",
+      "payment": "Pagato con carta.",
+      "collect": "Mobile Ticket sul telefono, copia nell'email: si mostra al conducente.",
+      "notes": "Arriva al Meitetsu Bus Center alle 18:41. Niente toilette a bordo: bagno al terminal prima. Sui bus autostradali non si sta in piedi.",
       "id": "bg-gifu"
     },
     {
-      "what": "Limousine Bus Busta Shinjuku → Narita, 24 novembre alle 11:20",
+      "what": "Limousine Bus Busta Shinjuku → Narita 24 nov 11:20",
       "site": "limousinebus.co.jp",
       "url": "https://limousinebus.co.jp/en",
-      "when": "Verso fine ottobre.",
-      "payment": "Con carta.",
-      "collect": "Biglietto digitale. In stiva sono garantite 2 valigie a testa.",
-      "notes": "In alternativa c'è il N'EX, da prenotare su JR-East Train Reservation: ¥3.250.",
+      "when": "~fine ottobre",
+      "payment": "Carta",
+      "collect": "Biglietto digitale · 2 valigie/pax in stiva garantite",
+      "notes": "Arriva a Narita T1 alle 13:15. In alternativa c'è il N'EX, da prenotare su JR-East Train Reservation: ¥3.250.",
       "id": "bg-limousine"
     },
     {
@@ -640,10 +588,21 @@
           "label": "Scadenze"
         }
       ]
+    },
+    {
+      "id": "bg-odoriko",
+      "what": "Odoriko 4 Shuzenji → Shinagawa, 17 novembre alle 12:35",
+      "site": "Eki-net (JR East)",
+      "url": "",
+      "when": "Apre il 17 ottobre, un mese prima, alle 10 giapponesi: le 3 di notte in Italia.",
+      "payment": "Con carta. Il sito non si apre dall'Italia: carta straniera e tratto Izuhakone da provare al momento. Piano B: biglietto in stazione.",
+      "collect": "Da verificare al momento della prenotazione.",
+      "notes": "4 posti riservati, ¥4.750 a testa. Diretto fino a Shinagawa (14:43), poi Yamanote fino a Yoyogi."
     }
   ],
   "checklist": [
     {
+      "id": "ck-01",
       "when": "29 giu",
       "what": "Voli A/R (KIX in / NRT out)",
       "where": "Skyscanner/Google Flights",
@@ -652,6 +611,7 @@
       "whenDetail": ""
     },
     {
+      "id": "ck-02",
       "when": "giu",
       "what": "Concerto 14 nov. Biglietto (1 pax)",
       "where": "preso a giugno",
@@ -661,6 +621,7 @@
       "dateApprox": true
     },
     {
+      "id": "ck-03",
       "when": "10 lug",
       "what": "Alloggi Osaka · Nagoya · Tokyo · Uchiura",
       "where": "Booking/AirHost",
@@ -669,6 +630,7 @@
       "whenDetail": ""
     },
     {
+      "id": "ck-04",
       "when": "13 lug",
       "what": "Assicurazione viaggio (Heymondo Tranquillità)",
       "where": "heymondo.it (-10%)",
@@ -678,6 +640,7 @@
       "whenDetail": ""
     },
     {
+      "id": "ck-05",
       "when": "14 lug",
       "what": "Alloggio Takayama + ryokan Shuzenji (Arai)",
       "where": "Country Hotel · Arai Ryokan",
@@ -686,6 +649,7 @@
       "whenDetail": ""
     },
     {
+      "id": "ck-06",
       "when": "18 set",
       "what": "Bagagli: spediti all'ufficio Yamato Yoyogi · 1 valigia/pax all'andata, la 2ª si compra a Tokyo",
       "where": "",
@@ -700,6 +664,7 @@
       ]
     },
     {
+      "id": "ck-07",
       "when": "1 ott",
       "what": "Carta Trade Republic Classic: arrivata e attivata",
       "where": "",
@@ -708,6 +673,7 @@
       "whenDetail": ""
     },
     {
+      "id": "ck-08",
       "when": "1 ott",
       "what": "Carta IC: deciso → chi vuole ICOCA fisica a KIX (¥2.000), gli altri contanti sui mezzi locali",
       "where": "",
@@ -716,6 +682,7 @@
       "whenDetail": ""
     },
     {
+      "id": "ck-09",
       "when": "1 ott",
       "what": "Yasudaya: paga solo contanti → ¥110.000 da prelevare a Nagoya il 13-14 nov",
       "where": "",
@@ -724,6 +691,7 @@
       "whenDetail": ""
     },
     {
+      "id": "ck-10",
       "when": "1 ott",
       "what": "e5489: nessun account da fare (versione inglese = acquisto da ospite) · Bus KATE KIX → Umeda: niente da prenotare",
       "where": "",
@@ -732,67 +700,66 @@
       "whenDetail": ""
     },
     {
+      "id": "ck-11",
       "when": "1-2 ott",
       "what": "Account smartEX con la Revolut fisica (3-D Secure). Sito aperto 22:30 → 16:30 italiane",
       "where": "shinkansen2.jr-central.co.jp",
-      "status": "todo",
+      "status": "done",
       "sortDate": "2026-10-01",
       "url": "https://shinkansen2.jr-central.co.jp/RSV_P/smart_en_new_entry_index.jsp",
       "endDate": "2026-10-02",
       "whenDetail": ""
     },
     {
-      "when": "11 ott 3:00-16:30 (ora italiana)",
-      "what": "Hida Nagoya → Takayama 12:48 (11 nov), 4 posti. Da ospite con Revolut fisica",
-      "where": "westjr.co.jp → treno Hida",
-      "status": "todo",
-      "sortDate": "2026-10-11",
-      "url": "https://westjr.co.jp/travel-information/en/tickets-passes/route-search/",
-      "whenDetail": "3:00-16:30 (ora italiana)"
-    },
-    {
-      "when": "11 ott 3:00-16:30 (ora italiana)",
-      "what": "Shinkansen Shin-Osaka → Nagoya 10:45 (11 nov). Poi QR-Ticket a ciascuno",
-      "where": "smartEX",
-      "status": "todo",
-      "sortDate": "2026-10-11",
-      "whenDetail": "3:00-16:30 (ora italiana)"
-    },
-    {
+      "id": "ck-12",
       "when": "12 ott",
-      "what": "Bus Nohi Takayama → Shirakawa-gō 9:35 (12 nov). ¥2.800, pagare entro pochi giorni",
+      "what": "Hida 25 Osaka 7:58 → Takayama 12:14 (11 nov), 4 posti non riservati",
+      "where": "e5489, da ospite",
+      "status": "done",
+      "sortDate": "2026-10-12",
+      "url": "https://www.westjr.co.jp/global/en/",
+      "whenDetail": ""
+    },
+    {
+      "id": "ck-14",
+      "when": "12 ott",
+      "what": "Bus Nohi Takayama 7:50 → Shirakawa-gō 8:40 (12 nov), 4 posti",
       "where": "japanbusonline.com",
-      "status": "todo",
+      "status": "done",
       "sortDate": "2026-10-12",
       "url": "https://japanbusonline.com",
       "whenDetail": ""
     },
     {
+      "id": "ck-15",
       "when": "12 ott",
-      "what": "Bus Gifu Shirakawa-gō → Nagoya 15:30 (12 nov). ¥3.600-4.700 a calendario",
+      "what": "Bus Gifu Shirakawa-gō 15:55 → Nagoya 18:41 (12 nov), 4 posti",
       "where": "highwaybus.com",
-      "status": "todo",
+      "status": "done",
       "sortDate": "2026-10-12",
       "url": "https://highwaybus.com",
       "whenDetail": ""
     },
     {
-      "when": "15 ott 3:00-16:30 (ora italiana)",
-      "what": "Shinkansen Kodama Nagoya → Mishima 8:30 (15 nov)",
+      "id": "ck-16",
+      "when": "13 ott",
+      "what": "Shinkansen Hikari 640 Nagoya 8:43 → Mishima 9:57 (15 nov), 4 posti · posti assegnati via email il 15 ott",
       "where": "smartEX",
-      "status": "todo",
-      "sortDate": "2026-10-15",
-      "whenDetail": "3:00-16:30 (ora italiana)"
+      "status": "done",
+      "sortDate": "2026-10-13",
+      "whenDetail": ""
     },
     {
-      "when": "17 ott 3:00-16:30 (ora italiana)",
-      "what": "Shinkansen Kodama Mishima → Tokyo (17 nov)",
-      "where": "smartEX",
+      "id": "ck-17",
+      "when": "17 ott 3:00 (ora italiana)",
+      "what": "Odoriko 4 Shuzenji 12:35 → Shinagawa 14:43 (17 nov), 4 posti riservati",
+      "where": "Eki-net (JR East)",
       "status": "todo",
       "sortDate": "2026-10-17",
-      "whenDetail": "3:00-16:30 (ora italiana)"
+      "whenDetail": "3:00 (ora italiana)"
     },
     {
+      "id": "ck-18",
       "when": "~metà ott",
       "what": "Mouriya pranzo 10 nov (Kobe, wagyu)",
       "where": "TableCheck (2-4 sett prima) · tel 078-321-1990",
@@ -802,6 +769,7 @@
       "dateApprox": true
     },
     {
+      "id": "ck-19",
       "when": "entro fine ott",
       "what": "Trade Republic: 1 prelievo ≥€100 + 1 pagamento di prova in Italia · limite ATM ≥ ¥100.000",
       "where": "app TR → Carta → Limiti",
@@ -811,8 +779,9 @@
       "dateApprox": true
     },
     {
+      "id": "ck-20",
       "when": "~fine ott",
-      "what": "Limousine Bus Busta Shinjuku → Narita 24 nov 11:20, 4 posti, ¥3.600",
+      "what": "Limousine Bus Busta Shinjuku 11:20 → Narita T1 13:15 (24 nov), 4 posti, ¥3.600",
       "where": "limousinebus.co.jp (carta) · alt. N'EX",
       "status": "todo",
       "sortDate": "2026-10-28",
@@ -821,6 +790,7 @@
       "dateApprox": true
     },
     {
+      "id": "ck-21",
       "when": "~24 ott",
       "what": "Visit Japan Web: registrare i 4 pax, QR pronto ≥6 h prima dell'atterraggio",
       "where": "vjw-lp.digital.go.jp",
@@ -831,6 +801,7 @@
       "dateApprox": true
     },
     {
+      "id": "ck-22",
       "when": "~inizio nov",
       "what": "Torafugutei fugu 18 nov (Shinjuku)",
       "where": "Hot Pepper Gourmet · tel 03-3209-2919",
@@ -840,6 +811,7 @@
       "dateApprox": true
     },
     {
+      "id": "ck-23",
       "when": "prima di partire",
       "what": "Valigie: 4 da stiva ≤158 cm (somma lati) e ≤23 kg · eSIM o SIM fisica",
       "where": "",
@@ -849,6 +821,7 @@
       "dateApprox": true
     },
     {
+      "id": "ck-24",
       "when": "prima di partire",
       "what": "Verificare biglietto China Eastern: classe con 2 bagagli da stiva inclusi",
       "where": "app/biglietto",
@@ -858,6 +831,7 @@
       "dateApprox": true
     },
     {
+      "id": "ck-25",
       "when": "13-14 nov (Nagoya)",
       "what": "Contanti: ¥110.000 per Yasudaya + spese Uchiura/Shuzenji → Seven Bank con TR (max ¥100.000/prelievo)",
       "where": "7-Eleven Nagoya",
@@ -867,6 +841,7 @@
       "whenDetail": "Nagoya"
     },
     {
+      "id": "ck-26",
       "when": "ott-nov",
       "what": "Agenda: revisione giorno per giorno (quella attuale è una bozza)",
       "where": "",
@@ -880,6 +855,67 @@
           "label": "Agenda"
         }
       ]
+    },
+    {
+      "id": "ck-bon-indirizzi",
+      "when": "12 ott",
+      "whenDetail": "",
+      "sortDate": "2026-10-12",
+      "status": "done",
+      "what": "BON: indirizzi di residenza dei 4 inviati per email, richiesti per il check-in",
+      "where": ""
+    },
+    {
+      "id": "ck-yume-modulo",
+      "when": "entro ven 16 ott",
+      "whenDetail": "",
+      "sortDate": "2026-10-16",
+      "status": "todo",
+      "what": "Yume-no-ya: modulo di pre-registrazione con i passaporti di tutti e 4 (obbligatorio)",
+      "where": "link nell'email di conferma"
+    },
+    {
+      "id": "ck-bon-portone",
+      "when": "5 nov",
+      "whenDetail": "",
+      "sortDate": "2026-11-05",
+      "status": "todo",
+      "what": "BON: arriva per email il codice del portone (2 giorni prima)",
+      "where": "email"
+    },
+    {
+      "id": "ck-hida-ritiro",
+      "when": "10 nov sera",
+      "whenDetail": "sera",
+      "sortDate": "2026-11-10",
+      "status": "todo",
+      "what": "Ritiro biglietti Hida alla macchinetta JR West fuori dai tornelli della stazione JR Osaka, con la carta fisica usata per pagare",
+      "where": "stazione JR Osaka"
+    },
+    {
+      "id": "ck-yamato",
+      "when": "10 nov sera, entro le 21",
+      "whenDetail": "sera, entro le 21",
+      "sortDate": "2026-11-10",
+      "status": "todo",
+      "what": "Valigie all'ufficio Yamato Osaka-Umeda/Umeshin (Taiyūji-chō 1-17), destinazione ufficio Yamato Yoyogi 2-chome",
+      "where": "~12' a piedi dal BON",
+      "links": [
+        {
+          "href": "alloggi.html#bagagli",
+          "label": "Bagagli"
+        }
+      ]
+    },
+    {
+      "id": "ck-yasudaya",
+      "when": "prima del 15 nov",
+      "whenDetail": "",
+      "sortDate": "2026-11-14",
+      "status": "todo",
+      "dateApprox": true,
+      "what": "Yasudaya: chiedere la regola sui tatuaggi e il bagno privato «Hanafubuki»",
+      "where": "contatti nella conferma di prenotazione"
     }
   ]
 }
