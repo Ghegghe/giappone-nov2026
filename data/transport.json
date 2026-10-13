@@ -12,7 +12,7 @@
           "id": "leg-1-3",
           "name": "Hida 25 diretto Osaka 7:58 → Takayama 12:14",
           "duration": "4h16",
-          "costEur": 42.81,
+          "costEur": 42.76,
           "chosen": true,
           "note": "Diretto, senza cambi. Parte dal binario 11 della stazione JR Osaka, a 12-13 minuti a piedi dal BON: sveglia alle 6:30, uscita alle 7:00, in stazione alle 7:13. ¥7.920 a testa.",
           "noteShort": "Parte dal binario 11 della stazione JR Osaka, a 12-13 minuti a piedi dal BON.",
@@ -28,7 +28,12 @@
             "opensNote": "Comprato il 12 ottobre, da ospite.",
             "howToPay": "Pagato con carta fisica: serve la stessa carta per ritirare i biglietti.",
             "howToCollect": "Biglietti di carta da ritirare la sera del 10 alla macchinetta JR West FUORI dai tornelli della stazione JR Osaka: si inserisce la carta fisica usata per pagare. In alternativa numero di prenotazione e codice, nell'email di conferma."
-          }
+          },
+          "agendaKey": "Hida 25",
+          "costJpy": 7920,
+          "costSource": "paid",
+          "dep": "07:58",
+          "arr": "12:14"
         }
       ],
       "summary": "Comprato: 4 posti NON riservati. In fila sul binario 11 alle 7:25-7:30, davanti alla carrozza non riservata."
@@ -45,7 +50,7 @@
           "id": "leg-1c-1",
           "name": "Nohi Bus 7:50 → Shirakawa-gō (Ogimachi) 8:40",
           "duration": "50'",
-          "costEur": 15.14,
+          "costEur": 15.12,
           "chosen": true,
           "note": "Parte dal terminal Nohi accanto alla stazione JR, aperto dalle 6:15. ¥2.800 a testa. Linea per Kanazawa.",
           "booking": {
@@ -62,7 +67,12 @@
             "¥2.800 a testa.",
             "Linea per Kanazawa: si scende a «Shirakawa-go (Ogimachi)».",
             "Sui bus autostradali non si sta in piedi."
-          ]
+          ],
+          "agendaKey": "Nohi",
+          "costJpy": 2800,
+          "costSource": "paid",
+          "dep": "07:50",
+          "arr": "08:40"
         }
       ],
       "summary": "Comprato. Si scende alla fermata «Shirakawa-go (Ogimachi)». Niente toilette a bordo."
@@ -79,7 +89,7 @@
           "id": "leg-1c-2-1",
           "name": "Gifu Bus 15:55 → Meitetsu Bus Center 18:41",
           "duration": "2h46",
-          "costEur": 20.54,
+          "costEur": 20.52,
           "chosen": true,
           "note": "Arriva al Meitetsu Bus Center, sopra la stazione di Nagoya. ¥3.800 a testa. Altre corse: 14:30, 15:30 e 17:15, quest'ultima con toilette; serve un biglietto nuovo, se ci sono posti.",
           "booking": {
@@ -96,7 +106,12 @@
             "¥3.800 a testa.",
             "Altre corse: 14:30, 15:30 e 17:15, quest'ultima con toilette; serve un biglietto nuovo, se ci sono posti.",
             "Sui bus autostradali non si sta in piedi."
-          ]
+          ],
+          "agendaKey": "Gifu",
+          "costJpy": 3800,
+          "costSource": "paid",
+          "dep": "15:55",
+          "arr": "18:41"
         }
       ],
       "summary": "Comprato: posti in prima fila. Niente toilette a bordo: bagno al terminal prima di salire."
@@ -113,7 +128,7 @@
           "id": "leg-2-1",
           "name": "Hikari 640 Nagoya 8:43 → Mishima 9:57, poi locale → Numazu 10:18",
           "duration": "1h35",
-          "costEur": 46.65,
+          "costEur": 48.92,
           "chosen": true,
           "note": "A Mishima si cambia: treno locale delle 10:12, arrivo a Numazu alle 10:18, pagato con la carta IC (¥190). Lo Shinkansen costa ¥8.440 a testa.",
           "booking": {
@@ -130,7 +145,13 @@
           "noteMore": [
             "Lo Shinkansen costa ¥8.440 a testa: il 15 novembre è stagione di punta.",
             "Treno perso: con smartEX si sale gratis su uno Shinkansen successivo dello stesso giorno, in carrozza non riservata."
-          ]
+          ],
+          "agendaKey": "Hikari 640",
+          "extraJpy": 190,
+          "costJpy": 8440,
+          "costSource": "paid",
+          "dep": "08:43",
+          "arr": "10:18"
         }
       ],
       "summary": "Comprato su smartEX. Posti assegnati il 15 ottobre via email."
@@ -147,14 +168,17 @@
           "id": "leg-3-1",
           "name": "Tokai Bus → Izu-Mito",
           "duration": "~35-40'",
-          "costEur": 5.62,
+          "costEur": 5.89,
           "chosen": true,
           "note": "Linee N22 o N24 dalla piattaforma 3. ¥1.040 fino a Mito Sea Paradise, con le tariffe Tōkai in vigore dal 1° ottobre 2026. Contanti o carta IC: una carta può pagare per più persone, ditelo all'autista prima.",
           "noteShort": "Il bus con la livrea delle Aqours. ¥1.040, tariffe dal 1° ottobre 2026.",
           "noteMore": [
             "Linee N22 o N24 dalla piattaforma 3.",
             "Contanti o carta IC: una carta può pagare per più persone, ditelo all'autista prima."
-          ]
+          ],
+          "costJpy": 1040,
+          "agendaKey": "Tokai",
+          "costSource": "jpy"
         },
         {
           "id": "leg-3-2",
@@ -181,7 +205,7 @@
           "id": "leg-4-1",
           "name": "Izuhakone bus + Sunzu",
           "duration": "1h05",
-          "costEur": 4.65,
+          "costEur": 4.87,
           "chosen": true,
           "note": "Bus Izuhakone fino alla stazione di Izu-Nagaoka, ¥550, pagato a bordo. Poi la linea Sunzu fino a Shuzenji, ¥310, con carta IC o biglietto. Dalla stazione di Shuzenji al paese: bus Tōkai, ¥300.",
           "noteShort": "Senza tornare indietro.",
@@ -189,7 +213,10 @@
             "Bus Izuhakone fino a Izu-Nagaoka, ¥550, a bordo.",
             "Linea Sunzu fino a Shuzenji, ¥310, carta IC o biglietto.",
             "Dalla stazione di Shuzenji al paese: bus Tōkai, ¥300."
-          ]
+          ],
+          "costJpy": 860,
+          "agendaKey": "Izuhakone",
+          "costSource": "jpy"
         },
         {
           "id": "leg-4-2",
@@ -216,7 +243,7 @@
           "id": "leg-5-2",
           "name": "Odoriko 4 diretto Shuzenji 12:35 → Shinagawa 14:43",
           "duration": "2h08",
-          "costEur": 25.68,
+          "costEur": 26.92,
           "chosen": true,
           "note": "Treno diretto, posti riservati: ¥4.750 a testa. A Atami si aggancia un'altra parte del treno: si resta seduti. Tratto sul mare fra Atami e Odawara. A Tokyo Station arriverebbe alle 14:49.",
           "noteShort": "Diretto, posti riservati. Tratto sul mare fra Atami e Odawara.",
@@ -233,7 +260,12 @@
             "opensNote": "un mese prima, alle 10 giapponesi: le 3 di notte in Italia",
             "howToPay": "Con carta. Il sito non si apre dall'Italia: carta straniera e tratto Izuhakone da provare al momento. Piano B: biglietto in stazione.",
             "howToCollect": "Da verificare al momento della prenotazione."
-          }
+          },
+          "costJpy": 4750,
+          "agendaKey": "Odoriko 4",
+          "costSource": "jpy",
+          "dep": "12:35",
+          "arr": "14:43"
         },
         {
           "id": "leg-5-3",
@@ -261,7 +293,6 @@
           "id": "leg-14-1",
           "name": "Bus Meitetsu dal Meitetsu Bus Center",
           "duration": "~55'",
-          "costEur": 17.03,
           "chosen": true,
           "note": "Andata 13:30 dal 4° piano, banchina 22 → Nagashima Onsen 14:25 (orario del sabato), ¥1.400. Nagashima Onsen → Nabana, ¥550. Ritorno Nabana 20:25 → Bus Center 21:05, ¥1.200; l'ultima corsa è alle 21:05.",
           "noteShort": "Si parte dal 4° piano del Meitetsu Bus Center, banchina 22.",
@@ -278,7 +309,12 @@
             "opensNote": "Non serve prenotare.",
             "howToPay": "Al banco del 3° piano del Meitetsu Bus Center, o con la carta IC a bordo.",
             "howToCollect": "Biglietto di carta, oppure carta IC."
-          }
+          },
+          "costJpy": 3150,
+          "agendaKey": "Nagashima",
+          "_costJpy": "¥1.400 + ¥550 + ¥1.200",
+          "costEur": 17.85,
+          "costSource": "jpy"
         }
       ]
     }
@@ -296,7 +332,7 @@
           "id": "transfer-kix-1",
           "name": "Limousine Bus KATE → Yodobashi Umeda Tower (UM9)",
           "duration": "~60'",
-          "costEur": 9.7,
+          "costEur": 10.2,
           "chosen": true,
           "note": "¥1.800, senza prenotazione, ogni 10 minuti. Scendete a UM9 e camminate 13 minuti fino al BON.",
           "booking": {
@@ -324,13 +360,16 @@
             "Di pomeriggio i bus da KIX non fermano a Hankyu Sanban-gai; scendono a UM9 Yodobashi (lato nord di Osaka Sta.) e UM2 Herbis",
             "Stiva: 2 colli/pax, 30 kg totali, etichetta + scontrino di ritiro",
             "UM9 → BON ~13' a piedi (900 m)"
-          ]
+          ],
+          "costJpy": 1800,
+          "agendaKey": "KATE",
+          "costSource": "jpy"
         },
         {
           "id": "transfer-kix-2",
           "name": "JR Haruka",
           "duration": "~50'",
-          "costEur": 9.7,
+          "costEur": 10.2,
           "chosen": false,
           "note": "Biglietto per turisti «Haruka one-way»: ¥1.800, con o senza posto riservato. Servono il passaporto e lo status di visitatore. Si compra online su JR-West fino a un mese prima o al banco JR di KIX. Arriva a Osaka Umekita, sui binari sotterranei, a circa 20 minuti a piedi dal BON.",
           "details": {
@@ -344,13 +383,15 @@
             "¥1.800 posto riservato o no (passaporto + status visitatore)",
             "Online JR-West fino a 1 mese prima o banco JR a KIX",
             "Arriva a Osaka Umekita (binari sotterranei, ~20' a piedi al BON)"
-          ]
+          ],
+          "costJpy": 1800,
+          "costSource": "jpy"
         },
         {
           "id": "transfer-kix-3",
           "name": "Nankai Rapi:t → Namba + metro Midosuji → Umeda",
           "duration": "~55'",
-          "costEur": 8.9,
+          "costEur": 9.35,
           "chosen": false,
           "note": "¥1.410 con l'e-ticket, più ¥240 di metro. Cambio a Namba con le valigie, poi 9 minuti a piedi.",
           "details": {
@@ -363,13 +404,15 @@
           "noteMore": [
             "¥1.410 (e-ticket) + ¥240",
             "Poi 9' a piedi"
-          ]
+          ],
+          "costJpy": 1650,
+          "costSource": "jpy"
         },
         {
           "id": "transfer-kix-4",
           "name": "JR Kansai Airport Rapid → Osaka Sta.",
           "duration": "65-70'",
-          "costEur": 6.5,
+          "costEur": 6.86,
           "chosen": false,
           "note": "¥1.210. Treno per pendolari: posti non garantiti e niente spazio per le valigie.",
           "details": {
@@ -381,7 +424,9 @@
           "noteShort": "treno pendolari, posti non garantiti, no spazio valigie",
           "noteMore": [
             "¥1.210"
-          ]
+          ],
+          "costJpy": 1210,
+          "costSource": "jpy"
         },
         {
           "id": "transfer-kix-5",
@@ -417,8 +462,8 @@
         {
           "id": "transfer-tokyo-yoyogi-1",
           "name": "Limousine Bus da Busta Shinjuku (4° piano, uscita Sud)",
-          "duration": "~2h10 da orario, 85-120' effettivi",
-          "costEur": 19.5,
+          "duration": "1h55 da orario, 85-120' effettivi",
+          "costEur": 20.41,
           "chosen": true,
           "note": "¥3.600. Si prenota online su limousinebus.co.jp fino a 5 minuti prima, o alla macchinetta di Busta il giorno stesso. Si sale al 4° piano, fermate A1, A2 o B4.",
           "booking": {
@@ -443,13 +488,18 @@
             "Da Busta: 11:20 → T1 13:15, oppure 11:40 → T1 13:35.",
             "Stiva: 2 colli a testa, fino a 50×60×120 cm e 30 kg l'uno.",
             "Si sale al 4° piano di Busta, fermate A1, A2 o B4."
-          ]
+          ],
+          "costJpy": 3600,
+          "agendaKey": "Limousine Bus",
+          "dep": "11:20",
+          "arr": "13:15",
+          "costSource": "jpy"
         },
         {
           "id": "transfer-tokyo-yoyogi-2",
           "name": "N'EX Narita Express da Shinjuku",
           "duration": "~80'",
-          "costEur": 17.6,
+          "costEur": 18.42,
           "chosen": false,
           "note": "¥3.250, tutti posti riservati. Le rastrelliere hanno il lucchetto, ma lo spazio per 8 valigie è poco. Si prenota su JR-East Train Reservation un mese prima, o alla macchinetta. Puntuale, senza traffico.",
           "details": {
@@ -464,7 +514,9 @@
             "Rastrelliere con lucchetto ma spazio limitato per 8 valigie",
             "JR-East Train Reservation 1 mese prima o macchinetta",
             "Puntuale (no traffico)"
-          ]
+          ],
+          "costJpy": 3250,
+          "costSource": "jpy"
         },
         {
           "id": "transfer-tokyo-yoyogi-3",
@@ -508,7 +560,7 @@
       "summary": "Bus consigliato: le 11:20, arrivo a Narita T1 alle 13:15. In stiva vanno 2 valigie a testa."
     }
   ],
-  "totalChosenEur": 207.32,
+  "totalChosenEur": 213.46,
   "bookingGuide": [
     {
       "what": "Shinkansen Hikari 640 Nagoya → Mishima, 15 novembre alle 8:43",

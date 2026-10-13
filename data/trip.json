@@ -5,13 +5,13 @@
   "end": "2026-11-24",
   "people": 4,
   "fx": {
-    "jpyPerEur": 185,
-    "asOf": "2026-07-10",
-    "source": "BCE"
+    "jpyPerEur": 176.425,
+    "asOf": "2026-10-13",
+    "source": "cambio di riferimento del gruppo"
   },
   "timezone": "Asia/Tokyo",
   "mapsLink": "https://www.google.com/maps/d/edit?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&usp=sharing",
-  "generatedAt": "2026-10-13T09:33:55+02:00",
+  "generatedAt": "2026-10-13T10:49:03+02:00",
   "sourceVersion": "build_xlsx_v33.py",
   "flights": {
     "out": {

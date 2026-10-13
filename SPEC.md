@@ -242,3 +242,19 @@ che devono essere sicuri (niente script/eventi); `places` risolti dai cataloghi 
 - Nav: voce **Guide** (icona libro) in tutte le pagine. Su mobile la bottom bar passa a 7 voci: ridurre padding/etichette (font 10-11px)
   o nascondere le etichette sotto 360px; MAI scroll orizzontale della barra. Aggiornare `sw.js` PRECACHE (+ bump versione al deploy).
 - Nessun contenuto hard-coded: tutto da `guides.json`.
+
+## 11. Numeri calcolati e fonte unica (13 ott 2026)
+Richiesta del cliente: una modifica che si ripercuote su altre pagine deve propagarsi da sola, senza contraddizioni.
+Dettaglio e mappa completa: `site/NOTES_dati.md`. Codice: `../export_site_costs.py` (chiamato come ULTIMO passo dell'export).
+- **Fonti**: cambio = `trip.fx.jpyPerEur` (parametro unico, da `site_overrides.json › trip.fx`) · spese già pagate =
+  `site_overrides.json › expenses.items` ({id, group, what, date, jpy?, rate?, eur?, ref}; ref `lodging:<id>` |
+  `transport:<optionId>` | `common:<id>`) · prezzi da pagare in ¥ = `costJpy` (a testa, opzioni e voci comuni),
+  `costJpyTotal` (alloggi), `extraJpy` (supplemento in loco di una tratta pagata).
+- **Calcolati dall'exporter** (mai scritti a mano): `lodging.stays[].costEurTotal/costEurPerPerson/paid`, `options[].costEur`
+  (+ `costSource: paid|jpy`, `dep`/`arr` per le scelte), `transport.totalChosenEur`, `costEur` delle tappe di agenda agganciate
+  a una tratta scelta (`transportOptionId`; aggancio = stessa data + `agendaKey` dell'opzione nel titolo), budget «Trasporti»
+  e «Alloggi», voci comuni con ref/costJpy, totali a persona e gruppo, `paidSoFar` (+ `advancedEurGroup`), `daily`,
+  `budget.advanced` (conto rimborsi → `conto.html` via `assets/js/conto.js`). I giorni `final` non hanno `budgetEur`.
+- **Coerenza**: `python3 export_site_data.py --check` esce con 1 se orari/costi delle tratte scelte ≠ tappe dell'agenda,
+  durate ≠ orari, ¥ nei testi ≠ costJpy, check-in/out nei testi o nelle tappe ≠ alloggio, notti/basi ≠ date, totali ≠ somme.
+  Gli avvisi (giorni in bozza) vanno solo nel report (`_export_report.md` › «Coerenza dei dati»).

@@ -4,7 +4,7 @@
       {
         "name": "Trasporti",
         "detail": "Catena intercity + transfer",
-        "eur": 237.2,
+        "eur": 213.46,
         "estimate": false,
         "links": [
           {
@@ -16,7 +16,7 @@
       {
         "name": "Alloggi (tutte le basi)",
         "detail": "Prenotazioni reali divise per persona",
-        "eur": 730.19,
+        "eur": 737.07,
         "estimate": false,
         "links": [
           {
@@ -52,132 +52,138 @@
     ],
     "common": [
       {
+        "id": "voli",
         "name": "Voli A/R (KIX in / NRT out)",
         "eur": 806,
         "estimate": false,
         "note": "Già pagati · presi 29 giu"
       },
       {
+        "id": "assicurazione",
         "name": "Assicurazione viaggio",
         "eur": 47.86,
         "estimate": false,
-        "note": "Heymondo Tranquillità 6 → 25 nov · €191,44 gruppo · pagata 13 lug (-10%)"
+        "note": "Heymondo Tranquillità 6 → 25 nov · pagata 13 lug (-10%)"
       },
       {
+        "id": "esim",
         "name": "eSIM / dati",
         "eur": 15,
         "estimate": true,
         "note": "Stima — da confermare"
       },
       {
+        "id": "spedizione",
         "name": "Spedizione bagagli (Yamato)",
-        "eur": 14.2,
+        "eur": 14.0,
         "estimate": false,
-        "note": "€57 gruppo ÷ 4 · 4 valigie taglia 160 Osaka → Tokyo (¥2.630 cad.) · destinazione: ufficio Yamato Yoyogi"
+        "note": "4 valigie taglia 160 Osaka → Tokyo, ¥2.470 l'una con gli sconti (portata a mano, ritiro in ufficio) · destinazione: ufficio Yamato Yoyogi",
+        "costJpy": 2470
       }
     ],
-    "commonTotalEur": 883.06,
-    "totalEur": 2770.45
+    "commonTotalEur": 882.86,
+    "totalEur": 2753.39
   },
   "group": {
-    "totalEur": 11081.8
+    "totalEur": 11013.56
   },
   "paidSoFar": {
-    "lodgingEurGroup": 2920.77,
-    "lodgingEurGroupPaid": 1553.79,
-    "lodgingEurGroupToPay": 1366.98,
-    "flightsEurGroup": 3224
+    "lodgingEurGroup": 2948.27,
+    "lodgingEurGroupPaid": 2324.78,
+    "lodgingEurGroupToPay": 623.49,
+    "flightsEurGroup": 3224.0,
+    "advancedEurGroup": 3021.14
   },
   "daily": [
     {
       "date": "2026-11-07",
-      "eurPlanned": 75,
-      "eurAgenda": 67
+      "eurPlanned": null,
+      "eurAgenda": 77.2
     },
     {
       "date": "2026-11-08",
-      "eurPlanned": 125,
+      "eurPlanned": null,
       "eurAgenda": 105.5
     },
     {
       "date": "2026-11-09",
-      "eurPlanned": 75,
+      "eurPlanned": null,
       "eurAgenda": 125.5
     },
     {
       "date": "2026-11-10",
-      "eurPlanned": 58,
+      "eurPlanned": null,
       "eurAgenda": 72.5
     },
     {
       "date": "2026-11-11",
-      "eurPlanned": 127,
-      "eurAgenda": 65
+      "eurPlanned": null,
+      "eurAgenda": 107.76
     },
     {
       "date": "2026-11-12",
-      "eurPlanned": 100,
-      "eurAgenda": 51
+      "eurPlanned": null,
+      "eurAgenda": 86.64
     },
     {
       "date": "2026-11-13",
       "eurPlanned": 65,
-      "eurAgenda": 65
+      "eurAgenda": 65.0
     },
     {
       "date": "2026-11-14",
       "eurPlanned": 60,
-      "eurAgenda": 15
+      "eurAgenda": 15.0
     },
     {
       "date": "2026-11-15",
       "eurPlanned": 150,
-      "eurAgenda": 78
+      "eurAgenda": 72.81
     },
     {
       "date": "2026-11-16",
       "eurPlanned": 150,
-      "eurAgenda": 18
+      "eurAgenda": 17.87
     },
     {
       "date": "2026-11-17",
       "eurPlanned": 70,
-      "eurAgenda": 65
+      "eurAgenda": 59.92
     },
     {
       "date": "2026-11-18",
       "eurPlanned": 90,
-      "eurAgenda": 68
+      "eurAgenda": 68.0
     },
     {
       "date": "2026-11-19",
       "eurPlanned": 75,
-      "eurAgenda": 57
+      "eurAgenda": 57.0
     },
     {
       "date": "2026-11-20",
       "eurPlanned": 70,
-      "eurAgenda": 52
+      "eurAgenda": 52.0
     },
     {
       "date": "2026-11-21",
       "eurPlanned": 80,
-      "eurAgenda": 20
+      "eurAgenda": 20.0
     },
     {
       "date": "2026-11-22",
       "eurPlanned": 60,
-      "eurAgenda": 45
+      "eurAgenda": 45.0
     },
     {
       "date": "2026-11-23",
       "eurPlanned": 50,
-      "eurAgenda": 25
+      "eurAgenda": 25.0
     },
     {
       "date": "2026-11-24",
       "eurPlanned": 40,
-      "eurAgenda": 20.5
+      "eurAgenda": 21.41
     }
   ],
   "notes": [
@@ -189,5 +195,135 @@
       "href": "conto.html",
       "label": "Spese già anticipate: il conto per i rimborsi"
     }
-  ]
+  ],
+  "advanced": {
+    "asOf": "2026-10-13",
+    "people": 4,
+    "items": [
+      {
+        "id": "bon",
+        "group": "Alloggi",
+        "what": "BON Condominium Umeda, Osaka · 07-11/11",
+        "date": "2026-07-10",
+        "jpy": 58762,
+        "rate": 185.231,
+        "ref": "lodging:osaka",
+        "eur": 317.24,
+        "eurPerPerson": 79.31
+      },
+      {
+        "id": "glocal",
+        "group": "Alloggi",
+        "what": "Glocal Nagoya Backpackers · 12-15/11",
+        "date": "2026-07-10",
+        "jpy": 45818,
+        "rate": 185.231,
+        "ref": "lodging:nagoya",
+        "eur": 247.36,
+        "eurPerPerson": 61.84
+      },
+      {
+        "id": "yumenoya",
+        "group": "Alloggi",
+        "what": "Yume-no-ya Yoyogi, Tokyo · 17-24/11",
+        "date": "2026-07-10",
+        "jpy": 179486,
+        "eur": 987.79,
+        "ref": "lodging:tokyo",
+        "rate": 181.7,
+        "rateImplicit": true,
+        "eurPerPerson": 246.95
+      },
+      {
+        "id": "country",
+        "group": "Alloggi",
+        "what": "Country Hotel Takayama · 11-12/11",
+        "date": "2026-07-14",
+        "eur": 82.8,
+        "ref": "lodging:takayama",
+        "eurPerPerson": 20.7
+      },
+      {
+        "id": "arai",
+        "group": "Alloggi",
+        "what": "Arai Ryokan, Shuzenji · 16-17/11",
+        "date": "2026-07-17",
+        "eur": 689.59,
+        "ref": "lodging:shuzenji",
+        "eurPerPerson": 172.4
+      },
+      {
+        "id": "heymondo",
+        "group": "Assicurazione",
+        "what": "Heymondo Viaggio Tranquillità · 4 persone · 06-25/11",
+        "date": "2026-07-13",
+        "eur": 191.44,
+        "ref": "common:assicurazione",
+        "eurPerPerson": 47.86
+      },
+      {
+        "id": "hida",
+        "group": "Trasporti",
+        "what": "Treno Hida 25, Osaka → Takayama · 4 pax · 11/11",
+        "date": "2026-10-12",
+        "jpy": 31680,
+        "rate": 185.231,
+        "ref": "transport:leg-1-3",
+        "eur": 171.03,
+        "eurPerPerson": 42.76
+      },
+      {
+        "id": "nohi",
+        "group": "Trasporti",
+        "what": "Bus Nohi, Takayama → Shirakawa-gō · 4 pax · 12/11",
+        "date": "2026-10-12",
+        "jpy": 11200,
+        "rate": 185.231,
+        "ref": "transport:leg-1c-1",
+        "eur": 60.47,
+        "eurPerPerson": 15.12
+      },
+      {
+        "id": "gifu",
+        "group": "Trasporti",
+        "what": "Bus Gifu, Shirakawa-gō → Nagoya · 4 pax · 12/11",
+        "date": "2026-10-12",
+        "jpy": 15200,
+        "rate": 185.231,
+        "ref": "transport:leg-1c-2-1",
+        "eur": 82.06,
+        "eurPerPerson": 20.52
+      },
+      {
+        "id": "hikari",
+        "group": "Trasporti",
+        "what": "Shinkansen Hikari 640, Nagoya → Mishima · 4 pax · 15/11",
+        "date": "2026-10-13",
+        "jpy": 33760,
+        "rate": 176.425,
+        "ref": "transport:leg-2-1",
+        "eur": 191.36,
+        "eurPerPerson": 47.84
+      }
+    ],
+    "groups": [
+      {
+        "name": "Alloggi",
+        "eurTotal": 2324.78,
+        "eurPerPerson": 581.2
+      },
+      {
+        "name": "Assicurazione",
+        "eurTotal": 191.44,
+        "eurPerPerson": 47.86
+      },
+      {
+        "name": "Trasporti",
+        "eurTotal": 504.92,
+        "eurPerPerson": 126.23
+      }
+    ],
+    "totalEur": 3021.14,
+    "totalEurPerPerson": 755.29
+  }
 }

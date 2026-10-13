@@ -41,8 +41,9 @@ function table(rows, rate, max, { caption, totalLabel }) {
 
 /**
  * Composizione a persona, in centesimi interi (la somma torna al centesimo):
- * pagato = (voli + alloggi già pagati, di gruppo) / persone · stima = Σ voci con estimate · prezzo noto = totale − pagato − stima.
- * L'assicurazione è pagata ma non ha un campo `paid`: resta in "prezzo noto" (PLAN §5). Senza `paidSoFar` → null.
+ * pagato = (voli + spese anticipate del conto, di gruppo) / persone · stima = Σ voci con estimate · prezzo noto = totale − pagato − stima.
+ * Spese anticipate = `paidSoFar.advancedEurGroup` (alloggi, assicurazione, treni/bus già comprati; calcolato dall'exporter);
+ * dati vecchi senza il campo → solo gli alloggi pagati. Senza `paidSoFar` → null.
  */
 export function composition(b, people) {
   const pp = b.perPerson || {};
@@ -50,7 +51,7 @@ export function composition(b, people) {
   const items = [...(pp.categories || []), ...(pp.common || [])];
   const totC = pp.totalEur != null ? cents(pp.totalEur) : items.reduce((s, r) => s + cents(r.eur), 0);
   if (!ps || !people || !totC) return null;
-  const paidC = Math.round((cents(ps.flightsEurGroup) + cents(ps.lodgingEurGroupPaid)) / people);
+  const paidC = Math.round((cents(ps.flightsEurGroup) + cents(ps.advancedEurGroup != null ? ps.advancedEurGroup : ps.lodgingEurGroupPaid)) / people);
   const estC = items.filter((r) => r.estimate).reduce((s, r) => s + cents(r.eur), 0);
   const knownC = totC - paidC - estC;
   if (paidC < 0 || knownC < 0) return null;
@@ -95,7 +96,7 @@ export async function render(root, { trip, loadData }) {
         { id: 'known', label: 'Prezzo noto', value: comp.known },
         { id: 'est', label: 'Stima', value: comp.est },
       ], { total: comp.total, fx: rate, caption: 'A che punto siamo, a persona' })}
-      <p class="small muted bu-hero__note">Pagato: voli e alloggi già saldati.${ps.lodgingEurGroupToPay ? ` Restano ${eur2(ps.lodgingEurGroupToPay)} di alloggi da pagare in struttura (gruppo).` : ''}</p>` : ''}
+      <p class="small muted bu-hero__note">Pagato: ${ps.advancedEurGroup != null ? 'voli, alloggi, assicurazione e i biglietti già comprati' : 'voli e alloggi già saldati'}.${ps.lodgingEurGroupToPay ? ` Restano ${eur2(ps.lodgingEurGroupToPay)} di alloggi da pagare in struttura (gruppo).` : ''}</p>` : ''}
     </section>
     <div class="bu-layout">
       <div class="stack bu-layout__main">
@@ -116,7 +117,7 @@ export async function render(root, { trip, loadData }) {
       </section>` : ''}
     </div>
     <section class="card stack small">
-      <p class="muted">Le barre delle due tabelle usano la stessa scala.${rate ? html` Cambio usato: <span class="mono">€1 = ¥${rate}</span>${trip.fx.source ? ` (${trip.fx.source}${trip.fx.asOf ? ` ${fmtDate(trip.fx.asOf, { weekday: false, year: true })}` : ''})` : ''}; gli importi in ¥ sono indicativi.` : ''}</p>
+      <p class="muted">Le barre delle due tabelle usano la stessa scala.${rate ? html` Cambio usato per ciò che si paga in yen: <span class="mono">€1 = ¥${rate.toLocaleString('it-IT', { maximumFractionDigits: 3 })}</span>${trip.fx.source ? ` (${trip.fx.source}${trip.fx.asOf ? ` ${fmtDate(trip.fx.asOf, { weekday: false, year: true })}` : ''})` : ''}; le spese già pagate contano in euro reali, gli importi in ¥ accanto agli euro sono indicativi.` : ''}</p>
       ${(b.notes || []).length ? html`<ul class="al-notes muted">${b.notes.map((n) => html`<li>${n}</li>`)}</ul>` : ''}
       ${internalLinks(b.links)}
     </section>`);

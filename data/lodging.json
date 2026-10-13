@@ -14,8 +14,8 @@
       "address": "3-1-4 Nakazakinishi, Kita-ku, Osaka 530-0015",
       "mapsQuery": "BON Condominium Umeda Osaka",
       "status": "booked",
-      "costEurTotal": 318.0,
-      "costEurPerPerson": 79.5,
+      "costEurTotal": 317.24,
+      "costEurPerPerson": 79.31,
       "paid": true,
       "notes": [
         "Appartamento con cucina, tutto per voi.",
@@ -25,7 +25,8 @@
         "Il codice del portone arriva per email 2 giorni prima; il codice di check-in è nell'email di conferma.",
         "Deposito bagagli self-service al 1° piano, solo nel giorno di arrivo e in quello di partenza: borse chiudibili con lucchetto.",
         "Nessuna pulizia durante il soggiorno."
-      ]
+      ],
+      "costSource": "paid"
     },
     {
       "id": "takayama",
@@ -43,13 +44,13 @@
       "status": "booked",
       "costEurTotal": 82.8,
       "costEurPerPerson": 20.7,
-      "paid": false,
+      "paid": true,
       "notes": [
         "Business hotel a 3 stelle, camere private con bagno.",
         "Reception aperta 24 ore: check-in dalle 15:00, check-out entro le 10:00.",
         "Sanmachi è a circa 10 minuti a piedi."
       ],
-      "payment": "da confermare"
+      "costSource": "paid"
     },
     {
       "id": "nagoya",
@@ -65,13 +66,14 @@
       "address": "",
       "mapsQuery": "Glocal Nagoya Backpackers Hostel",
       "status": "booked",
-      "costEurTotal": 248.0,
-      "costEurPerPerson": 62.0,
+      "costEurTotal": 247.36,
+      "costEurPerPerson": 61.84,
       "paid": true,
       "notes": [
         "Camera quadrupla privata economy, con bagno in comune. Confermata il 12 luglio.",
         "Check-in dalle 16:00 alle 22:30: dopo non si entra."
-      ]
+      ],
+      "costSource": "paid"
     },
     {
       "id": "uchiura",
@@ -87,15 +89,16 @@
       "address": "",
       "mapsQuery": "Yasudaya Ryokan Uchiura Numazu",
       "status": "booked",
-      "costEurTotal": 594.59,
-      "costEurPerPerson": 148.65,
+      "costEurTotal": 623.49,
+      "costEurPerPerson": 155.87,
       "paid": false,
       "notes": [
         "Cena kaiseki inclusa.",
         "Costa ¥27.500 a testa."
       ],
       "payment": "in struttura",
-      "costJpyTotal": 110000
+      "costJpyTotal": 110000,
+      "costSource": "jpy"
     },
     {
       "id": "shuzenji",
@@ -113,7 +116,7 @@
       "status": "booked",
       "costEurTotal": 689.59,
       "costEurPerPerson": 172.4,
-      "paid": false,
+      "paid": true,
       "notes": [
         "Camera standard di 10 tatami con bagno onsen privato.",
         "Cena kaiseki in sala, con il menu del mese, e colazione jūbako. L'orario della cena, 18:00 o 18:30, si sceglie al check-in.",
@@ -123,7 +126,7 @@
         "Con i tatuaggi: il bagno privato Hisui, gratis e senza prenotazione; il Suiren, ¥1.100 per 45 minuti, da prenotare appena arrivati; oppure il bagno in camera.",
         "Gli orari di rotazione dei bagni si chiedono al check-in."
       ],
-      "payment": "da confermare"
+      "costSource": "paid"
     },
     {
       "id": "tokyo",
@@ -140,7 +143,7 @@
       "mapsQuery": "夢の舎 代々木 Yoyogi Tokyo",
       "status": "booked",
       "costEurTotal": 987.79,
-      "costEurPerPerson": 242.1,
+      "costEurPerPerson": 246.95,
       "paid": true,
       "notes": [
         "Appartamento di 25 m² tutto per voi, con 2 letti matrimoniali: si dorme in coppia.",
@@ -148,7 +151,8 @@
         "Prima dell'arrivo va compilato il modulo di pre-registrazione, con i passaporti di tutti: il link è nell'email di conferma.",
         "Le valigie spedite con Yamato si ritirano dopo il check-in: l'ufficio è aperto nei feriali dalle 12 alle 20, a circa 10 minuti a piedi.",
         "Casa in legno del 1983, rumorosa: i tappi per le orecchie ci sono. Niente ascensore."
-      ]
+      ],
+      "costSource": "paid"
     }
   ],
   "logistics": {
@@ -159,7 +163,7 @@
           "phase": "Spedizione",
           "what": "Spedite le 4 valigie all'ufficio Yamato di Yoyogi",
           "when": "mar 10 nov, sera, entro le 21",
-          "notes": "Una valigia a testa, taglia 160, circa ¥2.500 l'una: circa €14. Si spediscono dall'ufficio Yamato Osaka-Umeda (Umeshin), Taiyūji-chō 1-17, palazzo Umeda Asuka: circa 12 minuti a piedi dal BON, aperto tutti i giorni fino alle 21. Non dal konbini: da lì il ritiro in ufficio non si può scegliere. Una bolla per valigia, con la casella «ritiro in ufficio» e consegna il 16 novembre. Tenete le ricevute: servono al ritiro con il passaporto. Il servizio si chiama 営業所受け取りサービス.",
+          "notes": "Una valigia a testa, taglia 160, ¥2.470 l'una con gli sconti per la consegna a mano e il ritiro in ufficio. Si spediscono dall'ufficio Yamato Osaka-Umeda (Umeshin), Taiyūji-chō 1-17, palazzo Umeda Asuka: circa 12 minuti a piedi dal BON, aperto tutti i giorni fino alle 21. Non dal konbini: da lì il ritiro in ufficio non si può scegliere. Una bolla per valigia, con la casella «ritiro in ufficio» e consegna il 16 novembre. Tenete le ricevute: servono al ritiro con il passaporto. Il servizio si chiama 営業所受け取りサービス.",
           "id": "bag-1"
         },
         {

@@ -1,6 +1,6 @@
 # Report export dati sito
 
-Sorgente: `build_xlsx_v33.py` (letto via `ast`, non eseguito) · CSV My Maps: `mymaps_csv/` · override: `site_overrides.json` · generatedAt (mtime sorgenti): 2026-10-13T09:33:55+02:00
+Sorgente: `build_xlsx_v33.py` (letto via `ast`, non eseguito) · CSV My Maps: `mymaps_csv/` · override: `site_overrides.json` · generatedAt (mtime sorgenti): 2026-10-13T10:49:03+02:00
 
 ## Conteggi
 
@@ -8,10 +8,10 @@ Sorgente: `build_xlsx_v33.py` (letto via `ast`, non eseguito) · CSV My Maps: `m
 |---|---|
 | trip.json | 7 sezioni · 15 link · 6 fatti |
 | agenda.json | 18 giorni (6 `final` · 12 `draft`) · 182 item · 109 con `end` dedotto · 80 con `placeId` |
-| transport.json | 8 tratte · 2 transfer · 8 righe guida · 31 checklist (15 da fare) · scelte = €207.32/pax |
+| transport.json | 8 tratte · 2 transfer · 8 righe guida · 31 checklist (15 da fare) · scelte = €213.46/pax |
 | lodging.json | 6 basi · 7 passi giorno 1 · 7 domande bagagli |
 | places.json | 326 luoghi · 108 abbinati ai CSV · 0 con coordinate · 75 con `dayDates` |
-| budget.json | 6 categorie + 4 comuni · totale €2770.45/pax · €11081.8 gruppo |
+| budget.json | 6 categorie + 4 comuni · totale €2753.39/pax · €11013.56 gruppo |
 
 Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 18, generico 14, places 67, places (testa) 9, titolo 5 (`titolo`/`destinazione` = euristica sul testo, da rivedere in revisione agenda).
 
@@ -39,12 +39,12 @@ Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 1
 
 - checklist: quando='giu' (solo mese) → sortDate 2026-06-30
 - checklist: quando='ott-nov' (revisione agenda) → sortDate 2026-11-05 (prima della partenza)
-- lodging Uchiura: € non letterale (formula ¥/tasso) → 110000/185 = 594.59
+- lodging Uchiura: € non letterale (formula ¥/tasso) → 110000/176.425 = 623.49
 - agenda: tipo '—' ma testo logistico («Check-out (valigie al seguito)») → logistics invece di free
 - agenda: tipo '—' ma testo logistico («Aeroporto NRT») → logistics invece di free
 - agenda: tipo 'volo' → type 'transfer' (non previsto da SPEC)
-- budget «Trasporti»: valore non letterale `f'={TRASP_TOT}'` → somma opzioni scelte = 237.2
-- budget «Alloggi (tutte le basi)»: nello script è 0 poi sovrascritto da formula (=G tot alloggi/pax) → 730.19
+- budget «Trasporti»: valore non letterale `f'={TRASP_TOT}'` → somma delle opzioni scelte (valore finale ricalcolato da export_site_costs.derive dopo gli override)
+- budget «Alloggi (tutte le basi)»: nello script è 0 poi sovrascritto da formula (=G tot alloggi/pax) → somma alloggi ÷ persone (valore finale ricalcolato da export_site_costs.derive)
 
 ## Nodi non letterali nello script (1)
 
@@ -80,7 +80,7 @@ Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 1
 - rimossi metodo di pagamento/tasso da: «BPER addebito in € · tasso 185,34»
 - rimossi metodo di pagamento/tasso da: «Revolut/BPER · Booking/AirHost»
 
-## Note (51)
+## Note (58)
 
 - CSV `01_Osaka_(7-11_nov).csv`: nessuna colonna coordinate (colonne: Luogo, Nome, Note) → lat/lon omessi
 - CSV `02_Kyoto_(8-9_nov).csv`: nessuna colonna coordinate (colonne: Luogo, Nome, Note) → lat/lon omessi
@@ -91,6 +91,7 @@ Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 1
 - CSV `07_Shuzenji_(16-17).csv`: nessuna colonna coordinate (colonne: Luogo, Nome, Note) → lat/lon omessi
 - CSV `08_Tokyo_(17-24).csv`: nessuna colonna coordinate (colonne: Luogo, Nome, Note) → lat/lon omessi
 - CSV `09_Day-trip_21_nov_(opzioni).csv`: nessuna colonna coordinate (colonne: Luogo, Nome, Note) → lat/lon omessi
+- cambio del sito: 176.425 ¥/€ da `site_overrides.json` › trip.fx (il build ha 185)
 - pin My Maps «Ghibli Park» ignorato (site_overrides.json `ignorePins`: eliminato dal viaggio il 18 set 2026)
 - agenda: tipo 'natura' (non elencato nella mappa) → sight
 - agenda: tipo 'giardino' (non elencato nella mappa) → sight
@@ -133,6 +134,12 @@ Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 1
 - override `transport.checklist[ck-hida-ritiro]`: elemento aggiunto
 - override `transport.checklist[ck-yamato]`: elemento aggiunto
 - override `transport.checklist[ck-yasudaya]`: elemento aggiunto
+- agenda 2026-11-07 (final): `budgetEur` 75 (stima della scaletta) tolto — il costo del giorno è la somma delle tappe
+- agenda 2026-11-08 (final): `budgetEur` 125 (stima della scaletta) tolto — il costo del giorno è la somma delle tappe
+- agenda 2026-11-09 (final): `budgetEur` 75 (stima della scaletta) tolto — il costo del giorno è la somma delle tappe
+- agenda 2026-11-10 (final): `budgetEur` 58 (stima della scaletta) tolto — il costo del giorno è la somma delle tappe
+- agenda 2026-11-11 (final): `budgetEur` 127 (stima della scaletta) tolto — il costo del giorno è la somma delle tappe
+- agenda 2026-11-12 (final): `budgetEur` 100 (stima della scaletta) tolto — il costo del giorno è la somma delle tappe
 
 ## Scaletta / piano definitivo (SPEC §9.1)
 
@@ -210,6 +217,14 @@ Blocchi NON fusi (non confermati): C (proposta), D (proposta), E (proposta)
 - override `agendaItems[d12-20]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Bus Gifu n. 13803 Shirakawa-gō 15:55 → Nagoya Meit»
 - override `agendaItems[d11-04]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Limited Express Hida 25 diretto Osaka → Takayama 1»
 
+## Coerenza dei dati (export_site_costs.py: copie inevitabili vs fonte unica)
+
+Errori (bloccano `--check`):
+- nessuno
+
+Avvisi (giorni in bozza o stime):
+- ⚠️ tratta leg-14-1 «Bus Meitetsu dal Meitetsu Bus Center»: nessuna tappa in agenda il 2026-11-14 con «Nagashima» nel titolo (giorno in bozza)
+
 ## Validazione schemi
 
 - ✅ tutti i file conformi a SPEC §2
@@ -221,6 +236,7 @@ Blocchi NON fusi (non confermati): C (proposta), D (proposta), E (proposta)
 ## Scelte di modellazione
 
 - `budget.perPerson.totalEur` = categorie + `common` (la riga «Spese comuni» del dossier è esplosa in `common`).
+- Costi (13 ott, export_site_costs.py): spese pagate = `site_overrides.json › expenses` (€ reali) · da pagare in ¥ = `costJpy`/`costJpyTotal` ÷ `trip.fx.jpyPerEur` (parametro unico) · tutto il resto (tratte, alloggi, categorie, totali, paidSoFar, daily, conto, costo delle tappe collegate a una tratta) è calcolato; `--check` fallisce se una copia (orari, check-in/out, ¥ nei testi, totali) non coincide.
 - `paidSoFar.lodgingEurGroup` = totale alloggi PRENOTATI (incl. Yasudaya da pagare in contanti); il pagato è `lodgingEurGroupPaid`.
 - Telefoni di esercizi commerciali (ristoranti, ryokan, numero Yamato) mantenuti nei testi: nessun telefono personale nelle sorgenti.
 - Note alloggi: rimossi metodo di pagamento e tasso applicato (registro acquisti); niente importi ¥ addebitati salvo Yasudaya (prezzo in struttura).

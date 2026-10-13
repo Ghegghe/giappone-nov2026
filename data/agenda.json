@@ -38,7 +38,7 @@
           "type": "bus",
           "fixed": false,
           "optional": false,
-          "costEur": 0,
+          "costEur": 10.2,
           "costEstimate": false,
           "costNote": "",
           "place": "",
@@ -48,7 +48,8 @@
             "status": "none",
             "where": "",
             "when": ""
-          }
+          },
+          "transportOptionId": "transfer-kix-1"
         },
         {
           "id": "d07-03",
@@ -292,7 +293,6 @@
       ],
       "gaps": "auto",
       "summary": "Si atterra, si lasciano le valigie e si prende confidenza con la zona di casa. Al crepuscolo i neon di Dōtonbori e il vicolo Hozenji, cena da Salmon Kat, poi la notte a Tenma: bancone in piedi, spiedini seduti, bar fino a tardi e karaoke se regge. A casa a piedi in un quarto d'ora.",
-      "budgetEur": 75,
       "extras": [
         {
           "id": "ohatsu-tenjin-ura-sando",
@@ -670,7 +670,6 @@
       ],
       "gaps": "auto",
       "summary": "Mattina tranquilla a Kobe e pranzo di manzo di Kobe, poi treno diretto al castello (il giardino chiude alle 16:30), cena fra i neon di Dōtonbori e bagno caldo alle terme sul tetto vicino casa. A letto presto: lunedì sveglia alle 5:30 per Kyoto.",
-      "budgetEur": 125,
       "dayTrip": "Kobe",
       "extras": [
         {
@@ -1307,7 +1306,6 @@
       ],
       "gaps": "auto",
       "summary": "Si risale la città in un'unica direzione: i torii a sud alle 7:30, poi in taxi il tempio di legno prima delle comitive e le viuzze a est prima di pranzo, pomeriggio a scelta e Gion all'imbrunire. Le due deviazioni possibili (distretto del sake, padiglione d'oro) sono decisioni, non sono in programma.",
-      "budgetEur": 75,
       "dayTrip": "Kyoto",
       "extras": [
         {
@@ -1856,7 +1854,6 @@
       ],
       "gaps": "auto",
       "summary": "Mattina lenta fra i banchi del mercato coperto e la via dei coltelli, pranzo di soba e pomeriggio intero nel quartiere otaku: anime, videogiochi retrò e manga usati. Sera di spiedini fritti a Shinsekai e bagno caldo alle terme prima di preparare le valigie per Takayama. Variante (5 ott): la sera si chiude presto a Shinsekai perché le valigie vanno all'ufficio Yamato entro le 21; in alternativa dopo la torre si torna dritti a casa, valigie all'ufficio e cena a Tenma.",
-      "budgetEur": 58,
       "extras": [
         {
           "id": "todai-ji",
@@ -2146,7 +2143,7 @@
           "type": "transfer",
           "fixed": false,
           "optional": false,
-          "costEur": 0,
+          "costEur": 42.76,
           "costEstimate": false,
           "costNote": "",
           "place": "Takayama",
@@ -2156,7 +2153,8 @@
             "status": "done",
             "where": "e5489",
             "when": "12 ott"
-          }
+          },
+          "transportOptionId": "leg-1-3"
         },
         {
           "id": "d11-05",
@@ -2656,7 +2654,6 @@
       ],
       "gaps": "auto",
       "summary": "Valigie partite ieri sera: alle 7:58 si sale sul treno panoramico diretto da Osaka (biglietti non riservati già in tasca, in fila sul binario alle 7:30), senza cambi, e alle 12:14 si è a Takayama. Pranzo seduto di ramen, palazzo del governatore, vie di legno con le botteghe aperte, sake, templi sulla collina, poi terme, osteria e il vicolo dei baretti.",
-      "budgetEur": 127,
       "extras": [
         {
           "id": "hida-kotte-ushi",
@@ -2938,7 +2935,7 @@
           "type": "bus",
           "fixed": true,
           "optional": false,
-          "costEur": 0,
+          "costEur": 15.12,
           "costEstimate": false,
           "costNote": "",
           "place": "Shirakawa-gō",
@@ -2948,7 +2945,8 @@
             "status": "done",
             "where": "japanbusonline.com",
             "when": "12 ott"
-          }
+          },
+          "transportOptionId": "leg-1c-1"
         },
         {
           "id": "d12-07",
@@ -3272,7 +3270,7 @@
           "type": "bus",
           "fixed": true,
           "optional": false,
-          "costEur": 0,
+          "costEur": 20.52,
           "costEstimate": false,
           "costNote": "",
           "place": "Nagoya Meitetsu Bus Center",
@@ -3282,7 +3280,8 @@
             "status": "done",
             "where": "highwaybus.com",
             "when": "12 ott"
-          }
+          },
+          "transportOptionId": "leg-1c-2-1"
         },
         {
           "id": "d12-21",
@@ -3366,7 +3365,6 @@
       ],
       "gaps": "auto",
       "summary": "Il bus delle 9:35 era esaurito: si parte alle 7:50 (prenotato) e si arriva al villaggio prima dei pullman, belvedere vuoto. Giro completo di case, pranzo al focolare e museo all'aperto, poi bus delle 15:55 per Nagoya e cena libera.",
-      "budgetEur": 100,
       "dayTrip": "Shirakawa",
       "extras": [
         {
@@ -3739,7 +3737,7 @@
           "type": "train",
           "fixed": true,
           "optional": false,
-          "costEur": 46.65,
+          "costEur": 48.92,
           "costEstimate": false,
           "costNote": "",
           "place": "Numazu",
@@ -3749,7 +3747,8 @@
             "status": "done",
             "where": "smartEX",
             "when": "13 ott"
-          }
+          },
+          "transportOptionId": "leg-2-1"
         },
         {
           "id": "d15-02",
@@ -3819,7 +3818,7 @@
           "type": "bus",
           "fixed": false,
           "optional": false,
-          "costEur": 6,
+          "costEur": 5.89,
           "costEstimate": false,
           "costNote": "",
           "place": "Izu-Mito",
@@ -3829,7 +3828,8 @@
             "status": "none",
             "where": "",
             "when": ""
-          }
+          },
+          "transportOptionId": "leg-3-1"
         },
         {
           "id": "d15-06",
@@ -4011,7 +4011,7 @@
           "type": "bus",
           "fixed": false,
           "optional": false,
-          "costEur": 5,
+          "costEur": 4.87,
           "costEstimate": false,
           "costNote": "",
           "place": "Shuzenji",
@@ -4021,7 +4021,8 @@
             "status": "none",
             "where": "",
             "when": ""
-          }
+          },
+          "transportOptionId": "leg-4-1"
         },
         {
           "id": "d16-03",
@@ -4182,7 +4183,7 @@
           "type": "train",
           "fixed": true,
           "optional": false,
-          "costEur": 25.68,
+          "costEur": 26.92,
           "costEstimate": false,
           "costNote": "",
           "place": "Shinagawa",
@@ -4192,7 +4193,8 @@
             "status": "todo",
             "where": "Eki-net (JR East)",
             "when": "17 ott"
-          }
+          },
+          "transportOptionId": "leg-5-2"
         },
         {
           "id": "d17-03",
@@ -5061,7 +5063,7 @@
           "type": "bus",
           "fixed": true,
           "optional": false,
-          "costEur": 19.5,
+          "costEur": 20.41,
           "costEstimate": false,
           "costNote": "",
           "place": "Narita T1",
@@ -5071,7 +5073,8 @@
             "status": "todo",
             "where": "limousinebus.co.jp (carta) · alt. N'EX",
             "when": "~fine ott"
-          }
+          },
+          "transportOptionId": "transfer-tokyo-yoyogi-1"
         },
         {
           "id": "d24-04",
