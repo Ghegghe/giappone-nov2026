@@ -279,44 +279,6 @@
         }
       ],
       "summary": "Diretto. Scendete a Shinagawa e prendete la Yamanote fino a Yoyogi, circa 20 minuti. Dal paese alla stazione di Shuzenji: bus, ¥300."
-    },
-    {
-      "id": "leg-14",
-      "kind": "intercity",
-      "date": "2026-11-14",
-      "from": "Nagoya",
-      "to": "Nagashima e Nabana no Sato",
-      "title": "Nagoya ⇄ Nagashima e Nabana no Sato",
-      "summary": "Non si prenota: biglietto al 3° piano del Meitetsu Bus Center il giorno stesso, o carta IC a bordo.",
-      "options": [
-        {
-          "id": "leg-14-1",
-          "name": "Bus Meitetsu dal Meitetsu Bus Center",
-          "duration": "~55'",
-          "chosen": true,
-          "note": "Andata 13:30 dal 4° piano, banchina 22 → Nagashima Onsen 14:25 (orario del sabato), ¥1.400. Nagashima Onsen → Nabana, ¥550. Ritorno Nabana 20:25 → Bus Center 21:05, ¥1.200; l'ultima corsa è alle 21:05.",
-          "noteShort": "Si parte dal 4° piano del Meitetsu Bus Center, banchina 22.",
-          "noteMore": [
-            "Andata 13:30 → Nagashima Onsen 14:25 (orario del sabato), ¥1.400.",
-            "Nagashima Onsen → Nabana, ¥550.",
-            "Ritorno Nabana 20:25 → Bus Center 21:05, ¥1.200. Ultima corsa 21:05 → 21:45."
-          ],
-          "booking": {
-            "site": "",
-            "url": "",
-            "status": "none",
-            "opens": "",
-            "opensNote": "Non serve prenotare.",
-            "howToPay": "Al banco del 3° piano del Meitetsu Bus Center, o con la carta IC a bordo.",
-            "howToCollect": "Biglietto di carta, oppure carta IC."
-          },
-          "costJpy": 3150,
-          "agendaKey": "Nagashima",
-          "_costJpy": "¥1.400 + ¥550 + ¥1.200",
-          "costEur": 17.85,
-          "costSource": "jpy"
-        }
-      ]
     }
   ],
   "transfers": [
@@ -560,7 +522,7 @@
       "summary": "Bus consigliato: le 11:20, arrivo a Narita T1 alle 13:15. In stiva vanno 2 valigie a testa."
     }
   ],
-  "totalChosenEur": 213.46,
+  "totalChosenEur": 195.61,
   "bookingGuide": [
     {
       "what": "Shinkansen Hikari 640 Nagoya → Mishima, 15 novembre alle 8:43",

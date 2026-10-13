@@ -1,6 +1,6 @@
 # Report export dati sito
 
-Sorgente: `build_xlsx_v33.py` (letto via `ast`, non eseguito) · CSV My Maps: `mymaps_csv/` · override: `site_overrides.json` · generatedAt (mtime sorgenti): 2026-10-13T10:49:03+02:00
+Sorgente: `build_xlsx_v33.py` (letto via `ast`, non eseguito) · CSV My Maps: `mymaps_csv/` · override: `site_overrides.json` · generatedAt (mtime sorgenti): 2026-10-13T11:08:50+02:00
 
 ## Conteggi
 
@@ -8,14 +8,14 @@ Sorgente: `build_xlsx_v33.py` (letto via `ast`, non eseguito) · CSV My Maps: `m
 |---|---|
 | trip.json | 7 sezioni · 15 link · 6 fatti |
 | agenda.json | 18 giorni (6 `final` · 12 `draft`) · 182 item · 109 con `end` dedotto · 80 con `placeId` |
-| transport.json | 8 tratte · 2 transfer · 8 righe guida · 31 checklist (15 da fare) · scelte = €213.46/pax |
+| transport.json | 7 tratte · 2 transfer · 8 righe guida · 31 checklist (15 da fare) · scelte = €195.61/pax |
 | lodging.json | 6 basi · 7 passi giorno 1 · 7 domande bagagli |
 | places.json | 326 luoghi · 108 abbinati ai CSV · 0 con coordinate · 75 con `dayDates` |
-| budget.json | 6 categorie + 4 comuni · totale €2753.39/pax · €11013.56 gruppo |
+| budget.json | 6 categorie + 4 comuni · totale €2735.54/pax · €10942.16 gruppo |
 
 Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 18, generico 14, places 67, places (testa) 9, titolo 5 (`titolo`/`destinazione` = euristica sul testo, da rivedere in revisione agenda).
 
-## Ambiguità da decidere (orchestratore) (17)
+## Ambiguità da decidere (orchestratore) (18)
 
 - lodging Takayama: stato «✓ prenotato» → paid:false, payment «da confermare»
 - lodging Shuzenji: stato «✓ prenotato» → paid:false, payment «da confermare»
@@ -30,6 +30,7 @@ Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 1
 - testo con riferimenti al dossier rimasto: agenda.days[2].items[16].note: «Cena di compleanno: ristorante da scegliere (decisione A-09-4, il clie»
 - testo con riferimenti al dossier rimasto: agenda.days[3].items[3].note: «Scelta del cliente. Non prende prenotazioni a pranzo e c'è coda: mette»
 - testo con riferimenti al dossier rimasto: agenda.days[5].items[19].note: «Bus Gifu n. 13803 Shirakawa-gō 15:55 → Nagoya Meitetsu Bus Center 18:4»
+- override `transport.legs[leg-14]`: da togliere ma inesistente, ignorato
 - lodging takayama (Country Hotel Takayama): indirizzo mancante (non nei .md) → "" — da inserire in site_overrides.json
 - lodging nagoya (Glocal Nagoya Backpackers): indirizzo mancante (non nei .md) → "" — da inserire in site_overrides.json
 - lodging uchiura (Yasudaya Ryokan): indirizzo mancante (non nei .md) → "" — da inserire in site_overrides.json
@@ -80,7 +81,7 @@ Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 1
 - rimossi metodo di pagamento/tasso da: «BPER addebito in € · tasso 185,34»
 - rimossi metodo di pagamento/tasso da: «Revolut/BPER · Booking/AirHost»
 
-## Note (58)
+## Note (57)
 
 - CSV `01_Osaka_(7-11_nov).csv`: nessuna colonna coordinate (colonne: Luogo, Nome, Note) → lat/lon omessi
 - CSV `02_Kyoto_(8-9_nov).csv`: nessuna colonna coordinate (colonne: Luogo, Nome, Note) → lat/lon omessi
@@ -125,7 +126,6 @@ Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 1
 - override `transport.legs[leg-2].options[leg-2-2]`: elemento tolto
 - override `transport.legs[leg-2].options[leg-2-3]`: elemento tolto
 - override `transport.legs[leg-5].options[leg-5-1]`: elemento tolto
-- override `transport.legs[leg-14]`: elemento aggiunto
 - override `transport.bookingGuide[bg-odoriko]`: elemento aggiunto
 - override `transport.checklist[ck-13]`: elemento tolto
 - override `transport.checklist[ck-bon-indirizzi]`: elemento aggiunto
@@ -223,7 +223,7 @@ Errori (bloccano `--check`):
 - nessuno
 
 Avvisi (giorni in bozza o stime):
-- ⚠️ tratta leg-14-1 «Bus Meitetsu dal Meitetsu Bus Center»: nessuna tappa in agenda il 2026-11-14 con «Nagashima» nel titolo (giorno in bozza)
+- nessuno
 
 ## Validazione schemi
 
