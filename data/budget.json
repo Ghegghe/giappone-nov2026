@@ -4,7 +4,7 @@
       {
         "name": "Trasporti",
         "detail": "Catena intercity + transfer",
-        "eur": 195.61,
+        "eur": 196.75,
         "estimate": false,
         "links": [
           {
@@ -82,17 +82,17 @@
       }
     ],
     "commonTotalEur": 882.86,
-    "totalEur": 2735.54
+    "totalEur": 2736.68
   },
   "group": {
-    "totalEur": 10942.16
+    "totalEur": 10946.72
   },
   "paidSoFar": {
     "lodgingEurGroup": 2948.27,
     "lodgingEurGroupPaid": 2324.78,
     "lodgingEurGroupToPay": 623.49,
     "flightsEurGroup": 3224.0,
-    "advancedEurGroup": 3021.14
+    "advancedEurGroup": 3120.9
   },
   "daily": [
     {
@@ -148,7 +148,7 @@
     {
       "date": "2026-11-17",
       "eurPlanned": 70,
-      "eurAgenda": 59.92
+      "eurAgenda": 61.06
     },
     {
       "date": "2026-11-18",
@@ -197,7 +197,7 @@
     }
   ],
   "advanced": {
-    "asOf": "2026-10-13",
+    "asOf": "2026-10-17",
     "people": 4,
     "items": [
       {
@@ -304,6 +304,17 @@
         "ref": "transport:leg-2-1",
         "eur": 191.36,
         "eurPerPerson": 47.84
+      },
+      {
+        "id": "kodama",
+        "group": "Trasporti",
+        "what": "Shinkansen Kodama 814, Mishima → Tokyo · 4 pax · 17/11",
+        "date": "2026-10-17",
+        "jpy": 17600,
+        "rate": 176.425,
+        "ref": "transport:leg-5-1",
+        "eur": 99.76,
+        "eurPerPerson": 24.94
       }
     ],
     "groups": [
@@ -319,11 +330,11 @@
       },
       {
         "name": "Trasporti",
-        "eurTotal": 504.92,
-        "eurPerPerson": 126.23
+        "eurTotal": 604.68,
+        "eurPerPerson": 151.17
       }
     ],
-    "totalEur": 3021.14,
-    "totalEurPerPerson": 755.29
+    "totalEur": 3120.9,
+    "totalEurPerPerson": 780.23
   }
 }

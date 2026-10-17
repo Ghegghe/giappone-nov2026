@@ -4177,28 +4177,28 @@
         },
         {
           "id": "d17-02",
-          "time": "12:35",
-          "end": "15:05",
-          "title": "Odoriko 4 Shuzenji 12:35 → Shinagawa 14:43, Yamanote → Yoyogi",
+          "time": "11:19",
+          "end": "13:18",
+          "title": "Sunzu 11:19 → Mishima, Kodama 814 12:27 → Tokyo 13:18",
           "type": "train",
           "fixed": true,
           "optional": false,
-          "costEur": 26.92,
+          "costEur": 28.06,
           "costEstimate": false,
           "costNote": "",
-          "place": "Shinagawa",
-          "mapsQuery": "Shinagawa Station",
-          "note": "Diretto, posti riservati: si prenota dal 17 ott su Eki-net (JR East). Dal paese di Shuzenji alla stazione: bus, ¥300. Si scende a Shinagawa e si prende la Yamanote fino a Yoyogi, ~20'.",
+          "place": "Mishima",
+          "mapsQuery": "Mishima Station",
+          "note": "Dal paese alla stazione di Shuzenji: bus Tōkai, ¥300. Il trenino Sunzu non si prenota: ¥550, si paga toccando una carta contactless Visa alla colonnina oppure con il biglietto di carta in contanti; Suica e ICOCA NON valgono sulla Sunzu. A Mishima cambio interno ai tornelli di trasbordo Izuhakone → Shinkansen, senza uscire dal lato sud; cosa inserire al tornello con il QR va chiesto all'addetto. Bentō da comprare a Mishima: la Kodama non ha carrello. Kodama 814 dal binario 6, comprato il 17 ott su smartEX: carrozza 12, posti 8D 8E 9D 9E; al tornello il QR-Ticket dell'app, uno per posto.",
           "booking": {
-            "status": "todo",
-            "where": "Eki-net (JR East)",
+            "status": "done",
+            "where": "smartEX",
             "when": "17 ott"
           },
-          "transportOptionId": "leg-5-2"
+          "transportOptionId": "leg-5-1"
         },
         {
           "id": "d17-03",
-          "time": "15:10",
+          "time": "15:00",
           "title": "Check-in Yume-no-ya (Yoyogi)",
           "type": "lodging",
           "fixed": true,
@@ -4208,7 +4208,7 @@
           "costNote": "",
           "place": "Yume-no-ya Yoyogi #203",
           "mapsQuery": "夢の舎 代々木 Yoyogi Tokyo",
-          "note": "Self check-in con key box: il codice arriva per email verso le 11. Poi ritiro delle 4 valigie all'ufficio Yamato Yoyogi 2-chome (feriali 12-20) con il passaporto · ufficio ~10' a piedi · custodia fino al 22",
+          "note": "Da Tokyo Station a Shinjuku con la linea Chūō rapida, poi a piedi verso sud. Prima, dopo le 14, ritiro delle 4 valigie all'ufficio Yamato Yoyogi 2-chome (feriali 12-20) con il passaporto · ufficio ~10' a piedi · custodia fino al 22. Self check-in con key box dalle 15:00: il codice arriva per email verso le 11.",
           "stayId": "tokyo",
           "booking": {
             "status": "done",
@@ -4319,7 +4319,7 @@
       ],
       "gaps": "auto",
       "summary": "→ Tokyo; bagagli; Shibuya",
-      "moves": "bus → Shuzenji Sta.; Odoriko → Shinagawa; Yamanote",
+      "moves": "bus → Shuzenji Sta.; Sunzu → Mishima; Kodama → Tokyo; Chūō → Shinjuku",
       "budgetEur": 70
     },
     {

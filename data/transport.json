@@ -240,45 +240,39 @@
       "title": "Shuzenji → Tokyo",
       "options": [
         {
-          "id": "leg-5-2",
-          "name": "Odoriko 4 diretto Shuzenji 12:35 → Shinagawa 14:43",
-          "duration": "2h08",
-          "costEur": 26.92,
+          "id": "leg-5-1",
+          "name": "Trenino Sunzu Shuzenji 11:19 → Mishima 11:53, poi Kodama 814 Mishima 12:27 → Tokyo 13:18",
+          "duration": "1h59",
+          "costEur": 28.06,
           "chosen": true,
-          "note": "Treno diretto, posti riservati: ¥4.750 a testa. A Atami si aggancia un'altra parte del treno: si resta seduti. Tratto sul mare fra Atami e Odawara. A Tokyo Station arriverebbe alle 14:49.",
-          "noteShort": "Diretto, posti riservati. Tratto sul mare fra Atami e Odawara.",
-          "noteMore": [
-            "¥4.750 a testa.",
-            "A Atami si aggancia un'altra parte del treno: si resta seduti.",
-            "Shinagawa → Yoyogi con la Yamanote, circa 20 minuti."
-          ],
+          "note": "Il trenino Sunzu non si prenota: ¥550, toccando una carta contactless Visa alla colonnina o con il biglietto di carta in contanti; Suica e ICOCA NON valgono sulla Sunzu. A Mishima cambio interno, tornelli di trasbordo Izuhakone → Shinkansen: non uscite dal lato sud. Lo Shinkansen costa ¥4.400 a testa, posti riservati.",
           "booking": {
-            "site": "Eki-net (JR East)",
-            "url": "",
-            "status": "todo",
-            "opens": "2026-10-17",
-            "opensNote": "un mese prima, alle 10 giapponesi: le 3 di notte in Italia",
-            "howToPay": "Con carta. Il sito non si apre dall'Italia: carta straniera e tratto Izuhakone da provare al momento. Piano B: biglietto in stazione.",
-            "howToCollect": "Da verificare al momento della prenotazione."
+            "site": "smartEX",
+            "url": "https://smart-ex.jp/en",
+            "howToPay": "Pagato con carta su smartEX. Il trenino Sunzu si paga sul posto.",
+            "howToCollect": "Posti riservati: carrozza 12, posti 8D 8E 9D 9E. Al tornello si passa con il QR-Ticket dell'app, uno per posto.",
+            "opens": "",
+            "opensNote": "Comprato il 17 ottobre.",
+            "status": "done",
+            "siteNote": ""
           },
-          "costJpy": 4750,
-          "agendaKey": "Odoriko 4",
-          "costSource": "jpy",
-          "dep": "12:35",
-          "arr": "14:43"
-        },
-        {
-          "id": "leg-5-3",
-          "name": "Sunzu + locale Tokaido",
-          "duration": "3h05",
-          "costEur": 19,
-          "chosen": false,
-          "note": "+1h, cambi",
-          "noteShort": "+1h, cambi",
-          "noteMore": []
+          "noteShort": "Trenino Sunzu pagato sul posto (carta contactless o contanti, IC no), cambio interno a Mishima, Kodama 814 prenotato.",
+          "noteMore": [
+            "Kodama 814 dal binario 6 di Mishima: carrozza 12, posti 8D 8E 9D 9E. ¥4.400 a testa.",
+            "Al tornello di trasbordo di Mishima: cosa inserire con il QR non è verificato, chiedete all'addetto.",
+            "34 minuti di cambio a Mishima: si compra il bentō, la Kodama non ha carrello.",
+            "Treno perso: con smartEX si sale su un treno successivo dello stesso giorno, in carrozza non riservata.",
+            "Da Tokyo Station a Shinjuku: linea Chūō rapida."
+          ],
+          "agendaKey": "Kodama 814",
+          "costJpy": 4400,
+          "extraJpy": 550,
+          "costSource": "paid",
+          "dep": "11:19",
+          "arr": "13:18"
         }
       ],
-      "summary": "Diretto. Scendete a Shinagawa e prendete la Yamanote fino a Yoyogi, circa 20 minuti. Dal paese alla stazione di Shuzenji: bus, ¥300."
+      "summary": "Kodama 814 comprato su smartEX: carrozza 12, posti riservati. Il trenino Sunzu fino a Mishima si paga sul posto. Dal paese alla stazione di Shuzenji: bus, ¥300."
     }
   ],
   "transfers": [
@@ -522,7 +516,7 @@
       "summary": "Bus consigliato: le 11:20, arrivo a Narita T1 alle 13:15. In stiva vanno 2 valigie a testa."
     }
   ],
-  "totalChosenEur": 195.61,
+  "totalChosenEur": 196.75,
   "bookingGuide": [
     {
       "what": "Shinkansen Hikari 640 Nagoya → Mishima, 15 novembre alle 8:43",
@@ -604,14 +598,15 @@
       ]
     },
     {
-      "id": "bg-odoriko",
-      "what": "Odoriko 4 Shuzenji → Shinagawa, 17 novembre alle 12:35",
-      "site": "Eki-net (JR East)",
-      "url": "",
-      "when": "Apre il 17 ottobre, un mese prima, alle 10 giapponesi: le 3 di notte in Italia.",
-      "payment": "Con carta. Il sito non si apre dall'Italia: carta straniera e tratto Izuhakone da provare al momento. Piano B: biglietto in stazione.",
-      "collect": "Da verificare al momento della prenotazione.",
-      "notes": "4 posti riservati, ¥4.750 a testa. Diretto fino a Shinagawa (14:43), poi Yamanote fino a Yoyogi."
+      "id": "bg-kodama",
+      "what": "Shinkansen Kodama 814 Mishima → Tokyo, 17 novembre: trenino Sunzu da Shuzenji alle 11:19, Kodama alle 12:27",
+      "site": "smartEX",
+      "url": "https://smart-ex.jp/en",
+      "siteNote": "",
+      "when": "Comprato il 17 ottobre.",
+      "payment": "Pagato con carta su smartEX.",
+      "collect": "Posti riservati: carrozza 12, posti 8D 8E 9D 9E. Al tornello si passa con il QR-Ticket dell'app, uno per posto.",
+      "notes": "Treno perso: si sale su un treno successivo dello stesso giorno, in carrozza non riservata. Il trenino Sunzu Shuzenji → Mishima non si prenota: ¥550, toccando una carta contactless Visa o con il biglietto in contanti; Suica e ICOCA no. A Mishima cambio interno ai tornelli di trasbordo: chiedete all'addetto cosa inserire con il QR."
     }
   ],
   "checklist": [
@@ -765,12 +760,12 @@
     },
     {
       "id": "ck-17",
-      "when": "17 ott 3:00 (ora italiana)",
-      "what": "Odoriko 4 Shuzenji 12:35 → Shinagawa 14:43 (17 nov), 4 posti riservati",
-      "where": "Eki-net (JR East)",
-      "status": "todo",
+      "when": "17 ott",
+      "what": "Trenino Sunzu Shuzenji 11:19 → Mishima (da pagare sul posto) + Shinkansen Kodama 814 Mishima 12:27 → Tokyo 13:18 (17 nov), 4 posti riservati · carrozza 12",
+      "where": "smartEX",
+      "status": "done",
       "sortDate": "2026-10-17",
-      "whenDetail": "3:00 (ora italiana)"
+      "whenDetail": ""
     },
     {
       "id": "ck-18",
