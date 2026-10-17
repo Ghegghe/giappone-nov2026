@@ -135,7 +135,7 @@
             "site": "smartEX",
             "url": "https://smart-ex.jp/en",
             "howToPay": "Pagato con carta su smartEX.",
-            "howToCollect": "Posti assegnati il 15 ottobre, comunicati via email. Al tornello si passa con il QR-Ticket dell'app, uno per passeggero da «My Trips», oppure con la carta IC registrata; esce il foglietto «Seat Information», da tenere.",
+            "howToCollect": "Posti riservati: carrozza 6, posti 8D 8E 9D 9E (assegnati il 15 ottobre). Al tornello si passa con il QR-Ticket dell'app, uno per passeggero da «My Trips», oppure con la carta IC registrata; esce il foglietto «Seat Information», da tenere.",
             "opens": "",
             "opensNote": "Comprato il 13 ottobre.",
             "status": "done",
@@ -143,6 +143,7 @@
           },
           "noteShort": "A Mishima treno locale delle 10:12 → Numazu 10:18, con la carta IC (¥190).",
           "noteMore": [
+            "Hikari 640 arriva a Mishima al binario 6: carrozza 6, posti 8D 8E 9D 9E.",
             "Lo Shinkansen costa ¥8.440 a testa: il 15 novembre è stagione di punta.",
             "Treno perso: con smartEX si sale gratis su uno Shinkansen successivo dello stesso giorno, in carrozza non riservata."
           ],
@@ -752,7 +753,7 @@
     {
       "id": "ck-16",
       "when": "13 ott",
-      "what": "Shinkansen Hikari 640 Nagoya 8:43 → Mishima 9:57 (15 nov), 4 posti · posti assegnati via email il 15 ott",
+      "what": "Shinkansen Hikari 640 Nagoya 8:43 → Mishima 9:57 (15 nov), 4 posti riservati · carrozza 6, posti 8D 8E 9D 9E",
       "where": "smartEX",
       "status": "done",
       "sortDate": "2026-10-13",
