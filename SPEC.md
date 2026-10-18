@@ -225,6 +225,13 @@ updated: 2026-10-05
 ---
 corpo markdown…
 ```
+- **Galleria scorrevole** (18 ott 2026; anche nelle schede §12): UN blocco su una sola riga o su righe consecutive SENZA righe
+  vuote, 2-5 foto, credit obbligatorio in ogni didascalia; la didascalia finale è opzionale. I `<figure>` annidati sono ammessi
+  (il blocco finisce al `</figure>` esterno):
+  `<figure class="g-gallery"><div class="g-gallery__track"><figure class="g-gallery__item"><img src="https://…" alt="…" loading="lazy"><figcaption>Foto: X, sito ufficiale · <a href="https://…">fonte</a></figcaption></figure> …</div><figcaption>didascalia opzionale</figcaption></figure>`
+  L'exporter aggiunge alla striscia `tabindex="0" role="region" aria-label="…"` (scorrimento da tastiera). UI in `guide.css`:
+  striscia con scroll-snap orizzontale (solo la striscia scorre, mai la pagina), foto 4:3 `object-fit: cover`, ~80% della colonna
+  su mobile, ~45% da 720px.
 
 ### 10.2 Dati: `site/data/guides.json` (generato dall'exporter, step `build_guides`)
 ```json
@@ -234,6 +241,11 @@ corpo markdown…
 ```
 L'exporter converte il markdown con un convertitore proprio (sottoinsieme sopra), escapa l'HTML tranne i blocchi `<svg>`/`<figure>`
 che devono essere sicuri (niente script/eventi); `places` risolti dai cataloghi `data/piano/catalogo/data/*.json` quando esistono.
+- Foto: come le schede §12 ma in `site/assets/img/guide/<guideId>-<sha1(url)[:8]>.webp`, lato lungo **800**, WebP **q65**:
+  con `--fetch-images` si scaricano, senza flag si riusano i file presenti, altrimenti resta l'URL remoto (report
+  `_export_report.md` › «Guide» › «Foto senza copia locale»). L'URL remoto resta nella sorgente.
+- Offline: ogni foto locale delle guide va elencata A MANO in `sw.js` PRECACHE (come quelle delle schede); `tools/check_site.py`
+  dà errore se una foto usata in `guides.json` manca o non è in PRECACHE, e avvisa dei file orfani della cartella.
 
 ### 10.3 UI: `site/guide.html`
 - Indice: card per guida (icona, titolo, summary, tag), ordinate per `order`, filtro per tag (chip). `?g=<id>` o `#<id>` apre la guida.
@@ -281,6 +293,7 @@ corpo markdown…
 ```
 - Foto: blocchi `<figure><img src="https://…" alt="…"><figcaption>credit</figcaption></figure>`. Credit obbligatorio nella didascalia
   (le foto ufficiali del locale si citano come «Foto: <locale>, sito ufficiale»). L'URL remoto resta nella sorgente.
+- Galleria scorrevole di più foto: stesso markup `figure.g-gallery` delle guide (§10.1), foto in `assets/img/luoghi/` come sopra.
 - Frasi da mostrare: `<figure class="l-phrase"><p class="l-phrase__ja" lang="ja">…</p><p class="l-phrase__ro">romaji</p>
   <figcaption><span lang="en">English</span> · Italiano</figcaption></figure>` (la pagina le ingrandisce a tutto schermo al tocco).
 - Riquadri «in breve / attenzione»: citazione `>`. Dati non verificati marcati come nelle guide («da verificare», «stima», sezione finale).

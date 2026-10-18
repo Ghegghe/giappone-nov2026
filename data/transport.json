@@ -207,18 +207,18 @@
       "options": [
         {
           "id": "leg-4-1",
-          "name": "Bus Izuhakone + Sunzu via Takyō (frutteto a piedi)",
-          "duration": "~3h10 con il frutteto",
-          "costEur": 6.92,
+          "name": "Bus Izuhakone + trenino Sunzu + bus Tōkai",
+          "duration": "~1h20 con le attese",
+          "costEur": 6.58,
           "chosen": true,
-          "note": "Bus Izuhakone Sea Paradise 11:55 → Izu-Nagaoka 12:19, ¥550 a bordo. Trenino Sunzu 12:45 → Takyō 12:49 (¥160), 2 km a piedi al frutteto e ritorno, Takyō 14:39 → Shuzenji 14:49 (¥210): sulla Sunzu le carte IC NON valgono, si tocca una carta contactless Visa alla colonnina o si compra il biglietto in contanti. Dalla stazione di Shuzenji al paese: bus Tōkai, ¥300.",
-          "noteShort": "Una sola direzione, con la sosta per i mandarini.",
+          "note": "Bus Izuhakone Sea Paradise 11:55 → Izu-Nagaoka 12:19, ¥550 pagato a bordo. Trenino Sunzu 12:45 → Shuzenji 12:59, ¥310: le carte IC NON valgono, si tocca una carta contactless Visa alla colonnina o si compra il biglietto in contanti. Dalla stazione di Shuzenji al paese: bus Tōkai dalla piattaforma 1, ¥300.",
+          "noteShort": "Senza tornare indietro.",
           "noteMore": [
             "Bus Izuhakone 11:55 → Izu-Nagaoka 12:19, ¥550 a bordo.",
-            "Sunzu 12:45 → Takyō, 2 km a piedi al frutteto, Takyō 14:39 → Shuzenji: carta contactless Visa o contanti, IC NO.",
-            "Dalla stazione di Shuzenji al paese: bus Tōkai, ¥300."
+            "Trenino Sunzu 12:45 → Shuzenji 12:59, ¥310: carta contactless Visa o contanti, IC NO.",
+            "Dalla stazione di Shuzenji al paese: bus Tōkai dalla piattaforma 1, ¥300."
           ],
-          "costJpy": 1220,
+          "costJpy": 1160,
           "agendaKey": "Izuhakone",
           "costSource": "jpy"
         },
@@ -233,7 +233,7 @@
           "noteMore": []
         }
       ],
-      "summary": "Non si prenota: bus Izuhakone fino a Izu-Nagaoka, trenino Sunzu fino a Takyō e 2 km a piedi al frutteto di mandarini, poi trenino fino a Shuzenji e bus al paese."
+      "summary": "Non si prenota: bus Izuhakone fino a Izu-Nagaoka, trenino Sunzu fino a Shuzenji, bus Tōkai fino al paese. Nessun bus diretto."
     },
     {
       "id": "leg-5",
@@ -520,7 +520,7 @@
       "summary": "Bus consigliato: le 11:20, arrivo a Narita T1 alle 13:15. In stiva vanno 2 valigie a testa."
     }
   ],
-  "totalChosenEur": 200.11,
+  "totalChosenEur": 199.77,
   "bookingGuide": [
     {
       "what": "Shinkansen Hikari 640 Nagoya → Mishima, 15 novembre alle 8:43",

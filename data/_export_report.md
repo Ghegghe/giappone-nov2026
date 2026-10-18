@@ -1,17 +1,17 @@
 # Report export dati sito
 
-Sorgente: `build_xlsx_v33.py` (letto via `ast`, non eseguito) · CSV My Maps: `mymaps_csv/` · override: `site_overrides.json` · generatedAt (mtime sorgenti): 2026-10-18T18:55:18+02:00
+Sorgente: `build_xlsx_v33.py` (letto via `ast`, non eseguito) · CSV My Maps: `mymaps_csv/` · override: `site_overrides.json` · generatedAt (mtime sorgenti): 2026-10-18T19:58:54+02:00
 
 ## Conteggi
 
 | File | Contenuto |
 |---|---|
 | trip.json | 7 sezioni · 15 link · 6 fatti |
-| agenda.json | 18 giorni (10 `final` · 8 `draft`) · 244 item · 198 con `end` dedotto · 76 con `placeId` |
-| transport.json | 7 tratte · 2 transfer · 8 righe guida · 31 checklist (12 da fare) · scelte = €200.11/pax |
+| agenda.json | 18 giorni (10 `final` · 8 `draft`) · 242 item · 196 con `end` dedotto · 75 con `placeId` |
+| transport.json | 7 tratte · 2 transfer · 8 righe guida · 31 checklist (12 da fare) · scelte = €199.77/pax |
 | lodging.json | 6 basi · 7 passi giorno 1 · 7 domande bagagli |
-| places.json | 326 luoghi · 108 abbinati ai CSV · 0 con coordinate · 72 con `dayDates` |
-| budget.json | 6 categorie + 4 comuni · totale €2740.04/pax · €10960.16 gruppo |
+| places.json | 326 luoghi · 108 abbinati ai CSV · 0 con coordinate · 71 con `dayDates` |
+| budget.json | 6 categorie + 4 comuni · totale €2739.7/pax · €10958.8 gruppo |
 
 Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 18, generico 14, places 67, places (testa) 9, titolo 5 (`titolo`/`destinazione` = euristica sul testo, da rivedere in revisione agenda).
 
@@ -161,14 +161,14 @@ Blocchi NON fusi (non confermati): E (proposta)
 - 2026-11-13 (17 item, 5 extras)
 - 2026-11-14 (14 item, 8 extras)
 - 2026-11-15 (32 item, 12 extras)
-- 2026-11-16 (30 item, 14 extras)
+- 2026-11-16 (28 item, 13 extras)
 
 ### Tappe dopo mezzanotte ripiegate nella nota (2)
 
 - 2026-11-07 01:00 «Karaoke senza orari (facoltativo)» (placeId jankara-tenma → extras)
 - 2026-11-07 02:30 «A casa a piedi (~15-18')»
 
-### Tappe con opzioni (linea guida, SPEC §13) (21)
+### Tappe con opzioni (linea guida, SPEC §13) (22)
 
 - 2026-11-07 d07-04 «Giro veloce attorno a casa»: 2 opzioni
 - 2026-11-07 d07-11 «1° locale in piedi: il bancone del pesce»: 2 opzioni
@@ -188,11 +188,12 @@ Blocchi NON fusi (non confermati): E (proposta)
 - 2026-11-14 d14-13 «Ritrovo: ultima cena di Nagoya (scelta: »: 3 opzioni · flex
 - 2026-11-15 d15-15 «Pranzo di pesce al porto (linea guida)»: 3 opzioni · flex
 - 2026-11-15 d15-32 «Serata al ryokan: 10' su spiaggia e molo»: 2 opzioni
-- 2026-11-16 d16-10 «Pranzo sopra la spiaggia di Chika (linea»: 3 opzioni · flex
-- 2026-11-16 d16-29 «Un bicchiere al bar del paese (linea gui»: 2 opzioni · flex
-- 2026-11-16 d16-30 «Rientro dal vialetto di bambù illuminato»: 2 opzioni
+- 2026-11-16 d16-11 «Tempo libero a Mito: spiaggia di Chika, »: 3 opzioni
+- 2026-11-16 d16-17 «Pranzo di soba in paese (linea guida)»: 3 opzioni · flex
+- 2026-11-16 d16-27 «Un bicchiere al bar del paese (linea gui»: 2 opzioni · flex
+- 2026-11-16 d16-28 «Rientro dal vialetto di bambù illuminato»: 2 opzioni
 
-### Item/extras senza foto (34)
+### Item/extras senza foto (33)
 
 - d07-09 «Il ristorante di salmone dietro il vicolo Hozenji» (salmon-kat-namba)
 - d07-11 «Il bancone in piedi del pesce, pieno di ragazzi giapponesi» (tenma-uosho)
@@ -206,7 +207,6 @@ Blocchi NON fusi (non confermati): E (proposta)
 - opzione «Il karaoke aperto 24 ore sotto casa» (jankara-tenma)
 - 2026-11-07 extra «Il karaoke aperto 24 ore sotto casa» (jankara-tenma)
 - d08-12 «Le terme vere sul tetto, vicino a casa» (naniwa-no-yu)
-- opzione «L'osteria del sake nel vicolo, con pesce del mercato e il panino di manzo» (sake-terayama)
 - d10-04 «Il soba fatto a mano con la farina macinata a pietra» (shuhari-kuromon)
 - d10-08 «Il grande magazzino di manga, figure e cosplay usati» (mandarake-grand-chaos)
 - d10-15 «L'ufficio del corriere dove si lasciano le valigie per Tokyo» (yamato-umeda)
@@ -221,7 +221,7 @@ Blocchi NON fusi (non confermati): E (proposta)
 - d15-25 «Il punto info pieno di poster e pupazzi delle Aqours» (sannoura-info)
 - 2026-11-15 extra «La trattoria del curry nero di Yohane» (tosawaya)
 - opzione «La trattoria del curry nero di Yohane» (tosawaya)
-- d16-29 «Il bar del paese con birre artigianali e whisky» (j-cafe-bar)
+- d16-27 «Il bar del paese con birre artigianali e whisky» (j-cafe-bar)
 - opzione «Il bar del paese con birre artigianali e whisky» (j-cafe-bar)
 - opzione «Il pub-karaoke dei locali, aperto fino a mezzanotte» (pub-house-sumiya)
 - opzione «Il pub-karaoke dei locali, aperto fino a mezzanotte» (pub-house-sumiya)
@@ -283,11 +283,11 @@ Blocchi NON fusi (non confermati): E (proposta)
 - mitohama
 - yasudaya
 - mito-ko
+- kisho-mikan
 - awashima-pier
 - matsuzuki
-- hamanoya
 - izu-nagaoka-station
-- osaka-mikan
+- zenputei-nanaban
 - arai-ryokan
 - j-cafe-bar
 
@@ -308,7 +308,7 @@ Blocchi NON fusi (non confermati): E (proposta)
 - override `agendaItems[d11-04]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Limited Express Hida 25 diretto Osaka → Takayama 1»
 - override `agendaItems[d08-05]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Pranzo di manzo di Kobe»
 - override `agendaItems[d15-03]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Shinkansen Hikari 640 Nagoya 8:43 → Mishima 9:57»
-- override `agendaItems[d16-20]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Check-in all'Arai (dalle 15:00)»
+- override `agendaItems[d16-21]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Check-in all'Arai (dalle 15:00)»
 
 ## Coerenza dei dati (export_site_costs.py: copie inevitabili vs fonte unica)
 
@@ -344,7 +344,7 @@ Sorgente: `data/guide`
 ### Guide lette (12)
 
 - `bere.md` → `bere` (order 30, 7290 car. HTML, 2 luoghi)
-- `cena-compleanno-kyoto.md` → `cena-compleanno-kyoto` (order 12, 7709 car. HTML, 6 luoghi)
+- `cena-compleanno-kyoto.md` → `cena-compleanno-kyoto` (order 12, 103995 car. HTML, 6 luoghi)
 - `concerto-nagoya.md` → `concerto-nagoya` (order 15, 12754 car. HTML, 0 luoghi)
 - `izakaya-tachinomi.md` → `izakaya-tachinomi` (order 20, 8011 car. HTML, 0 luoghi)
 - `mangiare.md` → `mangiare` (order 40, 7037 car. HTML, 2 luoghi)
@@ -376,16 +376,139 @@ Sorgente: `data/guide`
 
 - nessuno
 
+### Foto scaricate (1)
+
+- cena-compleanno-kyoto-523fd730.webp (14 KB) ← https://s3-ap-northeast-1.amazonaws.com/files.jpneazy.com/restaurants/18/images/eyecatch.jpg
+
+### Foto riusate (file già presenti) (108)
+
+- cena-compleanno-kyoto-24483c4c.webp (45 KB)
+- cena-compleanno-kyoto-0cde6226.webp (30 KB)
+- cena-compleanno-kyoto-e84a0047.webp (20 KB)
+- cena-compleanno-kyoto-e3fc63be.webp (24 KB)
+- cena-compleanno-kyoto-fb12f1ba.webp (30 KB)
+- cena-compleanno-kyoto-95b7f3d0.webp (23 KB)
+- cena-compleanno-kyoto-5aa3f72d.webp (8 KB)
+- cena-compleanno-kyoto-baa04e01.webp (23 KB)
+- cena-compleanno-kyoto-4dfada3e.webp (56 KB)
+- cena-compleanno-kyoto-468f4e28.webp (27 KB)
+- cena-compleanno-kyoto-e9a0ac3c.webp (43 KB)
+- cena-compleanno-kyoto-b0387bb3.webp (27 KB)
+- cena-compleanno-kyoto-b73e178d.webp (25 KB)
+- cena-compleanno-kyoto-1934d06d.webp (19 KB)
+- cena-compleanno-kyoto-728a653e.webp (21 KB)
+- cena-compleanno-kyoto-a21f84d0.webp (23 KB)
+- cena-compleanno-kyoto-d2ca59a8.webp (19 KB)
+- cena-compleanno-kyoto-b54cccbe.webp (16 KB)
+- cena-compleanno-kyoto-c5f2df7e.webp (15 KB)
+- cena-compleanno-kyoto-f1905433.webp (10 KB)
+- cena-compleanno-kyoto-744970d6.webp (28 KB)
+- cena-compleanno-kyoto-2b9737f0.webp (20 KB)
+- cena-compleanno-kyoto-a4409a94.webp (16 KB)
+- cena-compleanno-kyoto-fea1ed8a.webp (59 KB)
+- cena-compleanno-kyoto-779a9441.webp (20 KB)
+- cena-compleanno-kyoto-42b0b72b.webp (36 KB)
+- cena-compleanno-kyoto-ad263258.webp (25 KB)
+- cena-compleanno-kyoto-0a68d028.webp (17 KB)
+- cena-compleanno-kyoto-7c7ad05f.webp (20 KB)
+- cena-compleanno-kyoto-37372d85.webp (20 KB)
+- cena-compleanno-kyoto-b1e6f6b3.webp (21 KB)
+- cena-compleanno-kyoto-400059ea.webp (22 KB)
+- cena-compleanno-kyoto-0f0dd028.webp (36 KB)
+- cena-compleanno-kyoto-835129d9.webp (23 KB)
+- cena-compleanno-kyoto-b620f802.webp (21 KB)
+- cena-compleanno-kyoto-9fa44862.webp (21 KB)
+- cena-compleanno-kyoto-004958f7.webp (20 KB)
+- cena-compleanno-kyoto-c4cf1c7c.webp (26 KB)
+- cena-compleanno-kyoto-5c815de6.webp (21 KB)
+- cena-compleanno-kyoto-29ae084d.webp (26 KB)
+- cena-compleanno-kyoto-152bd406.webp (19 KB)
+- cena-compleanno-kyoto-f66ddb92.webp (35 KB)
+- cena-compleanno-kyoto-fbe33191.webp (23 KB)
+- cena-compleanno-kyoto-42d60105.webp (26 KB)
+- cena-compleanno-kyoto-14989925.webp (26 KB)
+- cena-compleanno-kyoto-f6a0a2ca.webp (26 KB)
+- cena-compleanno-kyoto-6b4aafe2.webp (22 KB)
+- cena-compleanno-kyoto-e1286907.webp (58 KB)
+- cena-compleanno-kyoto-59202fad.webp (26 KB)
+- cena-compleanno-kyoto-d14dc47c.webp (28 KB)
+- cena-compleanno-kyoto-3c7c86ca.webp (16 KB)
+- cena-compleanno-kyoto-e804a542.webp (22 KB)
+- cena-compleanno-kyoto-13c229e0.webp (22 KB)
+- cena-compleanno-kyoto-6ae95df2.webp (31 KB)
+- cena-compleanno-kyoto-a35449ce.webp (20 KB)
+- cena-compleanno-kyoto-44ca209c.webp (9 KB)
+- cena-compleanno-kyoto-75aa72a2.webp (30 KB)
+- cena-compleanno-kyoto-2a46ab3f.webp (25 KB)
+- cena-compleanno-kyoto-29ee82ab.webp (18 KB)
+- cena-compleanno-kyoto-394b1824.webp (25 KB)
+- cena-compleanno-kyoto-1e9e7b4c.webp (13 KB)
+- cena-compleanno-kyoto-95fffee9.webp (9 KB)
+- cena-compleanno-kyoto-2cd47580.webp (30 KB)
+- cena-compleanno-kyoto-b445bce7.webp (37 KB)
+- cena-compleanno-kyoto-841f2fe9.webp (58 KB)
+- cena-compleanno-kyoto-755f0710.webp (37 KB)
+- cena-compleanno-kyoto-6d8154cb.webp (31 KB)
+- cena-compleanno-kyoto-8cb8db75.webp (25 KB)
+- cena-compleanno-kyoto-262eb7aa.webp (15 KB)
+- cena-compleanno-kyoto-fa106c3f.webp (24 KB)
+- cena-compleanno-kyoto-5fbfa70c.webp (33 KB)
+- cena-compleanno-kyoto-91469975.webp (14 KB)
+- cena-compleanno-kyoto-457dbdb5.webp (29 KB)
+- cena-compleanno-kyoto-fecb7f32.webp (23 KB)
+- cena-compleanno-kyoto-cbfa88dd.webp (19 KB)
+- cena-compleanno-kyoto-59ec7c0e.webp (14 KB)
+- cena-compleanno-kyoto-af367c6b.webp (23 KB)
+- cena-compleanno-kyoto-67ba3523.webp (32 KB)
+- cena-compleanno-kyoto-db62897d.webp (17 KB)
+- cena-compleanno-kyoto-03bea6f3.webp (12 KB)
+- cena-compleanno-kyoto-83eee99e.webp (23 KB)
+- cena-compleanno-kyoto-8e97b8c1.webp (9 KB)
+- cena-compleanno-kyoto-f7c527ca.webp (10 KB)
+- cena-compleanno-kyoto-0f9d8eef.webp (8 KB)
+- cena-compleanno-kyoto-fb59df94.webp (17 KB)
+- cena-compleanno-kyoto-c01b0de6.webp (19 KB)
+- cena-compleanno-kyoto-0aa5abff.webp (28 KB)
+- cena-compleanno-kyoto-e6c9ee68.webp (27 KB)
+- cena-compleanno-kyoto-c302e186.webp (24 KB)
+- cena-compleanno-kyoto-320a2847.webp (13 KB)
+- cena-compleanno-kyoto-e29e70b2.webp (14 KB)
+- cena-compleanno-kyoto-1438d89b.webp (27 KB)
+- cena-compleanno-kyoto-6cbd973f.webp (19 KB)
+- cena-compleanno-kyoto-8af486b9.webp (20 KB)
+- cena-compleanno-kyoto-e9608443.webp (24 KB)
+- cena-compleanno-kyoto-0ef90384.webp (29 KB)
+- cena-compleanno-kyoto-f1ca4ef3.webp (22 KB)
+- cena-compleanno-kyoto-5c110eba.webp (34 KB)
+- cena-compleanno-kyoto-7b373db4.webp (24 KB)
+- cena-compleanno-kyoto-055a029f.webp (20 KB)
+- cena-compleanno-kyoto-5ea39d01.webp (30 KB)
+- cena-compleanno-kyoto-40957e4e.webp (28 KB)
+- cena-compleanno-kyoto-224bbdfc.webp (11 KB)
+- cena-compleanno-kyoto-764809dc.webp (28 KB)
+- cena-compleanno-kyoto-aae3c623.webp (22 KB)
+- cena-compleanno-kyoto-3c7be5bf.webp (27 KB)
+- cena-compleanno-kyoto-5611ac56.webp (16 KB)
+- cena-compleanno-kyoto-1e41b52c.webp (20 KB)
+
+### Foto fallite (0)
+
+- nessuno
+
+### Foto senza copia locale (solo online) (0)
+
+- nessuno
+
 ## Foto locali dei luoghi (`--fetch-images`)
 
 Modalità: download attivo · convertitore: Pillow (/Users/panteghininicolo/progetti/Giappone_Nov2026/.venv/bin/python3)
-Cartella `site/assets/img/places/`: 168 file · 17758 KB totali
+Cartella `site/assets/img/places/`: 173 file · 18102 KB totali
 
 ### Scaricate (0)
 
 - nessuna
 
-### Riusate (file già presenti) (168)
+### Riusate (file già presenti) (171)
 
 - hankyu-higashi-dori (hankyu-higashi-dori.webp, 90 KB)
 - nakazakicho (nakazakicho.webp, 88 KB)
@@ -416,10 +539,11 @@ Cartella `site/assets/img/places/`: 168 file · 17758 KB totali
 - kodai-ji (kodai-ji.webp, 46 KB)
 - gion-hanamikoji (gion-hanamikoji.webp, 153 KB)
 - kappo-umetsu (kappo-umetsu.webp, 50 KB)
-- gion-rohan (gion-rohan.webp, 105 KB)
+- wabiya-korekido (wabiya-korekido.webp, 23 KB)
 - gion-sushi-taku (gion-sushi-taku.webp, 51 KB)
-- gion-nanba (gion-nanba.webp, 12 KB)
+- kikukawa-gion (kikukawa-gion.webp, 29 KB)
 - gion-tsuzaki (gion-tsuzaki.webp, 29 KB)
+- mamehachi-pontocho (mamehachi-pontocho.webp, 26 KB)
 - kinkaku-ji (kinkaku-ji.webp, 108 KB)
 - sake-fushimi (sake-fushimi.webp, 182 KB)
 - ginkaku-ji (ginkaku-ji.webp, 116 KB)
@@ -537,33 +661,34 @@ Cartella `site/assets/img/places/`: 168 file · 17758 KB totali
 - numazu-imperial-villa (numazu-imperial-villa.webp, 94 KB)
 - mishima-skywalk (mishima-skywalk.webp, 123 KB)
 - mishima-taisha (mishima-taisha.webp, 95 KB)
+- kisho-mikan (kisho-mikan.webp, 190 KB)
 - matsuzuki (matsuzuki.webp, 60 KB)
 - hamanoya (hamanoya.webp, 45 KB)
-- ikesuya (ikesuya.webp, 64 KB)
 - izu-nagaoka-station (izu-nagaoka-station.webp, 90 KB)
-- osaka-mikan (osaka-mikan.webp, 83 KB)
+- zenputei-nanaban (zenputei-nanaban.webp, 44 KB)
+- sakuda-soba (sakuda-soba.webp, 44 KB)
+- tokko-soba-oto (tokko-soba-oto.webp, 35 KB)
 - tokko-no-yu (tokko-no-yu.webp, 216 KB)
 - shuzen-ji (shuzen-ji.webp, 187 KB)
-- shigetsuden (shigetsuden.webp, 177 KB)
+- arai-ryokan (arai-ryokan.webp, 147 KB)
 - chikurin-no-komichi (chikurin-no-komichi.webp, 222 KB)
 - ponti-rossi-del-katsura (ponti-rossi-del-katsura.webp, 173 KB)
-- arai-ryokan (arai-ryokan.webp, 147 KB)
-- kisho-mikan (kisho-mikan.webp, 190 KB)
 - awashima (awashima.webp, 98 KB)
+- shuzenji-onsen (shuzenji-onsen.webp, 219 KB)
+- ikesuya (ikesuya.webp, 64 KB)
 - niji-no-sato (niji-no-sato.webp, 180 KB)
-- zenputei-nanaban (zenputei-nanaban.webp, 44 KB)
-- tokko-soba-oto (tokko-soba-oto.webp, 35 KB)
+- shigetsuden (shigetsuden.webp, 177 KB)
 - izu-panorama-park (izu-panorama-park.webp, 56 KB)
+- osaka-mikan (osaka-mikan.webp, 83 KB)
 - cascata-di-joren (cascata-di-joren.webp, 144 KB)
 
-### Fallite (6)
+### Fallite (5)
 
 - endoji-shikemichi: HTTP Error 429: Too Many Requests (015d12c) · https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Endoji_Shopping_Street_2021-10_ac.jpg/960px-Endoji_Shopping_Street_2021-10_ac.jpg
 - view-o: HTTP Error 429: Too Many Requests (015d12c) · https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Byuo.jpg/960px-Byuo.jpg
 - yasudaya: HTTP Error 429: Too Many Requests (015d12c) · https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Yasudaya-Ryokan.jpg/960px-Yasudaya-Ryokan.jpg
 - kanukiyama-park: HTTP Error 429: Too Many Requests (015d12c) · https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Mount_Kanuki_20120730.jpg/960px-Mount_Kanuki_20120730.jpg
 - hie-shrine: HTTP Error 429: Too Many Requests (015d12c) · https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Shuzenji_Onsen_area_Hie_Shrine_2024_11_4_various_12.jpg/960px-Shuzenji_Onsen_area_Hie_Shrine_2024_11_4_various_12.jpg
-- shuzenji-onsen: HTTP Error 429: Too Many Requests (015d12c) · https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/181124_Shuzenji_Onsen_Izu_Shizuoka_pref_Japan07s5.jpg/960px-181124_Shuzenji_Onsen_Izu_Shizuoka_pref_Japan07s5.jpg
 
 ## Schede dei luoghi (SPEC §12) — 1 in `site/data/place-details.json`
 

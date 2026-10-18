@@ -114,6 +114,32 @@ a.card.g-card {   /* a.card di base.css è display:block */
 .prose figure { margin-inline: 0; }
 .prose figure > * + * { margin-top: var(--space-2); }
 .prose figcaption { font-size: .8125rem; line-height: 1.4; color: var(--fg-muted); }
+/* galleria scorrevole (SPEC §10.1): figure.g-gallery > div.g-gallery__track > figure.g-gallery__item (img + credit).
+   Scorre SOLO la striscia (mai la pagina, anche a 360px); snap a ogni foto; la prossima foto si intravede a destra. */
+.prose figure.g-gallery { max-width: 100%; min-width: 0; }
+.prose .g-gallery__track {
+  display: flex; gap: var(--space-3); max-width: 100%;
+  overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scroll-padding-inline: 2px; -webkit-overflow-scrolling: touch;
+  padding: 2px 2px var(--space-2);   /* spazio per il focus ring e la barra di scorrimento */
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+  border-radius: var(--radius-md);
+}
+.prose .g-gallery__track:focus-visible { outline-offset: 2px; }
+.prose figure.g-gallery__item {
+  flex: 0 0 80%; min-width: 0; margin: 0;
+  scroll-snap-align: start; scroll-snap-stop: always;
+}
+@media (min-width: 720px) { .prose figure.g-gallery__item { flex-basis: 45%; } }
+.prose .g-gallery__item img {
+  display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover;
+  border-radius: var(--radius-md); background: var(--bg-sunken);
+}
+.prose .g-gallery__item > figcaption { font-size: .75rem; line-height: 1.35; overflow-wrap: anywhere; }
+.prose .g-gallery figcaption a { color: var(--accent-2); text-underline-offset: 2px; }
+.prose figure.g-gallery > figcaption { margin-top: var(--space-1); }
+@media (prefers-reduced-motion: no-preference) { .prose .g-gallery__track { scroll-behavior: smooth; } }
+
 /* classi per i disegni inline (si adattano a tema chiaro/scuro): vedi NOTES_guide.md */
 /* niente regole su `svg text`: il CSS batterebbe gli attributi fill/font-size dell'autore. Il colore di base è
    currentColor (= --fg); le classi qui sotto sono opzionali */

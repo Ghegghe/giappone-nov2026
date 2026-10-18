@@ -1423,12 +1423,12 @@
           "type": "food",
           "fixed": false,
           "optional": false,
-          "costEur": 116,
+          "costEur": 100,
           "costEstimate": false,
           "costNote": "",
           "place": "Kappō Umetsu (割烹 梅津)",
           "mapsQuery": "割烹 梅津 祇園",
-          "note": "Kappō Umetsu) · Linea guida, decisione A-09-4: nessuna prenotazione fatta. Consigliato Kappō Umetsu (pesce, sake di Kyoto, sala tatami privata; online su Tabelog, al 18 ott liberi 17:00-20:30 per 4). Gion Sushi Taku ha solo 17:30 o 20:00; Rohan si chiede via agenzia, Terayama solo per telefono in giapponese. Finire entro le 22:30: treni Hankyu da Kawaramachi 22:44 o 23:00 (Umeda 23:44); l'ultimo diretto è il 23:15 (Umeda 23:59). Confronto completo: Guide › «Cena di compleanno a Kyoto».",
+          "note": "Kappō Umetsu) · Linea guida, decisione A-09-4: nessuna prenotazione fatta, solo locali prenotabili online. Consigliato Kappō Umetsu (pesce, sake di Kyoto, sala tatami privata; corso «Nioi-ume» ~€95-105; al 18 ott liberi 17:00-20:30 per 4). Gion Sushi Taku ha solo 17:30 o 20:00. Finire entro le 22:30: treni Hankyu da Kawaramachi 22:44 o 23:00 (Umeda 23:44); l'ultimo diretto è il 23:15 (Umeda 23:59). Altre 16 opzioni per fascia di prezzo e tipo di cucina: Guide › «Cena di compleanno a Kyoto».",
           "nick": "La cucina al bancone di famiglia, con la sala tatami tutta per noi",
           "image": {
             "url": "assets/img/places/kappo-umetsu.webp",
@@ -1443,10 +1443,10 @@
               "name": "Kappō Umetsu (割烹 梅津)",
               "type": "food",
               "recommended": true,
-              "why": "Il consigliato: pesce, buon sake e saletta privata insieme, prenotabile online. Tabelog 3,65 (69 recensioni, clienti abituali) e selezionato dalla guida Michelin. Lunedì aperto. Al 18 ott, su Tabelog per 4 il 9/11 liberi tutti gli orari 17:00-20:30. Prenotazione online su Tabelog: il locale può telefonare per confermare (serve un numero raggiungibile in Giappone); carta a garanzia e penali non verificate.",
+              "why": "Il consigliato: pesce, buon sake e saletta privata insieme, prenotabile online. Entro il tetto di €115 con il corso «Nioi-ume». Tabelog 3,65 (69 recensioni, clienti abituali) e selezionato dalla guida Michelin. Lunedì aperto. Al 18 ott, su Tabelog per 4 il 9/11 liberi tutti gli orari 17:00-20:30. Prenotazione online su Tabelog: il locale può telefonare per confermare (serve un numero raggiungibile in Giappone); carta a garanzia e penali non verificate.",
               "what": "Kappō, cioè cucina giapponese al bancone: lo chef prepara davanti a voi sashimi, pesce alla brace, fritti e piatti in brodo di stagione. 11 posti al bancone e una sala tatami privata al 2° piano, in un vicolo di Gion a 3' dalla via delle geisha. Corso da circa 10 portate e una carta di sake di Kyoto da ¥900 al bicchiere.",
-              "costEur": 116,
-              "costNote": "corso «Kasane-bai» ¥17.300 (€98) + sake ~¥3.000 → ~€116 a testa; sala tatami +¥1.000 (capienza n.v.); servizio n.v.",
+              "costEur": 100,
+              "costNote": "corso «Nioi-ume» ¥15.000 (€85) + sake → ~€95-105 a testa (corso «Kasane-bai» ¥17.300: ~€110-120); sala tatami +¥1.000; servizio da verificare",
               "hours": "17:00-22:00 (lunedì aperto)",
               "closedOn": "domenica",
               "mapsQuery": "割烹 梅津 祇園",
@@ -1464,29 +1464,29 @@
               }
             },
             {
-              "id": "gion-rohan",
-              "nick": "L'osteria creativa di pesce, col panino di sgombro famoso",
-              "name": "Gion Rohan (祇園ろはん)",
+              "id": "wabiya-korekido",
+              "nick": "Gli spiedini di pollo alla brace nella casa di legno sulla via delle geisha",
+              "name": "Wabiya Koreki-dō Gion Hanamikoji (侘家古暦堂 祇園花見小路本店)",
               "type": "food",
               "recommended": false,
-              "why": "Lo spirito di Terayama (bere bene mangiando pesce) ma prenotabile tramite agenzia: Tabelog 3,77 su 292 recensioni, Tabelog 100 2024-26, selezionato Michelin, staff che parla inglese. Lunedì aperto. Non online su Tabelog: richiesta all'agenzia JPNEAZY (risposta entro 24 ore; ¥1.500 a testa non rimborsabili; penale ¥8.000 a testa da 7 giorni prima) o telefono in giapponese. Posti al 9/11 da chiedere.",
-              "what": "Osteria creativa di Kyoto: pesce e piatti di stagione alla carta (il panino di sgombro marinato è il piatto simbolo, poi anguilla di mare, crocchette di manzo, wagyu). Bancone da 8-9 posti e una saletta in fondo, a 2' dalla stazione Gion-Shijō.",
-              "costEur": 70,
-              "costNote": "alla carta ~¥10.000-14.000 con il sake (€57-79) + ¥1.500 (€9) se si passa da JPNEAZY",
-              "hours": "17:00-22:30 (lunedì aperto)",
-              "closedOn": "domenica",
-              "mapsQuery": "祇園ろはん",
+              "why": "Atmosfera di Gion e un piatto con dedica di compleanno su richiesta (si può anche portare una torta). Tabelog 3,59 su 1.097, Tabelog 100 yakitori 2022-2025. Lunedì aperto (chiuso per lavori dall'1 al 5 nov, riapre il 6). Al 18 ott, su Tabelog per 4 il 9/11 liberi 17:30-19:30 (anche su TableCheck). Prenotazione online su Tabelog o TableCheck con carta; penale 100% del corso se si disdice entro 12 ore.",
+              "what": "Yakitori, cioè spiedini di pollo alla brace di carbone, serviti come menu degustazione (antipasti, verdure alla brace, brodo di pollo, riso e dolce) in una casa di legno tradizionale sulla Hanamikoji. Bancone da 14 e salette private da 4 al primo piano.",
+              "costEur": 85,
+              "costNote": "corso «Kyoto Yakitori Style» ¥12.000 (€68) dal 6 nov + 5% al bancone o 10% in saletta + bevande → ~€83-87 a testa",
+              "hours": "cena 17:30-22:00, ultimo ingresso 20:00 (lunedì aperto)",
+              "closedOn": "domenica; chiuso 1-5 nov 2026 per lavori",
+              "mapsQuery": "侘家古暦堂 祇園花見小路本店",
               "rating": {
                 "source": "Tabelog",
-                "value": 3.77,
-                "reviews": 292,
-                "awards": "Tabelog 100 2024-2026 · selezionato Michelin"
+                "value": 3.59,
+                "reviews": 1097,
+                "awards": "Tabelog 100 Yakitori 2022, 2024, 2025"
               },
               "image": {
-                "url": "assets/img/places/gion-rohan.webp",
-                "credit": "Foto: Gion Rohan, pagina ufficiale su JPNEAZY",
-                "page": "https://jpneazy.com/restaurants/39581",
-                "alt": "L'osteria creativa di pesce, col panino di sgombro famoso"
+                "url": "assets/img/places/wabiya-korekido.webp",
+                "credit": "Foto: Wabiya Koreki-dō, sito ufficiale",
+                "page": "https://www.wabiya.com/restaurant/gion/",
+                "alt": "Gli spiedini di pollo alla brace nella casa di legno sulla via delle geisha"
               }
             },
             {
@@ -1497,8 +1497,8 @@
               "recommended": false,
               "why": "Il sushi al bancone per il compleanno: in 4 si occupa quasi tutto il bancone. Tabelog 3,52 su 188. Lunedì aperto. Al 18 ott, su Tabelog per 4 il 9/11 restano SOLO i turni delle 17:30 e delle 20:00 (2 ore). Prenotazione online su Tabelog, corso obbligatorio; penale 100% dalle 21:00 del giorno prima; annullata dopo 15' di ritardo.",
               "what": "Bancone di sushi da 6 posti sulla via Hanamikoji: lo chef prepara sushi, tempura e piattini. C'è un «Anniversary Course» con spumante e dolce con dedica, pensato per le ricorrenze.",
-              "costEur": 106,
-              "costNote": "Anniversary Course ¥14.000 + 10% servizio = ¥15.400 (€87) + sake → ~€105-108 a testa",
+              "costEur": 102,
+              "costNote": "Anniversary Course ¥14.000 + 10% = ¥15.400 (€87) + sake → ~€98-105 a testa",
               "hours": "turni 17:30-19:30 e 20:00-22:00 (lunedì aperto)",
               "closedOn": "n.v. (mercoledì secondo Japan Food Guide)",
               "mapsQuery": "祇園鮨 琢",
@@ -1515,28 +1515,28 @@
               }
             },
             {
-              "id": "gion-nanba",
-              "nick": "La cena elegante di tante portate, in una saletta tatami di Gion",
-              "name": "Gion Nanba (祇園 なん波)",
+              "id": "kikukawa-gion",
+              "nick": "L'anguilla alla brace nella casa di legno sul canaletto coi salici",
+              "name": "Kyoto Gion Unagi Yondaime Kikukawa (京都祇園 うなぎ四代目菊川)",
               "type": "food",
               "recommended": false,
-              "why": "La scelta «vero Kyoto» ed elegante, con saletta per 4: Tabelog 3,68 su 207, clientela giapponese. Lunedì aperto. Al 18 ott, su Tabelog per 4 il 9/11 liberi 17:30-21:00 ogni 30'. Prenotazione online su Tabelog (saletta da chiedere in nota); il sito del locale parla di anticipo e penali da 3 giorni prima.",
-              "what": "Kaiseki, l'alta cucina di Kyoto: circa 10 portate piccole di stagione servite una dopo l'altra (in autunno funghi matsutake e pesce), in una casetta nel vicolo accanto alla via delle geisha. Bancone da 6 e salette tatami da 2 a 8 persone.",
-              "costEur": 128,
-              "costNote": "corso cena ¥16.500 + 10% servizio = ¥18.150 (€103) + sake → ~€128 a testa",
-              "hours": "17:30-20:00 (ultimo ordine 20:00 secondo JPNEAZY; lunedì aperto)",
-              "closedOn": "giovedì",
-              "mapsQuery": "祇園 なん波",
+              "why": "Il punto più bello di Gion a prezzo medio, con salette per 4 e una buona carta di sake. Tabelog 3,55 su 263. Lunedì aperto. Al 18 ott, su Tabelog per 4 il 9/11 liberi 17:00-20:30 ogni 30'. Prenotazione online su Tabelog (si sceglie il corso); penali da verificare.",
+              "what": "Anguilla d'acqua dolce aperta, grigliata sul carbone e laccata con salsa dolce di soia, servita su riso o in un piccolo kaiseki con sashimi e altri piatti. È in una casa di legno sul canaletto Shirakawa, con salette private.",
+              "costEur": 77,
+              "costNote": "kaiseki di anguilla ¥10.000 (€57) + 10% di servizio + bevande → ~€74-80 a testa; saletta +¥2.000 a stanza",
+              "hours": "cena 17:00-22:00, ultimo ordine 21:00 (lunedì aperto)",
+              "closedOn": "irregolare",
+              "mapsQuery": "京都祇園 うなぎ四代目菊川",
               "rating": {
                 "source": "Tabelog",
-                "value": 3.68,
-                "reviews": 207
+                "value": 3.55,
+                "reviews": 263
               },
               "image": {
-                "url": "assets/img/places/gion-nanba.webp",
-                "credit": "Foto: Gion Nanba, pagina ufficiale su JPNEAZY",
-                "page": "https://jpneazy.com/jp/restaurants/18",
-                "alt": "La cena elegante di tante portate, in una saletta tatami di Gion"
+                "url": "assets/img/places/kikukawa-gion.webp",
+                "credit": "Foto: Kyoto Gion Unagi Yondaime Kikukawa, foto ufficiali Tabelog",
+                "page": "https://tabelog.com/en/kyoto/A2601/A260201/26039727/dtlphotolst/smp2/?mode=owner",
+                "alt": "L'anguilla alla brace nella casa di legno sul canaletto coi salici"
               }
             },
             {
@@ -1547,8 +1547,8 @@
               "recommended": false,
               "why": "Il vero sushi al bancone spendendo meno, in un locale di quartiere a gestione familiare (Tabelog 3,15 su 40, clienti abituali, poco inglese). Lunedì aperto. Al 18 ott, su Tabelog per 4 il 9/11 liberi 18:00-20:30 ogni 15'. Prenotazione online su Tabelog o Japan Food Guide (penale 50% il giorno prima, 100% il giorno stesso). Tabelog lo indica come locale dove si può fumare (n.v. oggi).",
               "what": "Banco di sushi da 13 posti nella via del canaletto coi salici (Shinbashi): lo chef, 20 anni in un ristorante storico di Gion, prepara menù da 8 o 11 pezzi mescolando stile di Tokyo e di Kyoto. Tonno grasso, cannolicchi, uova di salmone presi al mercato ogni mattina.",
-              "costEur": 83,
-              "costNote": "corso omakase ¥11.000 + antipasto obbligatorio ¥500 = €65, niente servizio; con il sake ~€80-85 a testa",
+              "costEur": 75,
+              "costNote": "corso omakase ¥11.000 + antipasto obbligatorio ¥500 (€65) + sake → ~€70-80 a testa",
               "hours": "lun 18:00-22:00",
               "closedOn": "domenica (può chiudere senza preavviso se non ha prenotazioni)",
               "mapsQuery": "ぎをん 津崎 新橋通",
@@ -1565,23 +1565,28 @@
               }
             },
             {
-              "id": "sake-terayama",
-              "nick": "L'osteria del sake nel vicolo, con pesce del mercato e il panino di manzo",
-              "name": "Sake Dokoro Terayama (酒処 てらやま)",
+              "id": "mamehachi-pontocho",
+              "nick": "Il tofu e la cucina casalinga di Kyoto, in una casa di Pontochō",
+              "name": "Marutake Ebisu Mamehachi Pontochō (まる竹えびす 豆八 先斗町)",
               "type": "food",
               "recommended": false,
-              "why": "Per la cucina resta forte: sake scelti e pesce del mercato in un posto da local (Tabelog 3,71 su 333, Tabelog 100 2024-26). Lunedì aperto (ma ha 1-2 chiusure irregolari al mese). Si prenota SOLO per telefono in giapponese (vietate agenzie e concierge), chiamando fra le 13:00 e le 15:30 ora giapponese (in Italia 5:00-7:30 dal 25 ott); la linea è spesso occupata. Posti al 9/11 non verificabili.",
-              "what": "Piccola osteria da 16 posti in un vicolo dietro Kawaramachi: lunga lista di sake giapponesi da assaggiare a bicchiere, pesce comprato al mercato ogni mattina (crudo e alla brace), frittata arrotolata, alette fritte. Il piatto simbolo è il panino di cotoletta di manzo con senape.",
-              "costEur": 70,
-              "costNote": "alla carta, prezzi a mercato: ~¥10.000-15.000 con il sake (€57-85)",
-              "hours": "lun 16:00-22:00 (ultimo ordine cibo 21:00)",
-              "closedOn": "giovedì (+1-2 chiusure extra al mese)",
-              "mapsQuery": "酒処てらやま 京都 綾小路",
+              "why": "La scelta economica e tipica di Kyoto, con saletta per 4 e menu e personale in inglese. Tabelog 3,43 su 265. Lunedì aperto. Al 18 ott, su Tabelog per 4 il 9/11 liberi 17:00-20:00. Prenotazione online su Tabelog; penali da verificare.",
+              "what": "Casa tradizionale all'angolo fra Pontochō e Shijō dedicata al tofu e agli «obanzai», la cucina casalinga di Kyoto: yuba (la pelle del latte di soia), tofu di sesamo, pentola al latte di soia, pesce marinato nel sake. Corsi di 9-10 piatti, salette per 4.",
+              "costEur": 45,
+              "costNote": "corso «Marutake» 10 piatti ¥5.500 (€31) + bevande → ~€42-48 a testa",
+              "hours": "17:00-22:00, ultimo ordine 21:30 (lunedì aperto)",
+              "closedOn": "irregolare",
+              "mapsQuery": "まる竹えびす 豆八 先斗町",
               "rating": {
                 "source": "Tabelog",
-                "value": 3.71,
-                "reviews": 333,
-                "awards": "Tabelog 100 izakaya 2024-2026"
+                "value": 3.43,
+                "reviews": 265
+              },
+              "image": {
+                "url": "assets/img/places/mamehachi-pontocho.webp",
+                "credit": "Foto: Marutake Ebisu Mamehachi Pontochō, foto ufficiali Tabelog",
+                "page": "https://tabelog.com/en/kyoto/A2601/A260201/26021180/dtlphotolst/1/smp2/?mode=owner",
+                "alt": "Il tofu e la cucina casalinga di Kyoto, in una casa di Pontochō"
               }
             }
           ],
@@ -6594,7 +6599,7 @@
     {
       "date": "2026-11-16",
       "weekday": "lun",
-      "title": "Giro della baia al mattino, mandarini sull'albero sulla strada per Shuzenji (in treno e a piedi), poi il paese, i bagni e un bicchiere",
+      "title": "Mandarini sull'albero a Nishiura, il molo di Awashima, poi Shuzenji: soba, tempio, bambù al tramonto, bagni e un bicchiere",
       "base": "Shuzenji",
       "baseId": "shuzenji",
       "status": "final",
@@ -6650,7 +6655,7 @@
         {
           "id": "d16-03",
           "time": "08:30",
-          "end": "08:35",
+          "end": "08:45",
           "title": "Check-out e zaini alla reception",
           "type": "transfer",
           "fixed": false,
@@ -6669,139 +6674,18 @@
         },
         {
           "id": "d16-04",
-          "time": "08:35",
-          "end": "09:07",
-          "title": "Giro a piedi verso nord lungo il mare (~2 km)",
-          "type": "transfer",
-          "fixed": false,
-          "optional": false,
-          "costEur": 0,
-          "costEstimate": false,
-          "costNote": "",
-          "place": "",
-          "mapsQuery": "",
-          "note": "Porto di Kogai e trattoria dei pescatori, fino al molo di Awashima · La parte della baia che il 15 si vede solo dal finestrino del bus. Unico andata e ritorno del blocco, voluto: dal molo si torna a piedi o col bus Tōkai verso Mito (orari Jorudan, · ).",
-          "booking": {
-            "status": "none",
-            "where": "",
-            "when": ""
-          }
-        },
-        {
-          "id": "d16-05",
-          "time": "09:07",
-          "end": "09:32",
-          "title": "Molo d'imbarco di Awashima (lato terra)",
-          "type": "sight",
-          "fixed": false,
-          "optional": false,
-          "costEur": 0,
-          "costEstimate": false,
-          "costNote": "gratis",
-          "place": "Molo d'imbarco di Awashima (lato terra)",
-          "mapsQuery": "Awashima Marine Park boat pier",
-          "note": "L'isola di Kanan e Mari con il Fuji dietro, dal molo (sull'isola non si sale); a quest'ora la luce è giusta",
-          "nick": "Il molo per l'isola, con il Fuji dietro Awashima",
-          "image": {
-            "url": "assets/img/places/awashima-pier.webp",
-            "credit": "Alpsdake · CC BY-SA 4.0 · Wikimedia Commons",
-            "page": "https://commons.wikimedia.org/wiki/File:Awa_Island_and_Mount_Fuji_from_Uchiura_Bay.JPG",
-            "alt": "Il molo per l'isola, con il Fuji dietro Awashima"
-          },
-          "booking": {
-            "status": "none",
-            "where": "",
-            "when": ""
-          }
-        },
-        {
-          "id": "d16-06",
-          "time": "09:32",
-          "end": "10:00",
-          "title": "Ritorno a piedi a Mito (~2 km) passando dal porto di Kogai",
-          "type": "transfer",
-          "fixed": false,
-          "optional": false,
-          "costEur": 0,
-          "costEstimate": false,
-          "costNote": "",
-          "place": "",
-          "mapsQuery": "",
-          "note": "",
-          "booking": {
-            "status": "none",
-            "where": "",
-            "when": ""
-          }
-        },
-        {
-          "id": "d16-07",
-          "time": "10:00",
-          "end": "10:10",
-          "title": "Mitohama (spiaggia di Mito)",
-          "type": "anime",
-          "fixed": false,
-          "optional": false,
-          "costEur": 0,
-          "costEstimate": false,
-          "costNote": "gratis",
-          "place": "Mitohama (spiaggia di Mito)",
-          "mapsQuery": "三津浜 沼津",
-          "note": "Un passaggio sulla spiaggia di Chika col sole del mattino (niente sosta lunga: ci si passa sempre)",
-          "nick": "La spiaggia davanti a casa di Chika, quella del finale dell'anime",
-          "image": {
-            "url": "assets/img/places/mitohama.webp",
-            "credit": "Batholith · Public domain · Wikimedia Commons",
-            "page": "https://commons.wikimedia.org/wiki/File:Uchiuramito_2012-08-19.jpg",
-            "alt": "La spiaggia davanti a casa di Chika, quella del finale dell'anime"
-          },
-          "booking": {
-            "status": "none",
-            "where": "",
-            "when": ""
-          }
-        },
-        {
-          "id": "d16-08",
-          "time": "10:10",
-          "end": "10:40",
-          "title": "Merenda nella pasticceria dell'anime",
-          "type": "food",
-          "fixed": false,
-          "optional": false,
-          "costEur": 5,
-          "costEstimate": false,
-          "costNote": "",
-          "place": "Matsuzuki (松月)",
-          "mapsQuery": "松月 内浦 沼津",
-          "note": "Aperta il lunedì (10-17, chiusa mar-mer); dolci delle Aqours e, secondo un blog, un dorayaki al mandarino ( · )",
-          "nick": "La pasticceria dove le Aqours fanno merenda",
-          "image": {
-            "url": "assets/img/places/matsuzuki.webp",
-            "credit": "Ocdp · CC0 · Wikimedia Commons · foto di genere: dorayaki, non di questa pasticceria",
-            "page": "https://commons.wikimedia.org/wiki/File:Dorayaki_004.jpg",
-            "alt": "La pasticceria dove le Aqours fanno merenda"
-          },
-          "booking": {
-            "status": "none",
-            "where": "",
-            "when": ""
-          }
-        },
-        {
-          "id": "d16-09",
-          "time": "10:40",
-          "end": "11:00",
+          "time": "08:45",
+          "end": "09:00",
           "title": "Mito-kō (porticciolo di Mito)",
           "type": "anime",
           "fixed": false,
-          "optional": true,
+          "optional": false,
           "costEur": 0,
           "costEstimate": false,
           "costNote": "gratis (giro in battello: orari e prezzi n.v.)",
           "place": "Mito-kō (porticciolo di Mito)",
           "mapsQuery": "三津港 沼津",
-          "note": "Il porticciolo dei battelli e il molo inquadrato nell'anime, a 1': ultima foto della baia",
+          "note": "Il porticciolo dell'anime e, davanti all'acquario, la mascotte Uchicchi; poi la fermata del bus a 2'",
           "nick": "Il porticciolo dei battelli a destra della spiaggia di Chika",
           "image": {
             "url": "assets/img/places/mito-ko.webp",
@@ -6816,50 +6700,179 @@
           }
         },
         {
+          "id": "d16-05",
+          "time": "09:05",
+          "end": "09:12",
+          "title": "Bus Tōkai 9:05 'Sea Paradise' → 'Kishō Nōkyō'",
+          "type": "bus",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "~7' verso ovest · 木負農協 · ~¥300, n.v. · Orari dei bus Mito ⇄ Nishiura solo da Jorudan ( · : gli orari ufficiali Tōkai non si aprono dall'estero). Verso ovest il lunedì: 9:05, 10:05, 11:05 (circa uno all'ora). IC o contanti.",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d16-06",
+          "time": "09:12",
+          "end": "09:45",
+          "title": "Kishō Kankō Mikan-en (木負観光みかん園)",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 4,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Kishō Kankō Mikan-en (木負観光みかん園)",
+          "mapsQuery": "木負観光みかん園",
+          "note": "Si sta per forza ~35': il bus arriva alle 9:12 e il primo ritorno è alle 9:49 (il successivo alle 10:26, più di un'ora dopo l'arrivo). In 35' c'è tempo per mangiare qualche mandarino dall'albero (corso C ¥600) o solo per il negozio: succo frizzante di mandarino e mandarini sfusi (9-17). Niente prenotazione, carte e IC ok. Alternativa: saltarlo e prendere il succo di mandarino a oh!mos il 15 (già in scaletta); la mattina resta molo + Mito.",
+          "nick": "Il frutteto dove si raccolgono e si mangiano i mandarini con il Fuji sul mare",
+          "image": {
+            "url": "assets/img/places/kisho-mikan.webp",
+            "credit": "Batholith · pubblico dominio · Wikimedia Commons · un albero di mandarini a Numazu a fine novembre (non questo frutteto)",
+            "page": "https://commons.wikimedia.org/wiki/File:Citrus_unshiu_20101127_d.jpg",
+            "alt": "Il frutteto dove si raccolgono e si mangiano i mandarini con il Fuji sul mare"
+          },
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d16-07",
+          "time": "09:49",
+          "end": "09:59",
+          "title": "Bus Tōkai 9:49 'Kishō Nōkyō' → verso Numazu",
+          "type": "bus",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Si resta a bordo oltre Mito fino alla fermata del molo di Awashima · ~10', arrivo stimato · Orario di partenza da Jorudan ( · : 9:49 → Sea Paradise 9:53); arrivo al molo stimato. Ritorni da Kishō il lunedì: 9:49, 10:26, 11:22, 12:26 (circa uno all'ora).",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d16-08",
+          "time": "09:59",
+          "end": "10:14",
+          "title": "Molo d'imbarco di Awashima (lato terra)",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "gratis",
+          "place": "Molo d'imbarco di Awashima (lato terra)",
+          "mapsQuery": "Awashima Marine Park boat pier",
+          "note": "15': l'isola di Kanan e Mari con il Fuji dietro (sull'isola non si sale)",
+          "nick": "Il molo per l'isola, con il Fuji dietro Awashima",
+          "image": {
+            "url": "assets/img/places/awashima-pier.webp",
+            "credit": "Alpsdake · CC BY-SA 4.0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Awa_Island_and_Mount_Fuji_from_Uchiura_Bay.JPG",
+            "alt": "Il molo per l'isola, con il Fuji dietro Awashima"
+          },
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d16-09",
+          "time": "10:14",
+          "end": "10:45",
+          "title": "A piedi verso sud lungo il mare fino a Mito",
+          "type": "transfer",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Passando dal porto di Kogai · ~2 km",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
           "id": "d16-10",
-          "time": "11:00",
-          "end": "11:40",
-          "title": "Pranzo sopra la spiaggia di Chika (linea guida)",
+          "time": "10:45",
+          "end": "11:15",
+          "title": "Merenda nella pasticceria dell'anime",
           "type": "food",
           "fixed": false,
           "optional": false,
-          "costEur": 10,
+          "costEur": 5,
           "costEstimate": false,
           "costNote": "",
-          "place": "Hamanoya (浜の家)",
-          "mapsQuery": "浜の家 内浦三津",
-          "note": "Apre alle 11, aperta il lunedì (sito turistico di Numazu); aji vivo + crocchette 'Love Punch' (¥1.705), solo contanti. Se è chiusa o piena: Tosawaya a 2' (curry nero di Yohane, chiusa solo il martedì) o Ikesuya a Kogai (il pesce più votato della baia, 3,48; numeri d'attesa dalle 9).",
-          "nick": "La trattoria sopra la spiaggia di Chika con le crocchette Love Punch",
+          "place": "Matsuzuki (松月)",
+          "mapsQuery": "松月 内浦 沼津",
+          "note": "Aperta il lunedì (10-17, chiusa mar-mer); passando, la trattoria Hamanoya sopra la spiaggia si vede da fuori",
+          "nick": "La pasticceria dove le Aqours fanno merenda",
           "image": {
-            "url": "assets/img/places/hamanoya.webp",
-            "credit": "Chacmool · CC BY 4.0 · Wikimedia Commons · foto di genere: menu con crocchette, non di questo locale",
-            "page": "https://commons.wikimedia.org/wiki/File:Korroke_teishoku_of_drive-in_oasis_May_2026.jpg",
-            "alt": "La trattoria sopra la spiaggia di Chika con le crocchette Love Punch"
+            "url": "assets/img/places/matsuzuki.webp",
+            "credit": "Ocdp · CC0 · Wikimedia Commons · foto di genere: dorayaki, non di questa pasticceria",
+            "page": "https://commons.wikimedia.org/wiki/File:Dorayaki_004.jpg",
+            "alt": "La pasticceria dove le Aqours fanno merenda"
           },
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d16-11",
+          "time": "11:15",
+          "end": "11:43",
+          "title": "Tempo libero a Mito",
+          "type": "free",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "",
+          "mapsQuery": "",
+          "note": "Spiaggia di Chika, insegna di Yohane da Tosawaya, Hamanoya vista da fuori",
           "options": [
             {
-              "id": "hamanoya",
-              "nick": "La trattoria sopra la spiaggia di Chika con le crocchette Love Punch",
-              "name": "Hamanoya (浜の家)",
-              "type": "food",
-              "recommended": true,
-              "why": "Pranzo con vista sulla scena principale, a 2' dal ryokan e dalla fermata del bus.",
-              "what": "Trattoria al primo piano affacciata sulla spiaggia di Mito, edificio che si vede spesso nell'anime. Pesce della baia; il menu consigliato è aji vivo a fette + 2 crocchette locali 'Love Punch' (¥1.705).",
-              "costEur": 10,
-              "costNote": "menu ¥1.705-2.310 · solo contanti · prenotabile al tel. 055-943-2518",
-              "hours": "11:00-14:30 ultimo ordine (sabato fino alle 16)",
-              "closedOn": "mercoledì e giovedì (a volte martedì); lunedì aperto",
-              "mapsQuery": "浜の家 内浦三津",
-              "rating": {
-                "source": "Tabelog",
-                "value": 3.16,
-                "reviews": 11
-              },
+              "id": "mitohama",
+              "nick": "La spiaggia davanti a casa di Chika, quella del finale dell'anime",
+              "name": "Mitohama (spiaggia di Mito)",
+              "type": "anime",
+              "recommended": false,
+              "why": "Il luogo simbolo della serie, a 1 minuto dal ryokan: tramonto e alba senza spostarsi.",
+              "what": "La piccola spiaggia davanti allo Yasudaya: è il mare che Chika guarda ogni giorno, il punto dove Riko si tuffa e lo sfondo del tramonto con le 9 Aqours nella sigla finale. Dal bagnasciuga si vedono l'isola di Awashima e, se il cielo è limpido, il Fuji.",
+              "costEur": 0,
+              "costNote": "gratis",
+              "hours": "sempre accessibile; tramonto 15 nov ~16:40",
+              "closedOn": "",
+              "mapsQuery": "三津浜 沼津",
               "image": {
-                "url": "assets/img/places/hamanoya.webp",
-                "credit": "Chacmool · CC BY 4.0 · Wikimedia Commons · foto di genere: menu con crocchette, non di questo locale",
-                "page": "https://commons.wikimedia.org/wiki/File:Korroke_teishoku_of_drive-in_oasis_May_2026.jpg",
-                "alt": "La trattoria sopra la spiaggia di Chika con le crocchette Love Punch"
+                "url": "assets/img/places/mitohama.webp",
+                "credit": "Batholith · Public domain · Wikimedia Commons",
+                "page": "https://commons.wikimedia.org/wiki/File:Uchiuramito_2012-08-19.jpg",
+                "alt": "La spiaggia davanti a casa di Chika, quella del finale dell'anime"
               }
             },
             {
@@ -6882,32 +6895,31 @@
               }
             },
             {
-              "id": "ikesuya",
-              "nick": "Il ristorante dei pescatori della baia, sugherello vivo",
-              "name": "Uchiura Gyokyō Chokuei Ikesuya",
+              "id": "hamanoya",
+              "nick": "La trattoria sopra la spiaggia di Chika con le crocchette Love Punch",
+              "name": "Hamanoya (浜の家)",
               "type": "food",
               "recommended": false,
-              "why": "Il pesce crudo più fresco della giornata, ma solo se si pranza a Uchiura invece che al porto.",
-              "what": "Il ristorante della cooperativa dei pescatori di Uchiura, 104 posti: pesce della baia, aji fritto. Da ottobre 2026 il menu del giorno è di orata (madai) perché l'aji scarseggia (recensioni Tabelog di ottobre).",
-              "costEur": 9,
-              "costNote": "ciotola ~¥1.500-2.000 (stima)",
-              "hours": "11:00-15:00 (numeri d'attesa dalle 9:00)",
-              "closedOn": "mercoledì e giovedì",
-              "mapsQuery": "内浦漁協直営 いけすや",
+              "why": "Pranzo con vista sulla scena principale, a 2' dal ryokan e dalla fermata del bus.",
+              "what": "Trattoria al primo piano affacciata sulla spiaggia di Mito, edificio che si vede spesso nell'anime. Pesce della baia; il menu consigliato è aji vivo a fette + 2 crocchette locali 'Love Punch' (¥1.705).",
+              "costEur": 10,
+              "costNote": "menu ¥1.705-2.310 · solo contanti · prenotabile al tel. 055-943-2518",
+              "hours": "11:00-14:30 ultimo ordine (sabato fino alle 16)",
+              "closedOn": "mercoledì e giovedì (a volte martedì); lunedì aperto",
+              "mapsQuery": "浜の家 内浦三津",
               "rating": {
                 "source": "Tabelog",
-                "value": 3.48,
-                "reviews": 420
+                "value": 3.16,
+                "reviews": 11
               },
               "image": {
-                "url": "assets/img/places/ikesuya.webp",
-                "credit": "Ocdp · CC0 · Wikimedia Commons · foto di genere: aji fritto, non di questo locale",
-                "page": "https://commons.wikimedia.org/wiki/File:Deep-fried_horse_mackerel_lunch_005.jpg",
-                "alt": "Il ristorante dei pescatori della baia, sugherello vivo"
+                "url": "assets/img/places/hamanoya.webp",
+                "credit": "Chacmool · CC BY 4.0 · Wikimedia Commons · foto di genere: menu con crocchette, non di questo locale",
+                "page": "https://commons.wikimedia.org/wiki/File:Korroke_teishoku_of_drive-in_oasis_May_2026.jpg",
+                "alt": "La trattoria sopra la spiaggia di Chika con le crocchette Love Punch"
               }
             }
           ],
-          "flex": true,
           "booking": {
             "status": "none",
             "where": "",
@@ -6915,9 +6927,9 @@
           }
         },
         {
-          "id": "d16-11",
-          "time": "11:40",
-          "end": "11:50",
+          "id": "d16-12",
+          "time": "11:43",
+          "end": "11:52",
           "title": "Ritiro degli zaini allo Yasudaya e 2' a piedi alla fermata…",
           "type": "transfer",
           "fixed": false,
@@ -6935,19 +6947,19 @@
           }
         },
         {
-          "id": "d16-12",
+          "id": "d16-13",
           "time": "11:55",
           "end": "12:19",
           "title": "Bus Izuhakone da 'Izu-Mito Sea Paradise' 11:55 → stazione…",
           "type": "bus",
           "fixed": false,
           "optional": false,
-          "costEur": 6.92,
+          "costEur": 6.58,
           "costEstimate": false,
           "costNote": "",
           "place": "",
           "mapsQuery": "",
-          "note": "Bus Izuhakone da 'Izu-Mito Sea Paradise' 11:55 → stazione di Izu-Nagaoka 12:19 · 24', ¥550 · Orario ufficiale Izuhakone (feriali, rev. 1/4/2024, PDF letto il 18 ott). Capolinea davanti all'acquario, 2' dallo Yasudaya; ¥550 a bordo (contanti; IC n.v. su questa linea). Piano B: 12:55 → 13:19.",
+          "note": "Bus Izuhakone da 'Izu-Mito Sea Paradise' 11:55 → stazione di Izu-Nagaoka 12:19 · 24', ¥550 · Orario ufficiale Izuhakone (feriali, rev. 1/4/2024). Capolinea davanti all'acquario, 2' dallo Yasudaya; ¥550 a bordo (contanti; IC n.v.). Piano B: 12:55 → 13:19, poi trenino 13:30 → 13:45.",
           "booking": {
             "status": "none",
             "where": "",
@@ -6956,7 +6968,7 @@
           "transportOptionId": "leg-4-1"
         },
         {
-          "id": "d16-13",
+          "id": "d16-14",
           "time": "12:19",
           "end": "12:45",
           "title": "Izu-Nagaoka Station",
@@ -6983,97 +6995,10 @@
           }
         },
         {
-          "id": "d16-14",
-          "time": "12:45",
-          "end": "12:49",
-          "title": "Trenino Sunzu Izu-Nagaoka 12:45 → Takyō 12:49 (¥160)",
-          "type": "transfer",
-          "fixed": false,
-          "optional": false,
-          "costEur": 0,
-          "costEstimate": false,
-          "costNote": "",
-          "place": "Takyō",
-          "mapsQuery": "Takyō",
-          "note": "Orario e tariffa ufficiali Izuhakone (rev. 15/3/2025 e 16/3/2024). Le carte IC non valgono sulla Sunzu: si tocca una carta contactless Visa alla colonnina (una per persona) o biglietto in contanti.",
-          "booking": {
-            "status": "none",
-            "where": "",
-            "when": ""
-          }
-        },
-        {
           "id": "d16-15",
-          "time": "12:50",
-          "end": "13:20",
-          "title": "A piedi dalla stazione di Takyō al frutteto (~2 km, ~30'",
-          "type": "transfer",
-          "fixed": false,
-          "optional": false,
-          "costEur": 0,
-          "costEstimate": false,
-          "costNote": "",
-          "place": "",
-          "mapsQuery": "",
-          "note": "In salita · Pendenza n.v.) · Il frutteto è più vicino a Takyō (2 km) che a Izu-Nagaoka (4,4 km). Nessun bus utile verificato.",
-          "booking": {
-            "status": "none",
-            "where": "",
-            "when": ""
-          }
-        },
-        {
-          "id": "d16-16",
-          "time": "13:20",
-          "end": "14:10",
-          "title": "Osaka Mikan Kyōdō Nōen (小坂みかん共同農園)",
-          "type": "sight",
-          "fixed": false,
-          "optional": false,
-          "costEur": 4,
-          "costEstimate": false,
-          "costNote": "",
-          "place": "Osaka Mikan Kyōdō Nōen (小坂みかん共同農園)",
-          "mapsQuery": "小坂みかん共同農園",
-          "note": "Mandarini a volontà sull'albero (¥600) o con una retina da portare via (¥1.200); aperto tutti i giorni 8-16, niente prenotazione",
-          "nick": "Il grande frutteto di mandarini sulla strada per Shuzenji",
-          "image": {
-            "url": "assets/img/places/osaka-mikan.webp",
-            "credit": "Asturio Cantabrio · CC BY-SA 4.0 · Wikimedia Commons · foto di genere: frutteto di mandarini a Mikkabi (Shizuoka), non questo",
-            "page": "https://commons.wikimedia.org/wiki/File:Mikkabi_Mikan_2019_ac_(2).jpg",
-            "alt": "Il grande frutteto di mandarini sulla strada per Shuzenji"
-          },
-          "booking": {
-            "status": "none",
-            "where": "",
-            "when": ""
-          }
-        },
-        {
-          "id": "d16-17",
-          "time": "14:10",
-          "end": "14:35",
-          "title": "A piedi in discesa fino alla stazione di Takyō (~2 km, ~25')",
-          "type": "transfer",
-          "fixed": false,
-          "optional": false,
-          "costEur": 0,
-          "costEstimate": false,
-          "costNote": "",
-          "place": "",
-          "mapsQuery": "",
-          "note": "",
-          "booking": {
-            "status": "none",
-            "where": "",
-            "when": ""
-          }
-        },
-        {
-          "id": "d16-18",
-          "time": "14:39",
-          "end": "14:49",
-          "title": "Trenino Sunzu Takyō 14:39 → Shuzenji 14:49 (¥210)",
+          "time": "12:45",
+          "end": "12:59",
+          "title": "Trenino Sunzu Izu-Nagaoka 12:45 → Shuzenji 12:59 (¥310)",
           "type": "transfer",
           "fixed": false,
           "optional": false,
@@ -7082,7 +7007,7 @@
           "costNote": "",
           "place": "Shuzenji",
           "mapsQuery": "Shuzenji",
-          "note": "Orario ufficiale (rev. 15/3/2025); riserva 15:01 → 15:11. Stesso pagamento: carta contactless Visa o contanti, IC no.",
+          "note": "Orario e tariffa ufficiali Izuhakone (rev. 15/3/2025 e 16/3/2024); treni ogni 15-20'. Le carte IC non valgono sulla Sunzu: si tocca una carta contactless Visa alla colonnina (una per persona) o biglietto in contanti.",
           "booking": {
             "status": "none",
             "where": "",
@@ -7090,10 +7015,10 @@
           }
         },
         {
-          "id": "d16-19",
-          "time": "14:52",
-          "end": "15:05",
-          "title": "Bus Tōkai dalla stazione di Shuzenji → 'Shuzenji Onsen'",
+          "id": "d16-16",
+          "time": "13:02",
+          "end": "13:15",
+          "title": "Bus Tōkai dalla piattaforma 1 della stazione di Shuzenji →…",
           "type": "bus",
           "fixed": false,
           "optional": false,
@@ -7102,7 +7027,7 @@
           "costNote": "",
           "place": "",
           "mapsQuery": "",
-          "note": "Poi 3' a piedi all'Arai · 8', ¥300 · Frequenza del bus n.v. Se non passa entro 10': 35' a piedi (2,8 km) o, solo qui, un taxi (~5', ~¥1.400 in 4: radiotaxi Shuzenji 0558-72-1811).",
+          "note": "Bus Tōkai dalla piattaforma 1 della stazione di Shuzenji → 'Shuzenji Onsen' · 8', ¥300 · Piattaforma 1 = linea per il paese (elenco ufficiale Tōkai); frequenza n.v. Se non passa entro 10': 35' a piedi (2,8 km) o, solo qui, un taxi (~5', ~¥1.400 in 4).",
           "booking": {
             "status": "none",
             "where": "",
@@ -7110,19 +7035,104 @@
           }
         },
         {
-          "id": "d16-20",
-          "time": "15:05",
-          "end": "15:20",
-          "title": "Check-in all'Arai (dalle 15:00)",
-          "type": "transfer",
+          "id": "d16-17",
+          "time": "13:20",
+          "end": "14:10",
+          "title": "Pranzo di soba in paese (linea guida)",
+          "type": "food",
           "fixed": false,
           "optional": false,
-          "costEur": 0,
+          "costEur": 10,
           "costEstimate": false,
           "costNote": "",
-          "place": "Arai Ryokan",
-          "mapsQuery": "Arai Ryokan Shuzenji",
-          "note": "Scegliere la cena alle 18:00. Regola del ryokan: bagni comuni storici vietati con tatuaggi; bagni privati Hisui (gratis) e Suiren (¥1.100/45'), più il bagno in camera.",
+          "place": "Zenpūtei Nanaban (禅風亭なゝ番)",
+          "mapsQuery": "禅風亭なゝ番 修善寺",
+          "note": "Nanaban (Tabelog 3,46): soba 'del tempio zen' con la radice di wasabi da grattugiare, 10-14:30, aperto il lunedì; a pranzo si fa la fila con un talloncino di legno. Alternative a 2-3': Sakuda (3,47, soba pura, 10:45-15 o fino a esaurimento) e Tokko Soba Ōto (3,40, 11-15). Nessuno prenota, solo contanti. Zaini: chiedere all'Arai di tenerli prima delle 15 (n.v.).",
+          "nick": "La soba 'del tempio zen' con la radice di wasabi da grattugiare da soli",
+          "image": {
+            "url": "assets/img/places/zenputei-nanaban.webp",
+            "credit": "autore n.d. · CC BY-SA 3.0 · Wikimedia Commons · foto di genere: soba fredda, non di questo locale",
+            "page": "https://commons.wikimedia.org/wiki/File:ZaruSoba.jpg",
+            "alt": "La soba 'del tempio zen' con la radice di wasabi da grattugiare da soli"
+          },
+          "options": [
+            {
+              "id": "zenputei-nanaban",
+              "nick": "La soba 'del tempio zen' con la radice di wasabi da grattugiare da soli",
+              "name": "Zenpūtei Nanaban (禅風亭なゝ番)",
+              "type": "food",
+              "recommended": true,
+              "why": "Il pranzo tipico di Shuzenji; con il ritmo del lunedì si arriva solo verso le 13:15.",
+              "what": "Locale di soba famoso per la 'zendera soba': si gratta da soli una radice intera di wasabi di Izu sopra la soba, con verdure di montagna. Patrimonio gastronomico citato dalla guida del paese.",
+              "costEur": 9,
+              "costNote": "~¥1.600 (stima) · solo contanti · non prenotabile",
+              "hours": "10:00-14:30 (Tabelog)",
+              "closedOn": "mercoledì e giovedì",
+              "mapsQuery": "禅風亭なゝ番 修善寺",
+              "rating": {
+                "source": "Tabelog",
+                "value": 3.46,
+                "reviews": 362
+              },
+              "image": {
+                "url": "assets/img/places/zenputei-nanaban.webp",
+                "credit": "autore n.d. · CC BY-SA 3.0 · Wikimedia Commons · foto di genere: soba fredda, non di questo locale",
+                "page": "https://commons.wikimedia.org/wiki/File:ZaruSoba.jpg",
+                "alt": "La soba 'del tempio zen' con la radice di wasabi da grattugiare da soli"
+              }
+            },
+            {
+              "id": "sakuda-soba",
+              "nick": "Il chiosco della soba di grano saraceno puro, davanti al tiro a segno del paese",
+              "name": "Jūwari soba Sakuda (十割そば さくだ)",
+              "type": "food",
+              "recommended": false,
+              "why": "Il più votato in paese per la soba pura (Tabelog 3,47 su 265 recensioni), veloce e a pochi passi dal tempio.",
+              "what": "Banco di soba al 100% grano saraceno nel cortile di un altro locale di soba, in centro al paese: piatti semplici, soba fredda con wasabi.",
+              "costEur": 8,
+              "costNote": "~¥1.000-1.500 a testa (stima) · solo contanti · non prenotabile",
+              "hours": "10:45-15:00 o fino a esaurimento (Tabelog)",
+              "closedOn": "mercoledì e giovedì",
+              "mapsQuery": "十割そば さくだ 修善寺",
+              "rating": {
+                "source": "Tabelog",
+                "value": 3.47,
+                "reviews": 265
+              },
+              "image": {
+                "url": "assets/img/places/sakuda-soba.webp",
+                "credit": "autore n.d. · CC BY-SA 3.0 · Wikimedia Commons · foto di genere: soba fredda, non di questo locale",
+                "page": "https://commons.wikimedia.org/wiki/File:ZaruSoba.jpg",
+                "alt": "Il chiosco della soba di grano saraceno puro, davanti al tiro a segno del paese"
+              }
+            },
+            {
+              "id": "tokko-soba-oto",
+              "nick": "La soba fredda col wasabi fresco di Amagi",
+              "name": "Tokko Soba Ōto (独鈷そば 大戸)",
+              "type": "food",
+              "recommended": false,
+              "why": "Alternativa più semplice alla soba del tempio.",
+              "what": "Piccolo locale di soba del paese con la 'tokko zaru soba' servita con wasabi fresco di Amagi da grattugiare.",
+              "costEur": 8,
+              "costNote": "~¥1.400 (stima)",
+              "hours": "11:00-15:00 (Tabelog)",
+              "closedOn": "martedì",
+              "mapsQuery": "独鈷そば 大戸 修善寺",
+              "rating": {
+                "source": "Tabelog",
+                "value": 3.4,
+                "reviews": 189
+              },
+              "image": {
+                "url": "assets/img/places/tokko-soba-oto.webp",
+                "credit": "nyaa_birdies_perch · CC BY 2.0 · Wikimedia Commons · foto di genere: tenda di un locale di soba a Izu, non questo",
+                "page": "https://commons.wikimedia.org/wiki/File:Noren_of_soba,_udon_and_donburi_restaurant_by_nyaa_birdies_perch.jpg",
+                "alt": "La soba fredda col wasabi fresco di Amagi"
+              }
+            }
+          ],
+          "flex": true,
           "booking": {
             "status": "none",
             "where": "",
@@ -7130,9 +7140,9 @@
           }
         },
         {
-          "id": "d16-21",
-          "time": "15:20",
-          "end": "15:28",
+          "id": "d16-18",
+          "time": "14:10",
+          "end": "14:18",
           "title": "Tokko-no-yu",
           "type": "sight",
           "fixed": false,
@@ -7142,7 +7152,7 @@
           "costNote": "gratis",
           "place": "Tokko-no-yu",
           "mapsQuery": "Tokko no yu Shuzenji",
-          "note": "160 m a est, la sorgente-leggenda nel fiume: solo da guardare",
+          "note": "La sorgente-leggenda nel fiume: solo da guardare",
           "nick": "La sorgente nel fiume da cui è nato il paese (solo da guardare)",
           "image": {
             "url": "assets/img/places/tokko-no-yu.webp",
@@ -7158,9 +7168,9 @@
           }
         },
         {
-          "id": "d16-22",
-          "time": "15:28",
-          "end": "15:58",
+          "id": "d16-19",
+          "time": "14:18",
+          "end": "14:48",
           "title": "Shuzen-ji (tempio)",
           "type": "sight",
           "fixed": false,
@@ -7170,7 +7180,7 @@
           "costNote": "cortile gratis; museo ~¥300 (stima)",
           "place": "Shuzen-ji (tempio)",
           "mapsQuery": "Shuzenji Temple Izu",
-          "note": "150 m a nord: il tempio; il museo chiude alle 16:00, a novembre apertura straordinaria della statua principale",
+          "note": "Il tempio; museo fino alle 16:00, a novembre apertura straordinaria della statua principale",
           "nick": "Il tempio zen che dà il nome al paese",
           "image": {
             "url": "assets/img/places/shuzen-ji.webp",
@@ -7186,9 +7196,9 @@
           }
         },
         {
-          "id": "d16-23",
-          "time": "15:58",
-          "end": "16:08",
+          "id": "d16-20",
+          "time": "14:48",
+          "end": "14:58",
           "title": "Hie Jinja",
           "type": "sight",
           "fixed": false,
@@ -7214,27 +7224,19 @@
           }
         },
         {
-          "id": "d16-24",
-          "time": "16:08",
-          "end": "16:16",
-          "title": "Shigetsuden",
-          "type": "sight",
+          "id": "d16-21",
+          "time": "15:00",
+          "end": "15:20",
+          "title": "Check-in all'Arai (dalle 15:00)",
+          "type": "transfer",
           "fixed": false,
-          "optional": true,
+          "optional": false,
           "costEur": 0,
           "costEstimate": false,
-          "costNote": "gratis",
-          "place": "Shigetsuden",
-          "mapsQuery": "Shigetsuden Shuzenji",
-          "note": "300 m a sud, oltre il fiume",
-          "nick": "Il padiglione di legno più antico di Izu, voluto dalla madre dello shogun",
-          "image": {
-            "url": "assets/img/places/shigetsuden.webp",
-            "credit": "Saigen Jiro · CC0 · Wikimedia Commons",
-            "page": "https://commons.wikimedia.org/wiki/File:Shigetsuden,_gaikan-1.jpg",
-            "alt": "Il padiglione di legno più antico di Izu, voluto dalla madre dello shogun"
-          },
-          "placeId": "shigetsuden",
+          "costNote": "",
+          "place": "Arai Ryokan",
+          "mapsQuery": "Arai Ryokan Shuzenji",
+          "note": "Scegliere la cena alle 18:00. Regola del ryokan: bagni comuni storici vietati con tatuaggi; bagni privati Hisui (gratis) e Suiren (¥1.100/45'), più il bagno in camera.",
           "booking": {
             "status": "none",
             "where": "",
@@ -7242,8 +7244,35 @@
           }
         },
         {
-          "id": "d16-25",
-          "time": "16:18",
+          "id": "d16-22",
+          "time": "15:20",
+          "end": "16:15",
+          "title": "Arai Ryokan (新井旅館)",
+          "type": "onsen",
+          "fixed": false,
+          "optional": false,
+          "costEur": 2,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "Arai Ryokan (新井旅館)",
+          "mapsQuery": "Arai Ryokan Shuzenji",
+          "note": "Primo bagno e tè in camera",
+          "nick": "Il ryokan storico di legno sul fiume, con 15 edifici antichi",
+          "image": {
+            "url": "assets/img/places/arai-ryokan.webp",
+            "credit": "Batholith · Public domain · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Arai_Ryokan_Entrance.jpg",
+            "alt": "Il ryokan storico di legno sul fiume, con 15 edifici antichi"
+          },
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          }
+        },
+        {
+          "id": "d16-23",
+          "time": "16:15",
           "end": "16:50",
           "title": "Chikurin no Komichi",
           "type": "sight",
@@ -7270,7 +7299,7 @@
           }
         },
         {
-          "id": "d16-26",
+          "id": "d16-24",
           "time": "16:50",
           "end": "17:05",
           "title": "Ponti rossi sul fiume Katsura (Koi no hashi)",
@@ -7298,19 +7327,19 @@
           }
         },
         {
-          "id": "d16-27",
+          "id": "d16-25",
           "time": "17:05",
           "end": "17:55",
           "title": "Arai Ryokan (新井旅館)",
           "type": "onsen",
           "fixed": false,
           "optional": false,
-          "costEur": 2,
+          "costEur": 0,
           "costEstimate": false,
           "costNote": "",
           "place": "Arai Ryokan (新井旅館)",
           "mapsQuery": "Arai Ryokan Shuzenji",
-          "note": "Bagni prima della cena",
+          "note": "Secondo bagno o riposo in yukata prima della cena",
           "nick": "Il ryokan storico di legno sul fiume, con 15 edifici antichi",
           "image": {
             "url": "assets/img/places/arai-ryokan.webp",
@@ -7325,7 +7354,7 @@
           }
         },
         {
-          "id": "d16-28",
+          "id": "d16-26",
           "time": "18:00",
           "end": "19:30",
           "title": "Cena kaiseki in sala (inclusa)",
@@ -7345,7 +7374,7 @@
           }
         },
         {
-          "id": "d16-29",
+          "id": "d16-27",
           "time": "19:45",
           "end": "21:00",
           "title": "Un bicchiere al bar del paese (linea guida)",
@@ -7397,7 +7426,7 @@
           }
         },
         {
-          "id": "d16-30",
+          "id": "d16-28",
           "time": "21:10",
           "title": "Rientro dal vialetto di bambù illuminato e bagno notturno…",
           "type": "free",
@@ -7454,23 +7483,23 @@
         }
       ],
       "gaps": "auto",
-      "summary": "Mattina a piedi sul lato nord della baia (porto di Kogai, molo con Awashima e il Fuji), merenda e pranzo dell'anime sulla spiaggia di Chika. Bus delle 11:55 per Izu-Nagaoka, trenino fino a Takyō e 2 km a piedi al frutteto di mandarini; di nuovo trenino fino a Shuzenji e check-in alle 15. Tempio, santuario e bambù al tramonto, bagni, kaiseki alle 18 e un bicchiere al bar. Nessun taxi.",
+      "summary": "Mattina in una sola direzione: bus verso ovest fino al frutteto di Nishiura (mandarini e succo), lo stesso bus al ritorno porta oltre Mito fino al molo di Awashima, poi a piedi verso sud fino a Mito per la merenda dell'anime. Bus delle 11:55, trenino e bus fino a Shuzenji verso le 13:15: pranzo di soba, sorgente, tempio e santuario, check-in alle 15, bagni, bambù al tramonto, kaiseki alle 18 e un bicchiere al bar. Nessun taxi.",
       "extras": [
         {
-          "id": "kisho-mikan",
-          "nick": "Il frutteto dove si raccolgono e si mangiano i mandarini con il Fuji sul mare",
-          "name": "Kishō Kankō Mikan-en (木負観光みかん園)",
-          "type": "natura",
+          "id": "hamanoya",
+          "nick": "La trattoria sopra la spiaggia di Chika con le crocchette Love Punch",
+          "name": "Hamanoya (浜の家)",
+          "type": "food",
           "verdict": "top",
-          "duration": "1h-1h15",
-          "costEur": 4,
-          "costNote": "corso C ¥600 (mangiare a volontà) · B ¥1.100 (+ ~1 kg già pronto) · A ¥1.800 (+ cestino raccolto da voi) · carte, IC e PayPay",
-          "mapsQuery": "木負観光みかん園",
+          "duration": "50'",
+          "costEur": 10,
+          "costNote": "menu ¥1.705-2.310 · solo contanti · prenotabile al tel. 055-943-2518",
+          "mapsQuery": "浜の家 内浦三津",
           "image": {
-            "url": "assets/img/places/kisho-mikan.webp",
-            "credit": "Batholith · pubblico dominio · Wikimedia Commons · un albero di mandarini a Numazu a fine novembre (non questo frutteto)",
-            "page": "https://commons.wikimedia.org/wiki/File:Citrus_unshiu_20101127_d.jpg",
-            "alt": "Il frutteto dove si raccolgono e si mangiano i mandarini con il Fuji sul mare"
+            "url": "assets/img/places/hamanoya.webp",
+            "credit": "Chacmool · CC BY 4.0 · Wikimedia Commons · foto di genere: menu con crocchette, non di questo locale",
+            "page": "https://commons.wikimedia.org/wiki/File:Korroke_teishoku_of_drive-in_oasis_May_2026.jpg",
+            "alt": "La trattoria sopra la spiaggia di Chika con le crocchette Love Punch"
           }
         },
         {
@@ -7501,7 +7530,7 @@
           "costNote": "gratis",
           "mapsQuery": "Shuzenji Onsen",
           "image": {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/181124_Shuzenji_Onsen_Izu_Shizuoka_pref_Japan07s5.jpg/960px-181124_Shuzenji_Onsen_Izu_Shizuoka_pref_Japan07s5.jpg",
+            "url": "assets/img/places/shuzenji-onsen.webp",
             "credit": "663highland · CC BY-SA 4.0 · Wikimedia Commons",
             "page": "https://commons.wikimedia.org/wiki/File:181124_Shuzenji_Onsen_Izu_Shizuoka_pref_Japan07s5.jpg",
             "alt": "Il paese delle terme sul fiume, \"piccola Kyoto\" di Izu"
@@ -7525,6 +7554,17 @@
           }
         },
         {
+          "id": "tosawaya",
+          "nick": "La trattoria del curry nero di Yohane",
+          "name": "Tosawaya (とさわや)",
+          "type": "food",
+          "verdict": "consigliato",
+          "duration": "50'",
+          "costEur": 7,
+          "costNote": "curry ¥1.200; menu pesce ¥2.400",
+          "mapsQuery": "とさわや 内浦三津"
+        },
+        {
           "id": "izu-mito-sea-paradise",
           "nick": "L'acquario dove le Aqours lavorano e c'è la mascotte Uchicchi",
           "name": "Izu-Mito Sea Paradise",
@@ -7539,34 +7579,6 @@
             "credit": "oki2_yui · Public domain · Wikimedia Commons",
             "page": "https://commons.wikimedia.org/wiki/File:Izumitoseapala-2016.jpg",
             "alt": "L'acquario dove le Aqours lavorano e c'è la mascotte Uchicchi"
-          }
-        },
-        {
-          "id": "tosawaya",
-          "nick": "La trattoria del curry nero di Yohane",
-          "name": "Tosawaya (とさわや)",
-          "type": "food",
-          "verdict": "consigliato",
-          "duration": "50'",
-          "costEur": 7,
-          "costNote": "curry ¥1.200; menu pesce ¥2.400",
-          "mapsQuery": "とさわや 内浦三津"
-        },
-        {
-          "id": "izu-nagaoka-station",
-          "nick": "La stazione dove arrivano in bici sei Aqours",
-          "name": "Izu-Nagaoka Station",
-          "type": "anime",
-          "verdict": "consigliato",
-          "duration": "10'",
-          "costEur": 0,
-          "costNote": "gratis",
-          "mapsQuery": "Izu-Nagaoka Station",
-          "image": {
-            "url": "assets/img/places/izu-nagaoka-station.webp",
-            "credit": "Esposimi · CC BY-SA 4.0 · Wikimedia Commons",
-            "page": "https://commons.wikimedia.org/wiki/File:Izu-Nagaoka_March_2023.jpg",
-            "alt": "La stazione dove arrivano in bici sei Aqours"
           }
         },
         {
@@ -7587,20 +7599,20 @@
           }
         },
         {
-          "id": "zenputei-nanaban",
-          "nick": "La soba 'del tempio zen' con la radice di wasabi da grattugiare da soli",
-          "name": "Zenpūtei Nanaban (禅風亭なゝ番)",
-          "type": "food",
-          "verdict": "consigliato",
-          "duration": "50'",
-          "costEur": 9,
-          "costNote": "~¥1.600 (stima)",
-          "mapsQuery": "禅風亭なゝ番 修善寺",
+          "id": "shigetsuden",
+          "nick": "Il padiglione di legno più antico di Izu, voluto dalla madre dello shogun",
+          "name": "Shigetsuden",
+          "type": "tempio",
+          "verdict": "opzionale",
+          "duration": "15'",
+          "costEur": 0,
+          "costNote": "gratis",
+          "mapsQuery": "Shigetsuden Shuzenji",
           "image": {
-            "url": "assets/img/places/zenputei-nanaban.webp",
-            "credit": "autore n.d. · CC BY-SA 3.0 · Wikimedia Commons · foto di genere: soba fredda, non di questo locale",
-            "page": "https://commons.wikimedia.org/wiki/File:ZaruSoba.jpg",
-            "alt": "La soba 'del tempio zen' con la radice di wasabi da grattugiare da soli"
+            "url": "assets/img/places/shigetsuden.webp",
+            "credit": "Saigen Jiro · CC0 · Wikimedia Commons",
+            "page": "https://commons.wikimedia.org/wiki/File:Shigetsuden,_gaikan-1.jpg",
+            "alt": "Il padiglione di legno più antico di Izu, voluto dalla madre dello shogun"
           }
         },
         {
@@ -7613,23 +7625,6 @@
           "costEur": 3,
           "costNote": "~¥500 (stima)",
           "mapsQuery": "修善寺プリン工房"
-        },
-        {
-          "id": "tokko-soba-oto",
-          "nick": "La soba fredda col wasabi fresco di Amagi",
-          "name": "Tokko Soba Ōto (独鈷そば 大戸)",
-          "type": "food",
-          "verdict": "opzionale",
-          "duration": "45'",
-          "costEur": 8,
-          "costNote": "~¥1.400 (stima)",
-          "mapsQuery": "独鈷そば 大戸 修善寺",
-          "image": {
-            "url": "assets/img/places/tokko-soba-oto.webp",
-            "credit": "nyaa_birdies_perch · CC BY 2.0 · Wikimedia Commons · foto di genere: tenda di un locale di soba a Izu, non questo",
-            "page": "https://commons.wikimedia.org/wiki/File:Noren_of_soba,_udon_and_donburi_restaurant_by_nyaa_birdies_perch.jpg",
-            "alt": "La soba fredda col wasabi fresco di Amagi"
-          }
         },
         {
           "id": "momiji-bayashi",
@@ -7660,6 +7655,23 @@
           }
         },
         {
+          "id": "osaka-mikan",
+          "nick": "Il grande frutteto di mandarini sulla strada per Shuzenji",
+          "name": "Osaka Mikan Kyōdō Nōen (小坂みかん共同農園)",
+          "type": "natura",
+          "verdict": "sconsigliato",
+          "duration": "1h",
+          "costEur": 4,
+          "costNote": "¥600 mangiare a volontà · ¥1.200 con una retina da portare via (dal 1 nov)",
+          "mapsQuery": "小坂みかん共同農園",
+          "image": {
+            "url": "assets/img/places/osaka-mikan.webp",
+            "credit": "Asturio Cantabrio · CC BY-SA 4.0 · Wikimedia Commons · foto di genere: frutteto di mandarini a Mikkabi (Shizuoka), non questo",
+            "page": "https://commons.wikimedia.org/wiki/File:Mikkabi_Mikan_2019_ac_(2).jpg",
+            "alt": "Il grande frutteto di mandarini sulla strada per Shuzenji"
+          }
+        },
+        {
           "id": "cascata-di-joren",
           "nick": "La cascata fra le felci sulla strada del wasabi",
           "name": "Jōren no Taki",
@@ -7677,7 +7689,7 @@
           }
         }
       ],
-      "moves": "bus Izuhakone → Izu-Nagaoka; Sunzu → Takyō; a piedi al frutteto; Sunzu → Shuzenji; bus Tōkai"
+      "moves": "bus Tōkai → Nishiura e molo; bus Izuhakone → Izu-Nagaoka; Sunzu → Shuzenji; bus Tōkai"
     },
     {
       "date": "2026-11-17",

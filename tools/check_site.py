@@ -12,6 +12,8 @@ Verifica:
   7. guides.json (data e fixture): chiavi della guida presenti e `html` senza script/eventi/javascript: (SPEC §10.2).
   8. place-details.json (data e fixture, SPEC §12): chiavi presenti, id unici, `html` sicuro, foto locali esistenti;
      le foto delle schede (assets/img/luoghi/) sono in PRECACHE, così la scheda si legge offline.
+  9. guides.json: stesse regole per le foto delle guide (assets/img/guide/, SPEC §10): ogni <img> locale esiste ed è
+     in PRECACHE; per entrambe le cartelle i file non usati da nessun JSON sono segnalati come orfani (avviso).
 Uso:  python3 tools/check_site.py   (da site/ o da qualunque cwd). Exit 1 se ci sono problemi.
 """
 import json
@@ -27,6 +29,21 @@ problems = []
 warnings = []
 # file statici volutamente fuori dalla precache (pagina di prova componenti, il SW stesso)
 PRECACHE_SKIP = {"_styleguide.html", "sw.js"}
+# cartelle delle foto dei corpi HTML (schede §12, guide §10): file ↔ JSON ↔ PRECACHE
+PHOTO_DIRS = {"assets/img/luoghi/": "foto di una scheda", "assets/img/guide/": "foto di una guida"}
+used_photos = {}   # path locale → "data/x.json: guida «id»"
+IMG_SRC_RE = re.compile(r'<img\b[^>]*?\ssrc="([^"]+)"', re.I)
+
+
+def check_photos(json_file, what, html):
+    """<img> del corpo: remota = avviso (solo online), locale = deve esistere (e finire in PRECACHE, controllato dopo)."""
+    for src in IMG_SRC_RE.findall(html or ""):
+        if src.startswith("https://"):
+            warnings.append(f"{rel(json_file)}: {what}: foto remota (offline non si vede, rieseguire l'export con --fetch-images): {src}")
+        elif not (SITE / src).is_file():
+            problems.append(f"{rel(json_file)}: {what}: foto locale mancante {src}")
+        else:
+            used_photos.setdefault(src, f"{rel(json_file)}: {what}")
 
 
 def rel(p):
@@ -149,6 +166,7 @@ def main():
                 problems.append(f"{rel(gf)}: guida «{g.get('id', '?')}» senza {', '.join(miss)}")
             if unsafe.search(g.get("html", "")):
                 problems.append(f"{rel(gf)}: guida «{g.get('id', '?')}»: html non sicuro (script/eventi/javascript:)")
+            check_photos(gf, f"guida «{g.get('id', '?')}»", g.get("html", ""))
         seen = set()
         for x in details:
             xid = x.get("id", "?")
@@ -160,11 +178,7 @@ def main():
             seen.add(xid)
             if unsafe.search(x.get("html", "")):
                 problems.append(f"{rel(pf)}: scheda «{xid}»: html non sicuro (script/eventi/javascript:)")
-            for src in re.findall(r'<img\b[^>]*?\ssrc="([^"]+)"', x.get("html", ""), re.I):
-                if src.startswith("https://"):
-                    warnings.append(f"{rel(pf)}: scheda «{xid}»: foto remota (offline non si vede, rieseguire l'export con --fetch-images): {src}")
-                elif not (SITE / src).is_file():
-                    problems.append(f"{rel(pf)}: scheda «{xid}»: foto locale mancante {src}")
+            check_photos(pf, f"scheda «{xid}»", x.get("html", ""))
 
     # Manifest
     mf = SITE / "manifest.webmanifest"
@@ -207,8 +221,16 @@ def main():
                     continue
                 if f.suffix in (".html", ".css", ".js", ".svg", ".png", ".webmanifest") and r not in listed:
                     problems.append(f"sw.js: file statico non in PRECACHE: {r}")
-                elif r.startswith("assets/img/luoghi/") and r not in listed:
-                    problems.append(f"sw.js: foto di una scheda non in PRECACHE (offline non si vede): {r}")
+                else:
+                    for d, label in PHOTO_DIRS.items():
+                        if r.startswith(d):
+                            if r not in listed:
+                                problems.append(f"sw.js: {label} non in PRECACHE (offline non si vede): {r}")
+                            if r not in used_photos:
+                                warnings.append(f"{r}: {label} orfana (nessun JSON la usa: togliere il file e la voce di PRECACHE)")
+            for src, where in sorted(used_photos.items()):
+                if src not in listed:
+                    problems.append(f"sw.js: {where}: foto locale non in PRECACHE (offline non si vede): {src}")
         if not re.search(r"CACHE_VERSION\s*=\s*['\"][^'\"]+['\"]", t):
             problems.append("sw.js: CACHE_VERSION non trovato")
         data_block = re.search(r"DATA-BEGIN(.*?)DATA-END", t, re.S)

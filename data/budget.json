@@ -4,7 +4,7 @@
       {
         "name": "Trasporti",
         "detail": "Catena intercity + transfer",
-        "eur": 200.11,
+        "eur": 199.77,
         "estimate": false,
         "links": [
           {
@@ -82,10 +82,10 @@
       }
     ],
     "commonTotalEur": 882.86,
-    "totalEur": 2740.04
+    "totalEur": 2739.7
   },
   "group": {
-    "totalEur": 10960.16
+    "totalEur": 10958.8
   },
   "paidSoFar": {
     "lodgingEurGroup": 2948.27,
@@ -108,7 +108,7 @@
     {
       "date": "2026-11-09",
       "eurPlanned": null,
-      "eurAgenda": 171.5
+      "eurAgenda": 155.5
     },
     {
       "date": "2026-11-10",
@@ -143,7 +143,7 @@
     {
       "date": "2026-11-16",
       "eurPlanned": null,
-      "eurAgenda": 39.92
+      "eurAgenda": 39.58
     },
     {
       "date": "2026-11-17",
