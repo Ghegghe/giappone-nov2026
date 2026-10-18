@@ -1,4 +1,4 @@
-// pages.js — nucleo condiviso delle pagine contenuto (home, trasporti, alloggi, luoghi, guide, budget).
+// pages.js — nucleo condiviso delle pagine contenuto (home, trasporti, alloggi, luoghi, guide, budget, schede luogo).
 // Ogni pagina: <main data-page="..."> + <script type="module" src="assets/js/pages.js">.
 // Il rendering vero sta in pages-<pagina>.js; qui: helper HTML sicuro, icone, link, tab, dispatcher.
 import { esc, initShell, loadData, DATA_BASE, fmtDate } from './app.js';
@@ -158,6 +158,7 @@ const PAGES = {
   luoghi: () => import('./pages-luoghi.js'),
   budget: () => import('./pages-budget.js'),
   guide: () => import('./pages-guide.js'),
+  luogo: () => import('./pages-luogo.js'),
 };
 
 export async function boot() {
@@ -169,7 +170,8 @@ export async function boot() {
   const root = main.querySelector('[data-root]') || main;
   root.setAttribute('aria-busy', 'true');
   try {
-    const [trip, mod] = await Promise.all([initShell(page), loader()]);
+    // data-section: voce di nav da evidenziare quando la pagina non è una sezione (luogo.html → Luoghi)
+    const [trip, mod] = await Promise.all([initShell(main.dataset.section || page), loader()]);
     await mod.render(root, { trip, loadData });
   } catch (err) {
     console.error('[pages]', err);

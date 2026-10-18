@@ -79,3 +79,8 @@ scaletta C non ancora confermata) · budget previsto su un giorno confermato.
 - Orari nei testi delle tappe: restano testo, ma il controllo li confronta con la tratta.
 - Il bus Nagashima (3 persone, il concertista no) è contato a testa per 4 nel totale trasporti: da sistemare quando si
   conferma il blocco C.
+
+## 6. Opzioni delle tappe «linea guida» (18 ott, SPEC §13)
+- Fonte unica: il catalogo del blocco (`data/piano/catalogo/data/<B>.json`); la scaletta elenca solo gli id (`placeId` + `alternatives`).
+  `items[].options` di agenda.json è una COPIA generata (testi, prezzi, orari, voto, foto): si corregge nel catalogo, mai nel JSON.
+- I prezzi delle opzioni sono indicativi (`costEur` del catalogo) e non entrano in budget/daily/totali: conta solo la tappa.

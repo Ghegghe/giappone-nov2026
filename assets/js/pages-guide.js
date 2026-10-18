@@ -1,11 +1,12 @@
 // pages-guide.js — guide.html (SPEC §10.3): indice a card con filtro per tag; ?g=<id> o #<id> apre la guida.
+// longDate/UNSAFE/keepDataLinks sono riusati dalle schede dei luoghi (pages-luogo.js, SPEC §12).
 // Il corpo `html` arriva già convertito e sanificato dall'exporter (export_site_guides.py): qui si inserisce così com'è,
 // con un ultimo controllo difensivo. Tutto il resto è escapato da html``.
 import { html, raw, mount, icon, pageUrl, store, mapsIconBtn } from './pages.js';
 
 const MONTHS = ['gennaio', 'febbraio', 'marzo', 'aprile', 'maggio', 'giugno', 'luglio', 'agosto', 'settembre', 'ottobre', 'novembre', 'dicembre'];
-const longDate = (iso) => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? `${+m[3]} ${MONTHS[+m[2] - 1]} ${m[1]}` : ''; };
-const UNSAFE = /<script|<[^>]*\son\w+\s*=|<[^>]*javascript:/i;
+export const longDate = (iso) => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? `${+m[3]} ${MONTHS[+m[2] - 1]} ${m[1]}` : ''; };
+export const UNSAFE = /<script|<[^>]*\son\w+\s*=|<[^>]*javascript:/i;
 
 function wantedId(ids) {
   let g = '';
@@ -111,7 +112,7 @@ function pagerLink(g, label, cls) {
 }
 
 /** Link relativi del corpo (es. giorno.html?d=…) → conservano ?data= delle fixture. */
-function keepDataLinks(article) {
+export function keepDataLinks(article) {
   article.querySelectorAll('a[href]').forEach((a) => {
     const href = a.getAttribute('href');
     if (/^[\w-]+\.html/.test(href)) {

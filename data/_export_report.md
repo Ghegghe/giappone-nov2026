@@ -1,21 +1,21 @@
 # Report export dati sito
 
-Sorgente: `build_xlsx_v33.py` (letto via `ast`, non eseguito) · CSV My Maps: `mymaps_csv/` · override: `site_overrides.json` · generatedAt (mtime sorgenti): 2026-10-17T23:38:55+02:00
+Sorgente: `build_xlsx_v33.py` (letto via `ast`, non eseguito) · CSV My Maps: `mymaps_csv/` · override: `site_overrides.json` · generatedAt (mtime sorgenti): 2026-10-18T18:55:18+02:00
 
 ## Conteggi
 
 | File | Contenuto |
 |---|---|
 | trip.json | 7 sezioni · 15 link · 6 fatti |
-| agenda.json | 18 giorni (6 `final` · 12 `draft`) · 182 item · 109 con `end` dedotto · 80 con `placeId` |
-| transport.json | 7 tratte · 2 transfer · 8 righe guida · 31 checklist (14 da fare) · scelte = €196.75/pax |
+| agenda.json | 18 giorni (10 `final` · 8 `draft`) · 244 item · 198 con `end` dedotto · 76 con `placeId` |
+| transport.json | 7 tratte · 2 transfer · 8 righe guida · 31 checklist (12 da fare) · scelte = €200.11/pax |
 | lodging.json | 6 basi · 7 passi giorno 1 · 7 domande bagagli |
-| places.json | 326 luoghi · 108 abbinati ai CSV · 0 con coordinate · 75 con `dayDates` |
-| budget.json | 6 categorie + 4 comuni · totale €2736.68/pax · €10946.72 gruppo |
+| places.json | 326 luoghi · 108 abbinati ai CSV · 0 con coordinate · 72 con `dayDates` |
+| budget.json | 6 categorie + 4 comuni · totale €2740.04/pax · €10960.16 gruppo |
 
 Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 18, generico 14, places 67, places (testa) 9, titolo 5 (`titolo`/`destinazione` = euristica sul testo, da rivedere in revisione agenda).
 
-## Ambiguità da decidere (orchestratore) (18)
+## Ambiguità da decidere (orchestratore) (17)
 
 - lodging Takayama: stato «✓ prenotato» → paid:false, payment «da confermare»
 - lodging Shuzenji: stato «✓ prenotato» → paid:false, payment «da confermare»
@@ -27,7 +27,6 @@ Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 1
 - transport: etichetta duplicata «LEG 1c» → id `leg-1c-2`
 - testo con riferimenti al dossier rimasto: agenda.days[0].items[8].title: «Cena da Salmon Kat (scelta del cliente)»
 - testo con riferimenti al dossier rimasto: agenda.days[2].items[6].note: «Mochi, spiedini, matcha, yatsuhashi · scelta del cliente: si mangia ca»
-- testo con riferimenti al dossier rimasto: agenda.days[2].items[16].note: «Cena di compleanno: ristorante da scegliere (decisione A-09-4, il clie»
 - testo con riferimenti al dossier rimasto: agenda.days[3].items[3].note: «Scelta del cliente. Non prende prenotazioni a pranzo e c'è coda: mette»
 - testo con riferimenti al dossier rimasto: agenda.days[5].items[19].note: «Bus Gifu n. 13803 Shirakawa-gō 15:55 → Nagoya Meitetsu Bus Center 18:4»
 - override `transport.legs[leg-14]`: da togliere ma inesistente, ignorato
@@ -81,7 +80,7 @@ Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 1
 - rimossi metodo di pagamento/tasso da: «BPER addebito in € · tasso 185,34»
 - rimossi metodo di pagamento/tasso da: «Revolut/BPER · Booking/AirHost»
 
-## Note (58)
+## Note (62)
 
 - CSV `01_Osaka_(7-11_nov).csv`: nessuna colonna coordinate (colonne: Luogo, Nome, Note) → lat/lon omessi
 - CSV `02_Kyoto_(8-9_nov).csv`: nessuna colonna coordinate (colonne: Luogo, Nome, Note) → lat/lon omessi
@@ -136,18 +135,22 @@ Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 1
 - override `transport.checklist[ck-yamato]`: elemento aggiunto
 - override `transport.checklist[ck-yasudaya]`: elemento aggiunto
 - agenda 2026-11-07 (final): `budgetEur` 75 (stima della scaletta) tolto — il costo del giorno è la somma delle tappe
-- agenda 2026-11-08 (final): `budgetEur` 125 (stima della scaletta) tolto — il costo del giorno è la somma delle tappe
+- agenda 2026-11-08 (final): `budgetEur` 164 (stima della scaletta) tolto — il costo del giorno è la somma delle tappe
 - agenda 2026-11-09 (final): `budgetEur` 75 (stima della scaletta) tolto — il costo del giorno è la somma delle tappe
 - agenda 2026-11-10 (final): `budgetEur` 58 (stima della scaletta) tolto — il costo del giorno è la somma delle tappe
 - agenda 2026-11-11 (final): `budgetEur` 127 (stima della scaletta) tolto — il costo del giorno è la somma delle tappe
 - agenda 2026-11-12 (final): `budgetEur` 100 (stima della scaletta) tolto — il costo del giorno è la somma delle tappe
+- agenda 2026-11-13 (final): `budgetEur` 112 (stima della scaletta) tolto — il costo del giorno è la somma delle tappe
+- agenda 2026-11-14 (final): `budgetEur` 121 (stima della scaletta) tolto — il costo del giorno è la somma delle tappe
+- agenda 2026-11-15 (final): `budgetEur` 35 (stima della scaletta) tolto — il costo del giorno è la somma delle tappe
+- agenda 2026-11-16 (final): `budgetEur` 40 (stima della scaletta) tolto — il costo del giorno è la somma delle tappe
 
 ## Scaletta / piano definitivo (SPEC §9.1)
 
-Blocchi fusi: A «Osaka · Kyoto · Kobe» · status `confermata`; B «Osaka → Takayama → Shirakawa-gō → Nagoya» · status `confermata`
-Blocchi NON fusi (non confermati): C (proposta), D (proposta), E (proposta)
+Blocchi fusi: A «Osaka · Kyoto · Kobe» · status `confermata`; B «Osaka → Takayama → Shirakawa-gō → Nagoya» · status `confermata`; C «Nagoya · anguilla, Osu, la notte di Nishiki e il concerto» · status `confermata`; D «Numazu · Uchiura (Love Live!) · Shuzenji» · status `confermata`
+Blocchi NON fusi (non confermati): E (proposta)
 
-### Giorni sostituiti (6)
+### Giorni sostituiti (10)
 
 - 2026-11-07 (13 item, 4 extras)
 - 2026-11-08 (13 item, 11 extras)
@@ -155,33 +158,82 @@ Blocchi NON fusi (non confermati): C (proposta), D (proposta), E (proposta)
 - 2026-11-10 (16 item, 13 extras)
 - 2026-11-11 (25 item, 9 extras)
 - 2026-11-12 (24 item, 6 extras)
+- 2026-11-13 (17 item, 5 extras)
+- 2026-11-14 (14 item, 8 extras)
+- 2026-11-15 (32 item, 12 extras)
+- 2026-11-16 (30 item, 14 extras)
 
 ### Tappe dopo mezzanotte ripiegate nella nota (2)
 
 - 2026-11-07 01:00 «Karaoke senza orari (facoltativo)» (placeId jankara-tenma → extras)
 - 2026-11-07 02:30 «A casa a piedi (~15-18')»
 
-### Item/extras senza foto (13)
+### Tappe con opzioni (linea guida, SPEC §13) (21)
+
+- 2026-11-07 d07-04 «Giro veloce attorno a casa»: 2 opzioni
+- 2026-11-07 d07-11 «1° locale in piedi: il bancone del pesce»: 2 opzioni
+- 2026-11-07 d07-12 «2° locale seduti: spiedini di pollo alla»: 2 opzioni
+- 2026-11-07 d07-13 «3° locale: il baretto di mezzanotte»: 2 opzioni
+- 2026-11-09 d09-17 «Cena di compleanno (linea guida: Kappō U»: 6 opzioni · flex
+- 2026-11-12 d12-18 «Tempo libero nel villaggio»: 2 opzioni
+- 2026-11-12 d12-23 «Cena a caso a Nagoya»: 4 opzioni
+- 2026-11-12 d12-24 «Serata libera: letto presto o primo giro»: 1 opzioni
+- 2026-11-13 d13-04 «Pranzo: l'anguilla alla brace (scelta: U»: 3 opzioni · flex
+- 2026-11-13 d13-09 «Akamon-dōri (Osu)»: 2 opzioni
+- 2026-11-13 d13-11 «1° giro: l'osteria del 1907 (scelta: Dai»: 3 opzioni · flex
+- 2026-11-13 d13-13 «2° giro: le alette di Nagoya (DA SCEGLIE»: 3 opzioni · flex
+- 2026-11-13 d13-15 «3° giro: cocktail di frutta fresca (scel»: 3 opzioni · flex
+- 2026-11-13 d13-16 «Chiusura: udon al curry di mezzanotte (f»: 3 opzioni · flex
+- 2026-11-14 d14-05 «Pranzo tutti e 4: udon cotti nel miso (s»: 3 opzioni · flex
+- 2026-11-14 d14-13 «Ritrovo: ultima cena di Nagoya (scelta: »: 3 opzioni · flex
+- 2026-11-15 d15-15 «Pranzo di pesce al porto (linea guida)»: 3 opzioni · flex
+- 2026-11-15 d15-32 «Serata al ryokan: 10' su spiaggia e molo»: 2 opzioni
+- 2026-11-16 d16-10 «Pranzo sopra la spiaggia di Chika (linea»: 3 opzioni · flex
+- 2026-11-16 d16-29 «Un bicchiere al bar del paese (linea gui»: 2 opzioni · flex
+- 2026-11-16 d16-30 «Rientro dal vialetto di bambù illuminato»: 2 opzioni
+
+### Item/extras senza foto (34)
 
 - d07-09 «Il ristorante di salmone dietro il vicolo Hozenji» (salmon-kat-namba)
 - d07-11 «Il bancone in piedi del pesce, pieno di ragazzi giapponesi» (tenma-uosho)
+- opzione «Il bancone in piedi del pesce, pieno di ragazzi giapponesi» (tenma-uosho)
+- opzione «Il bar in piedi del pesce attaccato alla stazione» (tenma-daiyasu)
 - d07-12 «Gli spiedini di pollo alla brace, seduti, fino alle 2» (tenma-mame)
+- opzione «Gli spiedini di pollo alla brace, seduti, fino alle 2» (tenma-mame)
+- opzione «L'izakaya-mercato del pesce dove si griglia da soli» (tenma-sanchoku)
 - d07-13 «Il baretto-chiosco di okonomiyaki aperto fino alle 2» (tenma-source)
+- opzione «Il baretto-chiosco di okonomiyaki aperto fino alle 2» (tenma-source)
+- opzione «Il karaoke aperto 24 ore sotto casa» (jankara-tenma)
 - 2026-11-07 extra «Il karaoke aperto 24 ore sotto casa» (jankara-tenma)
 - d08-12 «Le terme vere sul tetto, vicino a casa» (naniwa-no-yu)
-- d09-17 «L'osteria del sake nel vicolo, con pesce del mercato e il panino di manzo» (sake-terayama)
+- opzione «L'osteria del sake nel vicolo, con pesce del mercato e il panino di manzo» (sake-terayama)
 - d10-04 «Il soba fatto a mano con la farina macinata a pietra» (shuhari-kuromon)
 - d10-08 «Il grande magazzino di manga, figure e cosplay usati» (mandarake-grand-chaos)
 - d10-15 «L'ufficio del corriere dove si lasciano le valigie per Tokyo» (yamato-umeda)
 - d10-16 «Le terme vere sul tetto, vicino a casa» (naniwa-no-yu)
 - 2026-11-10 extra «Il soba dei 100 migliori, piccolo e artigiano» (akari-soba)
 - 2026-11-10 extra «La storica casa dell'udon di Osaka, col brodo leggendario» (imai-dotonbori)
+- d15-06 «Il negozio ufficiale di gadget di Love Live! Sunshine!!» (gamers-numazu)
+- d15-08 «La via dei negozi che ha fatto di Yohane una cittadina onoraria» (agetsuchi-shotengai)
+- d15-12 «Il caffè-ristorante dove nell'anime c'è la casa di You» (oranda-kan)
+- d15-14 «Il chiosco di hamburger di pesce degli abissi dove scappa Yoshiko» (numazu-burger)
+- d15-22 «Il santuarietto dal torii rosso dove balla Kanan» (nagaisaki-bana-cape)
+- d15-25 «Il punto info pieno di poster e pupazzi delle Aqours» (sannoura-info)
+- 2026-11-15 extra «La trattoria del curry nero di Yohane» (tosawaya)
+- opzione «La trattoria del curry nero di Yohane» (tosawaya)
+- d16-29 «Il bar del paese con birre artigianali e whisky» (j-cafe-bar)
+- opzione «Il bar del paese con birre artigianali e whisky» (j-cafe-bar)
+- opzione «Il pub-karaoke dei locali, aperto fino a mezzanotte» (pub-house-sumiya)
+- opzione «Il pub-karaoke dei locali, aperto fino a mezzanotte» (pub-house-sumiya)
+- 2026-11-16 extra «La trattoria del curry nero di Yohane» (tosawaya)
+- 2026-11-16 extra «Il laboratorio dei budini al caramello in barattolino» (shuzenji-purin)
+- 2026-11-16 extra «Il bosco di aceri sulla collina sopra il paese» (momiji-bayashi)
 
 ### placeId non trovati nel catalogo (0)
 
 - nessuno
 
-### Luoghi del catalogo senza corrispondente in places.json (item senza `placeId`) (20)
+### Luoghi del catalogo senza corrispondente in places.json (item senza `placeId`) (55)
 
 - salmon-kat-namba
 - tenma-uosho
@@ -191,7 +243,7 @@ Blocchi NON fusi (non confermati): C (proposta), D (proposta), E (proposta)
 - sannenzaka-ninenzaka
 - pontocho
 - shirakawa-gion
-- sake-terayama
+- kappo-umetsu
 - shuhari-kuromon
 - mandarake-grand-chaos
 - janjan-yokocho
@@ -203,20 +255,60 @@ Blocchi NON fusi (non confermati): C (proposta), D (proposta), E (proposta)
 - dekonaru-yokocho
 - nagase-house
 - irori-shirakawa
+- unafuji-honten
+- osu-kannon
+- osu-shotengai
+- mandarake-nagoya
+- osu-akamon
+- daijin-honten
+- tebasaki-mutsumi
+- bar-curacao
+- udon-nishiki
+- honmaru-palace
+- yamamotoya-sohonke
+- nagashima-spa-land
+- akaboshi
+- nakamise-numazu
+- gamers-numazu
+- agetsuchi-shotengai
+- agetsuchi-asahi-inari
+- onari-bashi
+- oranda-kan
+- numazu-burger
+- iriichi
+- nagaisaki-school
+- nagaisaki-bana-cape
+- nagahama-castle
+- ohmos
+- mitohama
+- yasudaya
+- mito-ko
+- awashima-pier
+- matsuzuki
+- hamanoya
+- izu-nagaoka-station
+- osaka-mikan
+- arai-ryokan
+- j-cafe-bar
 
-### Warning (11)
+### Warning (16)
 
 - blocco A CONFERMATO ma 2026-11-09 ha decisions senza `chosen`: A-09-4
 - blocco B CONFERMATO ma 2026-11-11 ha decisions senza `chosen`: B-11-1, B-11-2, B-11-3, B-11-4
 - blocco B CONFERMATO ma 2026-11-12 ha decisions senza `chosen`: B-12-1
+- blocco C CONFERMATO ma 2026-11-13 ha decisions senza `chosen`: C-13-3
 - override `agendaItems[d07-01]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Atterraggio a KIX, controllo passaporti, valigie»
 - override `agendaItems[d07-03]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Valigie nel deposito self-service del BON»
+- override `agendaItems[d14-04]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Metro Meijō Shiyakusho → Yabachō (3 fermate) + 7' »
 - override `agendaItems[d10-15]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Consegna delle 4 valigie all'ufficio Yamato»
 - override `agendaItems[d11-05]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «A piedi al Country Hotel»
 - override `agendaItems[d12-06]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Bus Nohi Takayama 7:50 → Shirakawa-gō (Ogimachi) 8»
 - override `agendaItems[d12-19]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Fila per il bus delle 15:55; bagno al terminal pri»
 - override `agendaItems[d12-20]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Bus Gifu n. 13803 Shirakawa-gō 15:55 → Nagoya Meit»
 - override `agendaItems[d11-04]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Limited Express Hida 25 diretto Osaka → Takayama 1»
+- override `agendaItems[d08-05]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Pranzo di manzo di Kobe»
+- override `agendaItems[d15-03]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Shinkansen Hikari 640 Nagoya 8:43 → Mishima 9:57»
+- override `agendaItems[d16-20]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Check-in all'Arai (dalle 15:00)»
 
 ## Coerenza dei dati (export_site_costs.py: copie inevitabili vs fonte unica)
 
@@ -245,13 +337,14 @@ Avvisi (giorni in bozza o stime):
 - Item con orario fuori sequenza (14 nov «ALTRI 3») marcati `parallel:true`; giorno libero 21 nov: item `allDay:true`, `time:""`.
 - Testi per il sito (`ux_clean`, regole generali): maiuscole d'enfasi → minuscole; titoli item ≤ ~60 car. (spiegazioni/logistica in `note`); titolo giorno senza base ripetuta + `dayTrip`; checklist con `endDate`/`whenDetail`/`dateApprox`; opzioni trasporto con `id`, `noteShort`, `noteMore`; riferimenti al dossier (📎/🗓/«vedi riga») tolti e tradotti in `links` interni; note alloggi deduplicate; Giorno 1 `open` → `remember` (deciso) o `todo` (aperto).
 
-## Guide (SPEC §10) — 11 in `site/data/guides.json`
+## Guide (SPEC §10) — 12 in `site/data/guides.json`
 
 Sorgente: `data/guide`
 
-### Guide lette (11)
+### Guide lette (12)
 
 - `bere.md` → `bere` (order 30, 7290 car. HTML, 2 luoghi)
+- `cena-compleanno-kyoto.md` → `cena-compleanno-kyoto` (order 12, 7709 car. HTML, 6 luoghi)
 - `concerto-nagoya.md` → `concerto-nagoya` (order 15, 12754 car. HTML, 0 luoghi)
 - `izakaya-tachinomi.md` → `izakaya-tachinomi` (order 20, 8011 car. HTML, 0 luoghi)
 - `mangiare.md` → `mangiare` (order 40, 7037 car. HTML, 2 luoghi)
@@ -285,29 +378,30 @@ Sorgente: `data/guide`
 
 ## Foto locali dei luoghi (`--fetch-images`)
 
-Modalità: senza download (uso solo i file già presenti)
-Cartella `site/assets/img/places/`: 81 file · 9389 KB totali
+Modalità: download attivo · convertitore: Pillow (/Users/panteghininicolo/progetti/Giappone_Nov2026/.venv/bin/python3)
+Cartella `site/assets/img/places/`: 168 file · 17758 KB totali
 
 ### Scaricate (0)
 
 - nessuna
 
-### Riusate (file già presenti) (81)
+### Riusate (file già presenti) (168)
 
+- hankyu-higashi-dori (hankyu-higashi-dori.webp, 90 KB)
+- nakazakicho (nakazakicho.webp, 88 KB)
 - dotonbori (dotonbori.webp, 132 KB)
 - hozenji-yokocho (hozenji-yokocho.webp, 79 KB)
 - ohatsu-tenjin-ura-sando (ohatsu-tenjin-ura-sando.webp, 91 KB)
 - kita-shinchi (kita-shinchi.webp, 100 KB)
 - umeda-sky-building (umeda-sky-building.webp, 47 KB)
 - kitano-ijinkan (kitano-ijinkan.webp, 67 KB)
-- mouriya-sannomiya (mouriya-sannomiya.webp, 72 KB)
 - nankinmachi (nankinmachi.webp, 116 KB)
+- mouriya-sannomiya (mouriya-sannomiya.webp, 72 KB)
 - castello-osaka (castello-osaka.webp, 90 KB)
 - tenma (tenma.webp, 117 KB)
 - ura-namba (ura-namba.webp, 143 KB)
 - arima-onsen (arima-onsen.webp, 120 KB)
 - meriken-harborland (meriken-harborland.webp, 88 KB)
-- nakazakicho (nakazakicho.webp, 88 KB)
 - amerikamura (amerikamura.webp, 144 KB)
 - nunobiki (nunobiki.webp, 47 KB)
 - fushimi-inari (fushimi-inari.webp, 110 KB)
@@ -321,6 +415,11 @@ Cartella `site/assets/img/places/`: 81 file · 9389 KB totali
 - yasaka-jinja (yasaka-jinja.webp, 76 KB)
 - kodai-ji (kodai-ji.webp, 46 KB)
 - gion-hanamikoji (gion-hanamikoji.webp, 153 KB)
+- kappo-umetsu (kappo-umetsu.webp, 50 KB)
+- gion-rohan (gion-rohan.webp, 105 KB)
+- gion-sushi-taku (gion-sushi-taku.webp, 51 KB)
+- gion-nanba (gion-nanba.webp, 12 KB)
+- gion-tsuzaki (gion-tsuzaki.webp, 29 KB)
 - kinkaku-ji (kinkaku-ji.webp, 108 KB)
 - sake-fushimi (sake-fushimi.webp, 182 KB)
 - ginkaku-ji (ginkaku-ji.webp, 116 KB)
@@ -371,11 +470,142 @@ Cartella `site/assets/img/places/`: 81 file · 9389 KB totali
 - irori-shirakawa (irori-shirakawa.webp, 50 KB)
 - myozen-ji (myozen-ji.webp, 212 KB)
 - gassho-minkaen (gassho-minkaen.webp, 167 KB)
-- jinya-mae-asaichi (jinya-mae-asaichi.webp, 84 KB)
+- ochiudo (ochiudo.webp, 187 KB)
+- ogimachi (ogimachi.webp, 182 KB)
+- yamachan-meieki (yamachan-meieki.webp, 84 KB)
 - yabaton-esca (yabaton-esca.webp, 102 KB)
 - misen-jr-nagoya (misen-jr-nagoya.webp, 102 KB)
-- ochiudo (ochiudo.webp, 187 KB)
+- sakae-nishiki (sakae-nishiki.webp, 65 KB)
+- jinya-mae-asaichi (jinya-mae-asaichi.webp, 84 KB)
+- atsuta-jingu (atsuta-jingu.webp, 173 KB)
+- unafuji-honten (unafuji-honten.webp, 125 KB)
+- horaiken-jingu (horaiken-jingu.webp, 51 KB)
+- horaiken-honten (horaiken-honten.webp, 87 KB)
+- osu-kannon (osu-kannon.webp, 109 KB)
+- osu-shotengai (osu-shotengai.webp, 112 KB)
+- mandarake-nagoya (mandarake-nagoya.webp, 128 KB)
+- osu-akamon (osu-akamon.webp, 81 KB)
+- komehyo-nagoya (komehyo-nagoya.webp, 93 KB)
+- daijin-honten (daijin-honten.webp, 100 KB)
+- atarayo (atarayo.webp, 74 KB)
+- kamoshiya-oden (kamoshiya-oden.webp, 54 KB)
+- tebasaki-mutsumi (tebasaki-mutsumi.webp, 100 KB)
+- furaibo-sakae (furaibo-sakae.webp, 111 KB)
+- sekai-no-yamachan (sekai-no-yamachan.webp, 84 KB)
+- bar-curacao (bar-curacao.webp, 63 KB)
+- bar-barns (bar-barns.webp, 89 KB)
+- kreis (kreis.webp, 53 KB)
+- udon-nishiki (udon-nishiki.webp, 34 KB)
+- yabaton (yabaton.webp, 127 KB)
+- saunalab-nagoya (saunalab-nagoya.webp, 61 KB)
+- miya-kishimen (miya-kishimen.webp, 164 KB)
+- shirotori-garden (shirotori-garden.webp, 68 KB)
+- honmaru-palace (honmaru-palace.webp, 79 KB)
+- nagoya-castle (nagoya-castle.webp, 95 KB)
+- yamamotoya-sohonke (yamamotoya-sohonke.webp, 107 KB)
+- kadomaru (kadomaru.webp, 67 KB)
+- nagashima-spa-land (nagashima-spa-land.webp, 60 KB)
+- nabana-no-sato (nabana-no-sato.webp, 145 KB)
+- akaboshi (akaboshi.webp, 73 KB)
+- sake-kitaru (sake-kitaru.webp, 85 KB)
+- port-aquarium (port-aquarium.webp, 18 KB)
+- inuyama-castle (inuyama-castle.webp, 146 KB)
+- tokugawa-en (tokugawa-en.webp, 201 KB)
+- scmaglev (scmaglev.webp, 107 KB)
+- toyota-museum (toyota-museum.webp, 83 KB)
+- midland-square (midland-square.webp, 62 KB)
+- numazu-station (numazu-station.webp, 80 KB)
+- nakamise-numazu (nakamise-numazu.webp, 89 KB)
+- agetsuchi-asahi-inari (agetsuchi-asahi-inari.webp, 97 KB)
+- onari-bashi (onari-bashi.webp, 66 KB)
+- iriichi (iriichi.webp, 66 KB)
+- gotetsu (gotetsu.webp, 78 KB)
+- nishiyo (nishiyo.webp, 38 KB)
+- minato-shinsenkan (minato-shinsenkan.webp, 120 KB)
+- nagaisaki-school (nagaisaki-school.webp, 115 KB)
+- nagahama-castle (nagahama-castle.webp, 140 KB)
+- ohmos (ohmos.webp, 60 KB)
+- fujimi-hiroba (fujimi-hiroba.webp, 55 KB)
+- mitohama (mitohama.webp, 114 KB)
+- mito-ko (mito-ko.webp, 21 KB)
+- awashima-pier (awashima-pier.webp, 55 KB)
+- izu-mito-sea-paradise (izu-mito-sea-paradise.webp, 96 KB)
+- numazu-hie-jinja (numazu-hie-jinja.webp, 216 KB)
+- senbon-matsubara (senbon-matsubara.webp, 57 KB)
+- maguro-kick (maguro-kick.webp, 31 KB)
+- numazu-deep-sea-aquarium (numazu-deep-sea-aquarium.webp, 68 KB)
+- numazu-imperial-villa (numazu-imperial-villa.webp, 94 KB)
+- mishima-skywalk (mishima-skywalk.webp, 123 KB)
+- mishima-taisha (mishima-taisha.webp, 95 KB)
+- matsuzuki (matsuzuki.webp, 60 KB)
+- hamanoya (hamanoya.webp, 45 KB)
+- ikesuya (ikesuya.webp, 64 KB)
+- izu-nagaoka-station (izu-nagaoka-station.webp, 90 KB)
+- osaka-mikan (osaka-mikan.webp, 83 KB)
+- tokko-no-yu (tokko-no-yu.webp, 216 KB)
+- shuzen-ji (shuzen-ji.webp, 187 KB)
+- shigetsuden (shigetsuden.webp, 177 KB)
+- chikurin-no-komichi (chikurin-no-komichi.webp, 222 KB)
+- ponti-rossi-del-katsura (ponti-rossi-del-katsura.webp, 173 KB)
+- arai-ryokan (arai-ryokan.webp, 147 KB)
+- kisho-mikan (kisho-mikan.webp, 190 KB)
+- awashima (awashima.webp, 98 KB)
+- niji-no-sato (niji-no-sato.webp, 180 KB)
+- zenputei-nanaban (zenputei-nanaban.webp, 44 KB)
+- tokko-soba-oto (tokko-soba-oto.webp, 35 KB)
+- izu-panorama-park (izu-panorama-park.webp, 56 KB)
+- cascata-di-joren (cascata-di-joren.webp, 144 KB)
 
-### Fallite (0)
+### Fallite (6)
 
-- nessuna
+- endoji-shikemichi: HTTP Error 429: Too Many Requests (015d12c) · https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Endoji_Shopping_Street_2021-10_ac.jpg/960px-Endoji_Shopping_Street_2021-10_ac.jpg
+- view-o: HTTP Error 429: Too Many Requests (015d12c) · https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Byuo.jpg/960px-Byuo.jpg
+- yasudaya: HTTP Error 429: Too Many Requests (015d12c) · https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Yasudaya-Ryokan.jpg/960px-Yasudaya-Ryokan.jpg
+- kanukiyama-park: HTTP Error 429: Too Many Requests (015d12c) · https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Mount_Kanuki_20120730.jpg/960px-Mount_Kanuki_20120730.jpg
+- hie-shrine: HTTP Error 429: Too Many Requests (015d12c) · https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Shuzenji_Onsen_area_Hie_Shrine_2024_11_4_various_12.jpg/960px-Shuzenji_Onsen_area_Hie_Shrine_2024_11_4_various_12.jpg
+- shuzenji-onsen: HTTP Error 429: Too Many Requests (015d12c) · https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/181124_Shuzenji_Onsen_Izu_Shizuoka_pref_Japan07s5.jpg/960px-181124_Shuzenji_Onsen_Izu_Shizuoka_pref_Japan07s5.jpg
+
+## Schede dei luoghi (SPEC §12) — 1 in `site/data/place-details.json`
+
+Sorgente: `data/luoghi`
+
+### Schede lette (1)
+
+- `mouriya-sannomiya.md` → `mouriya-sannomiya` (14549 car. HTML, 1 tappe in agenda)
+
+### Errori di frontmatter (0)
+
+- nessuno
+
+### Blocchi <svg>/<figure> scartati (0)
+
+- nessuno
+
+### Luoghi non trovati (0)
+
+- nessuno
+
+### Link non ammessi (0)
+
+- nessuno
+
+### Avvisi (0)
+
+- nessuno
+
+### Foto scaricate (0)
+
+- nessuno
+
+### Foto riusate (file già presenti) (2)
+
+- mouriya-sannomiya-56828ac9.webp (76 KB)
+- mouriya-sannomiya-8baf6cc9.webp (19 KB)
+
+### Foto fallite (0)
+
+- nessuno
+
+### Foto senza copia locale (solo online) (0)
+
+- nessuno

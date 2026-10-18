@@ -2,6 +2,7 @@
 // dentro ogni gruppo prima i "Sì" (righe complete), poi "Forse" (righe compatte). Icona del tipo davanti al nome.
 import { fmtDate, todayInTokyo } from './app.js';
 import { html, mount, icon, pageUrl, dirUrl, store, mapsIconBtn } from './pages.js';
+import { detailIndex } from './place-details.js';
 
 // flag = colonna "Andiamo?" del dossier, mostrata con parole da sito
 const FLAGS = [
@@ -15,6 +16,7 @@ const MULTI = '__multi'; // stato salvato da versioni con più città scelte ins
 const FLAG_BADGE = { 'Sì': 'badge--done', Forse: 'badge--opt', No: '', Futuro: 'badge--draft', '': '' };
 const norm = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
 const OPEN_ALL_MAX = 30; // con pochi risultati (ricerca, una città) i gruppi si aprono tutti
+let DETAILS = new Map(); // placeId → scheda del locale (SPEC §12), riempita in render
 
 // segno del tipo (presentazione: `type` è testo libero con più di 40 valori → parole chiave). Ordine = priorità.
 // Anime/otaku/Love Live: icona i-anime (stella + scintilla), distinta da i-star (= segnalato da voi).
@@ -33,14 +35,16 @@ function placeRow(p, { compact = false, badge = false } = {}) {
   const q = p.mapsQuery || `${p.name} ${p.city || ''}`;
   const hasGeo = Number.isFinite(Number(p.lat)) && Number.isFinite(Number(p.lon)) && p.lat !== '' && p.lon !== '' && p.lat != null;
   const flag = p.flag || '';
+  const det = DETAILS.get(p.id);
   return html`<li class="list-item lu-row${compact ? ' lu-row--compact' : ''}">
     <div class="stack lu-row__body">
       <p class="lu-row__name">${icon(typeIcon(p.type))}<strong>${p.name}</strong>${p.source === '★' ? html` <span class="lu-star" title="segnalato da voi" aria-label="segnalato da voi">★</span>` : ''}
         ${badge ? html`<span class="badge ${FLAG_BADGE[flag] || ''}" title="Andiamo? ${FLAG_LABEL[flag] || flag}">${FLAG_LABEL[flag] || flag}</span>` : ''}</p>
       ${p.type || p.area ? html`<p class="small muted lu-row__meta">${[p.type, p.area].filter(Boolean).join(' · ')}</p>` : ''}
       ${p.note && !compact ? html`<p class="small lu-row__note">${p.note}</p>` : ''}
-      ${(p.dayDates || []).length ? html`<p class="row lu-days" aria-label="Giorni in agenda">${p.dayDates.map((d) => html`
-        <a class="chip" href="${pageUrl('giorno.html', { d })}">${icon('calendar')} ${fmtDate(d)}</a>`)}</p>` : ''}
+      ${(p.dayDates || []).length || det ? html`<p class="row lu-days" aria-label="Giorni in agenda e scheda">${(p.dayDates || []).map((d) => html`
+        <a class="chip" href="${pageUrl('giorno.html', { d })}">${icon('calendar')} ${fmtDate(d)}</a>`)}
+        ${det ? html`<a class="chip lu-detail" href="${pageUrl('luogo.html', { id: det.id })}" aria-label="Scheda: ${det.title}">${icon('book')} Scheda</a>` : ''}</p>` : ''}
     </div>
     <div class="row lu-row__actions">
       ${mapsIconBtn(q, p.name)}
@@ -107,7 +111,8 @@ export function focusCity(stays, today, cities) {
 }
 
 export async function render(root, { trip, loadData }) {
-  const [d, lodging] = await Promise.all([loadData('places'), Promise.resolve(loadData('lodging')).catch(() => null)]);
+  const [d, lodging, details] = await Promise.all([loadData('places'), Promise.resolve(loadData('lodging')).catch(() => null), detailIndex()]);
+  DETAILS = details;
   const places = (d && d.places) || [];
   if (!d) { mount(root, html`<h1 class="h1">Luoghi</h1><p class="empty">Dati dei luoghi non disponibili.</p>`); return; }
   const cityOrder = [...new Set(places.map((p) => p.city).filter(Boolean))]; // ordine dei dati = ordine di viaggio

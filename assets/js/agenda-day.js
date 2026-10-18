@@ -6,6 +6,8 @@ import {
 } from './agenda-gaps.js';
 import { dayStripNav, revealActive, bindDayKeys } from './day-strip.js';
 import { viewSwitch } from './view-switch.js';
+import { detailIndex, detailHref } from './place-details.js';
+import { optionsBlock, photoOf } from './place-options.js';
 
 const $ = (s) => document.querySelector(s);
 
@@ -120,13 +122,7 @@ const placeAdds = (place, title) => {
 };
 
 // ---------- foto (Wikimedia Commons, §9.1): solo https, credit visibile, lazy, no referrer ----------
-const httpsUrl = (u) => (/^https:\/\//i.test(String(u || '').trim()) ? String(u).trim() : '');
-// copia locale scaricata dall'exporter (--fetch-images): solo assets/img/places/<id>.webp|jpg
-const localImg = (u) => (/^assets\/img\/places\/[\w-]+\.(?:webp|jpe?g)$/.test(String(u || '').trim()) ? String(u).trim() : '');
-function photoOf(image) {
-  const url = image && (localImg(image.url) || httpsUrl(image.url));
-  return url ? { url, credit: image.credit || '', page: httpsUrl(image.page), alt: image.alt || '' } : null;
-}
+// photoOf (https o copia locale assets/img/places/<id>.webp|jpg dell'exporter) è in place-options.js
 // figura 4:3 + credit; se l'immagine non si carica (offline, link rotto) resta un riquadro col testo alternativo
 function photoFigure(img, fallback, cls) {
   const alt = img.alt || fallback || '';
@@ -142,7 +138,7 @@ function photoFigure(img, fallback, cls) {
   return el('figure', { class: `photo ${cls}` }, frame, credit ? el('figcaption', { class: 'photo__credit' }, credit) : null);
 }
 
-function itemRow(n, fx) {
+function itemRow(n, fx, details, date) {
   const type = TYPES.includes(n.type) ? n.type : 'free';
   const b = n.booking || { status: 'none' };
   const cost = Number(n.costEur) || 0;
@@ -161,11 +157,15 @@ function itemRow(n, fx) {
     b.status === 'todo' && (b.where || b.when) ? el('span', { class: 'muted' }, `prenota: ${[b.where, b.when].filter(Boolean).join(', ')}`) : null);
   const links = (n.links || []).filter((l) => /^[\w-]+\.html(#[\w-]*)?$/.test(l.href || ''))
     .map((l) => el('a', { class: 'btn btn--ghost', href: withDataParam(l.href) }, el('span', null, l.label), icon('chevron-right')));
+  // scheda del locale (SPEC §12): join per placeId con place-details.json
+  const det = n.placeId && details && details.get(n.placeId);
+  if (det) links.unshift(el('a', { class: 'btn btn--ghost giorno__detail', href: withDataParam(detailHref(det.id)), 'aria-label': `Scheda: ${det.title}` },
+    icon('book'), el('span', null, 'Scheda'), icon('chevron-right')));
   const img = photoOf(n.image);
   const nick = img && n.nick ? n.nick : '';   // il soprannome fa da titolo solo nella card con foto (§9.2)
 
   return el('li', {
-    class: `list-item giorno__item giorno__item--${type}${n.optional ? ' giorno__item--optional' : ''}${img ? ' giorno__item--photo' : ''}`, id: n.id,
+    class: `list-item giorno__item giorno__item--${type}${n.optional ? ' giorno__item--optional' : ''}${img ? ' giorno__item--photo' : ''}${Array.isArray(n.options) && n.options.length ? ' giorno__item--opts' : ''}`, id: n.id,
   },
   n.allDay ? el('div', { class: 'giorno__time mono small' }, timeRange(n))
     : img ? el('div', { class: 'giorno__time mono small' }, `${fmtMin(n.startMin)}-${fmtMin(n.endMin)}${n.estimated ? '*' : ''}`)
@@ -177,7 +177,8 @@ function itemRow(n, fx) {
     nick && n.title ? el('p', { class: 'small muted giorno__subtitle' }, n.title) : null,
     meta,
     n.note ? el('p', { class: 'small giorno__note' }, n.note) : null,
-    links.length ? el('div', { class: 'row giorno__links' }, ...links) : null),
+    links.length ? el('div', { class: 'row giorno__links' }, ...links) : null,
+    optionsBlock(n, { date, fx, details, cls: 'giorno__opts' })),   // tappa «linea guida» (SPEC §13)
   n.mapsQuery ? mapsBtn(n.mapsQuery, n.title) : null);
 }
 
@@ -248,7 +249,7 @@ function setPager(a, day, prefix) {
 
 async function main() {
   await initShell('agenda');
-  const [trip0, agenda] = await Promise.all([loadData('trip'), loadData('agenda')]);
+  const [trip0, agenda, details] = await Promise.all([loadData('trip'), loadData('agenda'), detailIndex()]);
   const trip = trip0 || { fx: { jpyPerEur: 0 }, timezone: 'Asia/Tokyo' };
   const days = ((agenda && agenda.days) || []).slice().sort((a, b) => a.date.localeCompare(b.date));
   const err = $('#giorno-error');
@@ -309,7 +310,7 @@ async function main() {
     $('#giorno-head').append(el('div', { class: 'giorno-strip__wrap' }, ribbon, el('div', { class: 'giorno-strip__foot' }, stripLegend(norm), sum)));
   } else if (norm.length) $('#giorno-head').append(sum);
   const rows = [
-    ...norm.map((n) => ({ at: n.startMin, k: 1, node: () => itemRow(n, trip.fx) })),
+    ...norm.map((n) => ({ at: n.startMin, k: 1, node: () => itemRow(n, trip.fx, details, day.date) })),
     ...computeGaps(norm).map((g) => ({ at: g.startMin, k: 0, node: () => gapRow(g) })),
   ].sort((a, b) => a.at - b.at || a.k - b.k);
   const frag = document.createDocumentFragment();

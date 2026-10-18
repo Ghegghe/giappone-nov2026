@@ -17,8 +17,9 @@ export const DATA_BASE = readDataBase();
 
 const dataCache = new Map();
 
-/** Carica `${DATA_BASE}${name}.json`. Ritorna l'oggetto o null (errore → toast; opz. `.empty` in `target`). */
-export function loadData(name, { target = null } = {}) {
+/** Carica `${DATA_BASE}${name}.json`. Ritorna l'oggetto o null (errore → toast; opz. `.empty` in `target`).
+ *  `quiet`: dati facoltativi (es. place-details): niente toast se mancano. */
+export function loadData(name, { target = null, quiet = false } = {}) {
   if (!dataCache.has(name)) {
     const url = rootUrl(`${DATA_BASE}${name}.json`);
     const p = fetch(url, { cache: 'no-cache' })
@@ -28,6 +29,7 @@ export function loadData(name, { target = null } = {}) {
   }
   return dataCache.get(name).catch((err) => {
     console.warn(`[app] ${name}.json non caricato:`, err);
+    if (quiet) return null;
     toast(`Non riesco a caricare i dati (${name})`, { key: 'data-' + name });
     if (target) showEmpty(target, 'Dati non disponibili. Riprova più tardi o ricarica la pagina.');
     return null;

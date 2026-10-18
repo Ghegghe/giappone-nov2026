@@ -1738,10 +1738,7 @@
       "note": "Nave d'acqua di vetro con terrazza panoramica gratuita; negozi e food court",
       "mapsQuery": "Oasis 21 Nagoya",
       "layer": "Nagoya (12-14)",
-      "mapNote": "(opz.) 14 mattina",
-      "dayDates": [
-        "2026-11-14"
-      ]
+      "mapNote": "(opz.) 14 mattina"
     },
     {
       "id": "chubu-electric-mirai-tower",
@@ -1805,10 +1802,7 @@
       "note": "Il distretto notturno di Nagoya: izakaya, bar, club",
       "mapsQuery": "Nishiki 3-chome Nagoya",
       "layer": "Nagoya (12-14)",
-      "mapNote": "13 sera · movida",
-      "dayDates": [
-        "2026-11-13"
-      ]
+      "mapNote": "13 sera · movida"
     },
     {
       "id": "mitsukoshi-sakae",
@@ -1846,10 +1840,7 @@
       "note": "Gallerie coperte: street food, vintage, elettronica, otaku; gratis",
       "mapsQuery": "Osu Shopping Arcade Nagoya",
       "layer": "Nagoya (12-14)",
-      "mapNote": "(opz.) 13 · otaku/vintage",
-      "dayDates": [
-        "2026-11-13"
-      ]
+      "mapNote": "(opz.) 13 · otaku/vintage"
     },
     {
       "id": "bansho-ji",
@@ -1889,7 +1880,7 @@
       "layer": "Nagoya (12-14)",
       "mapNote": "(opz.) 13",
       "dayDates": [
-        "2026-11-13"
+        "2026-11-14"
       ]
     },
     {
@@ -1959,10 +1950,7 @@
       "note": "Locale storico dell'hitsumabushi (anguilla); ~4.000 yen, code",
       "mapsQuery": "Atsuta Horaiken Nagoya",
       "layer": "Nagoya (12-14)",
-      "mapNote": "13 · PRANZO hitsumabushi, coda!",
-      "dayDates": [
-        "2026-11-13"
-      ]
+      "mapNote": "13 · PRANZO hitsumabushi, coda!"
     },
     {
       "id": "jr-central-towers-nana-chan",
@@ -2124,10 +2112,7 @@
       "note": "Catena delle tebasaki (alette speziate) e izakaya; ~1.000 yen",
       "mapsQuery": "Sekai no Yamachan Nagoya",
       "layer": "Nagoya (12-14)",
-      "mapNote": "(opz.) 13 sera · tebasaki",
-      "dayDates": [
-        "2026-11-13"
-      ]
+      "mapNote": "(opz.) 13 sera · tebasaki"
     },
     {
       "id": "sugakiya",
@@ -2165,10 +2150,7 @@
       "note": "Concerto 14 nov (vincolo); stadio-arena, mall Aeon adiacente",
       "mapsQuery": "Vantelin Dome Nagoya",
       "layer": "Nagoya (12-14)",
-      "mapNote": "14 · CONCERTO 16:00 (1 pax)",
-      "dayDates": [
-        "2026-11-14"
-      ]
+      "mapNote": "14 · CONCERTO 16:00 (1 pax)"
     },
     {
       "id": "aeon-mall-nagoya-dome-mae",
@@ -2192,7 +2174,10 @@
       "flag": "Forse",
       "source": "💡",
       "note": "Grandioso parco di illuminazioni invernali (da metà nov); Kuwana, ~2.500 yen",
-      "mapsQuery": "Nabana no Sato Kuwana"
+      "mapsQuery": "Nabana no Sato Kuwana",
+      "dayDates": [
+        "2026-11-14"
+      ]
     },
     {
       "id": "agetsuchi-asahi-inari",
@@ -2218,7 +2203,10 @@
       "note": "Torre-porta d'acqua sul porto, vista Fuji e baia; ~100 yen; icona di Numazu",
       "mapsQuery": "Numazu Port View-O Observatory Numazu",
       "layer": "Love Live - Numazu-Uchiura (15-16)",
-      "mapNote": "15 · vista dall'alto"
+      "mapNote": "15 · vista dall'alto",
+      "dayDates": [
+        "2026-11-15"
+      ]
     },
     {
       "id": "numazu-port",
@@ -2273,7 +2261,10 @@
       "note": "Hub d'arrivo: pannelli Aqours, lockers, bus per Uchiura",
       "mapsQuery": "Numazu Station",
       "layer": "Love Live - Numazu-Uchiura (15-16)",
-      "mapNote": "15 · 10:35 · manhole Aqours"
+      "mapNote": "15 · 10:35 · manhole Aqours",
+      "dayDates": [
+        "2026-11-15"
+      ]
     },
     {
       "id": "numazu-deep-sea-aquarium",
@@ -2311,10 +2302,7 @@
       "note": "Collina panoramica su città, porto e Fuji; sentieri; gratis",
       "mapsQuery": "Kanukiyama Park Numazu",
       "layer": "Love Live - Numazu-Uchiura (15-16)",
-      "mapNote": "(opz.) 15 · vista Fuji, 20' salita",
-      "dayDates": [
-        "2026-11-15"
-      ]
+      "mapNote": "(opz.) 15 · vista Fuji, 20' salita"
     },
     {
       "id": "tombini-aqours",
@@ -2326,10 +2314,7 @@
       "flag": "Sì",
       "source": "💡",
       "note": "Chiusini d'artista con le 9 ragazze tra stazione e porto; caccia foto gratis",
-      "mapsQuery": "Aqours manhole cover Numazu",
-      "dayDates": [
-        "2026-11-15"
-      ]
+      "mapsQuery": "Aqours manhole cover Numazu"
     },
     {
       "id": "numazu-imperial-villa-memorial-park",
@@ -2353,10 +2338,7 @@
       "flag": "Sì",
       "source": "★",
       "note": "Baia dove vivono le Aqours; scenario principale; viste su Fuji e Awashima",
-      "mapsQuery": "Uchiura Mito Numazu",
-      "dayDates": [
-        "2026-11-16"
-      ]
+      "mapsQuery": "Uchiura Mito Numazu"
     },
     {
       "id": "numazu-nagaisaki-junior-high",
@@ -2382,10 +2364,7 @@
       "note": "Imbarco battelli turistici nella baia di Uchiura; viste Fuji; scene Love Live",
       "mapsQuery": "三津港遊覧船のりば 沼津",
       "layer": "Love Live - Numazu-Uchiura (15-16)",
-      "mapNote": "15",
-      "dayDates": [
-        "2026-11-15"
-      ]
+      "mapNote": "15"
     },
     {
       "id": "awashima",
@@ -2399,10 +2378,7 @@
       "note": "Isoletta con hotel e Marine Park; sfondo iconico di Aqours; traghetto breve",
       "mapsQuery": "Awashima Marine Park Numazu",
       "layer": "Love Live - Numazu-Uchiura (15-16)",
-      "mapNote": "15 · tramonto 16:40",
-      "dayDates": [
-        "2026-11-15"
-      ]
+      "mapNote": "15 · tramonto 16:40"
     },
     {
       "id": "izu-mito-sea-paradise",
@@ -2430,7 +2406,10 @@
       "note": "Centro info pellegrini Aqours: pannelli, autografi, merch, mappa; gratis",
       "mapsQuery": "Sannoura General Information Office Numazu",
       "layer": "Love Live - Numazu-Uchiura (15-16)",
-      "mapNote": "15 · pannelli"
+      "mapNote": "15 · pannelli",
+      "dayDates": [
+        "2026-11-15"
+      ]
     },
     {
       "id": "fujimi-hiroba",
@@ -2507,10 +2486,7 @@
       "flag": "Sì",
       "source": "★",
       "note": "Borgo termale storico sul fiume Katsura; passeggiata, ryokan, atmosfera",
-      "mapsQuery": "Shuzenji Onsen",
-      "dayDates": [
-        "2026-11-16"
-      ]
+      "mapsQuery": "Shuzenji Onsen"
     },
     {
       "id": "shuzen-ji",
@@ -2524,7 +2500,10 @@
       "note": "Tempio fondatore (Kūkai) che dà nome al borgo; gratis, tesoro a pagamento",
       "mapsQuery": "Shuzenji Temple Izu",
       "layer": "Shuzenji (16-17)",
-      "mapNote": "16 · 15:45 + ponti rossi"
+      "mapNote": "16 · 15:45 + ponti rossi",
+      "dayDates": [
+        "2026-11-16"
+      ]
     },
     {
       "id": "tokko-no-yu",
@@ -2555,7 +2534,10 @@
       "note": "Sentiero panoramico nel bambù con panca circolare; illuminato di sera; gratis",
       "mapsQuery": "Chikurin no Komichi Shuzenji",
       "layer": "Shuzenji (16-17)",
-      "mapNote": "16 · 14:00"
+      "mapNote": "16 · 14:00",
+      "dayDates": [
+        "2026-11-16"
+      ]
     },
     {
       "id": "ponti-rossi-del-katsura",
@@ -2567,7 +2549,10 @@
       "flag": "",
       "source": "💡",
       "note": "Cinque ponti rossi sul fiume, ognuno con un voto d'amore; foto e foliage; gratis",
-      "mapsQuery": "Katsura River red bridge Shuzenji"
+      "mapsQuery": "Katsura River red bridge Shuzenji",
+      "dayDates": [
+        "2026-11-16"
+      ]
     },
     {
       "id": "niji-no-sato",
@@ -2603,7 +2588,10 @@
       "flag": "",
       "source": "💡",
       "note": "Più antico edificio ligneo di Izu, mausoleo di Minamoto no Yoriie; gratis",
-      "mapsQuery": "Shigetsuden Shuzenji"
+      "mapsQuery": "Shigetsuden Shuzenji",
+      "dayDates": [
+        "2026-11-16"
+      ]
     },
     {
       "id": "hie-shrine",
@@ -2615,7 +2603,10 @@
       "flag": "",
       "source": "💡",
       "note": "Santuario accanto a Shuzen-ji con cedri giganti e albero del matrimonio; gratis",
-      "mapsQuery": "Hie Shrine Shuzenji"
+      "mapsQuery": "Hie Shrine Shuzenji",
+      "dayDates": [
+        "2026-11-16"
+      ]
     },
     {
       "id": "passeggiata-lungo-il-katsura",

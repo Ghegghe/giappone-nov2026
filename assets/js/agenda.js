@@ -6,10 +6,12 @@ import {
 } from './agenda-gaps.js';
 import { viewSwitch, setViewHref } from './view-switch.js';
 import { stripHints } from './day-strip.js';
+import { detailIndex, detailHref } from './place-details.js';
+import { optionsBlock } from './place-options.js';
 
 const $ = (s, r = document) => r.querySelector(s);
 const FILTER_KEY = 'agenda.filters';
-const state = { trip: null, days: [], idx: 0, range: null, hourH: 48, filters: { onlyFixed: false, hideOpt: false }, pendingIdx: null };
+const state = { trip: null, days: [], idx: 0, range: null, hourH: 48, filters: { onlyFixed: false, hideOpt: false }, pendingIdx: null, details: new Map() };
 let timeline, dateBar, viewSw = null, lastFocus = null;
 
 function readFilters() {
@@ -269,13 +271,17 @@ function openPanel(date, id, opener) {
 
   const links = (n.links || []).filter((l) => /^[\w-]+\.html(#[\w-]*)?$/.test(l.href || ''))
     .map((l) => el('a', { class: 'btn btn--ghost', href: withDataParam(l.href) }, el('span', null, l.label), icon('chevron-right')));
+  const det = n.placeId && state.details.get(n.placeId);   // scheda del locale (SPEC §12)
+  if (det) links.unshift(el('a', { class: 'btn btn--ghost', href: withDataParam(detailHref(det.id)), 'aria-label': `Scheda: ${det.title}` }, icon('book'), el('span', null, 'Scheda'), icon('chevron-right')));
   const actions = el('div', { class: 'row' },
     n.mapsQuery ? el('a', { class: 'btn btn--primary', href: mapsUrl(n.mapsQuery), target: '_blank', rel: 'noopener' }, icon('map-pin'), el('span', null, 'Apri in Google Maps'), el('span', { class: 'sr-only' }, ' (nuova scheda)'), icon('external')) : null,
     el('a', { class: 'btn btn--ghost', href: withDataParam(`giorno.html?d=${day.date}#${n.id}`) }, 'Vedi nel giorno'), ...links);
 
   const panel = $('#agenda-panel');
   $('#panel-title').textContent = n.title || '';
-  $('#panel-body').replaceChildren(...[badges, kv, n.note ? el('p', { class: 'agenda-panel__note' }, n.note) : null, actions].filter(Boolean));
+  // tappa «linea guida» (SPEC §13): consigliato + alternative, fra la nota e le azioni
+  const opts = optionsBlock(n, { date: day.date, fx, details: state.details, cls: 'agenda-panel__opts' });
+  $('#panel-body').replaceChildren(...[badges, kv, n.note ? el('p', { class: 'agenda-panel__note' }, n.note) : null, opts, actions].filter(Boolean));
   lastFocus = opener || document.activeElement;
   panel.inert = false; panel.removeAttribute('aria-hidden');
   panel.classList.add('is-open');
@@ -308,6 +314,7 @@ async function main() {
   timeline = $('#agenda-timeline'); scroller = timeline; dateBar = $('#agenda-dates');
   // loadData risolve a null in caso di errore (toast mostrato dallo shell)
   const [trip, agenda] = await Promise.all([loadData('trip'), loadData('agenda')]);
+  detailIndex().then((m) => { state.details = m; });   // facoltativo: serve solo al pannello, non blocca la timeline
   state.trip = trip || { fx: { jpyPerEur: 0 }, timezone: 'Asia/Tokyo' };
   state.days = ((agenda && agenda.days) || []).slice().sort((a, b) => a.date.localeCompare(b.date));
   if (!state.days.length) {

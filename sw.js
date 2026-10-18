@@ -1,5 +1,5 @@
 // sw.js — service worker del sito. Bumpare CACHE_VERSION a ogni deploy che cambia file statici.
-const CACHE_VERSION = 'v15';
+const CACHE_VERSION = 'v16';
 const STATIC_CACHE = `giappone-static-${CACHE_VERSION}`;
 const DATA_CACHE = `giappone-data-${CACHE_VERSION}`;
 
@@ -14,6 +14,7 @@ const PRECACHE = [
   'alloggi.html',
   'luoghi.html',
   'guide.html',
+  'luogo.html',
   'budget.html',
   'conto.html',
   '404.html',
@@ -26,6 +27,8 @@ const PRECACHE = [
   'assets/css/budget.css',
   'assets/css/charts.css',
   'assets/css/guide.css',
+  'assets/css/luogo.css',
+  'assets/css/options.css',
   'assets/css/themes/washi.css',
   'assets/css/themes/neutral.css',
   'assets/css/themes/night.css',
@@ -44,6 +47,9 @@ const PRECACHE = [
   'assets/js/pages-luoghi.js',
   'assets/js/pages-budget.js',
   'assets/js/pages-guide.js',
+  'assets/js/pages-luogo.js',
+  'assets/js/place-details.js',
+  'assets/js/place-options.js',
   'assets/js/charts.js',
   'assets/js/conto.js',
   'assets/icons/sprite.svg',
@@ -51,12 +57,15 @@ const PRECACHE = [
   'assets/icons/icon.svg',
   'assets/icons/icon-192.png',
   'assets/icons/icon-512.png',
+  // foto delle schede dei locali (SPEC §12): nomi stabili <placeId>-<hash URL>.webp, li controlla tools/check_site.py
+  'assets/img/luoghi/mouriya-sannomiya-56828ac9.webp',
+  'assets/img/luoghi/mouriya-sannomiya-8baf6cc9.webp',
 ];
 // PRECACHE-END
 
 // JSON precaricati (best effort) così l'app funziona offline già dalla prima visita.
 // DATA-BEGIN
-const DATA_FILES = ['trip', 'agenda', 'transport', 'lodging', 'places', 'budget', 'guides'].map((n) => `data/${n}.json`);
+const DATA_FILES = ['trip', 'agenda', 'transport', 'lodging', 'places', 'budget', 'guides', 'place-details'].map((n) => `data/${n}.json`);
 // DATA-END
 
 const BASE = new URL('./', self.location).href;

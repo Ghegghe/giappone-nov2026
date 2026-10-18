@@ -1,0 +1,92 @@
+/* Tappe «linea guida» (SPEC §13, assets/js/place-options.js): consigliato + alternative da scegliere sul posto.
+   giorno.html (dentro la tappa) e pannello della tappa in agenda.html. Solo variabili del tema.
+   Fila di mini-card in un contenitore scorrevole proprio (la pagina non scorre mai in orizzontale), presentazione sotto. */
+.opts { --opt-w: 136px; display: flex; flex-direction: column; gap: var(--space-2); min-inline-size: 0; margin-top: var(--space-2); padding-top: var(--space-2); }
+:where(.opts) { border-top: 1px dashed var(--border); }
+
+/* posizione nella griglia della tappa (agenda.css): come la nota */
+.giorno__item .giorno__opts { grid-column: 2 / -1; }
+.giorno__item--photo .giorno__opts { grid-column: 1 / -1; }
+@media (min-width: 600px) { .giorno__item--photo .giorno__opts { grid-column: 2 / -1; } }
+.agenda-panel .agenda-panel__opts { margin-top: var(--space-3); }
+
+/* testata: etichetta (maiuscoletto indaco) + stato della scelta */
+.opts__head { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 2px var(--space-3); line-height: 1.25rem; }
+.opts__label { display: inline-flex; align-items: center; gap: 6px; font-size: .75rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+:where(.opts__label) { color: color-mix(in srgb, var(--accent-2) 82%, var(--fg)); }
+.opts__label .icon { width: 14px; height: 14px; flex: none; }
+.opts__status { font-size: .8125rem; }
+.opts__status .icon { width: 13px; height: 13px; vertical-align: -2px; }
+:where(.opts__status strong) { color: var(--fg); }
+
+/* fila delle mini-card */
+.opts__list {
+  display: flex; gap: var(--space-2); margin: 0; padding: 3px 3px 6px; list-style: none;
+  overflow-x: auto; overflow-y: clip; touch-action: pan-x pan-y; overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity; scroll-padding-inline: 3px; scrollbar-width: thin;
+}
+.opts__list > li { flex: none; scroll-snap-align: start; display: flex; }
+.opt {
+  position: relative; display: flex; flex-direction: column; gap: 4px; inline-size: var(--opt-w); min-block-size: 44px;
+  margin: 0; padding: 6px 6px 8px; text-align: start; font: inherit; cursor: pointer;
+  border: 1px solid var(--border); border-radius: var(--radius-md);
+}
+:where(.opt) { background: var(--card, var(--bg-elev)); color: var(--fg); }
+.opt:hover { border-color: color-mix(in srgb, var(--fg) 28%, var(--border)); }
+.opt:focus-visible { outline: 2px solid var(--focus, var(--ring)); outline-offset: 2px; }
+/* consigliato: filo verde «ok»; aperto: indaco; scelto da me: accento pieno (vince sugli altri) */
+.opt--rec { border-color: color-mix(in srgb, var(--ok) 55%, var(--border)); }
+.opt--open { border-color: var(--accent-2); box-shadow: 0 0 0 1px var(--accent-2); }
+.opt--picked { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.opt__thumb { display: block; aspect-ratio: 4 / 3; overflow: hidden; border-radius: var(--radius-sm); }
+:where(.opt__thumb) { background: var(--bg-sunken, var(--muted)); }
+.opt__thumb img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
+.opt__tile { display: grid; place-items: center; block-size: 100%; }
+:where(.opt__tile) { color: var(--fg-muted); }
+.opt__tile .icon { width: 28px; height: 28px; }
+/* pillole sulla foto: fondo pieno del tema (contrasto garantito anche sopra la foto) */
+.opt__rec, .opt__picked {
+  position: absolute; inset-block-start: 10px; display: inline-flex; align-items: center; gap: 3px;
+  min-block-size: 20px; padding: 0 7px; border-radius: 999px; font-size: .6875rem; font-weight: 700; line-height: 1; white-space: nowrap;
+}
+.opt__rec { inset-inline-start: 10px; }
+:where(.opt__rec) { background: var(--card, var(--bg-elev)); color: color-mix(in srgb, var(--ok) 78%, var(--fg)); border: 1px solid color-mix(in srgb, var(--ok) 45%, transparent); }
+.opt__picked { inset-inline-end: 10px; }
+.opt__picked[hidden] { display: none; }
+:where(.opt__picked) { background: var(--accent); color: var(--fg-on-accent); }
+.opt__picked .icon { width: 11px; height: 11px; }
+.opt__nick {
+  font-size: .8125rem; line-height: 1.125rem; font-weight: 600; overflow-wrap: anywhere;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden;
+}
+.opt__facts { display: flex; flex-wrap: wrap; gap: 0 var(--space-2); margin-top: auto; font-size: .75rem; line-height: 1rem; }
+:where(.opt__facts) { color: var(--fg-muted); }
+.opt__rating { display: inline-flex; align-items: center; gap: 2px; }
+:where(.opt__rating) { color: var(--fg); font-weight: 600; }
+.opt__rating .icon { width: 11px; height: 11px; }
+:where(.opt__rating .icon) { color: var(--warn); fill: currentColor; }
+
+/* presentazione dell'opzione aperta */
+.opts__detail { display: flex; flex-direction: column; gap: 6px; padding: var(--space-3); border-radius: var(--radius-md); }
+.opts__detail[hidden] { display: none; }
+:where(.opts__detail) { background: color-mix(in srgb, var(--accent-2) 6%, var(--card, var(--bg-elev))); border: 1px solid color-mix(in srgb, var(--accent-2) 30%, var(--border)); }
+.opts__dhead { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px var(--space-2); }
+.opts__dnick { margin: 0; flex: 1 1 100%; font-size: .9375rem; line-height: 1.25rem; font-weight: 600; letter-spacing: -.01em; }
+.opts__dname { margin: 0; }
+.opts__dbadge { min-block-size: 20px; }
+.opts__detail p { margin: 0; line-height: 1.25rem; text-wrap: pretty; }
+.opts__kv { margin: 0; row-gap: 2px; }
+.opts__kv dd { margin: 0; }
+.opts__actions { gap: var(--space-2); margin-top: 2px; }
+.opts__actions .btn { min-block-size: 44px; font-size: .875rem; padding-inline: 12px; }
+.opts__actions .btn--ghost:first-child { margin-inline-start: -8px; }
+.opts__pick { margin-inline-start: auto; }
+.opts__credit { font-size: .6875rem; line-height: .875rem; overflow-wrap: anywhere; }
+:where(.opts__credit) { color: var(--fg-muted); }
+.opts__credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+@media (min-width: 900px) { .opts { --opt-w: 152px; } }
+@media (forced-colors: active) {
+  .opt--open, .opt--picked { outline: 2px solid Highlight; }
+  .opt__rec, .opt__picked { border: 1px solid CanvasText; }
+}
+@media (prefers-reduced-motion: reduce) { .opts__list { scroll-behavior: auto; } }

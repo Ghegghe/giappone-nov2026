@@ -10,6 +10,8 @@ Verifica:
      esclusi dev/ data/ tools/ e PRECACHE_SKIP) è in PRECACHE.
   6. trip.json (data e fixture): ogni voce di `sections` punta a una pagina esistente;
   7. guides.json (data e fixture): chiavi della guida presenti e `html` senza script/eventi/javascript: (SPEC §10.2).
+  8. place-details.json (data e fixture, SPEC §12): chiavi presenti, id unici, `html` sicuro, foto locali esistenti;
+     le foto delle schede (assets/img/luoghi/) sono in PRECACHE, così la scheda si legge offline.
 Uso:  python3 tools/check_site.py   (da site/ o da qualunque cwd). Exit 1 se ci sono problemi.
 """
 import json
@@ -130,7 +132,7 @@ def main():
     # Nav (trip.sections) e guide
     unsafe = re.compile(r"<script|<[^>]*\son\w+\s*=|<[^>]*javascript:", re.I)
     for d in (SITE / "data", SITE / "dev" / "fixtures"):
-        tf, gf = d / "trip.json", d / "guides.json"
+        tf, gf, pf = d / "trip.json", d / "guides.json", d / "place-details.json"
         try:
             trip = json.loads(tf.read_text(encoding="utf-8")) if tf.exists() else {}
             for sec in trip.get("sections", []):
@@ -138,6 +140,7 @@ def main():
                 if not (SITE / href.split("#")[0].split("?")[0]).exists():
                     problems.append(f"{rel(tf)}: sezione «{sec.get('id')}» → pagina mancante {href}")
             guides = json.loads(gf.read_text(encoding="utf-8")).get("guides", []) if gf.exists() else []
+            details = json.loads(pf.read_text(encoding="utf-8")).get("details", []) if pf.exists() else []
         except (ValueError, AttributeError):
             continue   # JSON non valido: già segnalato sopra
         for g in guides:
@@ -146,6 +149,22 @@ def main():
                 problems.append(f"{rel(gf)}: guida «{g.get('id', '?')}» senza {', '.join(miss)}")
             if unsafe.search(g.get("html", "")):
                 problems.append(f"{rel(gf)}: guida «{g.get('id', '?')}»: html non sicuro (script/eventi/javascript:)")
+        seen = set()
+        for x in details:
+            xid = x.get("id", "?")
+            miss = [k for k in ("id", "placeId", "title", "html") if not x.get(k)]
+            if miss:
+                problems.append(f"{rel(pf)}: scheda «{xid}» senza {', '.join(miss)}")
+            if xid in seen:
+                problems.append(f"{rel(pf)}: scheda «{xid}» duplicata")
+            seen.add(xid)
+            if unsafe.search(x.get("html", "")):
+                problems.append(f"{rel(pf)}: scheda «{xid}»: html non sicuro (script/eventi/javascript:)")
+            for src in re.findall(r'<img\b[^>]*?\ssrc="([^"]+)"', x.get("html", ""), re.I):
+                if src.startswith("https://"):
+                    warnings.append(f"{rel(pf)}: scheda «{xid}»: foto remota (offline non si vede, rieseguire l'export con --fetch-images): {src}")
+                elif not (SITE / src).is_file():
+                    problems.append(f"{rel(pf)}: scheda «{xid}»: foto locale mancante {src}")
 
     # Manifest
     mf = SITE / "manifest.webmanifest"
@@ -188,11 +207,13 @@ def main():
                     continue
                 if f.suffix in (".html", ".css", ".js", ".svg", ".png", ".webmanifest") and r not in listed:
                     problems.append(f"sw.js: file statico non in PRECACHE: {r}")
+                elif r.startswith("assets/img/luoghi/") and r not in listed:
+                    problems.append(f"sw.js: foto di una scheda non in PRECACHE (offline non si vede): {r}")
         if not re.search(r"CACHE_VERSION\s*=\s*['\"][^'\"]+['\"]", t):
             problems.append("sw.js: CACHE_VERSION non trovato")
         data_block = re.search(r"DATA-BEGIN(.*?)DATA-END", t, re.S)
         if data_block and (SITE / "data").exists():
-            names = re.findall(r"'([a-z_]+)'", data_block.group(1))
+            names = re.findall(r"'([a-z_-]+)'", data_block.group(1))
             for n in names:
                 if not (SITE / "data" / f"{n}.json").exists():
                     warnings.append(f"sw.js: data/{n}.json elencato ma assente")

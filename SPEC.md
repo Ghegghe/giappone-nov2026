@@ -258,3 +258,91 @@ Dettaglio e mappa completa: `site/NOTES_dati.md`. Codice: `../export_site_costs.
 - **Coerenza**: `python3 export_site_data.py --check` esce con 1 se orari/costi delle tratte scelte ≠ tappe dell'agenda,
   durate ≠ orari, ¥ nei testi ≠ costJpy, check-in/out nei testi o nelle tappe ≠ alloggio, notti/basi ≠ date, totali ≠ somme.
   Gli avvisi (giorni in bozza) vanno solo nel report (`_export_report.md` › «Coerenza dei dati»).
+
+## 12. Schede dei locali (18 ott 2026) — `luogo.html?id=<placeId>`
+Richiesta del cliente: una pagina per locale da usare SUL POSTO (prima istanza Mouriya Sannomiya, pranzo dell'8 nov: menu in
+italiano con le carni spiegate, cosa ordinare, frasi da mostrare al cuoco). Riusabile per fugu, cene kaiseki dei ryokan, cena di compleanno.
+
+### 12.1 Sorgente: `data/luoghi/<placeId>.md` (a mano, in italiano)
+Stesso formato e stesso sottoinsieme Markdown delle guide (§10.1), con lo stesso convertitore e la stessa sanificazione.
+```
+---
+title: Mouriya Sannomiya, il pranzo di manzo di Kobe
+placeId: mouriya-sannomiya      # = id di places.json / del catalogo (default: nome del file)
+summary: Una frase per l'elenco delle schede e la testata.
+updated: 2026-10-18
+dates: [2026-11-08]             # opzionale: si aggiungono da sole le date delle tappe di agenda con lo stesso placeId
+tags: [kobe, ristorante]        # opzionale
+address: 1-9-9 Kitanagasa-dori, …   # opzionale, testo in testata
+access: 5' a piedi da JR Sannomiya  # opzionale, testo in testata
+mapsQuery: …                    # opzionale: se manca → catalogo → places.json
+---
+corpo markdown…
+```
+- Foto: blocchi `<figure><img src="https://…" alt="…"><figcaption>credit</figcaption></figure>`. Credit obbligatorio nella didascalia
+  (le foto ufficiali del locale si citano come «Foto: <locale>, sito ufficiale»). L'URL remoto resta nella sorgente.
+- Frasi da mostrare: `<figure class="l-phrase"><p class="l-phrase__ja" lang="ja">…</p><p class="l-phrase__ro">romaji</p>
+  <figcaption><span lang="en">English</span> · Italiano</figcaption></figure>` (la pagina le ingrandisce a tutto schermo al tocco).
+- Riquadri «in breve / attenzione»: citazione `>`. Dati non verificati marcati come nelle guide («da verificare», «stima», sezione finale).
+
+### 12.2 Dati: `site/data/place-details.json` (exporter, `export_site_places.py`, chiamato da `export_site_data.py`)
+```json
+{ "details": [ { "id": "mouriya-sannomiya", "placeId": "mouriya-sannomiya", "title": "…", "name": "Mouriya Sannomiya",
+  "summary": "…", "updated": "2026-10-18", "tags": ["kobe"], "dates": ["2026-11-08"], "address": "…", "access": "…",
+  "mapsQuery": "Mouriya Sannomiya",
+  "visits": [ { "date": "2026-11-08", "time": "13:00", "end": "14:20", "itemId": "d08-05", "title": "Pranzo di manzo di Kobe" } ],
+  "html": "<figure><img src=\"assets/img/luoghi/mouriya-sannomiya-56828ac9.webp\" …>…" } ] }
+```
+- `visits` = tappe dell'agenda con lo stesso `placeId` (join al momento dell'export: se cambia l'orario in scaletta, la scheda segue).
+- Foto: con `--fetch-images` ogni `<img src="https://…">` del corpo è scaricato in `site/assets/img/luoghi/<placeId>-<sha1(url)[:8]>.webp`
+  (lato lungo 960, WebP q72) e `src` diventa il path locale; senza flag si riusano i file già presenti, altrimenti resta l'URL remoto
+  (segnalato nel report e da `check_site.py`). Report: `_export_report.md` › «Schede dei luoghi». `--check` valida anche questo file.
+- Ordine: per prima data, poi id. Il file è facoltativo per le altre pagine (nessun toast se manca: `loadData(name, {quiet: true})`).
+
+### 12.3 UI
+- `luogo.html?id=<placeId>` (`assets/js/pages-luogo.js` + `assets/css/luogo.css`, sopra `guide.css`): «Indietro» (torna alla pagina
+  di provenienza, altrimenti Luoghi), titolo, summary, «Aggiornata il», indirizzo e come arrivare (`.kv`), chip delle tappe in agenda
+  (→ `giorno.html?d=…#<itemId>`), bottone Maps, corpo `.prose` (tabelle scorrevoli nel loro contenitore, mai la pagina, anche a 360px).
+  Senza `id` o con id sconosciuto: elenco delle schede. Nav: evidenzia **Luoghi** (`data-section="luoghi"`); NESSUNA voce nuova nella barra.
+- Collegamenti (join per `placeId`, lato codice, `assets/js/place-details.js`): pulsante «Scheda» (icona libro) nella tappa di
+  `giorno.html`, nel pannello della tappa in `agenda.html` e nella riga del luogo in `luoghi.html`, solo se esiste la scheda.
+- Offline: `luogo.html`, i JS/CSS e le foto delle schede sono in `sw.js` PRECACHE; `place-details` in `DATA_FILES`.
+
+## 13. Tappe «linea guida» con alternative (18 ott 2026)
+Richiesta del cliente: ristoranti e bar dell'agenda NON sono una scelta fissa ma una linea guida; per la tappa si vede il
+locale consigliato e le alternative, ognuna con una breve presentazione, per decidere sul posto.
+
+### 13.1 Sorgente (`../data/piano/catalogo/`)
+- Scaletta `scaletta/<B>.json`, items di kind `meal`/`free`/`place`: `placeId` = consigliato (o scelto) · `alternatives` = array di
+  id del catalogo (2-3) in ordine di preferenza · `flex: true` = «linea guida, si sceglie sul posto» (facoltativo).
+  Nei `free` senza `placeId` le alternative sono idee alla pari (nessuna «consigliata»).
+- Catalogo `data/<B>.json`: i luoghi usano i campi di sempre (nick, name, whyUs, what, costEur/costNote, hoursNov, closedOn,
+  image, mapsQuery) + voto facoltativo `rating: {source, value, reviews?, awards?}`; se manca, l'exporter usa il blocco
+  `tabelog: {score, reviews, awards}` come `{source: "Tabelog", value: score, …}`.
+
+### 13.2 Dati: `items[].options` e `items[].flex` in `site/data/agenda.json`
+```json
+{ "id": "d13-11", "title": "1° giro: …", "placeId": "…", "flex": true,
+  "options": [ { "id": "daijin-honten",            // id del catalogo (foto locale assets/img/places/<id>.webp)
+                 "placeId": "…",                     // opzionale: id di places.json (pulsante «Scheda» se c'è il dettaglio §12)
+                 "nick": "…", "name": "…", "type": "nightlife", "recommended": true,
+                 "why": "…", "what": "…", "costEur": 20, "costNote": "~¥3.000-4.000 a testa", "hours": "…", "closedOn": "…",
+                 "rating": { "source": "Tabelog", "value": 3.51, "reviews": 1254, "awards": "…" },   // opzionale
+                 "image": { "url": "…", "credit": "…", "page": "…", "alt": "…" },                   // opzionale
+                 "mapsQuery": "…" } ] }
+```
+- Ordine: consigliato (`placeId` della tappa, `recommended: true`) e poi le alternative nell'ordine della sorgente; al massimo un
+  `recommended`. `options` c'è solo con ≥ 2 opzioni risolte (≥ 1 nei `free` senza placeId); `flex` solo insieme a `options`.
+  Gli item senza alternative restano identici. Alternative non trovate nel catalogo del blocco → report («placeId non trovati»).
+- Foto: stessa logica di §9.1 (`--fetch-images` → `assets/img/places/<id>.webp`, riuso se il file c'è). Il costo della tappa resta
+  quello del consigliato (le opzioni non entrano nei totali). Report: «Tappe con opzioni». `--check` valida options/flex.
+
+### 13.3 UI (`assets/js/place-options.js` + `assets/css/options.css`)
+- In `giorno.html` (dentro la tappa, sotto nota e link) e nel pannello della tappa in `agenda.html` (fra nota e azioni):
+  testata «Linea guida · N opzioni» (con `flex` o con un consigliato; altrimenti «Idee · N opzioni») + stato
+  («si sceglie sul posto» / «Scelto: …»); fila di mini-card (foto 4:3 o icona del tipo, soprannome su 3 righe max, voto ★, prezzo)
+  scorrevole nel proprio contenitore (mai la pagina, anche a 360px); il consigliato ha la pillola «consigliato» e il filo verde.
+- Tocco su una mini-card (`aria-expanded`) → presentazione sotto la fila: soprannome, nome, Perché (`why`), Cosa (`what`), voto,
+  prezzo € · ¥ + nota, orari, chiuso, Maps, «Scheda» (se c'è il dettaglio §12 per `placeId`), credit della foto. Secondo tocco chiude.
+- «Scelgo questo»: scelta per dispositivo in `localStorage['agenda.choices']` = `{"<data>|<id tappa>": "<id opzione>"}` (try/catch;
+  una scelta che non corrisponde più alle opzioni attuali si ignora). Nessun backend; la tappa e i costi non cambiano.

@@ -1,0 +1,62 @@
+/* luogo.css — scheda di un locale (SPEC §12). Si appoggia a guide.css (.prose, .g-table, .g-back, .g-index):
+   qui solo testata, foto e frasi da mostrare al cuoco. Solo variabili dei temi. */
+
+.l-article { gap: var(--space-4); }
+.l-head { --stack-gap: var(--space-2); max-width: 70ch; min-width: 0; }
+.l-facts { margin-top: var(--space-1); }
+.l-facts > dd { overflow-wrap: anywhere; }
+.l-when { gap: var(--space-2); }
+
+/* foto del corpo: piena colonna, angoli del tema; se il file non c'è resta il testo alternativo */
+.l-prose figure:not(.l-phrase) img {
+  display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  border-radius: var(--radius-md); background: var(--bg-sunken);
+}
+.l-prose > figure:first-child { margin-top: 0; }
+
+/* tabelle del menu: righe alte per il pollice, prima colonna (nome sul menu) un po' più stretta */
+.l-prose table { min-width: 40rem; }
+.l-prose td:first-child { min-width: 11rem; }
+
+/* sotto i 640px le tabelle del menu (≥4 colonne, classe messa da pages-luogo.js) diventano schede: una per riga,
+   etichetta della colonna sopra il valore; niente scroll orizzontale */
+@media (max-width: 639.98px) {
+  .prose .g-table.l-cards { overflow: visible; border: 0; background: none; }
+  .l-cards table, .l-cards tbody, .l-cards tr, .l-cards td { display: block; min-width: 0; width: auto; }
+  .l-prose .l-cards table { min-width: 0; }
+  .l-cards thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .l-cards tr {
+    padding: var(--space-2) var(--space-3); border: 1px solid var(--border); border-radius: var(--radius-md);
+    background: var(--card, var(--bg-elev));
+  }
+  .l-cards tr + tr { margin-top: var(--space-2); }
+  .prose .l-cards td { padding: 6px 0; border-top: 1px solid var(--border); }
+  .prose .l-cards td:first-child { border-top: 0; min-width: 0; }
+  .l-cards td[data-label]:not(:first-child)::before {
+    content: attr(data-label); display: block; font-size: .75rem; font-weight: 600; color: var(--fg-muted);
+  }
+}
+
+/* frase da mostrare: card con il giapponese grande; tocco → a tutto schermo */
+.prose figure.l-phrase {
+  margin-inline: 0; padding: var(--space-3) var(--space-4); cursor: zoom-in;
+  border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--card, var(--bg-elev));
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+.prose figure.l-phrase > * + * { margin-top: var(--space-1); }
+.l-phrase__ja { font-size: 1.375rem; line-height: 1.5; font-weight: 600; color: var(--fg); overflow-wrap: anywhere; }
+.l-phrase__ro { font-size: .875rem; line-height: 1.4; color: var(--fg-muted); font-style: italic; }
+.prose .l-phrase figcaption { font-size: .9375rem; line-height: 1.45; color: var(--fg); }
+.prose .l-phrase figcaption [lang="en"] { font-weight: 600; }
+.l-phrase:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.prose figure.l-phrase--big {
+  position: fixed; inset: 0; z-index: 100; margin: 0; border-radius: 0; border: 0; box-shadow: none; cursor: zoom-out;
+  display: flex; flex-direction: column; justify-content: center; gap: var(--space-4);
+  padding: max(var(--space-5), env(safe-area-inset-top)) var(--space-5) max(var(--space-5), env(safe-area-inset-bottom));
+  background: var(--bg); overflow-y: auto;
+}
+.l-phrase--big .l-phrase__ja { font-size: clamp(1.75rem, 8vw, 3.25rem); line-height: 1.45; }
+.l-phrase--big .l-phrase__ro, .prose .l-phrase--big figcaption { font-size: 1.0625rem; }
+body.l-noscroll { overflow: hidden; }
+.prose figure.l-phrase--big::after { content: "Tocca per chiudere"; font-size: .8125rem; color: var(--fg-muted); text-align: center; }
