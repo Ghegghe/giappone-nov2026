@@ -5622,7 +5622,7 @@
           "costNote": "gratis",
           "place": "Numazu Nakamise Shōtengai",
           "mapsQuery": "Numazu Nakamise Shopping Street",
-          "note": "Galleria coperta a ~250 m a sud-ovest della stazione; occhi per terra per i tombini disegnati (posizioni 2026 n.v.)",
+          "note": "Galleria coperta a ~250 m a sud-ovest della stazione. Tombini Aqours, 5 in fila da nord a sud in 150 m, basta guardare per terra: lo stemma della scuola all'ingresso nord, 'le 9 di spalle' (il disegno della manhole card) e 3 a colori che cambiano ogni ~4 mesi (a novembre dovrebbero essere Yoshiko, Hanamaru e Ruby). Alle 11:25, uscendo a sud per la Shin-Nakamise (la via pedonale che continua la galleria), sul percorso altri 2: Mari, lato est all'altezza del negozio Noboru, e Chika, 50 m più a sud",
           "nick": "La galleria coperta dei negozi con gli stendardi Love Live",
           "image": {
             "url": "assets/img/places/nakamise-numazu.webp",
@@ -5670,7 +5670,7 @@
           "costNote": "",
           "place": "",
           "mapsQuery": "",
-          "note": "",
+          "note": "Dritti nella galleria e poi nella Shin-Nakamise: sul percorso i tombini di Mari (lato est, negozio Noboru) e Chika (50 m dopo)",
           "booking": {
             "status": "none",
             "where": "",
@@ -5701,7 +5701,7 @@
         {
           "id": "d15-09",
           "time": "11:45",
-          "end": "12:00",
+          "end": "11:57",
           "title": "Agetsuchi Asahi Inari Jinja + gradinate sul fiume Kano",
           "type": "anime",
           "fixed": false,
@@ -5711,7 +5711,7 @@
           "costNote": "gratis",
           "place": "Agetsuchi Asahi Inari Jinja + gradinate sul fiume Kano (Kanogawa Kaze no Terrace)",
           "mapsQuery": "上土朝日稲荷神社 沼津",
-          "note": "Kanogawa Kaze no Terrace · Le 'scalinate di Yohane': le gradinate sul fiume Kano accanto al santuario Asahi Inari, dove nella 2ª stagione (ep. 2) Yoshiko e Riko si prendono cura del cane. Si scende sui gradini sul fiume per la foto, poi il santuario (gratis) e la via Agetsuchi accanto, dove Yohane è 'cittadina onoraria'. Non confondere con il santuario Hie a est della stazione (nei 'Se ci capita').",
+          "note": "Kanogawa Kaze no Terrace · Le 'scalinate di Yohane': le gradinate sul fiume Kano accanto al santuario Asahi Inari, dove nella 2ª stagione (ep. 5) Yoshiko e Riko si prendono cura del cane. Si scende sui gradini sul fiume per la foto, poi il santuario (gratis) e la via Agetsuchi accanto, dove Yohane è 'cittadina onoraria'. Non confondere con il santuario Hie a est della stazione (nei 'Se ci capita').",
           "nick": "Le gradinate sul fiume dove Yohane trova il cane, con il santuario accanto",
           "image": {
             "url": "assets/img/places/agetsuchi-asahi-inari.webp",
@@ -5727,8 +5727,8 @@
         },
         {
           "id": "d15-10",
-          "time": "12:00",
-          "end": "12:05",
+          "time": "11:57",
+          "end": "12:02",
           "title": "Onari-bashi (ponte sul Kano)",
           "type": "anime",
           "fixed": false,
@@ -5754,9 +5754,9 @@
         },
         {
           "id": "d15-11",
-          "time": "12:05",
-          "end": "12:12",
-          "title": "A piedi lungo il fiume Kano verso sud",
+          "time": "12:02",
+          "end": "12:17",
+          "title": "A piedi verso sud (~950 m) fino all'Orandakan",
           "type": "transfer",
           "fixed": false,
           "optional": false,
@@ -5765,7 +5765,7 @@
           "costNote": "",
           "place": "",
           "mapsQuery": "",
-          "note": "~1 km in tutto fino al porto",
+          "note": "~12' di cammino più 3' per il tombino di Yoshiko: dal ponte si torna 110 m a ovest, al tombino di Yoshiko (nero) davanti alla Suruga Bank (sede centrale), sul marciapiede vicino all'incrocio con le strisce; poi verso sud fino all'Orandakan, ~650 m a sud del ponte",
           "booking": {
             "status": "none",
             "where": "",
@@ -5774,8 +5774,8 @@
         },
         {
           "id": "d15-12",
-          "time": "12:12",
-          "end": "12:17",
+          "time": "12:17",
+          "end": "12:22",
           "title": "Orandakan Shimogawara-ten (欧蘭陀館 下河原店)",
           "type": "anime",
           "fixed": false,
@@ -5795,9 +5795,9 @@
         },
         {
           "id": "d15-13",
-          "time": "12:17",
-          "end": "12:24",
-          "title": "Ultimi ~500 m fino al porto",
+          "time": "12:22",
+          "end": "12:36",
+          "title": "A piedi (~1 km) al porto per la Sansan-dōri",
           "type": "transfer",
           "fixed": false,
           "optional": false,
@@ -5806,7 +5806,7 @@
           "costNote": "",
           "place": "",
           "mapsQuery": "",
-          "note": "",
+          "note": "~13' di cammino più 1-2' per il tombino di You: si scende per la Sansan-dōri invece che lungo il fiume (100 m in più); il tombino di You (nero) è sul marciapiede est, all'incrocio con le strisce, accanto a un palo della luce, ~250 m a sud-ovest dell'Orandakan",
           "booking": {
             "status": "none",
             "where": "",
@@ -5815,8 +5815,8 @@
         },
         {
           "id": "d15-14",
-          "time": "12:24",
-          "end": "12:28",
+          "time": "12:36",
+          "end": "12:40",
           "title": "Numazu Burger (Minato 83-banchi)",
           "type": "anime",
           "fixed": false,
@@ -5836,8 +5836,8 @@
         },
         {
           "id": "d15-15",
-          "time": "12:30",
-          "end": "13:20",
+          "time": "12:42",
+          "end": "13:27",
           "title": "Pranzo di pesce al porto (linea guida)",
           "type": "food",
           "fixed": false,
@@ -5847,7 +5847,7 @@
           "costNote": "",
           "place": "Iriichi (いりいち)",
           "mapsQuery": "いりいち 沼津港",
-          "note": "Senza prenotazione: all'apertura è quasi pieno di prenotati e chi arriva senza viene messo nella fascia successiva (recensioni 2026). Se danno le 13:00: prima mercatino e torre (12:30-13:00), poi pranzo fino alle 13:50 e bus delle 14:14. Se non c'è posto: Gotetsu a 2' (aperto fino alle 16:30). Solo contanti.",
+          "note": "Senza prenotazione: all'apertura è quasi pieno di prenotati e chi arriva senza viene messo nella fascia successiva (recensioni 2026). Se danno le 13:00: prima mercatino e torre (12:42-13:00), poi pranzo fino alle 13:45 e bus delle 14:14. Se non c'è posto: Gotetsu a 2' (aperto fino alle 16:30). Solo contanti.",
           "nick": "La ciotola di pesce crudo del grossista del mercato, la più votata di Numazu",
           "image": {
             "url": "assets/img/places/iriichi.webp",
@@ -5941,8 +5941,8 @@
         },
         {
           "id": "d15-16",
-          "time": "13:20",
-          "end": "13:28",
+          "time": "13:27",
+          "end": "13:33",
           "title": "Numazu Minato Shinsenkan",
           "type": "food",
           "fixed": false,
@@ -5969,8 +5969,8 @@
         },
         {
           "id": "d15-17",
-          "time": "13:28",
-          "end": "13:50",
+          "time": "13:33",
+          "end": "13:45",
           "title": "Byuō (View-O)",
           "type": "sight",
           "fixed": false,
@@ -5980,7 +5980,7 @@
           "costNote": "",
           "place": "Byuō (View-O) · paratia panoramica",
           "mapsQuery": "Numazu Port View-O",
-          "note": "Paratia panoramica · 150 m più a ovest, ascensore a 30 m: Fuji, baia e già la costa di Uchiura; ¥100",
+          "note": "Paratia panoramica · 150 m più a ovest, ascensore a 30 m: Fuji, baia e già la costa di Uchiura; ¥100. Alle 13:45 si scende: ~9' a piedi alla fermata 'Numazu-kō'",
           "nick": "La torre-cancello del porto con la vista sul Fuji",
           "image": {
             "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Byuo.jpg/960px-Byuo.jpg",
@@ -6008,7 +6008,7 @@
           "costNote": "",
           "place": "",
           "mapsQuery": "",
-          "note": "Bus Izuhakone 13:54 dalla fermata 'Numazu-kō' → stazione di Numazu 14:05 · ~¥230, n.v. · Orario ufficiale Izuhakone (sabato-domenica, rev. 1/4/2026): ogni 10-20', riserva 14:14 → 14:25 (ancora in tempo per il bus delle 14:30). Si torna alla stazione solo per cambiare bus: i bus per Uchiura non passano dal porto.",
+          "note": "Bus Izuhakone 13:54 dalla fermata 'Numazu-kō' → stazione di Numazu 14:05 · ~¥230, n.v. · Orario ufficiale Izuhakone (sabato-domenica, rev. 1/4/2026): ogni 10-20', riserva 14:14 → 14:25 (ancora in tempo per il bus delle 14:30). Si torna alla stazione solo per cambiare bus: i bus per Uchiura non passano dal porto. Sulla strada per la fermata, a 20 m, il tombino di Ruby (nero): marciapiede della Minatoohashi-dōri, vicino al negozio di pesce secco Chidori.",
           "booking": {
             "status": "none",
             "where": "",
@@ -6271,7 +6271,7 @@
           "note": "Check-in (dalle 14): pagare i ¥110.000 in contanti, chiedere l'orario di cena e colazione e prenotare il bagno privato se serve. Regola del ryokan: tatuaggi non ammessi nei bagni comuni. Gli zaini restano fino alle 12 di domani.",
           "nick": "Il ryokan di Chika: si dorme nella sua casa",
           "image": {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Yasudaya-Ryokan.jpg/960px-Yasudaya-Ryokan.jpg",
+            "url": "assets/img/places/yasudaya.webp",
             "credit": "Minamijyuuji · CC BY-SA 4.0 · Wikimedia Commons",
             "page": "https://commons.wikimedia.org/wiki/File:Yasudaya-Ryokan.jpg",
             "alt": "Il ryokan di Chika: si dorme nella sua casa"
@@ -6298,7 +6298,7 @@
           "note": "Bagni comuni (14-23; dalle 18 alle 20 entrano anche esterni) o bagno privato Hanafubuki (50', ¥1.100, 15-23)",
           "nick": "Il ryokan di Chika: si dorme nella sua casa",
           "image": {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Yasudaya-Ryokan.jpg/960px-Yasudaya-Ryokan.jpg",
+            "url": "assets/img/places/yasudaya.webp",
             "credit": "Minamijyuuji · CC BY-SA 4.0 · Wikimedia Commons",
             "page": "https://commons.wikimedia.org/wiki/File:Yasudaya-Ryokan.jpg",
             "alt": "Il ryokan di Chika: si dorme nella sua casa"

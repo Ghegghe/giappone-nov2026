@@ -1,6 +1,6 @@
 # Report export dati sito
 
-Sorgente: `build_xlsx_v33.py` (letto via `ast`, non eseguito) · CSV My Maps: `mymaps_csv/` · override: `site_overrides.json` · generatedAt (mtime sorgenti): 2026-10-18T19:58:54+02:00
+Sorgente: `build_xlsx_v33.py` (letto via `ast`, non eseguito) · CSV My Maps: `mymaps_csv/` · override: `site_overrides.json` · generatedAt (mtime sorgenti): 2026-10-21T11:17:25+02:00
 
 ## Conteggi
 
@@ -337,16 +337,17 @@ Avvisi (giorni in bozza o stime):
 - Item con orario fuori sequenza (14 nov «ALTRI 3») marcati `parallel:true`; giorno libero 21 nov: item `allDay:true`, `time:""`.
 - Testi per il sito (`ux_clean`, regole generali): maiuscole d'enfasi → minuscole; titoli item ≤ ~60 car. (spiegazioni/logistica in `note`); titolo giorno senza base ripetuta + `dayTrip`; checklist con `endDate`/`whenDetail`/`dateApprox`; opzioni trasporto con `id`, `noteShort`, `noteMore`; riferimenti al dossier (📎/🗓/«vedi riga») tolti e tradotti in `links` interni; note alloggi deduplicate; Giorno 1 `open` → `remember` (deciso) o `todo` (aperto).
 
-## Guide (SPEC §10) — 12 in `site/data/guides.json`
+## Guide (SPEC §10) — 13 in `site/data/guides.json`
 
 Sorgente: `data/guide`
 
-### Guide lette (12)
+### Guide lette (13)
 
 - `bere.md` → `bere` (order 30, 7290 car. HTML, 2 luoghi)
 - `cena-compleanno-kyoto.md` → `cena-compleanno-kyoto` (order 12, 103995 car. HTML, 6 luoghi)
 - `concerto-nagoya.md` → `concerto-nagoya` (order 15, 12754 car. HTML, 0 luoghi)
 - `izakaya-tachinomi.md` → `izakaya-tachinomi` (order 20, 8011 car. HTML, 0 luoghi)
+- `lovelive-numazu.md` → `lovelive-numazu` (order 16, 39410 car. HTML, 20 luoghi)
 - `mangiare.md` → `mangiare` (order 40, 7037 car. HTML, 2 luoghi)
 - `muoversi.md` → `muoversi` (order 50, 9487 car. HTML, 0 luoghi)
 - `onsen-sento.md` → `onsen-sento` (order 70, 6795 car. HTML, 2 luoghi)
@@ -376,11 +377,11 @@ Sorgente: `data/guide`
 
 - nessuno
 
-### Foto scaricate (1)
+### Foto scaricate (0)
 
-- cena-compleanno-kyoto-523fd730.webp (14 KB) ← https://s3-ap-northeast-1.amazonaws.com/files.jpneazy.com/restaurants/18/images/eyecatch.jpg
+- nessuno
 
-### Foto riusate (file già presenti) (108)
+### Foto riusate (file già presenti) (151)
 
 - cena-compleanno-kyoto-24483c4c.webp (45 KB)
 - cena-compleanno-kyoto-0cde6226.webp (30 KB)
@@ -481,6 +482,7 @@ Sorgente: `data/guide`
 - cena-compleanno-kyoto-f1ca4ef3.webp (22 KB)
 - cena-compleanno-kyoto-5c110eba.webp (34 KB)
 - cena-compleanno-kyoto-7b373db4.webp (24 KB)
+- cena-compleanno-kyoto-523fd730.webp (14 KB)
 - cena-compleanno-kyoto-055a029f.webp (20 KB)
 - cena-compleanno-kyoto-5ea39d01.webp (30 KB)
 - cena-compleanno-kyoto-40957e4e.webp (28 KB)
@@ -490,6 +492,48 @@ Sorgente: `data/guide`
 - cena-compleanno-kyoto-3c7be5bf.webp (27 KB)
 - cena-compleanno-kyoto-5611ac56.webp (16 KB)
 - cena-compleanno-kyoto-1e41b52c.webp (20 KB)
+- lovelive-numazu-0e58e893.webp (41 KB)
+- lovelive-numazu-65d77a4f.webp (30 KB)
+- lovelive-numazu-743dcede.webp (51 KB)
+- lovelive-numazu-68495a4d.webp (71 KB)
+- lovelive-numazu-9df18627.webp (81 KB)
+- lovelive-numazu-a2ed5637.webp (89 KB)
+- lovelive-numazu-66f14074.webp (114 KB)
+- lovelive-numazu-e82a43bc.webp (60 KB)
+- lovelive-numazu-0cb8d277.webp (64 KB)
+- lovelive-numazu-8f582df2.webp (35 KB)
+- lovelive-numazu-f980b600.webp (23 KB)
+- lovelive-numazu-d308ac38.webp (31 KB)
+- lovelive-numazu-f641eef4.webp (54 KB)
+- lovelive-numazu-bae3f40e.webp (22 KB)
+- lovelive-numazu-76efcad4.webp (60 KB)
+- lovelive-numazu-8968b2ec.webp (49 KB)
+- lovelive-numazu-a17642ca.webp (48 KB)
+- lovelive-numazu-f70259f3.webp (24 KB)
+- lovelive-numazu-6dfeda00.webp (57 KB)
+- lovelive-numazu-320de74d.webp (54 KB)
+- lovelive-numazu-4005f769.webp (35 KB)
+- lovelive-numazu-0c3eb103.webp (71 KB)
+- lovelive-numazu-87bc7680.webp (73 KB)
+- lovelive-numazu-adb3a335.webp (48 KB)
+- lovelive-numazu-d8b3859e.webp (69 KB)
+- lovelive-numazu-15fa8707.webp (130 KB)
+- lovelive-numazu-b1806719.webp (77 KB)
+- lovelive-numazu-d88f08bd.webp (66 KB)
+- lovelive-numazu-12359541.webp (32 KB)
+- lovelive-numazu-60761972.webp (71 KB)
+- lovelive-numazu-232eb9f7.webp (14 KB)
+- lovelive-numazu-a3fa7228.webp (77 KB)
+- lovelive-numazu-9f6f8456.webp (59 KB)
+- lovelive-numazu-789e8dbe.webp (72 KB)
+- lovelive-numazu-f7121ffc.webp (33 KB)
+- lovelive-numazu-3620fc3c.webp (67 KB)
+- lovelive-numazu-c9b98183.webp (55 KB)
+- lovelive-numazu-7ef55b2e.webp (97 KB)
+- lovelive-numazu-22d7e95a.webp (44 KB)
+- lovelive-numazu-88d2c952.webp (128 KB)
+- lovelive-numazu-abcba852.webp (178 KB)
+- lovelive-numazu-7247dfc7.webp (105 KB)
 
 ### Foto fallite (0)
 
@@ -502,13 +546,13 @@ Sorgente: `data/guide`
 ## Foto locali dei luoghi (`--fetch-images`)
 
 Modalità: download attivo · convertitore: Pillow (/Users/panteghininicolo/progetti/Giappone_Nov2026/.venv/bin/python3)
-Cartella `site/assets/img/places/`: 173 file · 18102 KB totali
+Cartella `site/assets/img/places/`: 174 file · 18230 KB totali
 
 ### Scaricate (0)
 
 - nessuna
 
-### Riusate (file già presenti) (171)
+### Riusate (file già presenti) (172)
 
 - hankyu-higashi-dori (hankyu-higashi-dori.webp, 90 KB)
 - nakazakicho (nakazakicho.webp, 88 KB)
@@ -651,6 +695,7 @@ Cartella `site/assets/img/places/`: 173 file · 18102 KB totali
 - ohmos (ohmos.webp, 60 KB)
 - fujimi-hiroba (fujimi-hiroba.webp, 55 KB)
 - mitohama (mitohama.webp, 114 KB)
+- yasudaya (yasudaya.webp, 128 KB)
 - mito-ko (mito-ko.webp, 21 KB)
 - awashima-pier (awashima-pier.webp, 55 KB)
 - izu-mito-sea-paradise (izu-mito-sea-paradise.webp, 96 KB)
@@ -682,11 +727,10 @@ Cartella `site/assets/img/places/`: 173 file · 18102 KB totali
 - osaka-mikan (osaka-mikan.webp, 83 KB)
 - cascata-di-joren (cascata-di-joren.webp, 144 KB)
 
-### Fallite (5)
+### Fallite (4)
 
 - endoji-shikemichi: HTTP Error 429: Too Many Requests (015d12c) · https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Endoji_Shopping_Street_2021-10_ac.jpg/960px-Endoji_Shopping_Street_2021-10_ac.jpg
 - view-o: HTTP Error 429: Too Many Requests (015d12c) · https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Byuo.jpg/960px-Byuo.jpg
-- yasudaya: HTTP Error 429: Too Many Requests (015d12c) · https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Yasudaya-Ryokan.jpg/960px-Yasudaya-Ryokan.jpg
 - kanukiyama-park: HTTP Error 429: Too Many Requests (015d12c) · https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Mount_Kanuki_20120730.jpg/960px-Mount_Kanuki_20120730.jpg
 - hie-shrine: HTTP Error 429: Too Many Requests (015d12c) · https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Shuzenji_Onsen_area_Hie_Shrine_2024_11_4_various_12.jpg/960px-Shuzenji_Onsen_area_Hie_Shrine_2024_11_4_various_12.jpg
 

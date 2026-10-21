@@ -1,5 +1,5 @@
 // sw.js — service worker del sito. Bumpare CACHE_VERSION a ogni deploy che cambia file statici.
-const CACHE_VERSION = 'v17';
+const CACHE_VERSION = 'v18';
 const STATIC_CACHE = `giappone-static-${CACHE_VERSION}`;
 const DATA_CACHE = `giappone-data-${CACHE_VERSION}`;
 
@@ -171,6 +171,48 @@ const PRECACHE = [
   'assets/img/guide/cena-compleanno-kyoto-fbe33191.webp',
   'assets/img/guide/cena-compleanno-kyoto-fea1ed8a.webp',
   'assets/img/guide/cena-compleanno-kyoto-fecb7f32.webp',
+  'assets/img/guide/lovelive-numazu-0c3eb103.webp',
+  'assets/img/guide/lovelive-numazu-0cb8d277.webp',
+  'assets/img/guide/lovelive-numazu-0e58e893.webp',
+  'assets/img/guide/lovelive-numazu-12359541.webp',
+  'assets/img/guide/lovelive-numazu-15fa8707.webp',
+  'assets/img/guide/lovelive-numazu-22d7e95a.webp',
+  'assets/img/guide/lovelive-numazu-232eb9f7.webp',
+  'assets/img/guide/lovelive-numazu-320de74d.webp',
+  'assets/img/guide/lovelive-numazu-3620fc3c.webp',
+  'assets/img/guide/lovelive-numazu-4005f769.webp',
+  'assets/img/guide/lovelive-numazu-60761972.webp',
+  'assets/img/guide/lovelive-numazu-65d77a4f.webp',
+  'assets/img/guide/lovelive-numazu-66f14074.webp',
+  'assets/img/guide/lovelive-numazu-68495a4d.webp',
+  'assets/img/guide/lovelive-numazu-6dfeda00.webp',
+  'assets/img/guide/lovelive-numazu-7247dfc7.webp',
+  'assets/img/guide/lovelive-numazu-743dcede.webp',
+  'assets/img/guide/lovelive-numazu-76efcad4.webp',
+  'assets/img/guide/lovelive-numazu-789e8dbe.webp',
+  'assets/img/guide/lovelive-numazu-7ef55b2e.webp',
+  'assets/img/guide/lovelive-numazu-87bc7680.webp',
+  'assets/img/guide/lovelive-numazu-88d2c952.webp',
+  'assets/img/guide/lovelive-numazu-8968b2ec.webp',
+  'assets/img/guide/lovelive-numazu-8f582df2.webp',
+  'assets/img/guide/lovelive-numazu-9df18627.webp',
+  'assets/img/guide/lovelive-numazu-9f6f8456.webp',
+  'assets/img/guide/lovelive-numazu-a17642ca.webp',
+  'assets/img/guide/lovelive-numazu-a2ed5637.webp',
+  'assets/img/guide/lovelive-numazu-a3fa7228.webp',
+  'assets/img/guide/lovelive-numazu-abcba852.webp',
+  'assets/img/guide/lovelive-numazu-adb3a335.webp',
+  'assets/img/guide/lovelive-numazu-b1806719.webp',
+  'assets/img/guide/lovelive-numazu-bae3f40e.webp',
+  'assets/img/guide/lovelive-numazu-c9b98183.webp',
+  'assets/img/guide/lovelive-numazu-d308ac38.webp',
+  'assets/img/guide/lovelive-numazu-d88f08bd.webp',
+  'assets/img/guide/lovelive-numazu-d8b3859e.webp',
+  'assets/img/guide/lovelive-numazu-e82a43bc.webp',
+  'assets/img/guide/lovelive-numazu-f641eef4.webp',
+  'assets/img/guide/lovelive-numazu-f70259f3.webp',
+  'assets/img/guide/lovelive-numazu-f7121ffc.webp',
+  'assets/img/guide/lovelive-numazu-f980b600.webp',
 ];
 // PRECACHE-END
 
