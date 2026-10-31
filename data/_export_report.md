@@ -1,6 +1,6 @@
 # Report export dati sito
 
-Sorgente: `build_xlsx_v33.py` (letto via `ast`, non eseguito) · CSV My Maps: `mymaps_csv/` · override: `site_overrides.json` · generatedAt (mtime sorgenti): 2026-10-21T11:17:25+02:00
+Sorgente: `build_xlsx_v33.py` (letto via `ast`, non eseguito) · CSV My Maps: `mymaps_csv/` · override: `site_overrides.json` · generatedAt (mtime sorgenti): 2026-10-31T18:17:27+01:00
 
 ## Conteggi
 
@@ -8,10 +8,10 @@ Sorgente: `build_xlsx_v33.py` (letto via `ast`, non eseguito) · CSV My Maps: `m
 |---|---|
 | trip.json | 7 sezioni · 15 link · 6 fatti |
 | agenda.json | 18 giorni (10 `final` · 8 `draft`) · 242 item · 196 con `end` dedotto · 75 con `placeId` |
-| transport.json | 7 tratte · 2 transfer · 8 righe guida · 31 checklist (12 da fare) · scelte = €199.77/pax |
+| transport.json | 7 tratte · 2 transfer · 8 righe guida · 31 checklist (11 da fare) · scelte = €200.64/pax |
 | lodging.json | 6 basi · 7 passi giorno 1 · 7 domande bagagli |
 | places.json | 326 luoghi · 108 abbinati ai CSV · 0 con coordinate · 71 con `dayDates` |
-| budget.json | 6 categorie + 4 comuni · totale €2739.7/pax · €10958.8 gruppo |
+| budget.json | 6 categorie + 4 comuni · totale €2740.57/pax · €10962.28 gruppo |
 
 Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 18, generico 14, places 67, places (testa) 9, titolo 5 (`titolo`/`destinazione` = euristica sul testo, da rivedere in revisione agenda).
 
@@ -98,7 +98,7 @@ Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 1
 - agenda: tipo 'santuario' (non elencato nella mappa) → sight
 - budget: la categoria «Spese comuni» del dossier NON è in `categories` (è in `common`) per evitare doppio conteggio
 - textFixes transport: «. Niente ticketless sulla versione inglese» → «» (2×)
-- textFixes agenda: «Narita T1 13:35 (PRENOTATO online)» → «Narita T1 13:35 (da prenotare online, ~fine ott)» (1×)
+- textFixes agenda: «Narita T1 13:35 (PRENOTATO online)» → «Narita T2 13:30 (prenotato)» (1×)
 - textFixes budget: «destinazione da decidere (📎 Dettagli)» → «destinazione: ufficio Yamato Yoyogi» (1×)
 - textFixes transport: «revisione da zero giorno per giorno con il cliente (la 2.0 è» → «revisione giorno per giorno (quella attuale è una bozza)» (1×)
 - textFixes lodging: «(le compra il cliente)» → «(da comprare)» (1×)
@@ -111,9 +111,9 @@ Origine `place`/`mapsQuery` degli item agenda: alloggio 8, csv 6, destinazione 1
 - textFixes transport: «BAGAGLI: opzione A2 scelta (ufficio Yamato Yoyogi)» → «BAGAGLI: spediti all'ufficio Yamato Yoyogi» (1×)
 - textFixes transport: «Nozomi/Hikari ris.» → «Nozomi/Hikari (posto riservato)» (1×)
 - textFixes transport: «JR Hida LTD EXP ris. 12:48» → «JR Hida Limited Express 12:48 (posto riservato)» (1×)
-- textFixes transport: «NRT 24 nov ~11:45» → «Narita 24 nov 11:20» (1×)
+- textFixes transport: «NRT 24 nov ~11:45» → «Narita 24 nov 11:40» (1×)
 - textFixes lodging: «aperta 7/7 9-19» → «aperta tutti i giorni 9-19» (1×)
-- textFixes transport: «NRT 24/11 ~11:45» → «Narita 24/11 11:20» (1×)
+- textFixes transport: «NRT 24/11 ~11:45» → «Narita 24/11 11:40» (1×)
 - textFixes agenda: «Scelta del cliente (B-11-2). » → «» (1×)
 - textFixes agenda: «Scelta del cliente (B-11-3). » → «» (1×)
 - textFixes agenda: «Scelta del cliente (B-11-4). » → «» (1×)
@@ -299,7 +299,7 @@ Blocchi NON fusi (non confermati): E (proposta)
 - blocco C CONFERMATO ma 2026-11-13 ha decisions senza `chosen`: C-13-3
 - override `agendaItems[d07-01]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Atterraggio a KIX, controllo passaporti, valigie»
 - override `agendaItems[d07-03]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Valigie nel deposito self-service del BON»
-- override `agendaItems[d14-04]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Metro Meijō Shiyakusho → Yabachō (3 fermate) + 7' »
+- override `agendaItems[d14-04]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Metro Meijō Nagoya-jō → Yabachō (3 fermate) + 7' a»
 - override `agendaItems[d10-15]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Consegna delle 4 valigie all'ufficio Yamato»
 - override `agendaItems[d11-05]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «A piedi al Country Hotel»
 - override `agendaItems[d12-06]` applicato a un giorno sostituito dalla scaletta: era scritto per l'item del build, verificare che valga ancora per «Bus Nohi Takayama 7:50 → Shirakawa-gō (Ogimachi) 8»
@@ -337,23 +337,25 @@ Avvisi (giorni in bozza o stime):
 - Item con orario fuori sequenza (14 nov «ALTRI 3») marcati `parallel:true`; giorno libero 21 nov: item `allDay:true`, `time:""`.
 - Testi per il sito (`ux_clean`, regole generali): maiuscole d'enfasi → minuscole; titoli item ≤ ~60 car. (spiegazioni/logistica in `note`); titolo giorno senza base ripetuta + `dayTrip`; checklist con `endDate`/`whenDetail`/`dateApprox`; opzioni trasporto con `id`, `noteShort`, `noteMore`; riferimenti al dossier (📎/🗓/«vedi riga») tolti e tradotti in `links` interni; note alloggi deduplicate; Giorno 1 `open` → `remember` (deciso) o `todo` (aperto).
 
-## Guide (SPEC §10) — 13 in `site/data/guides.json`
+## Guide (SPEC §10) — 15 in `site/data/guides.json`
 
 Sorgente: `data/guide`
 
-### Guide lette (13)
+### Guide lette (15)
 
+- `abbonamenti-metro.md` → `abbonamenti-metro` (order 55, 8524 car. HTML, 0 luoghi)
 - `bere.md` → `bere` (order 30, 7290 car. HTML, 2 luoghi)
 - `cena-compleanno-kyoto.md` → `cena-compleanno-kyoto` (order 12, 103995 car. HTML, 6 luoghi)
 - `concerto-nagoya.md` → `concerto-nagoya` (order 15, 12754 car. HTML, 0 luoghi)
 - `izakaya-tachinomi.md` → `izakaya-tachinomi` (order 20, 8011 car. HTML, 0 luoghi)
 - `lovelive-numazu.md` → `lovelive-numazu` (order 16, 39410 car. HTML, 20 luoghi)
 - `mangiare.md` → `mangiare` (order 40, 7037 car. HTML, 2 luoghi)
-- `muoversi.md` → `muoversi` (order 50, 9487 car. HTML, 0 luoghi)
+- `muoversi.md` → `muoversi` (order 50, 9838 car. HTML, 0 luoghi)
 - `onsen-sento.md` → `onsen-sento` (order 70, 6795 car. HTML, 2 luoghi)
 - `quartieri-osaka.md` → `quartieri-osaka` (order 100, 6540 car. HTML, 13 luoghi)
-- `soldi.md` → `soldi` (order 60, 6467 car. HTML, 0 luoghi)
+- `soldi.md` → `soldi` (order 60, 6543 car. HTML, 0 luoghi)
 - `sopravvivenza.md` → `sopravvivenza` (order 90, 8698 car. HTML, 0 luoghi)
+- `spedire-valigie.md` → `spedire-valigie` (order 52, 11259 car. HTML, 2 luoghi)
 - `templi-santuari.md` → `templi-santuari` (order 80, 7127 car. HTML, 5 luoghi)
 - `tenma-sera.md` → `tenma-sera` (order 10, 14189 car. HTML, 6 luoghi)
 

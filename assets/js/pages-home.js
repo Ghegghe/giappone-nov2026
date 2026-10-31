@@ -1,4 +1,4 @@
-// pages-home.js — index.html: conto alla rovescia con la striscia della rotta, oggi/primo giorno, 3 scadenze, mappa e voli.
+// pages-home.js — index.html: conto alla rovescia con la striscia della rotta, oggi/primo giorno, mappa del viaggio, 3 scadenze e voli.
 // Ibrido 2 ott: via la griglia "Sezioni" (duplicava la nav) e il tasso di cambio (sta nel budget).
 // PLAN_PRESENTAZIONE §2.1: routeStrip da charts.js (import dinamico, fallback = rotta scritta).
 import { fmtDate, fmtTime, todayInTokyo } from './app.js';
@@ -126,12 +126,27 @@ function deadlines(transport, todayIt) {
   </section>`;
 }
 
-function infoCard(trip) {
+/** Mappa del viaggio (SPEC §14): My Maps in una nuova scheda; durante il viaggio anche la mappa di oggi (day.maps). */
+function mapCard(trip, agenda, st, today) {
   const map = safeUrl(trip.mapsLink);
+  if (!/^https:\/\/www\.google\.com\/maps\/d\/viewer\?/.test(map)) return '';
+  const day = st.phase === 'during' ? ((agenda && agenda.days) || []).find((d) => d.date === today) : null;
+  const todayMaps = ((day && Array.isArray(day.maps)) ? day.maps : []).filter((m) => m && /^https:\/\/www\.google\.com\/maps\/d\/viewer\?/.test(m.url || ''));
+  return html`<section class="card home-map" aria-labelledby="home-map-h">
+    <h2 class="h3" id="home-map-h">Mappa del viaggio</h2>
+    <p class="small muted">Pin numerati GG·NN nell'ordine della giornata, un livello per blocco.</p>
+    <div class="home-map__btns">
+      <a class="btn btn--primary" href="${map}" target="_blank" rel="noopener noreferrer">${icon('map')}<span>Apri la mappa</span> ${icon('external', 'apre in una nuova scheda')}</a>
+      ${todayMaps.map((m) => html`<a class="btn btn--secondary" href="${m.url}" target="_blank" rel="noopener noreferrer">${icon('map')}<span>Oggi · ${m.label}</span> ${icon('external', 'apre in una nuova scheda')}</a>`)}
+    </div>
+  </section>`;
+}
+
+function infoCard(trip) {
   const f = trip.flights || {};
+  if (!f.out && !f.back) return '';
   return html`<section class="card home-info" aria-labelledby="home-info-h">
     <h2 class="h3" id="home-info-h">In tasca</h2>
-    ${map ? html`<a class="btn btn--primary" href="${map}" target="_blank" rel="noopener noreferrer">${icon('pin')}<span>Mappa del viaggio</span> ${icon('external', 'apre in una nuova scheda')}</a>` : ''}
     ${f.out || f.back ? html`<dl class="kv">
       ${f.out ? html`<dt>Andata</dt><dd>${fmtDate(f.out.date)} · arrivo ${f.out.to} <span class="mono">${f.out.arr || ''}</span></dd>` : ''}
       ${f.back ? html`<dt>Ritorno</dt><dd>${fmtDate(f.back.date)} · da ${f.back.from} <span class="mono">${f.back.dep || ''}</span></dd>` : ''}
@@ -156,6 +171,7 @@ export async function render(root, { trip, loadData }) {
   mount(root, html`
     ${countdown(trip, st, route)}
     ${dayCard(agenda, trip, st, today)}
+    ${mapCard(trip, agenda, st, today)}
     <div class="grid-2 home-grid">
       ${deadlines(transport, todayInTokyo('Europe/Rome'))}
       ${infoCard(trip)}

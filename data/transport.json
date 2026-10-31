@@ -169,16 +169,16 @@
           "id": "leg-3-1",
           "name": "Bus Izuhakone porto → stazione + bus Tōkai 14:30 → Nagaisaki",
           "duration": "~1h15 con l'attesa",
-          "costEur": 7.2,
+          "costEur": 7.94,
           "chosen": true,
-          "note": "Bus Izuhakone 13:54 dal porto alla stazione (sabato-domenica ogni 10-20', ~¥230 n.v.), poi bus Tōkai delle 14:30 dalla piattaforma 3 fino alla fermata della scuola di Nagaisaki, ~38' (¥1.040 fino a Mito con le tariffe dal 1° ottobre 2026; fino a Nagaisaki poco di più, n.v.). Carta IC o contanti: una carta può pagare per più persone, ditelo all'autista prima.",
+          "note": "Bus Izuhakone 13:54 dal porto alla stazione (sabato-domenica ogni 10-20', ~¥230 n.v.), poi bus Tōkai delle 14:30 dalla piattaforma 3 fino alla fermata della scuola di Nagaisaki, ~38' (¥1.170). Carta IC o contanti: una carta può pagare per più persone, ditelo all'autista prima.",
           "noteShort": "Il bus con la livrea delle Aqours, fino in fondo alla baia.",
           "noteMore": [
             "Bus Izuhakone 13:54 porto → stazione 14:05 (riserva 14:14).",
             "Bus Tōkai 14:30 dalla piattaforma 3 fino alla scuola di Nagaisaki, ~38'; riserva 15:30.",
             "Carta IC o contanti: una carta può pagare per più persone, ditelo all'autista prima."
           ],
-          "costJpy": 1270,
+          "costJpy": 1400,
           "agendaKey": "Bus Tōkai 14:30",
           "costSource": "jpy",
           "dep": "14:30",
@@ -421,39 +421,39 @@
       "options": [
         {
           "id": "transfer-tokyo-yoyogi-1",
-          "name": "Limousine Bus da Busta Shinjuku (4° piano, uscita Sud)",
-          "duration": "1h55 da orario, 85-120' effettivi",
-          "costEur": 20.41,
+          "name": "Limousine Bus Busta Shinjuku 11:40 → Narita T2 13:30",
+          "duration": "1h50 da orario, 85-120' effettivi",
+          "costEur": 20.54,
           "chosen": true,
-          "note": "¥3.600. Si prenota online su limousinebus.co.jp fino a 5 minuti prima, o alla macchinetta di Busta il giorno stesso. Si sale al 4° piano, fermate A1, A2 o B4.",
+          "note": "Prenotato: 4 posti, ¥3.600 a testa. Biglietto: un QR unico per tutti e 4, nella mail e nella «My page» di limousinebus.co.jp. Si sale al 4° piano di Busta, fermata A1.",
           "booking": {
             "site": "limousinebus.co.jp",
             "url": "https://limousinebus.co.jp/en",
-            "howToPay": "Con carta.",
-            "howToCollect": "Biglietto digitale. In stiva sono garantite 2 valigie a testa.",
-            "opens": "2026-10-28",
-            "opensNote": "verso fine ottobre",
-            "status": "todo",
+            "howToPay": "Pagato con carta online.",
+            "howToCollect": "Un QR unico per tutti e 4, nella mail di conferma e nella «My page» di limousinebus.co.jp: si mostra al conducente. In stiva sono garantite 2 valigie a testa.",
+            "opens": "",
+            "opensNote": "Comprato il 31 ottobre.",
+            "status": "done",
             "opensApprox": true
           },
           "details": {
-            "cost": "¥3.600 · €19,5 · ~2h10 da orario ufficiale (T3 → T2 → T1)",
-            "how": "Busta Shinjuku è lo Shinjuku Expressway Bus Terminal, Sendagaya 5-24-55. Si sale al 4° piano, fermate A1, A2 o B4 secondo l'orario. Da casa: una fermata di Yamanote da Yoyogi a Shinjuku, o 15 minuti a piedi. Orari da Busta a Narita T1: 11:20 → 13:15, 11:40 → 13:35. In stiva 2 colli a persona, ognuno entro 50×60×120 cm e 30 kg. Non metteteci passaporto, valori o cose fragili, e al ritiro controllate che il collo sia il vostro. Si prenota online fino a 5 minuti prima, oppure alla macchinetta o al banco di Busta il giorno stesso.",
-            "booking": "Sì: online su limousinebus.co.jp con carta, verso fine ottobre. Consigliato il bus delle 11:20, che arriva alle 13:15, 3 ore e 40 prima del volo.",
+            "cost": "¥3.600 a testa, ¥14.400 in 4 · 1h50 da orario fino al Terminal 2",
+            "how": "Busta Shinjuku è lo Shinjuku Expressway Bus Terminal, Sendagaya 5-24-55. Si sale al 4° piano, fermata A1. Da casa sono 1,2 km a piedi, circa 16 minuti, 20 con le valigie: si esce verso le 11:10, dopo il check-out delle 11:00. Il bus delle 11:40 arriva al Terminal 2 di Narita alle 13:30. In stiva 2 colli a persona, ognuno entro 50×60×120 cm e 30 kg. Non metteteci passaporto, valori o cose fragili, e al ritiro controllate che il collo sia il vostro.",
+            "booking": "Prenotato e pagato il 31 ottobre su limousinebus.co.jp. Cambio di corsa gratis e cancellazione a ¥110 fino a 5 minuti prima della partenza, dalla My page.",
             "proCon": "Pro: le 8 valigie vanno in stiva per regolamento, e si scende davanti al terminal. Contro: il traffico può allungare il viaggio, quindi partite con margine."
           },
-          "noteShort": "Da Busta Shinjuku: 11:20 → Narita T1 13:15.",
+          "noteShort": "Prenotato: Busta Shinjuku 11:40, fermata A1 → Narita T2 13:30.",
           "noteMore": [
-            "¥3.600.",
-            "Da Busta: 11:20 → T1 13:15, oppure 11:40 → T1 13:35.",
+            "¥3.600 a testa, 4 posti. Un QR unico per tutti e 4, nella mail e nella My page.",
+            "Da casa a Busta: 1,2 km a piedi, circa 16 minuti, 20 con le valigie. Si esce verso le 11:10.",
             "Stiva: 2 colli a testa, fino a 50×60×120 cm e 30 kg l'uno.",
-            "Si sale al 4° piano di Busta, fermate A1, A2 o B4."
+            "Cambio di corsa gratis e cancellazione a ¥110 fino a 5 minuti prima, dalla My page."
           ],
           "costJpy": 3600,
           "agendaKey": "Limousine Bus",
-          "dep": "11:20",
-          "arr": "13:15",
-          "costSource": "jpy"
+          "dep": "11:40",
+          "arr": "13:30",
+          "costSource": "paid"
         },
         {
           "id": "transfer-tokyo-yoyogi-2",
@@ -517,10 +517,10 @@
         }
       ],
       "subtitle": "Volo 16:55, 8 valigie",
-      "summary": "Bus consigliato: le 11:20, arrivo a Narita T1 alle 13:15. In stiva vanno 2 valigie a testa."
+      "summary": "Prenotato il 31 ottobre: bus delle 11:40 da Busta Shinjuku, fermata A1, arrivo a Narita T2 alle 13:30. In stiva 2 valigie a testa."
     }
   ],
-  "totalChosenEur": 199.77,
+  "totalChosenEur": 200.64,
   "bookingGuide": [
     {
       "what": "Shinkansen Hikari 640 Nagoya → Mishima, 15 novembre alle 8:43",
@@ -565,13 +565,13 @@
       "id": "bg-gifu"
     },
     {
-      "what": "Limousine Bus Busta Shinjuku → Narita 24 nov 11:20",
+      "what": "Limousine Bus Busta Shinjuku 11:40 → Narita T2 13:30, 24 novembre",
       "site": "limousinebus.co.jp",
       "url": "https://limousinebus.co.jp/en",
-      "when": "~fine ottobre",
-      "payment": "Carta",
-      "collect": "Biglietto digitale · 2 valigie/pax in stiva garantite",
-      "notes": "Arriva a Narita T1 alle 13:15. In alternativa c'è il N'EX, da prenotare su JR-East Train Reservation: ¥3.250.",
+      "when": "Comprato il 31 ottobre.",
+      "payment": "Pagato con carta online.",
+      "collect": "Un QR unico per tutti e 4, nella mail di conferma e nella «My page» di limousinebus.co.jp.",
+      "notes": "4° piano di Busta, fermata A1. 2 valigie a testa in stiva, fino a 30 kg e 50×60×120 cm. Cambio di corsa gratis e cancellazione a ¥110 fino a 5 minuti prima, dalla My page.",
       "id": "bg-limousine"
     },
     {
@@ -793,14 +793,14 @@
     },
     {
       "id": "ck-20",
-      "when": "~fine ott",
-      "what": "Limousine Bus Busta Shinjuku 11:20 → Narita T1 13:15 (24 nov), 4 posti, ¥3.600",
-      "where": "limousinebus.co.jp (carta) · alt. N'EX",
-      "status": "todo",
-      "sortDate": "2026-10-28",
+      "when": "31 ott",
+      "what": "Limousine Bus Busta Shinjuku 11:40 → Narita T2 13:30 (24 nov), 4 posti, ¥3.600 a testa · QR unico per 4 nella My page",
+      "where": "limousinebus.co.jp",
+      "status": "done",
+      "sortDate": "2026-10-31",
       "url": "https://limousinebus.co.jp",
       "whenDetail": "",
-      "dateApprox": true
+      "dateApprox": false
     },
     {
       "id": "ck-21",

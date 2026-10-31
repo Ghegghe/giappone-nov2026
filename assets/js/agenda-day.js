@@ -239,6 +239,19 @@ function planSummary(day) {
   return fromPlan ? day.summary : '';
 }
 
+/** "Mappa del giorno" (SPEC §14): un pulsante per inquadratura della My Maps (day.maps = [{label, url}]), nuova scheda. */
+function mapButtons(day) {
+  const maps = (Array.isArray(day.maps) ? day.maps : []).filter((m) => m && /^https:\/\/www\.google\.com\/maps\/d\/viewer\?/.test(m.url || ''));
+  if (!maps.length) return null;
+  const one = maps.length === 1;
+  return el('div', { class: 'giorno__map' },
+    el('div', { class: 'row giorno__map-btns' }, ...maps.map((m, k) => el('a', {
+      class: `btn ${k ? 'btn--secondary' : 'btn--primary'}`, href: m.url, target: '_blank', rel: 'noopener noreferrer',
+    }, icon('map'), el('span', null, one ? 'Mappa del giorno' : `Mappa · ${m.label}`),
+    el('span', { class: 'sr-only' }, `${one ? ` (${m.label})` : ''}, apre in una nuova scheda`), icon('external')))),
+    el('p', { class: 'small muted' }, `${one ? `${maps[0].label} · ` : ''}Pin numerati GG·NN nell'ordine della giornata`));
+}
+
 function setPager(a, day, prefix) {
   if (!day) { a.hidden = true; return; }
   a.hidden = false;
@@ -290,7 +303,8 @@ async function main() {
     day.notes || (day.moves && day.moves !== '—') ? el('p', { class: 'small giorno__notes' }, ...[
       day.notes || null,
       day.notes && day.moves && day.moves !== '—' ? el('br') : null,
-      day.moves && day.moves !== '—' ? el('span', { class: 'muted' }, 'Spostamenti: ', day.moves) : null].filter(Boolean)) : null].filter(Boolean));
+      day.moves && day.moves !== '—' ? el('span', { class: 'muted' }, 'Spostamenti: ', day.moves) : null].filter(Boolean)) : null,
+    mapButtons(day)].filter(Boolean));
   setPager($('#giorno-prev'), days[i - 1], 'Giorno precedente');
   setPager($('#giorno-next'), days[i + 1], 'Giorno successivo');
 

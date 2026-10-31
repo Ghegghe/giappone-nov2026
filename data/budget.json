@@ -4,7 +4,7 @@
       {
         "name": "Trasporti",
         "detail": "Catena intercity + transfer",
-        "eur": 199.77,
+        "eur": 200.64,
         "estimate": false,
         "links": [
           {
@@ -82,17 +82,17 @@
       }
     ],
     "commonTotalEur": 882.86,
-    "totalEur": 2739.7
+    "totalEur": 2740.57
   },
   "group": {
-    "totalEur": 10958.8
+    "totalEur": 10962.28
   },
   "paidSoFar": {
     "lodgingEurGroup": 2948.27,
     "lodgingEurGroupPaid": 2324.78,
     "lodgingEurGroupToPay": 623.49,
     "flightsEurGroup": 3224.0,
-    "advancedEurGroup": 3120.9
+    "advancedEurGroup": 3203.04
   },
   "daily": [
     {
@@ -103,7 +103,7 @@
     {
       "date": "2026-11-08",
       "eurPlanned": null,
-      "eurAgenda": 144.5
+      "eurAgenda": 145.0
     },
     {
       "date": "2026-11-09",
@@ -113,7 +113,7 @@
     {
       "date": "2026-11-10",
       "eurPlanned": null,
-      "eurAgenda": 72.5
+      "eurAgenda": 75.5
     },
     {
       "date": "2026-11-11",
@@ -138,7 +138,7 @@
     {
       "date": "2026-11-15",
       "eurPlanned": null,
-      "eurAgenda": 97.12
+      "eurAgenda": 97.86
     },
     {
       "date": "2026-11-16",
@@ -183,7 +183,7 @@
     {
       "date": "2026-11-24",
       "eurPlanned": 40,
-      "eurAgenda": 21.41
+      "eurAgenda": 20.54
     }
   ],
   "notes": [
@@ -197,7 +197,7 @@
     }
   ],
   "advanced": {
-    "asOf": "2026-10-17",
+    "asOf": "2026-10-31",
     "people": 4,
     "items": [
       {
@@ -315,6 +315,17 @@
         "ref": "transport:leg-5-1",
         "eur": 99.76,
         "eurPerPerson": 24.94
+      },
+      {
+        "id": "limousine",
+        "group": "Trasporti",
+        "what": "Limousine Bus, Busta Shinjuku → Narita T2 · 4 pax · 24/11",
+        "date": "2026-10-31",
+        "jpy": 14400,
+        "rate": 175.315,
+        "ref": "transport:transfer-tokyo-yoyogi-1",
+        "eur": 82.14,
+        "eurPerPerson": 20.54
       }
     ],
     "groups": [
@@ -330,11 +341,11 @@
       },
       {
         "name": "Trasporti",
-        "eurTotal": 604.68,
-        "eurPerPerson": 151.17
+        "eurTotal": 686.82,
+        "eurPerPerson": 171.71
       }
     ],
-    "totalEur": 3120.9,
-    "totalEurPerPerson": 780.23
+    "totalEur": 3203.04,
+    "totalEurPerPerson": 800.77
   }
 }

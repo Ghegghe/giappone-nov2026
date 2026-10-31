@@ -10,8 +10,8 @@
     "source": "cambio di riferimento del gruppo"
   },
   "timezone": "Asia/Tokyo",
-  "mapsLink": "https://www.google.com/maps/d/edit?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&usp=sharing",
-  "generatedAt": "2026-10-21T11:17:25+02:00",
+  "mapsLink": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI",
+  "generatedAt": "2026-10-31T18:17:27+01:00",
   "sourceVersion": "build_xlsx_v33.py",
   "flights": {
     "out": {
@@ -27,7 +27,8 @@
       "to": "MXP",
       "date": "2026-11-24",
       "dep": "16:55",
-      "airline": "China Eastern"
+      "airline": "China Eastern",
+      "note": "MU522 per Shanghai Pudong · Narita Terminal 2"
     }
   },
   "facts": [

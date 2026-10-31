@@ -56,7 +56,15 @@
   .home-dl__when .badge { margin: 2px 0 0; }
 }
 
-/* ---------- in tasca: mappa e voli ---------- */
+/* ---------- mappa del viaggio (SPEC §14): pulsante pieno a tutta larghezza su telefono ---------- */
+.home-map { display: flex; flex-direction: column; gap: var(--space-2); }
+.home-map .h3, .home-map p { margin: 0; }
+.home-map__btns { display: flex; flex-direction: column; gap: var(--space-2); margin-top: var(--space-2); }
+.home-map__btns .btn { min-height: 48px; justify-content: flex-start; }
+.home-map__btns .btn > span { flex: 1 1 auto; text-align: start; }
+@media (min-width: 600px) { .home-map__btns { flex-direction: row; flex-wrap: wrap; } .home-map__btns .btn > span { flex: 0 1 auto; } }
+
+/* ---------- in tasca: voli ---------- */
 .home-info { display: flex; flex-direction: column; align-items: stretch; gap: var(--space-3); }
 .home-info .h3 { margin: 0; }
 .home-info .kv { margin: 0; }

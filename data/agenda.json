@@ -489,6 +489,12 @@
             "alt": "Il grattacielo con il buco in cima e la terrazza all'aperto"
           }
         }
+      ],
+      "maps": [
+        {
+          "label": "Osaka",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=34.684,135.503&z=13"
+        }
       ]
     },
     {
@@ -652,12 +658,12 @@
           "type": "sight",
           "fixed": false,
           "optional": false,
-          "costEur": 8,
+          "costEur": 8.5,
           "costEstimate": false,
           "costNote": "",
           "place": "Castello di Osaka + Giardino Nishinomaru",
           "mapsQuery": "Osaka Castle",
-          "note": "Prima il giardino Nishinomaru (¥200, a novembre chiude alle 16:30, ultimo ingresso 16:00, chiuso il lunedì), poi il torrione (¥1.200, aperto fino alle 18:00, ultimo ingresso 17:30). Tramonto 16:57 dalle mura",
+          "note": "Prima il giardino Nishinomaru (¥300, a novembre chiude alle 16:30, ultimo ingresso 16:00, chiuso il lunedì), poi il torrione (¥1.200, aperto fino alle 18:00, ultimo ingresso 17:30). Tramonto 16:57 dalle mura",
           "nick": "Il castello bianco e verde con il giardino sotto",
           "image": {
             "url": "assets/img/places/castello-osaka.webp",
@@ -744,16 +750,16 @@
           "id": "d08-11",
           "time": "20:00",
           "end": "20:40",
-          "title": "Metro Sakaisuji Nippombashi → Ōgimachi o taxi in 4 fino…",
+          "title": "Metro → Tenjinbashisuji 6-chōme, uscita 5 (15') o taxi in 4",
           "type": "train",
           "fixed": false,
           "optional": false,
           "costEur": 0,
           "costEstimate": false,
           "costNote": "",
-          "place": "Ōgimachi",
-          "mapsQuery": "Ōgimachi Station",
-          "note": "Metro Sakaisuji Nippombashi → Ōgimachi o taxi in 4 fino alle terme · 15' · ~€4 a testa",
+          "place": "Tenjinbashisuji 6-chōme",
+          "mapsQuery": "Tenjinbashisuji 6-chōme Station",
+          "note": "Da Nippombashi linea Sakaisuji (marrone) senza cambi, una fermata dopo Ōgimachi; dall'uscita 5 ~10' a piedi verso nord (770 m) fino alle terme. Taxi in 4: ~€4 a testa. Fermata indicata dal sito ufficiale naniwanoyu.com (verificato il 21 ott).",
           "booking": {
             "status": "none",
             "where": "",
@@ -992,6 +998,16 @@
             "alt": "La funivia sopra Kobe con il giardino di erbe"
           }
         }
+      ],
+      "maps": [
+        {
+          "label": "Kobe",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=34.693,135.189&z=15"
+        },
+        {
+          "label": "Osaka",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=34.684,135.503&z=13"
+        }
       ]
     },
     {
@@ -1016,7 +1032,7 @@
           "costNote": "",
           "place": "Keihan per Fushimi-Inari",
           "mapsQuery": "Keihan per Fushimi-Inari Station",
-          "note": "BON → Hankyu Osaka-umeda → Kyoto-kawaramachi → a piedi al Keihan Gion-Shijō → Keihan per Fushimi-Inari · 10' a piedi + 44' di Hankyu + 5' a piedi + 10' di Keihan, ¥410 + ¥220 · colazione da konbini in treno",
+          "note": "BON → Hankyu Osaka-umeda → Kyoto-kawaramachi → a piedi al Keihan Gion-Shijō → Keihan per Fushimi-Inari · 10' a piedi + 44' di Hankyu + 5' a piedi + 10' di Keihan, ¥410 + ¥240 · colazione da konbini in treno",
           "booking": {
             "status": "none",
             "where": "",
@@ -1755,6 +1771,12 @@
             "alt": "La torre bianca davanti alla stazione futuristica"
           }
         }
+      ],
+      "maps": [
+        {
+          "label": "Kyoto",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=34.985,135.775&z=13"
+        }
       ]
     },
     {
@@ -1988,12 +2010,12 @@
           "type": "sight",
           "fixed": false,
           "optional": true,
-          "costEur": 5.5,
+          "costEur": 8.5,
           "costEstimate": false,
-          "costNote": "¥1.000",
+          "costNote": "¥1.500",
           "place": "Tsūtenkaku",
           "mapsQuery": "Tsutenkaku Tower",
-          "note": "La torre illuminata; salire costa ¥1.000 (9:00-22:00), da sotto la foto è gratis",
+          "note": "La torre illuminata; salire costa ¥1.500 (9:00-22:00), da sotto la foto è gratis",
           "nick": "La torre di ferro retrò in mezzo a Shinsekai",
           "image": {
             "url": "assets/img/places/tsutenkaku.webp",
@@ -2357,6 +2379,12 @@
             "page": "https://commons.wikimedia.org/wiki/File:Amerikamura_%28Busy%29.jpg",
             "alt": "Il quartiere dei ragazzi con vestiti usati e murales"
           }
+        }
+      ],
+      "maps": [
+        {
+          "label": "Osaka",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=34.684,135.503&z=13"
         }
       ]
     },
@@ -3101,6 +3129,12 @@
             "page": "https://commons.wikimedia.org/wiki/File:260922_Yoshijima_Heritage_House_Takayama_Japan01s3.jpg",
             "alt": "La casa del mercante con le travi a vista"
           }
+        }
+      ],
+      "maps": [
+        {
+          "label": "Takayama",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=36.143,137.257&z=14"
         }
       ]
     },
@@ -3912,6 +3946,16 @@
             "page": "https://commons.wikimedia.org/wiki/File:Ginkgo_Tree_Hida_Kokubunji_Temple.jpg",
             "alt": "Il tempio con la pagoda e il ginkgo di 1.200 anni"
           }
+        }
+      ],
+      "maps": [
+        {
+          "label": "Takayama",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=36.143,137.257&z=14"
+        },
+        {
+          "label": "Shirakawa-gō",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=36.259,136.906&z=15"
         }
       ]
     },
@@ -4866,6 +4910,12 @@
             "alt": "Il giardino giapponese con lo stagno e gli aceri rossi"
           }
         }
+      ],
+      "maps": [
+        {
+          "label": "Nagoya",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=35.155,136.905&z=13"
+        }
       ]
     },
     {
@@ -4890,7 +4940,7 @@
           "costNote": "",
           "place": "",
           "mapsQuery": "",
-          "note": "Metro fino al castello · colazione al konbini vicino all'ostello (non è una tappa). Metro Higashiyama Nagoya → Sakae, Meijō → Shiyakusho (uscita 7), ~20'. Biglietto giornaliero 'Donichi Eco' ¥620 (metro e bus illimitati il sabato), conviene: oggi 3-5 corse. Se il prelievo di ieri non è andato: 7-Eleven ora",
+          "note": "Metro fino al castello · colazione al konbini vicino all'ostello (non è una tappa). Metro Higashiyama Nagoya → Sakae, Meijō → Nagoya-jō (ex Shiyakusho, uscita 7), ~20'. Biglietto giornaliero 'Donichi Eco' ¥620 (metro e bus illimitati il sabato), conviene: oggi 3-5 corse. Se il prelievo di ieri non è andato: 7-Eleven ora",
           "booking": {
             "status": "none",
             "where": "",
@@ -5509,6 +5559,12 @@
             "alt": "La terrazza all'aperto in cima al grattacielo"
           }
         }
+      ],
+      "maps": [
+        {
+          "label": "Nagoya",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=35.155,136.905&z=13"
+        }
       ]
     },
     {
@@ -6043,12 +6099,12 @@
           "type": "bus",
           "fixed": false,
           "optional": false,
-          "costEur": 7.2,
+          "costEur": 7.94,
           "costEstimate": false,
           "costNote": "",
           "place": "",
           "mapsQuery": "",
-          "note": "Bus Tōkai 14:30 dalla piattaforma 3 → fermata della scuola di Nagaisaki, ~38' · 長井崎小中一貫学校入口 · Orario ufficiale Tōkai della domenica (PDF rev. 1/4/2026): 14:30 per Eri; riserva 15:30 (arrivo ~16:08: si accorcia la passeggiata). Durata 38' dal sito turistico di Numazu. ¥1.040 fino a Mito (tariffa dal 1/10/2026), fino a Nagaisaki poco di più (n.v.). Carta IC o contanti; una carta può pagare per più persone, ditelo all'autista. Si scende al punto più lontano e si torna a piedi verso il ryokan: il bus passa già davanti al molo di Awashima e a Mito.",
+          "note": "Bus Tōkai 14:30 dalla piattaforma 3 → fermata della scuola di Nagaisaki, ~38' · 長井崎小中一貫学校入口 · Orario ufficiale Tōkai della domenica (PDF rev. 1/4/2026): 14:30 per Eri; riserva 15:30 (arrivo ~16:08: si accorcia la passeggiata). Durata 38' dal sito turistico di Numazu. ¥1.170 fino alla scuola di Nagaisaki. Carta IC o contanti; una carta può pagare per più persone, ditelo all'autista. Si scende al punto più lontano e si torna a piedi verso il ryokan: il bus passa già davanti al molo di Awashima e a Mito.",
           "booking": {
             "status": "none",
             "where": "",
@@ -6594,7 +6650,13 @@
           }
         }
       ],
-      "moves": "Hikari + locale; bus Izuhakone porto → stazione; bus Tōkai → Nagaisaki"
+      "moves": "Hikari + locale; bus Izuhakone porto → stazione; bus Tōkai → Nagaisaki",
+      "maps": [
+        {
+          "label": "Numazu e Uchiura",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=35.065,138.87&z=12"
+        }
+      ]
     },
     {
       "date": "2026-11-16",
@@ -6712,7 +6774,7 @@
           "costNote": "",
           "place": "",
           "mapsQuery": "",
-          "note": "~7' verso ovest · 木負農協 · ~¥300, n.v. · Orari dei bus Mito ⇄ Nishiura solo da Jorudan ( · : gli orari ufficiali Tōkai non si aprono dall'estero). Verso ovest il lunedì: 9:05, 10:05, 11:05 (circa uno all'ora). IC o contanti.",
+          "note": "~7' verso ovest · 木負農協 · ¥310 · Orari dei bus Mito ⇄ Nishiura solo da Jorudan ( · : gli orari ufficiali Tōkai non si aprono dall'estero). Verso ovest il lunedì: 9:05, 10:05, 11:05 (circa uno all'ora). IC o contanti.",
           "booking": {
             "status": "none",
             "where": "",
@@ -7689,7 +7751,13 @@
           }
         }
       ],
-      "moves": "bus Tōkai → Nishiura e molo; bus Izuhakone → Izu-Nagaoka; Sunzu → Shuzenji; bus Tōkai"
+      "moves": "bus Tōkai → Nishiura e molo; bus Izuhakone → Izu-Nagaoka; Sunzu → Shuzenji; bus Tōkai",
+      "maps": [
+        {
+          "label": "Uchiura e Shuzenji",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=35.01,138.9&z=12"
+        }
+      ]
     },
     {
       "date": "2026-11-17",
@@ -7864,7 +7932,13 @@
       "gaps": "auto",
       "summary": "→ Tokyo; bagagli; Shibuya",
       "moves": "bus → Shuzenji Sta.; Sunzu → Mishima; Kodama → Tokyo; Chūō → Shinjuku",
-      "budgetEur": 70
+      "budgetEur": 70,
+      "maps": [
+        {
+          "label": "Tokyo",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=35.69,139.73&z=12"
+        }
+      ]
     },
     {
       "date": "2026-11-18",
@@ -7999,7 +8073,13 @@
       "gaps": "auto",
       "summary": "Akihabara + Kanda Myōjin + cena fugu",
       "moves": "metro/Yamanote",
-      "budgetEur": 90
+      "budgetEur": 90,
+      "maps": [
+        {
+          "label": "Tokyo",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=35.69,139.73&z=12"
+        }
+      ]
     },
     {
       "date": "2026-11-19",
@@ -8154,7 +8234,13 @@
       "gaps": "auto",
       "summary": "Toyosu alba + Asakusa/Ueno + Golden Gai",
       "moves": "Yamanote",
-      "budgetEur": 75
+      "budgetEur": 75,
+      "maps": [
+        {
+          "label": "Tokyo",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=35.69,139.73&z=12"
+        }
+      ]
     },
     {
       "date": "2026-11-20",
@@ -8309,7 +8395,13 @@
       "gaps": "auto",
       "summary": "Tsukiji + Nakano + Harajuku + Kōenji",
       "moves": "Yamanote",
-      "budgetEur": 70
+      "budgetEur": 70,
+      "maps": [
+        {
+          "label": "Tokyo",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=35.69,139.73&z=12"
+        }
+      ]
     },
     {
       "date": "2026-11-21",
@@ -8363,7 +8455,13 @@
       "gaps": "auto",
       "summary": "Giorno libero (si decide in viaggio)",
       "moves": "—",
-      "budgetEur": 80
+      "budgetEur": 80,
+      "maps": [
+        {
+          "label": "Tokyo",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=35.69,139.73&z=12"
+        }
+      ]
     },
     {
       "date": "2026-11-22",
@@ -8457,7 +8555,13 @@
       "gaps": "auto",
       "summary": "Giornata lenta + Roppongi",
       "moves": "metro",
-      "budgetEur": 60
+      "budgetEur": 60,
+      "maps": [
+        {
+          "label": "Tokyo",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=35.69,139.73&z=12"
+        }
+      ]
     },
     {
       "date": "2026-11-23",
@@ -8550,7 +8654,13 @@
       "gaps": "auto",
       "summary": "Festivo · shopping finale + ultima sera",
       "moves": "metro",
-      "budgetEur": 50
+      "budgetEur": 50,
+      "maps": [
+        {
+          "label": "Tokyo",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=35.69,139.73&z=12"
+        }
+      ]
     },
     {
       "date": "2026-11-24",
@@ -8559,11 +8669,11 @@
       "base": "Tokyo",
       "baseId": "",
       "status": "draft",
-      "notes": "8 valigie · prenotare online",
+      "notes": "8 valigie · Limousine Bus prenotato",
       "items": [
         {
           "id": "d24-01",
-          "time": "10:30",
+          "time": "11:00",
           "title": "Check-out (valigie al seguito)",
           "type": "logistics",
           "fixed": false,
@@ -8573,7 +8683,7 @@
           "costNote": "",
           "place": "Yume-no-ya Yoyogi #203",
           "mapsQuery": "夢の舎 代々木 Yoyogi Tokyo",
-          "note": "Anticipato per il bus delle 11:20",
+          "note": "Check-out entro le 11:00, poi si esce verso le 11:10",
           "booking": {
             "status": "none",
             "where": "",
@@ -8582,17 +8692,17 @@
         },
         {
           "id": "d24-02",
-          "time": "10:45",
-          "title": "Yoyogi → Shinjuku → Busta Shinjuku 4° piano",
-          "type": "train",
+          "time": "11:10",
+          "title": "A piedi da casa a Busta Shinjuku, 4° piano",
+          "type": "transfer",
           "fixed": false,
           "optional": false,
-          "costEur": 1,
+          "costEur": 0,
           "costEstimate": false,
           "costNote": "",
           "place": "Busta Shinjuku",
           "mapsQuery": "Busta Shinjuku",
-          "note": "Fermata A1/A2/B4 · 1 fermata Yamanote o 15' a piedi · 8 valigie: Yamanote 1 fermata è più semplice · check-out anticipato alle 10:30",
+          "note": "1,2 km, circa 16 minuti a piedi, 20 con le valigie · il bus parte dalla fermata A1",
           "booking": {
             "status": "none",
             "where": "",
@@ -8601,38 +8711,38 @@
         },
         {
           "id": "d24-03",
-          "time": "11:20",
-          "end": "13:15",
-          "title": "Limousine Bus da Busta Shinjuku 4° piano → Narita T1 13:15",
+          "time": "11:40",
+          "end": "13:30",
+          "title": "Limousine Bus da Busta Shinjuku 4° piano, fermata A1 → Narita T2 13:30",
           "type": "bus",
           "fixed": true,
           "optional": false,
-          "costEur": 20.41,
+          "costEur": 20.54,
           "costEstimate": false,
           "costNote": "",
-          "place": "Narita T1",
-          "mapsQuery": "Narita T1",
-          "note": "Da prenotare online verso fine ottobre · ¥3.600 · 2 valigie a testa in stiva, fino a 50×60×120 cm e 30 kg: le 8 valigie ci stanno · in alternativa N'EX, ¥3.250",
+          "place": "Narita T2",
+          "mapsQuery": "Narita Airport Terminal 2",
+          "note": "Prenotato il 31 ott, 4 posti · biglietto: un QR unico per tutti e 4, nella mail e nella «My page» di limousinebus.co.jp · 2 valigie a testa in stiva, fino a 50×60×120 cm e 30 kg: le 8 valigie ci stanno · cambio corsa gratis e cancellazione ¥110 fino a 5 minuti prima, dalla My page",
           "booking": {
-            "status": "todo",
-            "where": "limousinebus.co.jp (carta) · alt. N'EX",
-            "when": "~fine ott"
+            "status": "done",
+            "where": "limousinebus.co.jp",
+            "when": "31 ott"
           },
           "transportOptionId": "transfer-tokyo-yoyogi-1"
         },
         {
           "id": "d24-04",
-          "time": "13:15",
-          "title": "Aeroporto NRT",
+          "time": "13:30",
+          "title": "Aeroporto di Narita, Terminal 2",
           "type": "logistics",
           "fixed": false,
           "optional": false,
           "costEur": 0,
           "costEstimate": false,
           "costNote": "",
-          "place": "NRT",
-          "mapsQuery": "NRT Tokyo",
-          "note": "Check-in volo",
+          "place": "Narita T2",
+          "mapsQuery": "Narita Airport Terminal 2",
+          "note": "Check-in del volo MU522 China Eastern. Il Terminal 2 viene dagli aggregatori di voli: ricontrollatelo sulla carta d'imbarco o sui tabelloni.",
           "booking": {
             "status": "none",
             "where": "",
@@ -8642,7 +8752,7 @@
         {
           "id": "d24-05",
           "time": "16:55",
-          "title": "Volo di partenza",
+          "title": "Volo MU522 per Shanghai Pudong",
           "type": "transfer",
           "fixed": true,
           "optional": false,
@@ -8651,7 +8761,7 @@
           "costNote": "",
           "place": "",
           "mapsQuery": "",
-          "note": "",
+          "note": "China Eastern, da Narita Terminal 2.",
           "booking": {
             "status": "none",
             "where": "",
@@ -8660,9 +8770,15 @@
         }
       ],
       "gaps": "auto",
-      "summary": "→ NRT, volo 16:55",
-      "moves": "Limousine Bus da Busta Shinjuku ¥3.600",
-      "budgetEur": 40
+      "summary": "→ Narita T2, volo MU522 16:55",
+      "moves": "a piedi → Busta Shinjuku; Limousine Bus 11:40 → Narita T2",
+      "budgetEur": 40,
+      "maps": [
+        {
+          "label": "Tokyo",
+          "url": "https://www.google.com/maps/d/viewer?mid=1208qktxT8sm0qZsLVQ7OWls7KBmn2EI&ll=35.69,139.73&z=12"
+        }
+      ]
     }
   ]
 }

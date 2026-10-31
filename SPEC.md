@@ -40,7 +40,8 @@ site/
   sw.js  manifest.webmanifest  .nojekyll  README.md
   _styleguide.html      pagina di prova componenti/temi (non linkata nella nav)
 ```
-Nav comune (bottom bar su mobile, top bar su desktop): Home · Agenda · Trasporti · Alloggi · Luoghi · Budget.
+Nav comune (bottom bar su mobile, top bar su desktop): Home · Agenda · Trasporti · Alloggi · Luoghi · Guide (§10) · Budget
+(la mappa NON è in nav: sta in home, §14).
 
 ## 2. Schemi JSON (contratto dati). Tutti UTF-8, chiavi in inglese, testi in italiano.
 
@@ -48,7 +49,7 @@ Nav comune (bottom bar su mobile, top bar su desktop): Home · Agenda · Traspor
 ```json
 { "title": "Giappone · 7-24 novembre 2026", "subtitle": "4 persone · Osaka → Takayama → Nagoya → Numazu/Uchiura → Shuzenji → Tokyo",
   "start": "2026-11-07", "end": "2026-11-24", "people": 4, "fx": { "jpyPerEur": 185, "asOf": "2026-07-10", "source": "BCE" },
-  "timezone": "Asia/Tokyo", "mapsLink": "https://www.google.com/maps/d/edit?mid=...",
+  "timezone": "Asia/Tokyo", "mapsLink": "https://www.google.com/maps/d/viewer?mid=...",   // link di visualizzazione (§14)
   "generatedAt": "2026-10-01T20:00:00+02:00", "sourceVersion": "build_xlsx_v32.py",
   "flights": { "out": {"from":"MXP","to":"KIX","date":"2026-11-07","arr":"12:10","note":"scalo"}, "back": {"from":"NRT","to":"MXP","date":"2026-11-24","dep":"16:55"} },
   "sections": [ {"id":"agenda","label":"Agenda","icon":"calendar"}, ... ] }
@@ -359,3 +360,18 @@ locale consigliato e le alternative, ognuna con una breve presentazione, per dec
   prezzo € · ¥ + nota, orari, chiuso, Maps, «Scheda» (se c'è il dettaglio §12 per `placeId`), credit della foto. Secondo tocco chiude.
 - «Scelgo questo»: scelta per dispositivo in `localStorage['agenda.choices']` = `{"<data>|<id tappa>": "<id opzione>"}` (try/catch;
   una scelta che non corrisponde più alle opzioni attuali si ignora). Nessun backend; la tappa e i costi non cambiano.
+
+## 14. Mappa del viaggio (21 ott 2026) — Google My Maps
+- `trip.mapsLink` = link di **visualizzazione** della My Maps (`https://www.google.com/maps/d/viewer?mid=…`, funziona senza login).
+  Il build ha il link di modifica (`/maps/d/edit`): lo sovrascrive `site_overrides.json › trip.mapsLink`. Un link `/edit`
+  nel sito è un errore di `--check`.
+- Nav: nessuna voce «Mappa» (21 ott, cliente: a 8 voci la barra in basso non ci sta sul telefono).
+- Home: card «Mappa del viaggio» subito dopo la card del giorno (`mapCard` in `pages-home.js`): titolo, riga «Pin numerati
+  GG·NN nell'ordine della giornata, un livello per blocco», pulsante pieno «Apri la mappa» → `trip.mapsLink` (nuova scheda).
+  Durante il viaggio, se il giorno di oggi ha `maps`, un pulsante secondario «Oggi · <label>» per inquadratura.
+  La card «In tasca» ha solo i voli (niente secondo pulsante mappa).
+- Mappa del giorno: `site_overrides.json › mapViews` = `views` (`{id: {label, lat, lon, zoom}}`, inquadrature del viewer) +
+  `days` (`{data ISO: [id, …]}`, nell'ordine della giornata). L'exporter scrive
+  `agenda.days[].maps = [{"label": "Kyoto", "url": "<mapsLink>&ll=<lat>,<lon>&z=<zoom>"}]` (assente se il giorno non ha view).
+  `giorno.html`: in testa, un pulsante pieno «Mappa del giorno» (con più view: «Mappa · <label>», il primo pieno, gli altri
+  secondari) che apre il viewer in una nuova scheda, e sotto la riga «Pin numerati GG·NN nell'ordine della giornata».

@@ -178,6 +178,11 @@
 .giorno__head .h1 { margin: 0; font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem); line-height: 1.15; }
 .giorno__head p { margin: 0; }
 .giorno__notes { line-height: 1.25rem; }
+/* Mappa del giorno (SPEC §14): pulsante pieno + riga di legenda */
+.giorno__map { display: flex; flex-direction: column; gap: 6px; }
+.giorno__map-btns { flex-wrap: wrap; gap: var(--space-2); }
+.giorno__map .btn { min-block-size: 44px; }
+.giorno__map .btn .icon:last-child { width: 14px; height: 14px; opacity: .8; }
 
 /* nastro del giorno: l'elemento memorabile. SVG con viewBox in minuti (preserveAspectRatio none):
    il gap fra segmenti contigui è il bordo in --card a larghezza fissa (non-scaling-stroke). */
