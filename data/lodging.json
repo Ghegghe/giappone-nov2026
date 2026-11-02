@@ -157,20 +157,20 @@
   ],
   "logistics": {
     "luggage": {
-      "choice": "Da Osaka all'ufficio Yamato di Yoyogi",
+      "choice": "Da Osaka all'ufficio Yamato di Yoyogi, con una valigia che passa da Nagoya",
       "steps": [
         {
           "phase": "Spedizione",
-          "what": "Spedite le 4 valigie all'ufficio Yamato di Yoyogi",
+          "what": "Spedite 3 valigie all'ufficio Yamato di Yoyogi e 1 all'ufficio Yamato di Nagoya",
           "when": "mar 10 nov, sera, entro le 21",
-          "notes": "Una valigia a testa, taglia 160, ¥2.470 l'una con gli sconti per la consegna a mano e il ritiro in ufficio. Si spediscono dall'ufficio Yamato Osaka-Umeda (Umeshin), Taiyūji-chō 1-17, palazzo Umeda Asuka: circa 12 minuti a piedi dal BON, aperto tutti i giorni fino alle 21. Non dal konbini: da lì il ritiro in ufficio non si può scegliere. Una bolla per valigia, con la casella «ritiro in ufficio» e consegna il 16 novembre. Tenete le ricevute: servono al ritiro con il passaporto. Il servizio si chiama 営業所受け取りサービス.",
+          "notes": "Una valigia a testa, taglia 160. Si spediscono dall'ufficio Yamato 大阪梅新営業所 (Osaka-Umeshin), Taiyūji-chō 1-17, palazzo Umeda Asuka: circa 12 minuti a piedi dal BON, aperto tutti i giorni fino alle 21. Una bolla per valigia, con il ritiro in ufficio (営業所受け取り) segnato sulla bolla: 3 per l'ufficio di Yoyogi 2-chōme, consegna il 16 novembre, ¥3.000 l'una; 1 per l'ufficio 名古屋城西営業所 di Nagoya, a 9 minuti a piedi dal Glocal, consegna l'11 novembre, ¥2.860. I prezzi tengono già conto degli sconti per la consegna a mano (−¥100) e per il ritiro in ufficio (−¥60). Non dal konbini: da lì il ritiro in ufficio non si può scegliere. Tenete le ricevute: servono al ritiro con il passaporto.",
           "id": "bag-1"
         },
         {
           "phase": "In transito",
-          "what": "Viaggiate con il solo bagaglio a mano",
+          "what": "Viaggiate con il solo bagaglio a mano; a Nagoya torna una valigia",
           "when": "11 → 17 nov",
-          "notes": "Sei giorni leggeri: Takayama, Shirakawa, Nagoya, Numazu e Uchiura, Shuzenji. Niente valigie sui bus locali e niente posti oversize sugli Shinkansen.",
+          "notes": "Sei giorni leggeri: Takayama, Shirakawa, Nagoya, Numazu e Uchiura, Shuzenji. Niente valigie sui bus locali e niente posti oversize sugli Shinkansen. Gio 12, dopo il check-in al Glocal, uno ritira la valigia di Nagoya all'ufficio Yamato (chiude alle 20; se il bus fa tardi, ven 13 alle 8). Sab 14 uno dei 3 che non vanno al concerto la rispedisce dallo stesso ufficio all'ufficio di Yoyogi, consegna il 16, ¥2.860: orario libero, entro le 20, comodo la mattina verso le 8. Prima si tolgono le cose per il concerto e per il 15-16 e si mettono nello zaino.",
           "id": "bag-2"
         },
         {
@@ -200,7 +200,7 @@
         },
         {
           "name": "Osaka → ufficio Yamato Yoyogi (営業所受け取りサービス)",
-          "how": "Mar 10 nov sera, entro le 21: le 4 valigie all'ufficio Yamato Osaka-Umeda (Umeshin), Taiyūji-chō 1-17, palazzo Umeda Asuka, circa 12' a piedi dal BON. Bolla di carta col destinatario ヤマト運輸 渋谷代々木2丁目営業所, 〒151-0053 Shibuya-ku Yoyogi 2-23-1-127 (cod. 132810), casella «ritiro in ufficio», consegna 16 nov. Mar 17 nov dopo le 12: ritiro con il passaporto (ufficio feriali 12-20, chiuso sab/dom), circa 10' a piedi da casa.",
+          "how": "Mar 10 nov sera, entro le 21: le 4 valigie all'ufficio Yamato 大阪梅新営業所 (Osaka-Umeshin), Taiyūji-chō 1-17, palazzo Umeda Asuka, circa 12' a piedi dal BON. 3 bolle col destinatario ヤマト運輸 渋谷代々木2丁目営業所, 〒151-0053 Shibuya-ku Yoyogi 2-23-1-127 (cod. 132810), ritiro in ufficio (営業所受け取り), consegna 16 nov; 1 bolla per l'ufficio ヤマト運輸 名古屋城西営業所, 〒453-0013 Nakamura-ku Kameshima 2-31-20, consegna 11 nov: si ritira il 12 sera e si rispedisce a Yoyogi il 14. Mar 17 nov dopo le 12: ritiro delle 4 con il passaporto (ufficio feriali 12-20, chiuso sab/dom), circa 10' a piedi da casa.",
           "eurGroup": 57,
           "pro": "Nessuno deve aspettare in casa; indipendente dall'host; conservazione 7 gg dall'arrivo",
           "con": "Il servizio non si può usare spedendo da konbini: bisogna andare all'ufficio Yamato (o chiamare il ritiro, tel. inglese 0120-67-9625) · ultimo tratto a piedi con 4 valigie",
@@ -244,14 +244,14 @@
           "id": "opt-6"
         }
       ],
-      "rules": "Sugli Shinkansen Tokaido le valigie da 160 a 250 cm, sommando i tre lati, vogliono il posto «oversize» prenotato: gratis su smartEX, ¥1.000 di penale senza. Sotto i 160 cm vanno in cappelliera. Yamato consegna il giorno dopo, e la data si può fissare fino a 7 giorni dopo la spedizione. La taglia 160 arriva a 25 kg; oltre si passa alla 180, circa ¥300 in più. Sul treno Hida non ci sono regole oversize: le valigie vanno nei vani a fine carrozza.",
+      "rules": "Sugli Shinkansen Tokaido le valigie da 160 a 250 cm, sommando i tre lati, vogliono il posto «oversize» prenotato: gratis su smartEX, ¥1.000 di penale senza. Sotto i 160 cm vanno in cappelliera. Yamato consegna il giorno dopo, e la data si può fissare fino a 7 giorni dopo la spedizione. La taglia 160 arriva a 25 kg; oltre si passa alla 180: ¥1.320 in più da Osaka a Tokyo, ¥660 in più sulle tratte Osaka → Nagoya e Nagoya → Tokyo. Sul treno Hida non ci sono regole oversize: le valigie vanno nei vani a fine carrozza.",
       "openQuestions": [
         {
           "n": 1,
           "question": "Quanto possono essere grandi le 4 valigie dell'andata, ancora da comprare?",
           "who": "",
           "why": "Devono stare nella taglia Yamato 160.",
-          "answer": "Lunghezza più larghezza più altezza fino a 160 cm, e al massimo 25 kg piene. Per esempio 70×48×30 fa 148 e va bene; 77×52×30 fa 159, al limite. Sopra 160 si passa alla taglia 180, circa ¥300 in più; sopra 250 non si spedisce. Per la seconda valigia, comprata a Tokyo, conta solo il Limousine Bus: fino a 120×60×50 cm e 30 kg.",
+          "answer": "Lunghezza più larghezza più altezza fino a 160 cm, e al massimo 25 kg piene. Per esempio 70×48×30 fa 148 e va bene; 77×52×30 fa 159, al limite. Sopra 160 cm o 25 kg si passa alla taglia 180: ¥1.320 in più da Osaka a Tokyo, ¥660 in più per la valigia che passa da Nagoya, su ogni tratta; sopra 250 non si spedisce. Per la seconda valigia, comprata a Tokyo, conta solo il Limousine Bus: fino a 120×60×50 cm e 30 kg.",
           "status": "resolved",
           "id": "q1"
         },
@@ -278,7 +278,7 @@
           "question": "Da dove si spedisce a Osaka, visto che il BON non ha reception?",
           "who": "Yamato FAQ a_id 1420",
           "why": "Il ritiro in ufficio non è disponibile se si spedisce da konbini/PUDO",
-          "answer": "Dall'ufficio Yamato Osaka-Umeda (Umeshin): Taiyūji-chō 1-17, palazzo Umeda Asuka, 〒530-0051, circa 12 minuti a piedi dal BON. È aperto tutti i giorni, la sera fino alle 21: le valigie si consegnano la sera del 10, perché l'11 il treno parte alle 7:58. L'ufficio di Banzai-chō indicato prima non esiste più.",
+          "answer": "Dall'ufficio Yamato 大阪梅新営業所 (Osaka-Umeshin): Taiyūji-chō 1-17, palazzo Umeda Asuka, 〒530-0051, circa 12 minuti a piedi dal BON. È aperto tutti i giorni, la sera fino alle 21: le valigie si consegnano la sera del 10, perché l'11 il treno parte alle 7:58. L'ufficio di Banzai-chō indicato prima non esiste più.",
           "status": "resolved",
           "id": "q4"
         },

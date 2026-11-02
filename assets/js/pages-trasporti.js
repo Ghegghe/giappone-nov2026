@@ -1,8 +1,9 @@
-// pages-trasporti.js — trasporti.html: tab Tratte · Aeroporti · Prenotazioni · Scadenze (ordine e id fissi: test e link #scadenze).
+// pages-trasporti.js — trasporti.html: tab Tratte · Aeroporti · Spedizioni · Prenotazioni · Scadenze (id fissi: test e link #scadenze).
+// Spedizioni (SPEC §15): una card per passo Yamato (ufficio, indirizzo in giapponese, Maps, orari, cosa si fa, costo, cosa portare).
 // Tratte: in testa la catena del viaggio (basi e tratte in ordine, ogni tratta porta alla sua card), poi le card dense.
 // Scadenze: in testa la striscia "da oggi alla partenza" (dotTimeline di charts.js, con fallback testuale), poi la lista per mese.
 import { fmtDate, fmtEur, fmtJpy, todayInTokyo } from './app.js';
-import { html, mount, icon, extLink, safeUrl, setupTabs, monthLabel, fxRate, internalLinks, deadlineLabel, deadlineState, daysBetween } from './pages.js';
+import { html, mount, icon, extLink, safeUrl, setupTabs, monthLabel, fxRate, internalLinks, deadlineLabel, deadlineState, daysBetween, mapsBtn, pageUrl } from './pages.js';
 
 const money = (eur, rate) => (eur == null || eur === '' ? '' : html`<span class="mono">${fmtEur(eur)}</span>${rate ? html` <span class="mono muted small">${fmtJpy(eur, rate)}</span>` : ''}`);
 const BOOK = { todo: ['badge--todo', 'da prenotare'], done: ['badge--done', 'prenotato'] };
@@ -156,6 +157,65 @@ function chain(t, stays, rate, today) {
   </nav>`;
 }
 
+// ---------- Spedizioni (SPEC §15) ----------
+const yen = (n) => `¥${String(Math.round(Number(n) || 0)).replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
+const bagsN = (n) => (Number(n) === 1 ? '1 valigia' : `${n} valigie`);
+
+function shipCard(st, sh, rate) {
+  const offs = sh.offices || {};
+  const o = offs[st.officeId] || {};
+  const send = st.kind === 'send';
+  const what = send
+    ? html`<ul class="al-notes">${(st.bags || []).map((b) => { const to = offs[b.to] || {}; return html`<li><strong>${bagsN(b.count)}</strong> → ${to.name || b.to} <span lang="ja">(${to.nameJa ? to.nameJa.replace(/^ヤマト運輸\s*/, '') : ''})</span>, consegna <strong>${fmtDate(b.delivery)}</strong> · ${yen(b.jpyEach)}${Number(b.count) > 1 ? ' l\'una' : ''}</li>`; })}</ul>`
+    : html`Ritiro di <strong>${bagsN(st.count)}</strong>`;
+  return html`<article class="card tr-leg tr-ship stack" id="${st.id}" tabindex="-1">
+    <header class="tr-leg__head">
+      <h3 class="h3">${send ? 'Spedizione' : 'Ritiro'} · ${o.name || st.officeId}</h3>
+      <span class="badge mono">${st.time}</span>
+    </header>
+    <p class="tr-ship__ja" lang="ja">${o.nameJa || ''}</p>
+    <p class="small muted">${o.reading || ''}</p>
+    <p class="tr-ship__addr" lang="ja">${o.addressJa || ''}</p>
+    <div class="row">${mapsBtn(o.mapsQuery, 'Apri in Maps', 'btn btn--ghost btn--sm')}</div>
+    <dl class="kv small">
+      <dt>Quando</dt><dd><span class="mono">${st.time}</span>${st.timeNote ? html` · ${st.timeNote}` : ''}</dd>
+      <dt>Chi</dt><dd>${st.who}</dd>
+      <dt>Cosa</dt><dd>${what}</dd>
+      ${send && sh.service ? html`<dt>Bolla</dt><dd><span lang="ja">${sh.service}</span>${sh.serviceNote ? html` · ${sh.serviceNote}` : ''}</dd>` : ''}
+      <dt>Costo</dt><dd>${send ? html`<span class="mono">${yen(st.costJpy)}</span> <span class="mono muted">${fmtEur(st.costEur)}</span> <span class="muted">in tutto, netti</span>` : 'niente: già pagato alla spedizione'}</dd>
+      <dt>Orari</dt><dd>${o.hours || ''}${o.hoursSource ? html` <span class="muted">(${o.hoursSource}${o.verified ? '' : ', n.v.'})</span>` : ''}</dd>
+      ${o.access ? html`<dt>A piedi</dt><dd>${o.access}</dd>` : ''}
+      ${o.code ? html`<dt>Codice</dt><dd class="mono">${o.code}</dd>` : ''}
+      <dt>Portare</dt><dd>${st.bring}</dd>
+    </dl>
+    ${st.note ? html`<p class="small">${st.note}</p>` : ''}
+  </article>`;
+}
+
+function shipping(t, rate) {
+  const sh = t.shipping;
+  if (!sh || !(sh.steps || []).length) return html`<p class="empty">Nessuna spedizione.</p>`;
+  const steps = [...sh.steps].sort((a, b) => `${a.date} ${a.time}`.localeCompare(`${b.date} ${b.time}`));
+  const groups = new Map();
+  steps.forEach((x) => { if (!groups.has(x.date)) groups.set(x.date, []); groups.get(x.date).push(x); });
+  const sends = steps.filter((x) => x.kind === 'send');
+  return html`<div class="stack tr-cards">
+    <p class="small muted">Valigie spedite con Yamato e ritirate in ufficio. Bolla campo per campo, frasi da mostrare al banco e tracking: nella guida.</p>
+    ${[...groups].map(([d, xs]) => html`<section class="stack tr-day">
+      <h2 class="section-title tr-day__title">${fmtDate(d)}</h2>
+      ${xs.map((x) => shipCard(x, sh, rate))}
+    </section>`)}
+    <section class="card stack tr-ship__sum" aria-labelledby="tr-ship-sum">
+      <h2 class="h3" id="tr-ship-sum">Riepilogo dei costi</h2>
+      <dl class="kv small">
+        ${sends.map((x) => html`<dt>${fmtDate(x.date, { weekday: false })}</dt><dd>${(x.bags || []).map((b) => `${b.count} × ${yen(b.jpyEach)}`).join(' + ')} = <span class="mono">${yen(x.costJpy)}</span></dd>`)}
+        <dt>Totale</dt><dd><strong class="mono">${yen(sh.totalJpy)}</strong> <span class="mono muted">${fmtEur(sh.totalEur)}</span> · <span class="mono">${yen(sh.totalJpyPerPerson)}</span> <span class="muted">a testa</span></dd>
+      </dl>
+      <div class="row"><a class="btn btn--ghost btn--sm" href="${pageUrl('guide.html', { g: sh.guide || 'spedire-valigie' })}">${icon('book')}<span>Guida: spedire le valigie</span></a></div>
+    </section>
+  </div>`;
+}
+
 // ---------- Prenotazioni ----------
 /** Vista estesa: una card per prenotazione, tutto visibile. */
 function guide(t) {
@@ -278,12 +338,15 @@ export async function render(root, { trip, loadData }) {
   const start = (trip && trip.start) || '';
   const stays = [...((lodging && lodging.stays) || [])].sort((a, b) => String(a.checkIn).localeCompare(String(b.checkIn)));
   const transferIds = new Set((t.transfers || []).map((x) => x.id));
+  const shipIds = new Set(((t.shipping && t.shipping.steps) || []).map((x) => x.id));
+  const tabOf = (id) => (transferIds.has(id) ? 'aeroporti' : shipIds.has(id) ? 'spedizioni' : null);
   mount(root, html`<h1 class="h1">Trasporti</h1><div data-tabs></div>`);
   const todoN = (t.checklist || []).filter((c) => c.status !== 'done').length;
   const wire = () => { if (charts && typeof charts.wire === 'function') queueMicrotask(() => { try { charts.wire(root); } catch (e) { console.warn('[trasporti] wire', e); } }); };
   const tabs = setupTabs(root.querySelector('[data-tabs]'), [
     { id: 'tratte', label: 'Tratte' },
     { id: 'aeroporti', label: 'Aeroporti' },
+    { id: 'spedizioni', label: 'Spedizioni' },
     { id: 'prenotazioni', label: 'Prenotazioni' },
     { id: 'scadenze', label: 'Scadenze', count: todoN || null },
   ], (id) => {
@@ -292,6 +355,7 @@ export async function render(root, { trip, loadData }) {
         <div class="stack tr-cards">${byDate(t.legs || [], rate)}${totalChosen(t, rate)}</div></div>`;
     }
     if (id === 'aeroporti') return byDate(t.transfers || [], rate);
+    if (id === 'spedizioni') return shipping(t, rate);
     if (id === 'prenotazioni') return guide(t);
     wire();
     return checklist(t, todayIt, start, charts);
@@ -303,16 +367,16 @@ export async function render(root, { trip, loadData }) {
     if (!a) return;
     const id = a.getAttribute('href').slice(1);
     e.preventDefault();
-    if (goTo(root, tabs, id, transferIds.has(id) ? 'aeroporti' : null)) {
+    if (goTo(root, tabs, id, tabOf(id))) {
       try { history.replaceState(null, '', '#' + id); } catch (err) { /* ignore */ }
     }
   });
   // apertura con #leg-… o #transfer-… (link interni, reload dopo un tap sulla catena)
   const h = decodeURIComponent(location.hash.slice(1));
-  if (h && !['tratte', 'aeroporti', 'prenotazioni', 'scadenze'].includes(h)) {
+  if (h && !['tratte', 'aeroporti', 'spedizioni', 'prenotazioni', 'scadenze'].includes(h)) {
     // tabs.show riscrive l'hash con l'id della tab: si rimette quello della card, come nel click
     requestAnimationFrame(() => {
-      if (goTo(root, tabs, h, transferIds.has(h) ? 'aeroporti' : null)) {
+      if (goTo(root, tabs, h, tabOf(h))) {
         try { history.replaceState(null, '', '#' + h); } catch (err) { /* ignore */ }
       }
     });

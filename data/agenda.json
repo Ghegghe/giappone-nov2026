@@ -2118,7 +2118,7 @@
           "costNote": "",
           "place": "BON Condominium Umeda",
           "mapsQuery": "BON Condominium Umeda Osaka",
-          "note": "Valigie chiuse (preparate la mattina), con noi restano solo gli zaini · Da domani fino al 17 si vive con lo zaino: ricambi per 6 notti, caricabatterie, documenti, contanti, cover seal.",
+          "note": "Valigie chiuse (preparate la mattina), con noi restano solo gli zaini · Da domani si vive con lo zaino fino al 17 (solo a Nagoya, dal 12 sera al 14 mattina, c'è anche la valigia che passa da lì): ricambi per 6 notti, caricabatterie, documenti, contanti, cover seal.",
           "booking": {
             "status": "none",
             "where": "",
@@ -2133,18 +2133,24 @@
           "type": "sight",
           "fixed": false,
           "optional": false,
-          "costEur": 14,
+          "costEur": 17,
           "costEstimate": false,
-          "costNote": "¥2.630 a valigia (taglia 160), −¥100 se portata a mano",
-          "place": "ヤマト運輸 大阪梅田営業所（大阪梅新）· Yamato Transport Osaka-Umeda",
-          "mapsQuery": "ヤマト運輸 大阪梅田営業所 太融寺町1-17 梅田アスカビル",
-          "note": "Ufficio Yamato Osaka-Umeda (Umeshin), Taiyūji-chō 1-17, palazzo Umeda Asuka: ~12' a piedi, aperto fino alle 21. L'ufficio di Banzai-chō non esiste più. Una bolla di carta per valigia: destinatario ufficio Yamato Yoyogi 2-chome (cod. 132810), casella «ritiro in ufficio», consegna 16 nov, nostro nome e cellulare giapponese. Ritiro a Tokyo dal 17 dopo le 12, con le 4 ricevute e il passaporto.",
-          "nick": "L'ufficio del corriere dove si lasciano le valigie per Tokyo",
+          "costNote": "¥3.000 a valigia per Tokyo, ¥2.860 quella per Nagoya (taglia 160 in contanti, già tolti −¥100 per la portata in ufficio e −¥60 per il ritiro in ufficio); ¥11.860 per le 4",
+          "place": "ヤマト運輸 大阪梅新営業所 · Yamato Transport Osaka-Umeshin",
+          "mapsQuery": "ヤマト運輸 大阪梅新営業所 太融寺町1-17",
+          "note": "Ufficio ヤマト運輸 大阪梅新営業所 (Osaka-Umeshin), Taiyūji-chō 1-17, palazzo Umeda Asuka: ~12' a piedi, chiude alle 21 (Google Maps, 24 ott). Una bolla di carta per valigia, con il ritiro in ufficio (営業所受け取り) segnato sulla bolla: 3 valigie per l'ufficio Yamato Yoyogi 2-chōme (渋谷代々木2丁目営業所, cod. 132810), consegna 16 nov, ¥3.000 l'una; 1 valigia per l'ufficio 名古屋城西営業所 (Kameshima 2-31-20, 〒453-0013), consegna 11 nov, ¥2.860. Nome come sul passaporto e cellulare italiano con +39. Oltre 25 kg è taglia 180: ¥1.320 in più per Tokyo, ¥660 per Nagoya. Tenete e fotografate le 4 ricevute: servono al ritiro con il passaporto, a Nagoya il 12 e a Tokyo il 17.",
+          "nick": "L'ufficio del corriere da cui partono le valigie (Tokyo e Nagoya)",
           "booking": {
             "status": "none",
             "where": "",
             "when": ""
-          }
+          },
+          "links": [
+            {
+              "href": "trasporti.html#ship-10",
+              "label": "Spedizioni"
+            }
+          ]
         },
         {
           "id": "d10-16",
@@ -3697,7 +3703,34 @@
         {
           "id": "d12-23",
           "time": "19:15",
-          "end": "20:45",
+          "end": "19:35",
+          "title": "Una persona ritira la valigia all'ufficio Yamato",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 0,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "ヤマト運輸 名古屋城西営業所 · Yamato Transport Nagoya-Jōsai",
+          "mapsQuery": "ヤマト運輸 名古屋城西営業所",
+          "note": "9' a piedi, 600 m dal Glocal verso sud-ovest; chiude alle 20:00 (Google Maps, n.v. sul localizzatore Yamato). Passaporto e ricevuta (anche la foto). Ritira chi è scritto sulla bolla come destinatario, oppure porta una copia del suo passaporto. Se il bus arriva tardi e non si fa in tempo: ven 13 alle 8:00, prima di uscire alle 8:15. Gli altri intanto si sistemano: la cena slitta di ~20'.",
+          "nick": "L'ufficio del corriere dove passa la valigia di Nagoya",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          },
+          "links": [
+            {
+              "href": "trasporti.html#ship-12",
+              "label": "Spedizioni"
+            }
+          ]
+        },
+        {
+          "id": "d12-24",
+          "time": "19:35",
+          "end": "21:05",
           "title": "Cena a caso a Nagoya",
           "type": "free",
           "fixed": false,
@@ -3799,8 +3832,8 @@
           }
         },
         {
-          "id": "d12-24",
-          "time": "20:45",
+          "id": "d12-25",
+          "time": "21:05",
           "title": "Serata libera",
           "type": "free",
           "fixed": false,
@@ -4929,6 +4962,33 @@
       "items": [
         {
           "id": "d14-01",
+          "time": "08:00",
+          "end": "08:25",
+          "title": "Uno dei 3 rispedisce la valigia a Tokyo",
+          "type": "sight",
+          "fixed": false,
+          "optional": false,
+          "costEur": 4,
+          "costEstimate": false,
+          "costNote": "",
+          "place": "ヤマト運輸 名古屋城西営業所 · Yamato Transport Nagoya-Jōsai",
+          "mapsQuery": "ヤマト運輸 名古屋城西営業所",
+          "note": "Uno dei 3 che non vanno al concerto. Orario indicativo. Orario libero: va bene quando si vuole, entro la chiusura delle 20:00 (Google Maps; n.v. sul localizzatore Yamato). Col programma di oggi conviene la mattina, 9' a piedi dal Glocal (apre alle 8:00), prima di uscire alle 8:40: il pomeriggio gli altri 3 sono a Nagashima e rientrano alle 21:05, a ufficio chiuso. Prima togliere dalla valigia tutto quello che serve per il concerto e per il 15-16 (Numazu, ryokan) e metterlo nello zaino. Nuova bolla con «営業所受け取り» segnato: ufficio Yamato Yoyogi 2-chōme (渋谷代々木2丁目営業所, 〒151-0053, cod. 132810), consegna 16 nov (Yoyogi è chiuso sabato e domenica); mittente Glocal, 〒453-0014 名古屋市中村区則武1-21-3. ¥2.860 (taglia 160, già scontata). Foto della ricevuta: il 17 a Yoyogi le valigie sono di nuovo 4.",
+          "nick": "L'ufficio del corriere dove passa la valigia di Nagoya",
+          "booking": {
+            "status": "none",
+            "where": "",
+            "when": ""
+          },
+          "links": [
+            {
+              "href": "trasporti.html#ship-14",
+              "label": "Spedizioni"
+            }
+          ]
+        },
+        {
+          "id": "d14-02",
           "time": "08:40",
           "end": "09:00",
           "title": "Tutti e 4",
@@ -4948,7 +5008,7 @@
           }
         },
         {
-          "id": "d14-02",
+          "id": "d14-03",
           "time": "09:00",
           "end": "10:00",
           "title": "Honmaru Goten",
@@ -4975,7 +5035,7 @@
           }
         },
         {
-          "id": "d14-03",
+          "id": "d14-04",
           "time": "10:00",
           "end": "10:55",
           "title": "Castello di Nagoya",
@@ -5003,10 +5063,10 @@
           }
         },
         {
-          "id": "d14-04",
+          "id": "d14-05",
           "time": "10:55",
           "end": "11:25",
-          "title": "Gli altri 3: liberi",
+          "title": "Metro Meijō Nagoya-jō → Yabachō (3 fermate) + 7' a piedi",
           "type": "train",
           "fixed": false,
           "optional": false,
@@ -5015,7 +5075,7 @@
           "costNote": "",
           "place": "Yabachō",
           "mapsQuery": "Yabachō Station",
-          "note": "Acquario del porto, castello, Osu o Sakae: si decide lì per voglia e meteo",
+          "note": "Stima, non verificata porta a porta",
           "booking": {
             "status": "none",
             "where": "",
@@ -5023,7 +5083,7 @@
           }
         },
         {
-          "id": "d14-05",
+          "id": "d14-06",
           "time": "11:30",
           "end": "12:40",
           "title": "Pranzo tutti e 4",
@@ -5130,7 +5190,7 @@
           }
         },
         {
-          "id": "d14-06",
+          "id": "d14-07",
           "time": "12:45",
           "end": "13:15",
           "title": "Concertista",
@@ -5150,7 +5210,7 @@
           }
         },
         {
-          "id": "d14-07",
+          "id": "d14-08",
           "time": "12:45",
           "end": "14:25",
           "title": "Gli altri 3",
@@ -5170,7 +5230,7 @@
           }
         },
         {
-          "id": "d14-08",
+          "id": "d14-09",
           "time": "14:25",
           "end": "16:30",
           "title": "Nagashima Spa Land + Yuami no Shima",
@@ -5197,7 +5257,7 @@
           }
         },
         {
-          "id": "d14-09",
+          "id": "d14-10",
           "time": "16:30",
           "end": "18:05",
           "title": "Terme Yuami no Shima (chi può)",
@@ -5224,7 +5284,7 @@
           }
         },
         {
-          "id": "d14-10",
+          "id": "d14-11",
           "time": "18:35",
           "end": "20:15",
           "title": "Nabana no Sato (illuminazione)",
@@ -5252,7 +5312,7 @@
           }
         },
         {
-          "id": "d14-11",
+          "id": "d14-12",
           "time": "19:30",
           "end": "21:30",
           "title": "Concertista",
@@ -5272,7 +5332,7 @@
           }
         },
         {
-          "id": "d14-12",
+          "id": "d14-13",
           "time": "20:25",
           "end": "21:05",
           "title": "Gli altri 3",
@@ -5292,7 +5352,7 @@
           }
         },
         {
-          "id": "d14-13",
+          "id": "d14-14",
           "time": "21:30",
           "end": "23:15",
           "title": "Ritrovo",
@@ -5399,7 +5459,7 @@
           }
         },
         {
-          "id": "d14-14",
+          "id": "d14-15",
           "time": "23:15",
           "end": "23:30",
           "title": "A piedi al Glocal (850 m, 12'), borse pronte",
@@ -6039,7 +6099,7 @@
           "note": "Paratia panoramica · 150 m più a ovest, ascensore a 30 m: Fuji, baia e già la costa di Uchiura; ¥100. Alle 13:45 si scende: ~9' a piedi alla fermata 'Numazu-kō'",
           "nick": "La torre-cancello del porto con la vista sul Fuji",
           "image": {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Byuo.jpg/960px-Byuo.jpg",
+            "url": "assets/img/places/view-o.webp",
             "credit": "Alpsdake · CC BY-SA 4.0 · Wikimedia Commons",
             "page": "https://commons.wikimedia.org/wiki/File:Byuo.jpg",
             "alt": "La torre-cancello del porto con la vista sul Fuji"
@@ -6592,7 +6652,7 @@
           "costNote": "gratis",
           "mapsQuery": "Kanukiyama Park Numazu",
           "image": {
-            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Mount_Kanuki_20120730.jpg/960px-Mount_Kanuki_20120730.jpg",
+            "url": "assets/img/places/kanukiyama-park.webp",
             "credit": "Batholith · Public domain · Wikimedia Commons",
             "page": "https://commons.wikimedia.org/wiki/File:Mount_Kanuki_20120730.jpg",
             "alt": "La collinetta panoramica sopra Numazu"
@@ -7826,7 +7886,13 @@
             "status": "done",
             "where": "",
             "when": ""
-          }
+          },
+          "links": [
+            {
+              "href": "trasporti.html#ship-17",
+              "label": "Spedizioni"
+            }
+          ]
         },
         {
           "id": "d17-04",
@@ -7947,7 +8013,7 @@
       "base": "Tokyo",
       "baseId": "tokyo",
       "status": "draft",
-      "notes": "Prenotare Torafugutei",
+      "notes": "",
       "items": [
         {
           "id": "d18-01",
@@ -8032,19 +8098,18 @@
         {
           "id": "d18-05",
           "time": "19:30",
-          "title": "Cena fugu — Torafugutei Shinjuku",
+          "title": "Cena libera a Shinjuku",
           "type": "food",
           "fixed": false,
           "optional": false,
-          "costEur": 35,
+          "costEur": 25,
           "costEstimate": false,
           "costNote": "",
-          "place": "Torafugutei Shinjuku Annex",
-          "mapsQuery": "Torafugutei Shinjuku Annex Tokyo",
-          "note": "Prenotare qualche giorno prima",
-          "placeId": "torafugutei-shinjuku-annex",
+          "place": "Shinjuku",
+          "mapsQuery": "Shinjuku Tokyo",
+          "note": "Da definire con il blocco Tokyo. Torafugutei scartato (2 nov).",
           "booking": {
-            "status": "todo",
+            "status": "none",
             "where": "Hot Pepper Gourmet · tel 03-3209-2919",
             "when": "~inizio nov"
           }

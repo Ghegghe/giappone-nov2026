@@ -375,3 +375,22 @@ locale consigliato e le alternative, ognuna con una breve presentazione, per dec
   `agenda.days[].maps = [{"label": "Kyoto", "url": "<mapsLink>&ll=<lat>,<lon>&z=<zoom>"}]` (assente se il giorno non ha view).
   `giorno.html`: in testa, un pulsante pieno «Mappa del giorno» (con più view: «Mappa · <label>», il primo pieno, gli altri
   secondari) che apre il viewer in una nuova scheda, e sotto la riga «Pin numerati GG·NN nell'ordine della giornata».
+
+## 15. Spedizioni Yamato (2 nov 2026) — tab «Spedizioni» di `trasporti.html`
+Richiesta del cliente: le informazioni operative sulle valigie spedite, da usare sul posto, in una tab dei Trasporti.
+- Sorgente: `site_overrides.json › transport.shipping` (unico posto): `offices` `{id: {nameJa, reading, name, addressJa,
+  mapsQuery, hours, hoursSource, verified, access?, code?}}` + `steps` `[{id: "ship-…", date, time, timeNote?, kind: send|pickup,
+  officeId, who, bags?: [{count, to: <officeId>, delivery, jpyEach, fare?}], count? (ritiri), note?, bring, agendaItem?}]`
+  + `service`/`serviceNote` (ritiro in ufficio 営業所受け取り, da scrivere sulla bolla) + `guide` (id della guida).
+- Calcolati (`export_site_costs.derive`): `steps[].costJpy/costEur` = Σ count × jpyEach, `totalJpy/totalEur/totalJpyPerPerson/
+  totalEurPerPerson`; la voce comune del budget `spedizione` prende `costJpy` = totale ÷ persone (se non c'è una spesa pagata).
+  `export_site_data.link_shipping` aggiunge alla tappa `agendaItem` il link «Spedizioni» → `trasporti.html#<id del passo>`.
+- Controlli: schema in `validate` (uffici esistenti, kind, date ISO, consegna dopo la spedizione); `coherence` (errori di
+  `--check`): costi e totali = somme, budget = totale ÷ persone, la tappa esiste, è dello stesso giorno, parla di valigie/Yamato
+  e ha il link. Se le scalette spostano gli id delle tappe, si aggiorna `agendaItem`.
+- UI (`pages-trasporti.js`): tab `spedizioni` fra Aeroporti e Prenotazioni (gli altri id non cambiano; la barra delle tab
+  scorre in orizzontale). Card per passo, raggruppate per data: ufficio (giapponese + lettura), indirizzo in giapponese
+  (selezionabile), pulsante Maps, Quando · Chi · Cosa (valigie → ufficio, consegna) · Bolla · Costo netto · Orari (fonte,
+  «n.v.») · A piedi · Codice · Portare. In fondo il riepilogo dei costi (dai numeri calcolati) e il link alla guida
+  `spedire-valigie`, che resta procedurale (frasi al banco, bolla, tracking) e rimanda alla tab per uffici e costi.
+  `trasporti.html#ship-…` apre la tab e scorre alla card.

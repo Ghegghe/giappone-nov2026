@@ -585,10 +585,10 @@
       "id": "bg-kate"
     },
     {
-      "what": "Mouriya a Kobe, pranzo dell'8 novembre alle 13:00 (prenotato). Torafugutei a Tokyo, cena del 18",
+      "what": "Mouriya a Kobe, pranzo dell'8 novembre alle 13:00 (prenotato)",
       "site": "TableCheck e Hot Pepper Gourmet",
       "url": "",
-      "when": "Mouriya: prenotato il 18 ottobre su TableCheck, 4 persone, posti al bancone. Torafugutei su Hot Pepper Gourmet, verso inizio novembre.",
+      "when": "Mouriya: prenotato il 18 ottobre su TableCheck, 4 persone, posti al bancone.",
       "payment": "Si prenota soltanto: si paga al ristorante.",
       "collect": "Conferma via mail. Da Mouriya arrivate entro 13:15, altrimenti la prenotazione viene cancellata.",
       "notes": "",
@@ -783,13 +783,13 @@
     },
     {
       "id": "ck-19",
-      "when": "entro fine ott",
+      "when": "18 ott",
       "what": "Trade Republic: 1 prelievo ≥€100 + 1 pagamento di prova in Italia · limite ATM ≥ ¥100.000",
       "where": "app TR → Carta → Limiti",
-      "status": "todo",
-      "sortDate": "2026-10-31",
+      "status": "done",
+      "sortDate": "2026-10-18",
       "whenDetail": "",
-      "dateApprox": true
+      "dateApprox": false
     },
     {
       "id": "ck-20",
@@ -815,33 +815,33 @@
     },
     {
       "id": "ck-22",
-      "when": "~inizio nov",
-      "what": "Torafugutei fugu 18 nov (Shinjuku)",
+      "when": "2 nov",
+      "what": "Torafugutei (fugu): scartato, non interessa",
       "where": "Hot Pepper Gourmet · tel 03-3209-2919",
-      "status": "todo",
-      "sortDate": "2026-11-03",
+      "status": "done",
+      "sortDate": "2026-11-02",
       "whenDetail": "",
-      "dateApprox": true
+      "dateApprox": false
     },
     {
       "id": "ck-23",
-      "when": "prima di partire",
+      "when": "1 nov",
       "what": "Valigie: 4 da stiva ≤158 cm (somma lati) e ≤23 kg · eSIM o SIM fisica",
       "where": "",
-      "status": "todo",
-      "sortDate": "2026-11-05",
+      "status": "done",
+      "sortDate": "2026-11-01",
       "whenDetail": "",
-      "dateApprox": true
+      "dateApprox": false
     },
     {
       "id": "ck-24",
-      "when": "prima di partire",
+      "when": "1 nov",
       "what": "Verificare biglietto China Eastern: classe con 2 bagagli da stiva inclusi",
       "where": "app/biglietto",
-      "status": "todo",
-      "sortDate": "2026-11-05",
+      "status": "done",
+      "sortDate": "2026-11-01",
       "whenDetail": "",
-      "dateApprox": true
+      "dateApprox": false
     },
     {
       "id": "ck-25",
@@ -880,10 +880,10 @@
     },
     {
       "id": "ck-yume-modulo",
-      "when": "entro ven 16 ott",
+      "when": "17 ott",
       "whenDetail": "",
-      "sortDate": "2026-10-16",
-      "status": "todo",
+      "sortDate": "2026-10-17",
+      "status": "done",
       "what": "Yume-no-ya: modulo di pre-registrazione con i passaporti di tutti e 4 (obbligatorio)",
       "where": "link nell'email di conferma"
     },
@@ -911,7 +911,7 @@
       "whenDetail": "sera, entro le 21",
       "sortDate": "2026-11-10",
       "status": "todo",
-      "what": "Valigie all'ufficio Yamato Osaka-Umeda/Umeshin (Taiyūji-chō 1-17), destinazione ufficio Yamato Yoyogi 2-chome",
+      "what": "Valigie all'ufficio Yamato 大阪梅新営業所 (Taiyūji-chō 1-17): 3 per l'ufficio Yamato Yoyogi 2-chome, 1 per l'ufficio 名古屋城西営業所 di Nagoya",
       "where": "~12' a piedi dal BON",
       "links": [
         {
@@ -921,14 +921,174 @@
       ]
     },
     {
-      "id": "ck-yasudaya",
-      "when": "prima del 15 nov",
-      "whenDetail": "",
+      "id": "ck-yamato-nagoya-ritiro",
+      "when": "12 nov sera, entro le 20",
+      "whenDetail": "sera, entro le 20",
+      "sortDate": "2026-11-12",
+      "status": "todo",
+      "what": "Una persona ritira la valigia all'ufficio Yamato 名古屋城西営業所, con passaporto e ricevuta (se il bus fa tardi: ven 13 alle 8)",
+      "where": "~9' a piedi dal Glocal",
+      "links": [
+        {
+          "href": "alloggi.html#bagagli",
+          "label": "Bagagli"
+        }
+      ]
+    },
+    {
+      "id": "ck-yamato-nagoya-rispedizione",
+      "when": "14 nov, entro le 20",
+      "whenDetail": "orario libero, entro le 20",
       "sortDate": "2026-11-14",
       "status": "todo",
-      "dateApprox": true,
-      "what": "Yasudaya: chiedere la regola sui tatuaggi e il bagno privato «Hanafubuki»",
+      "what": "Uno dei 3 che non vanno al concerto rispedisce la valigia di Nagoya all'ufficio Yamato Yoyogi 2-chome, consegna 16 nov (prima togliere le cose per il concerto e per il 15-16)",
+      "where": "ufficio Yamato 名古屋城西営業所, ~9' a piedi dal Glocal",
+      "links": [
+        {
+          "href": "alloggi.html#bagagli",
+          "label": "Bagagli"
+        }
+      ]
+    },
+    {
+      "id": "ck-yasudaya",
+      "when": "18 ott",
+      "whenDetail": "",
+      "sortDate": "2026-10-18",
+      "status": "done",
+      "dateApprox": false,
+      "what": "Yasudaya: niente tatuaggi nei bagni comuni → bagno privato «Hanafubuki» da prenotare al check-in",
       "where": "contatti nella conferma di prenotazione"
     }
-  ]
+  ],
+  "shipping": {
+    "service": "営業所受け取り",
+    "serviceNote": "Ritiro in ufficio: si scrive SULLA BOLLA quando si spedisce, solo così vale lo sconto di ¥60. Dal konbini non si può.",
+    "guide": "spedire-valigie",
+    "offices": {
+      "umeshin": {
+        "nameJa": "ヤマト運輸 大阪梅新営業所",
+        "reading": "Yamato Un'yu Ōsaka Umeshin eigyōsho",
+        "name": "Yamato Osaka-Umeshin",
+        "addressJa": "〒530-0051 大阪府大阪市北区太融寺町1-17 梅田アスカビル",
+        "mapsQuery": "ヤマト運輸 大阪梅新営業所 大阪市北区太融寺町1-17",
+        "hours": "tutti i giorni 8:00-21:00",
+        "hoursSource": "Google Maps, 24 ott 2026",
+        "verified": false,
+        "access": "~12' a piedi dal BON"
+      },
+      "josai": {
+        "nameJa": "ヤマト運輸 名古屋城西営業所",
+        "reading": "Yamato Un'yu Nagoya Jōsai eigyōsho",
+        "name": "Yamato Nagoya-Jōsai",
+        "addressJa": "〒453-0013 愛知県名古屋市中村区亀島2-31-20",
+        "mapsQuery": "ヤマト運輸 名古屋城西営業所 名古屋市中村区亀島2-31-20",
+        "hours": "tutti i giorni 8:00-20:00",
+        "hoursSource": "Google Maps, 24 ott 2026",
+        "verified": false,
+        "access": "600 m, ~9' a piedi dal Glocal · su Maps anche «名古屋菊井»"
+      },
+      "yoyogi": {
+        "nameJa": "ヤマト運輸 渋谷代々木2丁目営業所",
+        "reading": "Yamato Un'yu Shibuya Yoyogi ni-chōme eigyōsho",
+        "name": "Yamato Yoyogi 2-chōme",
+        "addressJa": "〒151-0053 東京都渋谷区代々木2-23-1-127",
+        "mapsQuery": "ヤマト運輸 渋谷代々木2丁目営業所",
+        "hours": "lun-ven 12:00-20:00, sabato e domenica chiuso",
+        "hoursSource": "Google Maps, 24 ott 2026",
+        "verified": false,
+        "code": "132810",
+        "access": "~520 m, 9-12' a piedi da Yume-no-ya"
+      }
+    },
+    "steps": [
+      {
+        "id": "ship-10",
+        "date": "2026-11-10",
+        "time": "20:30",
+        "timeNote": "entro le 21: arrivate entro le 20:40",
+        "kind": "send",
+        "officeId": "umeshin",
+        "who": "tutti e 4",
+        "bags": [
+          {
+            "count": 3,
+            "to": "yoyogi",
+            "delivery": "2026-11-16",
+            "jpyEach": 3000,
+            "fare": "taglia 160 Kansai → Kantō ¥3.160 − ¥100 portata in ufficio − ¥60 ritiro in ufficio"
+          },
+          {
+            "count": 1,
+            "to": "josai",
+            "delivery": "2026-11-11",
+            "jpyEach": 2860,
+            "fare": "taglia 160 Kansai → Chūbu ¥3.020 − ¥100 − ¥60"
+          }
+        ],
+        "note": "Una bolla per valigia, con 営業所受け取り segnato. Nome del destinatario: lo stesso su tutte, come sul passaporto. Fotografate le ricevute.",
+        "bring": "Le 4 valigie, passaporto, contanti o carta (Visa/Mastercard, ICOCA).",
+        "agendaItem": "d10-15",
+        "costJpy": 11860,
+        "costEur": 67.22
+      },
+      {
+        "id": "ship-12",
+        "date": "2026-11-12",
+        "time": "19:15",
+        "timeNote": "dopo il check-in, entro le 20:00. Se il bus fa tardi: ven 13 alle 8:00",
+        "kind": "pickup",
+        "officeId": "josai",
+        "who": "una persona",
+        "count": 1,
+        "note": "Ritira il destinatario scritto sulla bolla, oppure un altro con la foto del suo passaporto. La cena slitta di ~20'.",
+        "bring": "Passaporto e ricevuta (anche la foto).",
+        "agendaItem": "d12-23",
+        "costJpy": 0,
+        "costEur": 0.0
+      },
+      {
+        "id": "ship-14",
+        "date": "2026-11-14",
+        "time": "08:00",
+        "timeNote": "orario indicativo: va bene quando volete, entro le 20:00. Il pomeriggio gli altri 3 sono a Nagashima, quindi meglio la mattina",
+        "kind": "send",
+        "officeId": "josai",
+        "who": "uno dei 3 che non vanno al concerto",
+        "bags": [
+          {
+            "count": 1,
+            "to": "yoyogi",
+            "delivery": "2026-11-16",
+            "jpyEach": 2860,
+            "fare": "taglia 160 Chūbu → Kantō ¥3.020 − ¥100 − ¥60"
+          }
+        ],
+        "note": "Prima togliete le cose per il concerto e per il 15-16 e mettetele nello zaino. Consegna il 16, non prima: Yoyogi è chiuso sabato e domenica. Mittente sulla bolla: il Glocal.",
+        "bring": "La valigia, passaporto, contanti o carta.",
+        "agendaItem": "d14-01",
+        "costJpy": 2860,
+        "costEur": 16.21
+      },
+      {
+        "id": "ship-17",
+        "date": "2026-11-17",
+        "time": "14:00",
+        "timeNote": "dopo l'arrivo a Tokyo; ufficio aperto 12-20",
+        "kind": "pickup",
+        "officeId": "yoyogi",
+        "who": "chi è scritto sulla bolla, o chi ha la foto del suo passaporto",
+        "count": 4,
+        "note": "Restano in ufficio al massimo 7 giorni dall'arrivo: fino al 22. Poi a piedi a casa.",
+        "bring": "Passaporto e le 4 ricevute (anche le foto).",
+        "agendaItem": "d17-03",
+        "costJpy": 0,
+        "costEur": 0.0
+      }
+    ],
+    "totalJpy": 14720,
+    "totalEur": 83.43,
+    "totalJpyPerPerson": 3680,
+    "totalEurPerPerson": 20.86
+  }
 }

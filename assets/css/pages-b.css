@@ -165,3 +165,9 @@ details.lu-group > .list.card:last-child { margin-bottom: var(--space-4); }
   :root:is([data-theme="washi"], [data-theme="night"]) .card.al-stay > .al-stay__head .h3 { font-size: 1.125rem; }
   :root:is([data-theme="washi"], [data-theme="night"]) .al-logistics .card > .h3 { font-size: 1.0625rem; }
 }
+
+/* Spedizioni (SPEC §15) */
+.tr-ship__ja { margin: 0; font-size: 1.0625rem; line-height: 1.5rem; font-weight: 600; overflow-wrap: anywhere; }
+.tr-ship__addr { margin: 0; font-size: 1rem; line-height: 1.5rem; padding: var(--space-2) var(--space-3); border-radius: var(--radius-md); background: var(--bg-sunken, var(--muted)); overflow-wrap: anywhere; user-select: all; }
+.tr-ship .al-notes { margin: 0; padding-left: 1.1em; }
+.tr-ship__sum { --card-p: var(--space-4); }

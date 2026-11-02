@@ -75,17 +75,23 @@
       {
         "id": "spedizione",
         "name": "Spedizione bagagli (Yamato)",
-        "eur": 14.0,
+        "eur": 20.86,
         "estimate": false,
-        "note": "4 valigie taglia 160 Osaka → Tokyo, ¥2.470 l'una con gli sconti (portata a mano, ritiro in ufficio) · destinazione: ufficio Yamato Yoyogi",
-        "costJpy": 2470
+        "note": "4 valigie taglia 160: 3 Osaka → Tokyo, 1 Osaka → Nagoya → Tokyo, con gli sconti per la portata e il ritiro in ufficio · dettaglio in Trasporti › Spedizioni",
+        "links": [
+          {
+            "href": "trasporti.html#spedizioni",
+            "label": "Spedizioni"
+          }
+        ],
+        "costJpy": 3680
       }
     ],
-    "commonTotalEur": 882.86,
-    "totalEur": 2740.57
+    "commonTotalEur": 889.72,
+    "totalEur": 2747.43
   },
   "group": {
-    "totalEur": 10962.28
+    "totalEur": 10989.72
   },
   "paidSoFar": {
     "lodgingEurGroup": 2948.27,
@@ -113,7 +119,7 @@
     {
       "date": "2026-11-10",
       "eurPlanned": null,
-      "eurAgenda": 75.5
+      "eurAgenda": 78.5
     },
     {
       "date": "2026-11-11",
@@ -133,7 +139,7 @@
     {
       "date": "2026-11-14",
       "eurPlanned": null,
-      "eurAgenda": 97.0
+      "eurAgenda": 101.0
     },
     {
       "date": "2026-11-15",
@@ -153,7 +159,7 @@
     {
       "date": "2026-11-18",
       "eurPlanned": 90,
-      "eurAgenda": 68.0
+      "eurAgenda": 58.0
     },
     {
       "date": "2026-11-19",
