@@ -341,13 +341,14 @@ Avvisi (giorni in bozza o stime):
 - Item con orario fuori sequenza (14 nov «ALTRI 3») marcati `parallel:true`; giorno libero 21 nov: item `allDay:true`, `time:""`.
 - Testi per il sito (`ux_clean`, regole generali): maiuscole d'enfasi → minuscole; titoli item ≤ ~60 car. (spiegazioni/logistica in `note`); titolo giorno senza base ripetuta + `dayTrip`; checklist con `endDate`/`whenDetail`/`dateApprox`; opzioni trasporto con `id`, `noteShort`, `noteMore`; riferimenti al dossier (📎/🗓/«vedi riga») tolti e tradotti in `links` interni; note alloggi deduplicate; Giorno 1 `open` → `remember` (deciso) o `todo` (aperto).
 
-## Guide (SPEC §10) — 15 in `site/data/guides.json`
+## Guide (SPEC §10) — 16 in `site/data/guides.json`
 
 Sorgente: `data/guide`
 
-### Guide lette (15)
+### Guide lette (16)
 
 - `abbonamenti-metro.md` → `abbonamenti-metro` (order 55, 8524 car. HTML, 0 luoghi)
+- `app-utili.md` → `app-utili` (order 54, 10600 car. HTML, 0 luoghi)
 - `bere.md` → `bere` (order 30, 7290 car. HTML, 2 luoghi)
 - `cena-compleanno-kyoto.md` → `cena-compleanno-kyoto` (order 12, 103995 car. HTML, 6 luoghi)
 - `concerto-nagoya.md` → `concerto-nagoya` (order 15, 12754 car. HTML, 0 luoghi)
